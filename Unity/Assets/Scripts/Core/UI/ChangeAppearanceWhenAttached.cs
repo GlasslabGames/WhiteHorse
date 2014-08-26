@@ -13,11 +13,11 @@ public class ChangeAppearanceWhenAttached : MonoBehaviour {
 
 	void Awake() {
     m_dragItem = GetComponent<GLDragDropItem>();
-    m_dragItem.OnDrop += HandleOnDrop;
+    m_dragItem.OnDropped += HandleOnDrop;
   }
 
   void OnDestroy() {
-    m_dragItem.OnDrop -= HandleOnDrop;
+    m_dragItem.OnDropped -= HandleOnDrop;
   }
 
   void HandleOnDrop (GLDragEventArgs args)

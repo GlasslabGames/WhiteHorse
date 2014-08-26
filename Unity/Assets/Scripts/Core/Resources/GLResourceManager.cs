@@ -310,7 +310,6 @@ public class GLResourceManager : SingletonBehavior<GLResourceManager>
    */
   
   Queue<KeyValuePair<string, Action>> m_loadJobs = new Queue<KeyValuePair<string, Action>>(); // SceneName, Callback
-  Coroutine m_asyncLoadCoroutine;
   KeyValuePair<string, Action> m_currentJob; // sceneName, callback
   bool m_currentJobCanceled = false;
   public void AsyncLoadScene(string sceneName, Action callback = null)
@@ -331,7 +330,7 @@ public class GLResourceManager : SingletonBehavior<GLResourceManager>
       m_currentJob = job;
       
       // Start jobs
-      m_asyncLoadCoroutine = StartCoroutine("LoadAsync");
+      StartCoroutine("LoadAsync");
     }
   }
 
@@ -362,14 +361,11 @@ public class GLResourceManager : SingletonBehavior<GLResourceManager>
     ao.allowSceneActivation = true;
     yield return ao; // Wait for async to complete
 
-    yield return 0; // Wait another frame to avoid chugging
-
     onLoadComplete();
   }
   
   private void onLoadComplete()
   {
-    m_asyncLoadCoroutine = null;
     GameObject sceneObject = GameObject.Find (m_currentJob.Key.Replace("_halfSize", ""));
     if (m_currentJobCanceled && sceneObject != null)
     {
@@ -390,7 +386,7 @@ public class GLResourceManager : SingletonBehavior<GLResourceManager>
     {
       // If we have more jobs, start them
       m_currentJob = m_loadJobs.Dequeue();
-      m_asyncLoadCoroutine = StartCoroutine("LoadAsync");
+      StartCoroutine("LoadAsync");
     }
     else
     {

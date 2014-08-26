@@ -257,13 +257,15 @@
     <Compile Include="Assets\PlayMaker\Editor\PlayMakerMainMenu.cs" />
     <Compile Include="Assets\PlayMaker\Editor\PlayMakerWelcomeWindow.cs" />
     <Compile Include="Assets\PlayMaker\Editor\ReportWindow.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\Attributes\DisplayInEditorAsLabelAttribute.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\Attributes\SceneNameAttribute.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\Attributes\SpriteNameAttribute.cs" />
     <Compile Include="Assets\Scripts\Core\Editor\CommandLineBuild\CommandLineBuilder.cs" />
     <Compile Include="Assets\Scripts\Core\Editor\CommandLineBuild\CommandLineReader.cs" />
     <Compile Include="Assets\Scripts\Core\Editor\CustomBuilder.cs" />
     <Compile Include="Assets\Scripts\Core\Editor\DisplayInEditorAsLabelDrawer.cs" />
     <Compile Include="Assets\Scripts\Core\Editor\GLAssetBundler.cs" />
     <Compile Include="Assets\Scripts\Core\Editor\GLAssetImportListener.cs" />
-    <Compile Include="Assets\Scripts\Core\Editor\GUITextureSplashEditor.cs" />
     <Compile Include="Assets\Scripts\Core\Editor\SceneAutoLoader.cs" />
     <Compile Include="Assets\Scripts\Core\Editor\SceneHalfSizer.cs" />
     <Compile Include="Assets\Scripts\Core\Editor\SceneNameDrawer.cs" />

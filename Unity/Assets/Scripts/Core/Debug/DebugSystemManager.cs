@@ -44,7 +44,6 @@ public class DebugSystemManager : SingletonBehavior<DebugSystemManager>
 
   private List<Collider> m_colliders;
   private bool m_isInteractEnabled = false;
-  private bool m_isRelease = true;
 
   private Dictionary<string, string> m_startNextQuest = new Dictionary<string, string>(){
     {"Quest0-1", "Quest0-2"},

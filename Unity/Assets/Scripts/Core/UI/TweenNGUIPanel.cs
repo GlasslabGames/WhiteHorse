@@ -26,7 +26,7 @@ public class TweenNGUIPanel : MonoBehaviour
     {
       m_currentTime -= normalizedTime;
     }
-    m_panel.clipRange = Vector4.Lerp(From, To, Curve.Evaluate(m_currentTime));
+    m_panel.baseClipRegion = Vector4.Lerp(From, To, Curve.Evaluate(m_currentTime));
 
     if ((m_playForward && m_currentTime >= 1) || (!m_playForward && m_currentTime <= 0))
     {

@@ -35,7 +35,7 @@ public class DisplayInEditorAsLabelDrawer  : PropertyDrawer {
       break;
     case SerializedPropertyType.Enum:
       // Attempts to call Name on the enum to support Description attribute.  Requires EnumExtension.cs.
-      labelValue = (property.serializedObject.targetObject.GetType().GetField(property.name, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).GetValue(property.serializedObject.targetObject) as Enum).Name();
+      labelValue = (property.serializedObject.targetObject.GetType().GetField(property.name, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).GetValue(property.serializedObject.targetObject) as Enum).ToString();
       //labelValue = property.enumNames[property.enumValueIndex];
       break;
     case SerializedPropertyType.Vector2:

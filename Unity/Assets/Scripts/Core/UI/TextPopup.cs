@@ -66,7 +66,7 @@ public class TextPopup : MonoBehaviour {
     
     if (TweenOnShow != null) {
       TweenOnShow.enabled = true;
-      TweenOnShow.Reset();
+      TweenOnShow.ResetToBeginning();
       TweenOnShow.enabled = true;
       TweenOnShow.PlayForward();
     }
@@ -84,7 +84,7 @@ public class TextPopup : MonoBehaviour {
     if (TweenOnShow != null) {
       Debug.Log ("Trying to play tweenOnShow", TweenOnShow);
       TweenOnShow.enabled = true;
-      TweenOnShow.Reset();
+      TweenOnShow.ResetToBeginning();
       TweenOnShow.enabled = true;
       TweenOnShow.PlayForward();
     }

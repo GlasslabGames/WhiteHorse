@@ -8,42 +8,13 @@ public class SaveMigration
   private delegate string MigrationDelegate(string saveData);
   public static Dictionary<string, SaveMigration> Migrations = new Dictionary<string, SaveMigration>()
   {
-    {"", new SaveMigration("", "1.02", delegate(string saveData) {
-        saveData = saveData.Replace("\\\"", "\""); // Replace all \"
-        saveData = saveData.Replace("\\", ""); // Replace all \\
-        saveData = saveData.Replace("\"{", "{"); // Replace all \"{
-        saveData = saveData.Replace("}\"", "}"); // Replace all }\"
-        
-        Dictionary<string, object> data = (Dictionary<string, object>) Json.Deserialize(saveData);
-        
-        // Note: We're just nuking achievement data because no one in production should have achievements yet.
-        bool removeSuccess;
-        removeSuccess = deleteData("AchievementManager/AchievementManager/m_achievements", data); //(Dictionary<string, object>) achievementManagerObjectData["AchievementManager"];
-        removeSuccess = deleteData("StatsManager/CoreConstructionStatManager/CoreAttempts", data);
-        return Json.Serialize(data);
-      })
-    },
-    {"1.02", new SaveMigration("1.02", "1.03", delegate(string saveData) {
-        Dictionary<string, object> data = (Dictionary<string, object>) Json.Deserialize(saveData);
-        
-        // Note: We're just nuking achievement data because no one in production should have achievements yet.
-        deleteData("ExplorationManager/ExplorationManager/m_totalTimePlayed", data);
-        return Json.Serialize(data);
-      })
-    },
-    {"1.03", new SaveMigration("1.03", "1.04", delegate(string saveData) {
-        return saveData; // No need to migrate
-      })
-    },
-    {"1.04", new SaveMigration("1.04", "2.0", delegate(string saveData) {
-        return ""; // Wipe save
-      })
-    },
+    /*
     {"EXAMPLE", new SaveMigration("BEFORE_VERSION", "AFTER_VERSION", delegate(string saveData) {
         Dictionary<string, object> data = (Dictionary<string, object>) Json.Deserialize(saveData);
         return saveData;
       })
     }
+    */
   };
 
   private static bool hasDataAtPath(string path, Dictionary<string, object> data)

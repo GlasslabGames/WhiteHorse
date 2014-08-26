@@ -146,7 +146,6 @@ public class AELayerTemplate  {
           break;
         default:
           return frame;
-          break;
       }
     }
 

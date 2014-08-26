@@ -44,4 +44,11 @@ public class GlSoundManager : SingletonBehavior<GlSoundManager> {
 #endif
     Muted = false;
   }
+
+  public void PlaySoundByEvent(string eventName, GameObject owner = null)
+  {
+#if FABRIC
+    Fabric.EventManager.Instance.PostEvent(eventName, owner);
+#endif
+  }
 }

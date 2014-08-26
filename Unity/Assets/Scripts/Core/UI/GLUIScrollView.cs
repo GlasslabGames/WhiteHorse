@@ -11,7 +11,7 @@ public class GLUIScrollView : UIScrollView {
       if (panel == null) return base.shouldMove;
 
       if (!disableDragIfFits) return true;
-      Vector4 clip = panel.clipRange;
+      Vector4 clip = panel.finalClipRegion;
       Bounds b = bounds;
       
       float hx = (clip.z == 0f) ? Screen.width  : clip.z * 0.5f;

@@ -142,8 +142,14 @@ public class CustomBuilder : EditorWindow {
     jsonData[MANIFEST_SCENE_KEY] = sceneData;
 
     string json = Json.Serialize(jsonData);
+    string fileDirectory = Application.dataPath + "/"+RESOURCES_FOLDER;
+    if (!Directory.Exists(fileDirectory))
+    {
+      Debug.Log("Manifest target directory doesn't exist, creating directory at '"+fileDirectory+"'");
+      Directory.CreateDirectory(fileDirectory);
+    }
 
-    File.WriteAllText(Application.dataPath + "/"+RESOURCES_FOLDER+"/" + MANIFEST_FILE_NAME, json);
+    File.WriteAllText(fileDirectory +"/"+ MANIFEST_FILE_NAME, json);
     AssetDatabase.Refresh();
     Debug.Log ("[CustomBuilder] Complete, "+ Mathf.Round((float)(EditorApplication.timeSinceStartup - time) * 1000f) + "ms\n" + json);
   }

@@ -61,7 +61,7 @@ public class FollowMouseWithinBounds : MonoBehaviour
     // If we were moving last frame, continue with velocity
     if (m_touchMovedLastFrame)
     {
-      Vector2 delta = getWorldPositionDeltaFromEvent(e);
+      Vector2 delta = getWorldPositionDeltaFromEvent();
 
       m_velocity = -delta;
     }

@@ -917,10 +917,12 @@
     <Compile Include="Assets\PlayMaker\Include\iTweenFSMEvents.cs" />
     <Compile Include="Assets\Scripts\Core\Achievements\Achievement.cs" />
     <Compile Include="Assets\Scripts\Core\Achievements\AchievementManager.cs" />
+    <Compile Include="Assets\Scripts\Core\Actions\Action.cs" />
     <Compile Include="Assets\Scripts\Core\ActivityStatsManager.cs" />
     <Compile Include="Assets\Scripts\Core\Animation\GLAfterEffectsAnimationController.cs" />
     <Compile Include="Assets\Scripts\Core\Animation\MecanimListener.cs" />
     <Compile Include="Assets\Scripts\Core\Attributes\EventHandlerAttribute.cs" />
+    <Compile Include="Assets\Scripts\Core\BackgroundTapCatcher.cs" />
     <Compile Include="Assets\Scripts\Core\Camera\BackgroundParallaxLayer.cs" />
     <Compile Include="Assets\Scripts\Core\Camera\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Core\Camera\CameraZoom.cs" />
@@ -954,7 +956,6 @@
     <Compile Include="Assets\Scripts\Core\Interactions\InteractiveObject.cs" />
     <Compile Include="Assets\Scripts\Core\Interactions\StartQuest.cs" />
     <Compile Include="Assets\Scripts\Core\Interactions\Talk.cs" />
-    <Compile Include="Assets\Scripts\Core\Interactions\UseForQuest.cs" />
     <Compile Include="Assets\Scripts\Core\Inventory\EquipmentManager.cs" />
     <Compile Include="Assets\Scripts\Core\Model\EquipableModel.cs" />
     <Compile Include="Assets\Scripts\Core\Model\EquipmentType.cs" />
@@ -975,7 +976,6 @@
     <Compile Include="Assets\Scripts\Core\PlayMaker\ChangeObjectiveDescription.cs" />
     <Compile Include="Assets\Scripts\Core\PlayMaker\CheckHalfSize.cs" />
     <Compile Include="Assets\Scripts\Core\PlayMaker\CompleteObjective.cs" />
-    <Compile Include="Assets\Scripts\Core\PlayMaker\EndGame.cs" />
     <Compile Include="Assets\Scripts\Core\PlayMaker\EndQuest.cs" />
     <Compile Include="Assets\Scripts\Core\PlayMaker\NguiChangeText.cs" />
     <Compile Include="Assets\Scripts\Core\PlayMaker\OnConversationEnd.cs" />
@@ -1052,8 +1052,8 @@
     <Compile Include="Assets\Scripts\Core\UI\LabelColorController.cs" />
     <Compile Include="Assets\Scripts\Core\UI\MoveObjectToNewView.cs" />
     <Compile Include="Assets\Scripts\Core\UI\OnClickHandler.cs" />
+    <Compile Include="Assets\Scripts\Core\UI\PauseManager.cs" />
     <Compile Include="Assets\Scripts\Core\UI\PlayAnimationOnClick.cs" />
-    <Compile Include="Assets\Scripts\Core\UI\PlayAnimationOnClick2.cs" />
     <Compile Include="Assets\Scripts\Core\UI\PlayAnimationWithInterval.cs" />
     <Compile Include="Assets\Scripts\Core\UI\QuitButton.cs" />
     <Compile Include="Assets\Scripts\Core\UI\RandomAnimator.cs" />

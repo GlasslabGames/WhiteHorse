@@ -38,6 +38,8 @@ public class Quest : MonoBehaviour
   [PersistAttribute]
   private string m_fsmStateName;
 
+  private QuestState m_currentState = QuestState.UNINITIALIZED;
+
   public bool IsSideQuest = false;
   public bool IsCancelable = true;
 
@@ -112,18 +114,6 @@ public class Quest : MonoBehaviour
     PegasusManager.Instance.GLSDK.AddTelemEventValue( "questName", Title );
     PegasusManager.Instance.AppendDefaultTelemetryInfo();
     PegasusManager.Instance.GLSDK.SaveTelemEvent( "Quest_cancel" );
-
-    // End the current quest game session
-    //PegasusManager.Instance.EndSession();
-    
-    if (!ExplorationManager.Instance.IsGameEnded)
-    {
-      // Start a new game session for the interstitial
-      //PegasusManager.Instance.StartSession();
-
-      // Reset the activity attempts
-      ActivityStatsManager.Instance.ResetActivityAttempts();
-    }
   }
 
   private void refreshQuestState()
@@ -360,18 +350,6 @@ public class Quest : MonoBehaviour
       PegasusManager.Instance.GLSDK.AddTelemEventValue( "questName", Title );
       PegasusManager.Instance.AppendDefaultTelemetryInfo();
       PegasusManager.Instance.GLSDK.SaveTelemEvent( "Quest_complete" );
-
-			// End the current quest game session
-			//PegasusManager.Instance.EndSession();
-
-      if (!ExplorationManager.Instance.IsGameEnded)
-      {
-  			// Start a new game session for the interstitial
-  			//PegasusManager.Instance.StartSession();
-
-        // Reset the activity attempts
-        ActivityStatsManager.Instance.ResetActivityAttempts();
-      }
     }
     else
     {

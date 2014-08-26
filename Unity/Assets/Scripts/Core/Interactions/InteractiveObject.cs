@@ -214,7 +214,7 @@ public class InteractiveObject : OnClickHandler {
   void OnDestroy()
   {
     if (AttachDragDropContainer && GLDragDropContainerLayer.Instance) { // Layer manager might get destroyed before this does when game is shutting down
-      GLDragDropContainer container = GLDragDropContainerLayer.Instance.RemoveContainer(collider);
+      GLDragDropContainerLayer.Instance.RemoveContainer(collider);
     }
     
     SignalManager.QuestChanged -= onQuestChanged;

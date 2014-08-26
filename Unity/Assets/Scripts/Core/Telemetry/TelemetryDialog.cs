@@ -7,31 +7,27 @@ public class TelemetryDialog : MonoBehaviour {
   public UILabel Label;
   public GameObject DialogParent;
   public int MaxMessages;
+  private bool m_isOpen = false;
 
 	void Awake() {
     TapSequenceListener listener = GetComponent<TapSequenceListener>();
     if (listener != null) { listener.Callback = Open; }
 
-    bool open;
-    if (GlobalData.ValueExists<bool>("DEBUG_TELEMETRY_OPEN")) {
-      open = GlobalData.GetValue<bool>("DEBUG_TELEMETRY_OPEN");
-    } else {
-      open = DialogParent.gameObject.activeSelf;
-    }
+    m_isOpen = DialogParent.gameObject.activeSelf;
 
-    if (open) Open ();
+    if (m_isOpen) Open();
     else Close ();
   }
 
   public void Open() {
-    GlobalData.SetValue("DEBUG_TELEMETRY_OPEN", true); 
+    m_isOpen = true;
     if (DialogParent != null) {
       DialogParent.gameObject.SetActive(true);
     }
   }
 
   public void Close() {
-    GlobalData.SetValue("DEBUG_TELEMETRY_OPEN", false); 
+    m_isOpen = false;
     if (DialogParent != null) {
       DialogParent.gameObject.SetActive(false);
     }

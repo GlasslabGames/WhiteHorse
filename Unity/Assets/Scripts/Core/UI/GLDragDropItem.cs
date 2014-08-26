@@ -156,8 +156,8 @@ public class GLDragDropItem : UIDragDropItem
     Debug.Log ("Start drag "+this, this);
     m_containerBeforeDrag = m_container;
     GLDragDropContainer container = m_container ? m_container.GetComponent<GLDragDropContainer>() : null;
-    if (OnDragStart != null) {
-      OnDragStart(new GLDragEventArgs(this, container));
+    if (OnDragStarted != null) {
+      OnDragStarted(new GLDragEventArgs(this, container));
     }
 
     collider.enabled = false;
@@ -243,8 +243,8 @@ public class GLDragDropItem : UIDragDropItem
 
         delayDrop = true; // dont' start the drop event right now, wait until we're in position
         OnSnap += delegate {
-          if (OnDrop != null) {
-            OnDrop(new GLDragEventArgs(this, isObjectProcessed && surface ? surface.GetComponent<GLDragDropContainer>() : null));
+          if (OnDropped != null) {
+            OnDropped(new GLDragEventArgs(this, isObjectProcessed && surface ? surface.GetComponent<GLDragDropContainer>() : null));
           }
         };
         // OnDrop will happen when we reach our target position. But if we start dragging again before that happens, it will be canceled.
@@ -253,8 +253,9 @@ public class GLDragDropItem : UIDragDropItem
     // The problem is that if we pick it up as we're animating local position, we end up finishing the animation while being dragged and are then offset?
     // Or we start with a big offset? 
 
-    if (!delayDrop && OnDrop != null) {
-      OnDrop(new GLDragEventArgs(this, isObjectProcessed && surface ? surface.GetComponent<GLDragDropContainer>() : null));
+    if (!delayDrop && OnDropped != null)
+    {
+      OnDropped(new GLDragEventArgs(this, isObjectProcessed && surface ? surface.GetComponent<GLDragDropContainer>() : null));
     }
   }
 
@@ -327,15 +328,15 @@ public class GLDragDropItem : UIDragDropItem
     }
     */
 
-    if (OnDrag != null) OnDrag(this);
+    if (OnDragged != null) OnDragged(this);
   }
 
   protected override void OnDragDropEnd()
   {
     base.OnDragDropEnd();
 
-    if (OnDragEnd != null) {
-      OnDragEnd(new GLDragEventArgs(this, m_container ? m_container.GetComponent<GLDragDropContainer>() : null));
+    if (OnDragEnded != null) {
+      OnDragEnded(new GLDragEventArgs(this, m_container ? m_container.GetComponent<GLDragDropContainer>() : null));
     }
 
     if (ApplyRestrictionForScrollViewOnly) {
@@ -393,8 +394,8 @@ public class GLDragDropItem : UIDragDropItem
 
   ~GLDragDropItem()
   {
-    OnDragEnd = null;
-    OnDragStart = null;
+    OnDragEnded = null;
+    OnDragStarted = null;
   }
 }
 

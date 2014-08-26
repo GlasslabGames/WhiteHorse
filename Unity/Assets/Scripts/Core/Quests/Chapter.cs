@@ -18,8 +18,6 @@ public class Chapter : MonoBehaviour {
 
   private Quest[] m_quests;
 
-  public Room[] RoomsToUnlockAtStart;
-
   [PersistAttribute]
   private bool m_isActive;
   public bool IsActive {
@@ -63,14 +61,6 @@ public class Chapter : MonoBehaviour {
       if (IntroQuest != null)
       {
         IntroQuest.StartQuest();
-      }
-
-      if (RoomsToUnlockAtStart != null)
-      {
-        foreach (Room r in RoomsToUnlockAtStart)
-        {
-          r.Unlock();
-        }
       }
       PegasusManager.Instance.GLSDK.AddTelemEventValue( "chapterId", name );
       PegasusManager.Instance.AppendDefaultTelemetryInfo();

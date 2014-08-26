@@ -16,6 +16,10 @@ public sealed class EquipmentManager : SingletonBehavior<EquipmentManager> {
   // so if we once picked up an item, it never reappears in the world even when it's not longer in our inventory
   // Not sure if this is still being used now that we have ways to discard items and stuff :?
 
+  [PersistAttribute]
+  private List<int> m_discoveredIDList = new List<int>(); // List of items discovered
+
+
   public void UntrashEquipment(EquipableModel em)
   {
     if (IsEquipmentTrashed(em)) {
@@ -67,15 +71,6 @@ public sealed class EquipmentManager : SingletonBehavior<EquipmentManager> {
   }
 
   private EquipmentManager() {}
-  
-  void OnEnable () {
-    SignalManager.ConversationStarted += OnConversationStarted;
-  }
-  
-  void OnDisable () {
-    SignalManager.ConversationStarted -= OnConversationStarted;
-  }
-  
 
   public void ResetInventory()
   {
@@ -143,8 +138,6 @@ public sealed class EquipmentManager : SingletonBehavior<EquipmentManager> {
     }
 
     m_inventoryItemIds.Add(equipment.Id);
-
-    if (SignalManager.EquipmentObtained != null) SignalManager.EquipmentObtained (equipment);
     
     NotifyEquipmentChanged ();
 
@@ -153,9 +146,6 @@ public sealed class EquipmentManager : SingletonBehavior<EquipmentManager> {
 
   public void NotifyEquipmentChanged()
   {
-    if (OnGearChanged != null)
-      OnGearChanged ();
-
     if (SignalManager.EquipmentChanged != null ) SignalManager.EquipmentChanged();
   }
 }
