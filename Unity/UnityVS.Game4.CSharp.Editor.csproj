@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3C564D19-52C1-2E11-CDEE-61975CDC09EE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>
+    </RootNamespace>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Debug\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>DEBUG;TRACE;UNITY_4_5_3;UNITY_4_5;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>TRACE;UNITY_4_5_3;UNITY_4_5;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="Boo.Lang" />
+    <Reference Include="UnityScript.Lang" />
+    <Reference Include="UnityEngine">
+      <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="DialogueSystem">
+      <HintPath>Assets\Dialogue System\DLLs\DialogueSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="DialogueSystemEditors">
+      <HintPath>Assets\Dialogue System\DLLs\Editor\DialogueSystemEditors.dll</HintPath>
+    </Reference>
+    <Reference Include="LuaInterpreter">
+      <HintPath>Assets\Dialogue System\DLLs\LuaInterpreter.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Assets\Photon Unity Networking\Editor\PhotonNetwork\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>Assets\Photon Unity Networking\Plugins\PhotonNetwork\library\Photon3Unity3D.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMakerEditor.de.resources">
+      <HintPath>Assets\PlayMaker\Editor\de\PlayMakerEditor.de.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMakerEditor.es-ES.resources">
+      <HintPath>Assets\PlayMaker\Editor\es-ES\PlayMakerEditor.es-ES.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMakerEditor.fr.resources">
+      <HintPath>Assets\PlayMaker\Editor\fr\PlayMakerEditor.fr.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMakerEditor.it.resources">
+      <HintPath>Assets\PlayMaker\Editor\it\PlayMakerEditor.it.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMakerEditor.ja.resources">
+      <HintPath>Assets\PlayMaker\Editor\ja\PlayMakerEditor.ja.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMakerEditor.nl.resources">
+      <HintPath>Assets\PlayMaker\Editor\nl\PlayMakerEditor.nl.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMakerEditor">
+      <HintPath>Assets\PlayMaker\Editor\PlayMakerEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMakerEditorResources">
+      <HintPath>Assets\PlayMaker\Editor\PlayMakerEditorResources.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMakerEditor.pt-BR.resources">
+      <HintPath>Assets\PlayMaker\Editor\pt-BR\PlayMakerEditor.pt-BR.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMakerEditor.sv-SE.resources">
+      <HintPath>Assets\PlayMaker\Editor\sv-SE\PlayMakerEditor.sv-SE.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMakerEditor.zh-CN.resources">
+      <HintPath>Assets\PlayMaker\Editor\zh-CN\PlayMakerEditor.zh-CN.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMakerEditor.zh-TW.resources">
+      <HintPath>Assets\PlayMaker\Editor\zh-TW\PlayMakerEditor.zh-TW.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMaker">
+      <HintPath>Assets\PlayMaker\PlayMaker.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+      <HintPath>Assets\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Messaging">
+      <HintPath>Assets\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Messaging.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityVS.VersionSpecific">
+      <HintPath>Assets\UnityVS\Editor\UnityVS.VersionSpecific.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-UnityScript">
+      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="UnityVS.Game4.CSharp.csproj">
+      <Project>{095247E4-8785-C282-6602-CE9730DF9613}</Project>
+      <Name>UnityVS.Game4.CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityVS.Game4.CSharp.Plugins.csproj">
+      <Project>{D645A97B-9249-4B3A-CC20-D86344FE9409}</Project>
+      <Name>UnityVS.Game4.CSharp.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Converters\AbstractConverterWindow.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Converters\CSVConverterWindow.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Converters\ConverterWindowTemplate.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Wizards\DialogueManagerWizard.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Wizards\NPCSetupWizard.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Editor\Wizards\PlayerSetupWizard.cs" />
+    <Compile Include="Assets\Dialogue System\Scripts\Supplemental\Utility\Editor\SupplementalMenuItems.cs" />
+    <Compile Include="Assets\Dialogue System\Third Party Support\NGUI\Editor\NGUIMenuItems.cs" />
+    <Compile Include="Assets\Dialogue System\Third Party Support\PlayMaker\Scripts\Editor\PlayMakerMenuItems.cs" />
+    <Compile Include="Assets\Extensions\AfterEffect\Scripts\Editor\AEAnimationControllerEditor.cs" />
+    <Compile Include="Assets\Extensions\AfterEffect\Scripts\Editor\AEEditorConfig.cs" />
+    <Compile Include="Assets\Extensions\AfterEffect\Scripts\Editor\AESpriteEdiotr.cs" />
+    <Compile Include="Assets\Extensions\AfterEffect\Scripts\Editor\AETopMenu.cs" />
+    <Compile Include="Assets\Extensions\AfterEffect\Scripts\Editor\AfterEffectAnimationEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\ActiveAnimationEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\BMFontReader.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\ComponentSelector.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\EventDelegateDrawer.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\EventDelegateEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\FreeType.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\NGUIContextMenu.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\NGUIEditorExtensions.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\NGUIEditorTools.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\NGUIHandles.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\NGUIHelp.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\NGUIJson.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\NGUIMenu.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\NGUISelectionTools.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\NGUISettings.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\NGUISnap.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\NGUITransformInspector.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\PropertyBindingEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\PropertyReferenceDrawer.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\SpriteSelector.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\TweenAlphaEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\TweenColorEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\TweenFOVEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\TweenHeightEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\TweenOrthoSizeEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\TweenPositionEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\TweenRotationEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\TweenScaleEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\TweenTransformEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\TweenVolumeEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\TweenWidthEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UI2DSpriteEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIAnchorEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIAtlasInspector.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIAtlasMaker.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIBasicSpriteEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIButtonColorEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIButtonEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIButtonKeysEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIButtonMessageEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UICameraEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UICameraTool.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UICreateNewUIWizard.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UICreateWidgetWizard.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIDragObjectEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIDrawCallInspector.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIDrawCallViewer.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIEventTriggerEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIFontInspector.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIFontMaker.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIForwardEventsEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIGridEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIImageButtonInspector.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIInputEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIKeyNavigationEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UILabelInspector.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UILocalizeEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIPanelInspector.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIPanelTool.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIPlayAnimationEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIPlayTweenEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIPopupListInspector.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIPrefabTool.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIProgressBarEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIRectEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIRootEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIScrollBarEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIScrollViewEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UISliderEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UISnapshotPointEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UISpriteAnimationInspector.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UISpriteInspector.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIStretchEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UITableEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UITextureInspector.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UITexturePacker.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIToggleInspector.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UITweenerEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIWidgetContainerEditor.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIWidgetInspector.cs" />
+    <Compile Include="Assets\NGUI\Scripts\Editor\UIWrapContentEditor.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\AccountService.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\PhotonConverter.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\PhotonEditor.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\PhotonViewHandler.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\PhotonViewInspector.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\PhotonViewPrefabApply.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\ServerSettingsInspector.cs" />
+    <Compile Include="Assets\Photon Unity Networking\PlayMaker\Editor\PlayMakerPhotonEditorUtility.cs" />
+    <Compile Include="Assets\Photon Unity Networking\PlayMaker\Editor\PlayMakerPhotonGameObjectProxyEditor.cs" />
+    <Compile Include="Assets\Photon Unity Networking\PlayMaker\Editor\PlayMakerPhotonWizard.cs" />
+    <Compile Include="Assets\PlayMaker\Actions\Editor\LookAtActionEditor.cs" />
+    <Compile Include="Assets\PlayMaker\Actions\Editor\MoveTowardsActionEditor.cs" />
+    <Compile Include="Assets\PlayMaker\Actions\Editor\SetCameraFOVActionEditor.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\AboutWindow.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\ContextToolWindow.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\FsmActionWindow.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\FsmComponentInspector.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\FsmEditorHelpers.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\FsmEditorWindow.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\FsmErrorWindow.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\FsmEventsWindow.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\FsmGlobalsWindow.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\FsmLogWindow.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\FsmSelectorWindow.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\FsmStateWindow.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\FsmTemplate.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\FsmTemplateEditor.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\FsmTemplateWindow.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\PlayMakerBugReportWindow.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\PlayMakerCustomActionWizard.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\PlayMakerGUIInspector.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\PlayMakerGlobalsInspector.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\PlayMakerMainMenu.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\PlayMakerWelcomeWindow.cs" />
+    <Compile Include="Assets\PlayMaker\Editor\ReportWindow.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\CommandLineBuild\CommandLineBuilder.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\CommandLineBuild\CommandLineReader.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\CustomBuilder.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\DisplayInEditorAsLabelDrawer.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\GLAssetBundler.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\GLAssetImportListener.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\GUITextureSplashEditor.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\SceneAutoLoader.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\SceneHalfSizer.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\SceneNameDrawer.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\SpriteNameDrawer.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\TextureManagement\PVRTC4CompressionPackerPolicy.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\TextureManagement\SpriteRuleset.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\TextureManagement\TextureChecker.cs" />
+    <Compile Include="Assets\Scripts\Core\Editor\TextureManagement\TextureImportProcessor.cs" />
+    <Compile Include="Assets\iTween\PlayMaker\Editor\iTweenMoveToActionEditor.cs" />
+    <None Include="Assets\Dialogue System\_README.txt" />
+    <None Include="Assets\Dialogue System\DLLs\_README.txt" />
+    <None Include="Assets\Dialogue System\Documentation\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\iOS\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\iOS\link.xml" />
+    <None Include="Assets\Dialogue System\Prefabs\Unity Dialogue UIs\Circle\Textures\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Unity Dialogue UIs\Computer\Bitwise Font\!license.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Unity Dialogue UIs\Computer\Typing.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Unity Dialogue UIs\Necromancer\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Unity Dialogue UIs\Necromancer\Necromancer GUI\Kingthings.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Unity Dialogue UIs\Necromancer\Necromancer GUI\Readme.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Unity Dialogue UIs\Shared Audio\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Unity Dialogue UIs\Shared Fonts\Orbitron\SIL Open Font License.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Unity Dialogue UIs\Shared Textures\_README.txt" />
+    <None Include="Assets\Dialogue System\Prefabs\Unity Dialogue UIs\Wheel\_README.txt" />
+    <None Include="Assets\Dialogue System\Scripts\_README.txt" />
+    <None Include="Assets\Dialogue System\Scripts\Supplemental\Utility\_README.txt" />
+    <None Include="Assets\Dialogue System\Third Party Support\_README.txt" />
+    <None Include="Assets\Dialogue System\Third Party Support\NGUI\_README.txt" />
+    <None Include="Assets\Dialogue System\Third Party Support\PlayMaker\_README.txt" />
+    <None Include="Assets\iTween\ReadMe!\ReadMe!.txt" />
+    <None Include="Assets\NGUI\ReadMe - 3.7.1.txt" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 1.shader" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 2.shader" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 3.shader" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored.shader" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 1.shader" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 2.shader" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 3.shader" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text.shader" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 1.shader" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 2.shader" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 3.shader" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored.shader" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 1.shader" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 3.shader" />
+    <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed.shader" />
+    <None Include="Assets\Photon Unity Networking\changelog.txt" />
+    <None Include="Assets\Photon Unity Networking\PlayMaker\ReleaseNotes.txt" />
+    <None Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\library\Photon3Unity3D.xml" />
+    <None Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\library\release_history.txt" />
+    <None Include="Assets\Photon Unity Networking\readme.txt" />
+    <None Include="Assets\PlayMaker\Readme.txt" />
+    <None Include="Assets\PlayMaker\Resources\PlayMakerAssemblies.txt" />
+    <None Include="Assets\PlayMaker\Versions\readme.txt" />
+    <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+    <None Include="Assets\UniWebView\ChangeLog.txt" />
+    <None Include="Assets\UniWebView\Readme.txt" />
+    <None Include="Assets\Dialogue System\DLLs\Editor\DialogueSystemEditors.dll" />
+    <None Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\Newtonsoft.Json.dll" />
+    <None Include="Assets\PlayMaker\Editor\de\PlayMakerEditor.de.resources.dll" />
+    <None Include="Assets\PlayMaker\Editor\es-ES\PlayMakerEditor.es-ES.resources.dll" />
+    <None Include="Assets\PlayMaker\Editor\fr\PlayMakerEditor.fr.resources.dll" />
+    <None Include="Assets\PlayMaker\Editor\it\PlayMakerEditor.it.resources.dll" />
+    <None Include="Assets\PlayMaker\Editor\ja\PlayMakerEditor.ja.resources.dll" />
+    <None Include="Assets\PlayMaker\Editor\nl\PlayMakerEditor.nl.resources.dll" />
+    <None Include="Assets\PlayMaker\Editor\PlayMakerEditor.dll" />
+    <None Include="Assets\PlayMaker\Editor\PlayMakerEditorResources.dll" />
+    <None Include="Assets\PlayMaker\Editor\pt-BR\PlayMakerEditor.pt-BR.resources.dll" />
+    <None Include="Assets\PlayMaker\Editor\sv-SE\PlayMakerEditor.sv-SE.resources.dll" />
+    <None Include="Assets\PlayMaker\Editor\zh-CN\PlayMakerEditor.zh-CN.resources.dll" />
+    <None Include="Assets\PlayMaker\Editor\zh-TW\PlayMakerEditor.zh-TW.resources.dll" />
+    <None Include="Assets\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll" />
+    <None Include="Assets\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Messaging.dll" />
+    <None Include="Assets\UnityVS\Editor\UnityVS.VersionSpecific.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2010\UnityVS.CSharp.targets" />
+</Project>
