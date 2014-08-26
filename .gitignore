@@ -1,2 +1,11 @@
-Hiro copy.xcodeproj/
+Unity/Temp/
+Unity/Library/
+Unity/Obj/
+
 xcuserdata
+*.csproj
+*.unityproj
+*.sln
+*.user
+*.userprefs
+*.DS_store
