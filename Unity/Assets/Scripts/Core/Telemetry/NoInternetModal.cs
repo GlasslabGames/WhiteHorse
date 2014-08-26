@@ -21,14 +21,6 @@ public class NoInternetModal : MonoBehaviour
 
   public void Display( bool noInternet ) {
     NoInternetConnectionMessage.SetActive( true );
-    return;
-
-    if( noInternet ) {
-      NoInternetConnectionMessage.SetActive( true );
-    }
-    else {
-      CantReachServerMessage.SetActive( true );
-    }
   }
 
   public void QuitButtonPress() {

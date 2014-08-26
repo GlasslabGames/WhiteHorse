@@ -63,7 +63,7 @@ public class GLDialogueUI : NGUIDialogueUI
 
     // Clear existing dialogue history
     if (HistoryTable != null) {
-      List<Transform> children = HistoryTable.children;
+      List<Transform> children = HistoryTable.GetChildList();
       foreach (Transform child in children) {
         if (child != null) Destroy(child.gameObject);
       }
@@ -105,12 +105,22 @@ public class GLDialogueUI : NGUIDialogueUI
       PegasusManager.Instance.GLSDK.SaveTelemEvent( "Dialogue_display" );
     }
 
-    if (Fabric.EventManager.Instance != null) {
-      Fabric.EventManager.Instance.PostEvent(DialogueClickSoundEvent, gameObject);
+    if (GlSoundManager.Instance != null) {
+      GlSoundManager.Instance.PlaySoundByEvent(DialogueClickSoundEvent, gameObject);
     }
 
-    NGUISubtitleControls subtitleControls = GetSubtitleControls(subtitle);
-    NGUISubtitleControls listenerControls = GetListenerSubtitleControls(subtitle);
+    NGUISubtitleControls subtitleControls = null; // TODO: Not sure if this stuff is correct
+    if (subtitle != null)
+    {
+      if (subtitle.listenerInfo.characterType == CharacterType.NPC)
+      {
+        subtitleControls = dialogue.pcSubtitle;
+      }
+      else
+      {
+        subtitleControls = dialogue.npcSubtitle;
+      }
+    }
 
     if (subtitleControls != null) {
       //SetSubtitle(subtitleControls, subtitle);
@@ -174,8 +184,8 @@ public class GLDialogueUI : NGUIDialogueUI
     SetPortrait(NpcPortrait, npcInfo, npcMood, npcTalking);
     SetPortrait(PcPortrait, pcInfo, pcMood, pcTalking);
 
-    if (Fabric.EventManager.Instance != null) {
-      Fabric.EventManager.Instance.PostEvent("InputSFXGroup/ConversationTap");
+    if (GlSoundManager.Instance != null) {
+      GlSoundManager.Instance.PlaySoundByEvent("InputSFXGroup/ConversationTap");
     }
 
     if (SignalManager.ConversationLine != null) SignalManager.ConversationLine(subtitle); 
@@ -300,14 +310,6 @@ public class GLDialogueUI : NGUIDialogueUI
 
     ResetScroll();
     base.OnContinue();
-  }
-
-  protected NGUISubtitleControls GetListenerSubtitleControls(Subtitle subtitle) {
-    return (subtitle == null)
-      ? null
-        : (subtitle.listenerInfo.characterType == CharacterType.NPC) 
-        ? dialogue.npcSubtitle 
-        : dialogue.pcSubtitle;
   }
 }
 

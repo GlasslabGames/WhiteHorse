@@ -69,7 +69,7 @@ public class SignalManager : SingletonBehavior<SignalManager> {
   public static NameEvent RoomChanged;
   public static RoomEvent RoomStateChanged;
   public static RoomEvent RoomLoaded;
-  public static GameObjectEvent ExplorationObjectTapped;
+  public static GameObjectEvent ObjectTapped;
 
   // SESSIONS
   public static Action NewGameStarted;

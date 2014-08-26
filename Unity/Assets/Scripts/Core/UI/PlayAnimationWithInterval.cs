@@ -23,13 +23,13 @@ public class PlayAnimationWithInterval : MonoBehaviour {
     m_currentTime = 0f;
     m_currentInterval = FirstWaitingTime;
     if (m_dragDrop != null) {
-      m_dragDrop.OnDragStart += OnDragBegin;
+      m_dragDrop.OnDragStarted += OnDragBegin;
     }
   }  
 
   void OnDisable() {
     if (m_dragDrop != null) {
-      m_dragDrop.OnDragStart -= OnDragBegin;
+      m_dragDrop.OnDragStarted -= OnDragBegin;
     }
   }
 

@@ -5,10 +5,7 @@ using System.Collections;
 /// This class should be on labels, etc, which we want to always have a positive x-scale.
 /// </summary>
 public class DontFlip : MonoBehaviour {
-  private Vector3 originalScale;
-  
   void Awake() {
-    originalScale = transform.lossyScale;
     Utility.NextFrame( Refresh ); // if this was just created and added as a child, this should catch it
   }
   

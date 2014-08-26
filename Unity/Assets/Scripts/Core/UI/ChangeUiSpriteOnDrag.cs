@@ -18,15 +18,15 @@ public class ChangeUiSpriteOnDrag : MonoBehaviour {
 
   void OnEnable() {
     if (m_dragDrop != null) {
-      m_dragDrop.OnDragStart += OnDragBegin;
-      m_dragDrop.OnDragEnd += OnDragDone;
+      m_dragDrop.OnDragStarted += OnDragBegin;
+      m_dragDrop.OnDragEnded += OnDragDone;
     }
   }
 
   void OnDisable() {
     if (m_dragDrop != null) {
-      m_dragDrop.OnDragStart -= OnDragBegin;
-      m_dragDrop.OnDragEnd -= OnDragDone;
+      m_dragDrop.OnDragStarted -= OnDragBegin;
+      m_dragDrop.OnDragEnded -= OnDragDone;
     }
   }
 

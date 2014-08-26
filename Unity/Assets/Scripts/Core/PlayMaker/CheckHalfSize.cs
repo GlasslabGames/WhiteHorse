@@ -19,7 +19,7 @@ namespace HutongGames.PlayMaker.Actions
     
     public override void OnEnter()
     {
-      if (ExplorationManager.ScreenHalfSize)
+      if (GLResourceManager.ScreenHalfSize)
       {
         Fsm.Event(HalfSizeEvent);
       }

@@ -26,6 +26,8 @@ public class EquipableModel
     }
   }
 
+  public static SortedDictionary<int, EquipableModel> ms_equipables = new SortedDictionary<int, EquipableModel>();
+
   public EquipmentTypes Type {
     get; protected set;
   }

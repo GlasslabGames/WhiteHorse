@@ -7,7 +7,7 @@ public class DisableComponentsOnPause : MonoBehaviour {
 
 	void OnEnable () {
     SignalManager.Paused += OnPaused;
-    OnPaused(ExplorationUIManager.Instance.Paused);
+    OnPaused(PauseManager.Instance.IsPaused);
 	}
 
   void OnDisable () {

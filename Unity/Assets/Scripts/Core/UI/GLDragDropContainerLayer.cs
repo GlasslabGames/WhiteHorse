@@ -28,7 +28,6 @@ public class GLDragDropContainerLayer : MonoBehaviour {
   }
 
   void EnableCollidersOnlyWhenDragging(GLDragDropItem item = null) {
-    //Debug.Log ("[GlDragDropContainerLayer] dragging on/off");
     foreach (BoxCollider collider in m_containers.Values) {
       Debug.Log ("Setting "+collider+" enabled to "+(GLDragDropItem.CurrentlyDragging != null));
       collider.enabled = GLDragDropItem.CurrentlyDragging != null;
@@ -58,8 +57,7 @@ public class GLDragDropContainerLayer : MonoBehaviour {
     }
 
     container.name = col.name + " DragDropContainer";
-    bool colliderOnScreen = Utility.SetUiColliderOverGameObject(container, col);
-    //container.gameObject.SetActive( colliderOnScreen );
+    Utility.SetUiColliderOverGameObject(container, col);
     m_containers.Add(col, container);
 
     EnableCollidersOnlyWhenDragging();
@@ -91,8 +89,7 @@ public class GLDragDropContainerLayer : MonoBehaviour {
     if (pos != m_cameraPos) {
       foreach (var pair in m_containers) {
         BoxCollider bc = pair.Value;
-        bool colliderOnScreen = Utility.SetUiColliderOverGameObject(bc, pair.Key);
-        //bc.gameObject.SetActive( colliderOnScreen );
+        Utility.SetUiColliderOverGameObject(bc, pair.Key);
       }
       m_cameraPos = pos;
     }

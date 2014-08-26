@@ -19,7 +19,7 @@ public class OnClickHandler : MonoBehaviour {
     }
 
     Vector3 pos = Input.mousePosition;
-    if (m_clickPos != null && Vector3.Distance(pos, m_clickPos) < m_maxClickDiff) {
+    if (Vector3.Distance(pos, m_clickPos) < m_maxClickDiff) {
       OnMouseClick();
     }
 	}

@@ -70,7 +70,7 @@ public class GLTexture : MonoBehaviour {
     }
     set {
       if (!value.name.Contains("_halfSize") &&
-          ExplorationManager.ScreenHalfSize &&
+          GLResourceManager.ScreenHalfSize &&
           GLResourceManager.Instance.AssetExists(Utility.GetResolutionSpecificName(value.name)))
       {
         Debug.LogWarning("[GLTexture] Passed in texture '"+value.name+"' could be half-sized.", this);

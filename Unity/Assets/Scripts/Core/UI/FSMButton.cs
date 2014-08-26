@@ -16,21 +16,11 @@ public class FSMButton : CallbackButton {
   public string SoundEventName = "ButtonTap";
 
   void OnClick() {
+#if FABRIC
     if (Fabric.EventManager.Instance != null) {
     	Fabric.EventManager.Instance.PostEvent(SoundEventName);
     }
-
-		// If this button is supposed to use custom information, send it along
-		/*if( m_telemetryUseCustomInfo ) {
-			// Write Telemetry Data
-			PegasusManager.Instance.GLSDK.SaveTelemEvent( m_telemetryEventName );
-		}
-		// Otherwise, use generic
-		else {
-			// Write Telemetry Data
-			PegasusManager.Instance.GLSDK.AddTelemEventValue( "name", name );
-			PegasusManager.Instance.GLSDK.SaveTelemEvent( "Button_press" );
-		}*/
+#endif
       
     if (Callback != null) {
       Callback(this);

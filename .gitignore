@@ -1,2 +1,8 @@
-Hiro copy.xcodeproj/
+
 xcuserdata
+*.csproj
+*.unityproj
+*.sln
+*.user
+*.userprefs
+*.DS_store

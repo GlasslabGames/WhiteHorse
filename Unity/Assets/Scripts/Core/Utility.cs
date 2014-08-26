@@ -101,7 +101,7 @@ public class Utility : SingletonBehavior<Utility> {
   public static string GetResolutionSpecificName(string name)
   {
     string halfSizeName = GetHalfSizeName(name);
-    if (ExplorationManager.ScreenHalfSize && GLResourceManager.InstanceOrCreate.AssetExists(halfSizeName))
+    if (GLResourceManager.ScreenHalfSize && GLResourceManager.InstanceOrCreate.AssetExists(halfSizeName))
     {
       return halfSizeName;
     }

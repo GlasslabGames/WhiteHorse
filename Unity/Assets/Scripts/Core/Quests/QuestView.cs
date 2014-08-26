@@ -110,17 +110,11 @@ public class QuestView : MonoBehaviour
     // record that we wanted to have it open automatically for a certain time
     m_openForSecondsAfterActivity = closeAfterSeconds;
 
-    // if we wanted to open automatically, then m_openForSecondsAfterActivity is > 0, so we'll open when the game is unpaused anyway
-    if (ExplorationUIManager.Instance.Paused) {
-      Debug.Log ("[QuestView] Game is paused, so don't open the popup yet.");
-      return;
-    }
-
     // else open now
     refreshQuest();
     ContentsContainer.SetActive(true);
 
-    OpenTween.Reset();
+    OpenTween.ResetToBeginning();
     OpenTween.PlayForward();
 
   }

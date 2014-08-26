@@ -18,13 +18,13 @@ class PVRTC4CompressionPackerPolicy : IPackerPolicy
   {
     return 1;
   }
-  
-  public void OnGroupAtlases(BuildTarget target, PackerJob job, TextureImporter[] textureImporters)
+
+  public void OnGroupAtlases(BuildTarget target, PackerJob job, int[] textureImporterInstanceIDs)
   {
     List<Entry> entries = new List<Entry>();
-    
-    foreach (TextureImporter ti in textureImporters)
+    for (int i = 0; i < textureImporterInstanceIDs.Length; i++)
     {
+      TextureImporter ti = (TextureImporter)EditorUtility.InstanceIDToObject(textureImporterInstanceIDs[i]);
       TextureImportInstructions ins = new TextureImportInstructions();
       ti.ReadTextureImportInstructions(ins, target);
       
