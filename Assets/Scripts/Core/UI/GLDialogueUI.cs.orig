@@ -1,0 +1,181 @@
+using UnityEngine;
+using System;
+using System.Collections.Generic;
+using PixelCrushers.DialogueSystem;
+using PixelCrushers.DialogueSystem.NGUI;
+
+
+public class GLDialogueUI : NGUIDialogueUI
+{
+  public UITable HistoryTable;
+  public UIScrollView HistoryScrollView;
+
+  public bool Animate;
+  private bool m_updateTable = false;
+
+  public TweenScale PopupTween;
+  public bool TweenChildInstead;
+  
+  public UISprite NpcPortrait;
+  public UISprite PcPortrait;
+
+  public string PlayerName = "zodiac";
+  public string[] PlayerReplaceNames = new string[] {"femziak", "malziak"}; // depending on whether the player is male or female, these are the sprites to use
+
+  public string DialogueClickSoundEvent = "DialogueContinue";
+
+  override public void Close() {
+    base.Close();
+
+    // Clear existing dialogue history
+    if (HistoryTable != null) {
+      List<Transform> children = HistoryTable.children;
+      foreach (Transform child in children) {
+        if (child != null) Destroy(child.gameObject);
+      }
+    }
+  }
+  
+  void Update() {
+    base.Update();
+
+    if (m_updateTable) RefreshTable();
+  }
+
+  protected void OnClick() {
+    // When you click the background, it continues the dialogue
+    OnContinue();
+  }
+
+  override public void ShowSubtitle(Subtitle subtitle) {
+<<<<<<< HEAD
+	// Write the telemetry event
+	PegasusManager.Instance.GLSDK.AddTelemEventValue( "speaker", subtitle.speakerInfo.Name );
+	PegasusManager.Instance.GLSDK.AddTelemEventValue( "content", subtitle.formattedText.text );
+	PegasusManager.Instance.GLSDK.SaveTelemEvent( "Dialogue_display" );
+=======
+  	// Write the telemetry event
+  	PegasusManager.Instance.GLSDK.AddTelemEventValue( "speaker", subtitle.speakerInfo.Name );
+  	PegasusManager.Instance.GLSDK.AddTelemEventValue( "content", subtitle.formattedText.text );
+    PegasusManager.Instance.GLSDK.SaveTelemEvent( "Dialogue_display" );
+    
+    Fabric.EventManager.Instance.PostEvent(DialogueClickSoundEvent, gameObject);
+>>>>>>> upstream/master
+
+    NGUISubtitleControls subtitleControls = GetSubtitleControls(subtitle);
+    NGUISubtitleControls listenerControls = GetListenerSubtitleControls(subtitle);
+
+    if (subtitleControls != null) {
+      //SetSubtitle(subtitleControls, subtitle);
+      subtitleControls.ShowSubtitle(subtitle);
+
+      if (subtitleControls.panel != null && subtitleControls.panel.gameObject.activeInHierarchy) {
+        CopyIntoToHistory(subtitleControls.panel.transform);
+      }
+
+      HideSubtitle(subtitle);
+    }
+
+    PixelCrushers.DialogueSystem.CharacterInfo npcInfo = subtitle.listenerInfo.IsNPC? subtitle.listenerInfo : subtitle.speakerInfo;
+    PixelCrushers.DialogueSystem.CharacterInfo pcInfo = subtitle.listenerInfo.IsPlayer? subtitle.listenerInfo : subtitle.speakerInfo;
+
+    string npcMood = DialogueLua.GetVariable("npcMood").AsString;
+    string pcMood = DialogueLua.GetVariable("pcMood").AsString;
+
+    SetPortrait(NpcPortrait, npcInfo, npcMood);
+    SetPortrait(PcPortrait, pcInfo, pcMood);
+  }
+  
+  protected void SetPortrait(UITexture portrait, PixelCrushers.DialogueSystem.CharacterInfo info, string mood) {
+    portrait.gameObject.SetActive(true);
+    portrait.mainTexture = info.portrait;
+
+    string spriteName = "dialog_" + info.Name.ToLower() + "_" + mood;
+    Debug.Log("Setting spriteName to "+spriteName);
+  }
+
+  protected void SetPortrait(UISprite portrait, PixelCrushers.DialogueSystem.CharacterInfo info, string mood) {
+    portrait.gameObject.SetActive(true);
+
+    string name = info.Name.Trim().ToLower();
+    if (name == PlayerName) name = PlayerReplaceNames[0]; // TODO: depends on the avatar the player selectd
+
+    string start = "dialog_" + name + "_";
+    string spriteName = start + ((mood.Length > 0)? mood : "neutral");
+    Debug.Log("Setting spriteName to "+spriteName);
+    // if this sprite doesn't exist, default to neutral
+    if ( portrait.atlas.GetSprite(spriteName) != null) portrait.spriteName = spriteName;
+    else {
+      Debug.LogError ("Sprite "+spriteName+" doesn't exist! Using a neutral sprite instead.");
+      portrait.spriteName = start + "_neutral";
+    }
+  }
+
+  protected void CopyIntoToHistory(Transform panel) {
+    // Copy the panel and move it into place under the history table
+    Transform newPanel = Instantiate(panel) as Transform;
+    panel.transform.position = panel.transform.position;
+    newPanel.parent = HistoryTable.transform;
+    newPanel.localScale = Vector3.one;
+
+    if (Animate && HistoryTable.transform.childCount > 1) {
+      m_updateTable = true;
+
+      // we don't want to tween the whole panel because its center is not in the right place, so tween its first child
+      Transform child = (TweenChildInstead)? newPanel.transform.GetChild(0) : newPanel.transform;
+
+      child.localScale = PopupTween.from;
+
+      // Make a new tween that applies to the popup but copies everything about the bubble popup tween
+      TweenScale tween = TweenScale.Begin(child.gameObject, PopupTween.duration, PopupTween.to);
+      tween.from = PopupTween.from;
+      tween.animationCurve = PopupTween.animationCurve;
+
+      EventDelegate.Add(tween.onFinished, delegate() {
+        m_updateTable = false;
+        RefreshTable();
+      });
+
+    }
+
+    RefreshTable();
+
+    int count = HistoryTable.transform.childCount;
+    newPanel.name = "Dialogue History " + (1000 - count).ToString("D3"); // reverse numbers so that sort order in table is correct
+
+    // Remove UIPanel so that it gets clipped correctly by the history panel
+    Destroy(newPanel.GetComponent<UIPanel>());
+
+    // Add scroll view to the background collider
+    UIButton button = newPanel.GetComponentInChildren<UIButton>();
+    UIDragScrollView dragScrollView = button.gameObject.AddComponent<UIDragScrollView>();
+    dragScrollView.scrollView = HistoryScrollView;
+  }
+  
+
+  protected void ResetScroll() {
+    HistoryScrollView.SetDragAmount(0, 1, false);
+  }
+  
+  private void RefreshTable() {
+    HistoryTable.Reposition();
+    HistoryScrollView.GetComponent<UIPanel>().Refresh();
+  }
+
+  override public void OnContinue() {
+  	// Write the telemetry event
+  	PegasusManager.Instance.GLSDK.SaveTelemEvent( "Dialogue_advance" );
+
+    ResetScroll();
+    base.OnContinue();
+  }
+
+  protected NGUISubtitleControls GetListenerSubtitleControls(Subtitle subtitle) {
+    return (subtitle == null)
+      ? null
+        : (subtitle.listenerInfo.characterType == CharacterType.NPC) 
+        ? dialogue.npcSubtitle 
+        : dialogue.pcSubtitle;
+  }
+}
+
