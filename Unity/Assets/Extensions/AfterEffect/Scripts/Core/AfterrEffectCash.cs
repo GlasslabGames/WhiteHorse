@@ -1,0 +1,16 @@
+////////////////////////////////////////////////////////////////////////////////
+//  
+// @module Affter Effect Importer
+// @author Osipov Stanislav lacost.st@gmail.com
+//
+////////////////////////////////////////////////////////////////////////////////
+
+using UnityEngine;
+using System.Collections;
+
+public class AfterrEffectCash : MonoBehaviour {
+
+
+	public AEAnimationData animationData = null;
+	
+}
