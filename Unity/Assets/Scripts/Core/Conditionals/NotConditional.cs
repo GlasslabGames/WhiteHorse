@@ -1,34 +1,33 @@
 using System;
 using UnityEngine;
 
-public class NotConditional : Conditional
+namespace GlassLab.Core.Conditional
 {
-  public Conditional conditional;
-
-  public NotConditional()
+  public class NotConditional : Conditional
   {
-  }
+    public Conditional conditional;
 
-  override public void Init()
-  {
-    conditional.OnChanged += onConditionChanged;
-    conditional.Init();
+    override protected void Init()
+    {
+      conditional.OnChanged += onConditionChanged;
+      conditional.doInit();
 
-    base.Init();
-  }
+      base.Init();
+    }
 
-  private void onConditionChanged(Conditional c)
-  {
-    Refresh();
-  }
+    private void onConditionChanged(Conditional c)
+    {
+      Refresh();
+    }
 
-  override protected bool CalculateIsSatisfied()
-  {
-    return !conditional.IsSatisfied;
-  }
+    override protected bool CalculateIsSatisfied()
+    {
+      return !conditional.IsSatisfied;
+    }
 
-  ~NotConditional()
-  {
-    conditional.OnChanged -= onConditionChanged;
+    void OnDestroy()
+    {
+      conditional.OnChanged -= onConditionChanged;
+    }
   }
 }
