@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class AndConditional : Conditional
 {
-  public List<Conditional> Conditionals;
+  public Conditional[] Conditionals;
   
   public AndConditional()
   {
@@ -10,7 +12,7 @@ public class AndConditional : Conditional
   
   override public void Init()
   {
-    for (int i=Conditionals.Count-1; i>=0; i--)
+    for (int i=Conditionals.Length-1; i>=0; i--)
     {
       Conditional conditional = Conditionals[i];
       conditional.OnChanged += onConditionChanged;
@@ -27,7 +29,7 @@ public class AndConditional : Conditional
   
   override protected bool CalculateIsSatisfied()
   {
-    for (int i=Conditionals.Count-1; i>=0; i--)
+    for (int i = Conditionals.Length - 1; i >= 0; i--)
     {
       Conditional conditional = Conditionals[i];
       if (!conditional.IsSatisfied)
@@ -41,7 +43,7 @@ public class AndConditional : Conditional
   
   ~AndConditional()
   {
-    for (int i=Conditionals.Count-1; i>=0; i--)
+    for (int i=Conditionals.Length-1; i>=0; i--)
     {
       Conditional conditional = Conditionals[i];
       conditional.OnChanged -= onConditionChanged;

@@ -1,3 +1,5 @@
+using System;
+using UnityEngine;
 
 public class NotConditional : Conditional
 {

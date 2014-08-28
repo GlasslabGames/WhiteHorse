@@ -8,7 +8,10 @@ public class SceneNameDrawer : PropertyDrawer {
   public static string IsolateSceneName(string scenePath)
   {
     string name = scenePath.Substring(scenePath.LastIndexOf('/')+1);
-    name = name.Substring(0, name.Length-6);
+    if (name.Length > 0)
+    {
+      name = name.Substring(0, name.Length - 6);
+    }
     return name;
   }
 
@@ -28,7 +31,7 @@ public class SceneNameDrawer : PropertyDrawer {
     string currentSceneName = IsolateSceneName(EditorApplication.currentScene);
     for (int i = 0; i < UnityEditor.EditorBuildSettings.scenes.Length; ++i)
     {
-      UnityEditor.EditorBuildSettingsScene scene = UnityEditor.EditorBuildSettings.scenes[i];
+      EditorBuildSettingsScene scene = EditorBuildSettings.scenes[i];
       if (scene.enabled) {
         string name = IsolateSceneName(scene.path);
         if (!(sceneNameAttribute.HideCurrent && name.Equals(currentSceneName))) {
@@ -42,21 +45,25 @@ public class SceneNameDrawer : PropertyDrawer {
       }
     }
 
-    int[] ids = new int[states.Count];
-    string[] names = new string[states.Count];
-    states.Keys.CopyTo (ids, 0);
-    states.Values.CopyTo (names, 0);
+    if (states.Count > 0)
+    {
+      int[] ids = new int[states.Count];
+      string[] names = new string[states.Count];
+      states.Keys.CopyTo(ids, 0);
+      states.Values.CopyTo(names, 0);
 
-    // If we didn't find our state, or our state is invalid (not selectable), default it!
-     if (selectedSceneId == null || (!states.ContainsKey(selectedSceneId.Value))) {
-      // We couldn't find our scene ID... reset the scene to the first one.
-      selectedSceneId = ids[0];
+      // If we didn't find our state, or our state is invalid (not selectable), default it!
+      if (selectedSceneId == null || (!states.ContainsKey(selectedSceneId.Value)))
+      {
+        // We couldn't find our scene ID... reset the scene to the first one.
+        selectedSceneId = ids[0];
+      }
+
+      label = EditorGUI.BeginProperty(position, label, property);
+      position = EditorGUI.PrefixLabel (position, GUIUtility.GetControlID (FocusType.Passive), label);
+      selectedSceneId = EditorGUI.IntPopup(position, selectedSceneId.Value, names, ids);
+      property.stringValue = (selectedSceneId.Value == -1) ? null : states[selectedSceneId.Value];
+      EditorGUI.EndProperty();
     }
-
-    label = EditorGUI.BeginProperty(position, label, property);
-    position = EditorGUI.PrefixLabel (position, GUIUtility.GetControlID (FocusType.Passive), label);
-    selectedSceneId = EditorGUI.IntPopup(position, selectedSceneId.Value, names, ids);
-    property.stringValue = (selectedSceneId.Value == -1) ? null : states[selectedSceneId.Value];
-    EditorGUI.EndProperty();
   }
 }
