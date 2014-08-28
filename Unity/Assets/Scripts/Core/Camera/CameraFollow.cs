@@ -9,12 +9,8 @@ public class CameraFollow : MonoBehaviour
 	public Vector2 maxXAndY;		// The maximum x and y coordinates the camera can have.
 	public Vector2 minXAndY;		// The minimum x and y coordinates the camera can have.
 
-	private float currentDistance;
-
 	private Transform target;		// Thing to follow
   private bool m_isSnapping = false; // Whether to snap to the target for a frame
-
-  private FollowMouseWithinBounds m_followBehavior;
 
   public delegate void distanceDel(float dist);
   public event distanceDel OnScroll;
