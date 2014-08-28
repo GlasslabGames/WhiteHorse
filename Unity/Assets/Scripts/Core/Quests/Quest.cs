@@ -35,20 +35,12 @@ public class Quest : MonoBehaviour
   [PersistAttribute]
   private bool m_isComplete = false;
 
-  [PersistAttribute]
-  private string m_fsmStateName;
-
   private QuestState m_currentState = QuestState.UNINITIALIZED;
 
   public bool IsSideQuest = false;
   public bool IsCancelable = true;
 
   public bool IsComplete { get { return m_isComplete; } }
-
-  void OnSave()
-  {
-    m_fsmStateName = GetCheckpointEventString();
-  }
 
   void Awake()
   {
