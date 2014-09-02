@@ -1,0 +1,53 @@
+{
+  "Enemies": {
+    "spec": {
+      "Name": "text",
+      "Position": "group x:(number -1800 1800) y:(number -500 500)",
+      "Scale": "group x:(number -1 1) y:(number -1 1)",
+      "Bark": "select Barks"
+    },
+    "nodes": [
+      {
+        "Id": 1,
+        "Name": "Bob",
+        "Position": [
+          -36,
+          -430
+        ],
+        "Scale": [
+          1,
+          1
+        ],
+        "Bark": 1
+      },
+      {
+        "Id": 2,
+        "Name": "Jane",
+        "Position": [
+          -531,
+          -187
+        ],
+        "Scale": [
+          -0.7,
+          0.7
+        ],
+        "Bark": 2
+      }
+    ]
+  },
+  "Barks": {
+    "spec": {
+      "Text": "text"
+    },
+    "nodes": [
+      {
+        "Id": 1,
+        "Text": "Howdy y'all."
+      },
+      {
+        "Id": 2,
+        "Text": "Good evening."
+      }
+    ]
+  }
+}

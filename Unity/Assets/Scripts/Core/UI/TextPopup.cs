@@ -4,7 +4,7 @@ using System.Collections;
 
 public class TextPopup : MonoBehaviour {
   public UITable Table;
-  public UISprite SlicedSprite;
+  public UIBasicSprite Background; // could be a UISprite or UITexture
 
   public UILabel NameLabel;
   public UILabel WarningLabel;
@@ -30,7 +30,7 @@ public class TextPopup : MonoBehaviour {
 
   void Awake()
   {
-    m_defaultSpritePosition = SlicedSprite.transform.localPosition;
+    m_defaultSpritePosition = Background.transform.localPosition;
     m_defaultTablePosition = Table.transform.localPosition;
   }
 
@@ -135,11 +135,11 @@ public class TextPopup : MonoBehaviour {
     Table.onReposition -= ResizeBackground;
 
     Bounds tableBounds = NGUIMath.CalculateRelativeWidgetBounds (Table.transform);
-
-    SlicedSprite.height = (int)(
+	
+    Background.height = (int)(
       tableBounds.extents.y * 2
       + Table.padding.y * 2
-      + SlicedSprite.border.y * 2
+			+ Background.border.y * 2
     );
 
     if (OnResize != null) OnResize();
@@ -153,11 +153,11 @@ public class TextPopup : MonoBehaviour {
     
     if (RepositionWhenOffEdge || FlipHorizontallyWhenOffEdge) {
       // move the background and table to their default positions
-      SlicedSprite.transform.localPosition = m_defaultSpritePosition;
+	  Background.transform.localPosition = m_defaultSpritePosition;
       Table.transform.localPosition = m_defaultTablePosition;
       
       // then check if it's offscreen
-      Vector3[] corners = SlicedSprite.worldCorners;
+	  Vector3[] corners = Background.worldCorners;
       bool flipped = transform.localScale.x > 0;
       // if the whole thing is flipped, the corners we care about are on the other side
       float left = (flipped)? corners[0].x : corners[2].x;
@@ -173,9 +173,9 @@ public class TextPopup : MonoBehaviour {
           // adjust the x pos by the amount we need to move the edge
           float xAdjustment = (left < screenLeft)? (screenLeft - left) : (screenRight - right);
 
-          Vector3 pos = SlicedSprite.transform.position;
+		  Vector3 pos = Background.transform.position;
           pos.x += xAdjustment;
-          SlicedSprite.transform.position = pos;
+		  Background.transform.position = pos;
 
           pos = Table.transform.position;
           pos.x += xAdjustment;

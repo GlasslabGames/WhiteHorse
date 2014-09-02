@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="utf-8"?>
+<after_affect_animation_doc>
+<composition w="1000" h="1000" id="1987" >
+<layer name="sparkAnim_3" type="Composition" id="620" parent="none" index="1" w="512" h="512" inPoint="0.75" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="440"  y="320"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="-16"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_1" type="Composition" id="591" parent="none" index="2" w="512" h="512" inPoint="0.33333333333333" outPoint="0.45833333333333" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="402"  y="738"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_2" type="Composition" id="605" parent="none" index="3" w="512" h="512" inPoint="0.04166666666667" outPoint="0.20833333333333" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="592"  y="828"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="-24"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="wheel_backFG.png" type="Footage" parent="none" index="4" source="wheel_backFG.png" w="191" h="191" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="635"  y="733"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="100.5"  y="94.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="wheel_frontFG.png" type="Footage" parent="19" index="5" source="wheel_frontFG.png" w="151" h="151" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="5"  y="47"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="79.5"  y="75.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="leg.png" type="Footage" parent="19" index="6" source="leg.png" w="101" h="168" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="3"  y="48"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="56.5"  y="165"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Rotation" val="-2"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="-1"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Rotation" val="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="quad.png" type="Footage" parent="6" index="7" source="quad.png" w="313" h="218" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="43.5"  y="45"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="56.5"  y="171"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="1">
+<source name="Transform">
+<property name="Rotation" val="0.03305452224441"/>
+</source>
+</keyframe>
+<keyframe frame="2">
+<source name="Transform">
+<property name="Rotation" val="0.01554637801873"/>
+</source>
+</keyframe>
+<keyframe frame="3">
+<source name="Transform">
+<property name="Rotation" val="-0.18301833978917"/>
+</source>
+</keyframe>
+<keyframe frame="4">
+<source name="Transform">
+<property name="Rotation" val="-0.70073779997097"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Rotation" val="-1.75986500060676"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Rotation" val="-3.87877695291124"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Rotation" val="-10"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Rotation" val="-8.53854304162991"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="-8.560852005133"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Rotation" val="-10"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Rotation" val="-9"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Rotation" val="-8"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Rotation" val="-7"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Rotation" val="-6"/>
+</source>
+</keyframe>
+<keyframe frame="19">
+<source name="Transform">
+<property name="Rotation" val="-5"/>
+</source>
+</keyframe>
+<keyframe frame="20">
+<source name="Transform">
+<property name="Rotation" val="-4"/>
+</source>
+</keyframe>
+<keyframe frame="21">
+<source name="Transform">
+<property name="Rotation" val="-3"/>
+</source>
+</keyframe>
+<keyframe frame="22">
+<source name="Transform">
+<property name="Rotation" val="-2"/>
+</source>
+</keyframe>
+<keyframe frame="23">
+<source name="Transform">
+<property name="Rotation" val="-1"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_button.png" type="Footage" parent="10" index="8" source="body_button.png" w="24" h="24" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="96"  y="111"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="12"  y="12"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_fgBottom.png" type="Footage" parent="7" index="9" source="body_fgBottom.png" w="148" h="143" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="148"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="73"  y="152.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_fgTop.png" type="Footage" parent="9" index="10" source="body_fgTop.png" w="165" h="250" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="77.25"  y="121.432835820896"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="94.5"  y="235"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_eye.png" type="Footage" parent="10" index="11" source="body_eye.png" w="93" h="100" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="23"  y="79"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="46.5"  y="50"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="1">
+<source name="Transform">
+<property name="Rotation" val="15"/>
+</source>
+</keyframe>
+<keyframe frame="2">
+<source name="Transform">
+<property name="Rotation" val="30"/>
+</source>
+</keyframe>
+<keyframe frame="3">
+<source name="Transform">
+<property name="Rotation" val="45"/>
+</source>
+</keyframe>
+<keyframe frame="4">
+<source name="Transform">
+<property name="Rotation" val="60"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Rotation" val="75"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Rotation" val="90"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Rotation" val="105"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Rotation" val="120"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="135"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Rotation" val="150"/>
+</source>
+</keyframe>
+<keyframe frame="11">
+<source name="Transform">
+<property name="Rotation" val="165"/>
+</source>
+</keyframe>
+<keyframe frame="12">
+<source name="Transform">
+<property name="Rotation" val="180"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Rotation" val="195"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Rotation" val="210"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Rotation" val="225"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Rotation" val="240"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Rotation" val="255"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Rotation" val="270"/>
+</source>
+</keyframe>
+<keyframe frame="19">
+<source name="Transform">
+<property name="Rotation" val="285"/>
+</source>
+</keyframe>
+<keyframe frame="20">
+<source name="Transform">
+<property name="Rotation" val="300"/>
+</source>
+</keyframe>
+<keyframe frame="21">
+<source name="Transform">
+<property name="Rotation" val="315"/>
+</source>
+</keyframe>
+<keyframe frame="22">
+<source name="Transform">
+<property name="Rotation" val="330"/>
+</source>
+</keyframe>
+<keyframe frame="23">
+<source name="Transform">
+<property name="Rotation" val="345"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_eye_bright.png" type="Footage" parent="11" index="12" source="body_eye_bright.png" w="93" h="100" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="46.5"  y="50"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="46.5"  y="50"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_eye_red.png" type="Footage" parent="11" index="13" source="body_eye_red.png" w="93" h="100" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="46.5"  y="50"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="46.5"  y="50"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_eye_dark.png" type="Footage" parent="11" index="14" source="body_eye_dark.png" w="93" h="100" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="46.5"  y="50"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="46.5"  y="50"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="gear_topFG.png" type="Footage" parent="8" index="15" source="gear_topFG.png" w="85" h="85" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="1.25"  y="-100"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="42.5"  y="42.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="1">
+<source name="Transform">
+<property name="Rotation" val="-15"/>
+</source>
+</keyframe>
+<keyframe frame="2">
+<source name="Transform">
+<property name="Rotation" val="-30"/>
+</source>
+</keyframe>
+<keyframe frame="3">
+<source name="Transform">
+<property name="Rotation" val="-45"/>
+</source>
+</keyframe>
+<keyframe frame="4">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Rotation" val="-75"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Rotation" val="-90"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Rotation" val="-105"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Rotation" val="-120"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="-135"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Rotation" val="-150"/>
+</source>
+</keyframe>
+<keyframe frame="11">
+<source name="Transform">
+<property name="Rotation" val="-165"/>
+</source>
+</keyframe>
+<keyframe frame="12">
+<source name="Transform">
+<property name="Rotation" val="-180"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Rotation" val="-195"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Rotation" val="-210"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Rotation" val="-225"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Rotation" val="-240"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Rotation" val="-255"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Rotation" val="-270"/>
+</source>
+</keyframe>
+<keyframe frame="19">
+<source name="Transform">
+<property name="Rotation" val="-285"/>
+</source>
+</keyframe>
+<keyframe frame="20">
+<source name="Transform">
+<property name="Rotation" val="-300"/>
+</source>
+</keyframe>
+<keyframe frame="21">
+<source name="Transform">
+<property name="Rotation" val="-315"/>
+</source>
+</keyframe>
+<keyframe frame="22">
+<source name="Transform">
+<property name="Rotation" val="-330"/>
+</source>
+</keyframe>
+<keyframe frame="23">
+<source name="Transform">
+<property name="Rotation" val="-345"/>
+</source>
+</keyframe>
+</layer>
+<layer name="gear_topBG.png" type="Footage" parent="15" index="16" source="gear_topBG.png" w="85" h="85" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="37.75"  y="44"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="42.5"  y="42.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="gear_backFG.png" type="Footage" parent="7" index="17" source="gear_backFG.png" w="223" h="223" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="242.5"  y="62"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="111.5"  y="111.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="1">
+<source name="Transform">
+<property name="Rotation" val="0.03305452224441"/>
+</source>
+</keyframe>
+<keyframe frame="2">
+<source name="Transform">
+<property name="Rotation" val="0.01554637801873"/>
+</source>
+</keyframe>
+<keyframe frame="3">
+<source name="Transform">
+<property name="Rotation" val="-0.18301833978917"/>
+</source>
+</keyframe>
+<keyframe frame="4">
+<source name="Transform">
+<property name="Rotation" val="-0.70073779997097"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Rotation" val="-1.75986500060676"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Rotation" val="-3.87877695291124"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Rotation" val="-10"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Rotation" val="-8.53854304162991"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="-8.560852005133"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Rotation" val="-10"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Rotation" val="-9"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Rotation" val="-8"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Rotation" val="-7"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Rotation" val="-6"/>
+</source>
+</keyframe>
+<keyframe frame="19">
+<source name="Transform">
+<property name="Rotation" val="-5"/>
+</source>
+</keyframe>
+<keyframe frame="20">
+<source name="Transform">
+<property name="Rotation" val="-4"/>
+</source>
+</keyframe>
+<keyframe frame="21">
+<source name="Transform">
+<property name="Rotation" val="-3"/>
+</source>
+</keyframe>
+<keyframe frame="22">
+<source name="Transform">
+<property name="Rotation" val="-2"/>
+</source>
+</keyframe>
+<keyframe frame="23">
+<source name="Transform">
+<property name="Rotation" val="-1"/>
+</source>
+</keyframe>
+</layer>
+<layer name="gear_backBG.png" type="Footage" parent="17" index="18" source="gear_backBG.png" w="223" h="223" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="105.5"  y="111.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="111.5"  y="111.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="underCarriage.png" type="Footage" parent="4" index="19" source="underCarriage.png" w="192" h="84" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="51.5"  y="103.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="139"  y="36"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="gear_frontFG.png" type="Footage" parent="6" index="20" source="gear_frontFG.png" w="259" h="259" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="23.5"  y="42"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="129.5"  y="129.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="gear_frontBG.png" type="Footage" parent="6" index="21" source="gear_frontBG.png" w="259" h="259" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="16.5"  y="43"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="129.5"  y="129.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_bgTop.png" type="Footage" parent="10" index="22" source="body_bgTop.png" w="41" h="269" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="5.5"  y="135"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="20.5"  y="134.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_bgBottom.png" type="Footage" parent="9" index="23" source="body_bgBottom.png" w="37" h="151" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="-10.75"  y="69.4328358208955"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="18.5"  y="75.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="wheel_backBG.png" type="Footage" parent="19" index="24" source="wheel_backBG.png" w="175" h="175" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="129"  y="25"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="87.5"  y="87.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="wheel_frontBG.png" type="Footage" parent="19" index="25" source="wheel_frontBG.png" w="140" h="140" inPoint="0" outPoint="1" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="-63"  y="43"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="70"  y="70"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<meta duration="1.00" totalFrames="24"/>
+</composition>
+<sub_items>
+<composition w="512" h="512" id="605" >
+<layer name="sparkAnim_2_00.png" type="Footage" parent="none" index="1" source="sparkAnim_2_00.png" w="512" h="512" inPoint="0" outPoint="0.04166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_2_01.png" type="Footage" parent="none" index="2" source="sparkAnim_2_01.png" w="512" h="512" inPoint="0.04166666666667" outPoint="0.08333333333333" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_2_02.png" type="Footage" parent="none" index="3" source="sparkAnim_2_02.png" w="512" h="512" inPoint="0.08333333333333" outPoint="0.125" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_2_03.png" type="Footage" parent="none" index="4" source="sparkAnim_2_03.png" w="512" h="512" inPoint="0.125" outPoint="0.16666666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<meta duration="0.17" totalFrames="4"/>
+</composition>
+<composition w="512" h="512" id="591" >
+<layer name="sparkAnim_1_00.png" type="Footage" parent="none" index="1" source="sparkAnim_1_00.png" w="512" h="512" inPoint="0" outPoint="0.04166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_1_01.png" type="Footage" parent="none" index="2" source="sparkAnim_1_01.png" w="512" h="512" inPoint="0.04166666666667" outPoint="0.08333333333333" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_1_02.png" type="Footage" parent="none" index="3" source="sparkAnim_1_02.png" w="512" h="512" inPoint="0.08333333333333" outPoint="0.125" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<meta duration="0.13" totalFrames="3"/>
+</composition>
+<composition w="512" h="512" id="620" >
+<layer name="sparkAnim_3_00.png" type="Footage" parent="none" index="1" source="sparkAnim_3_00.png" w="512" h="512" inPoint="0" outPoint="0.04166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_3_01.png" type="Footage" parent="none" index="2" source="sparkAnim_3_01.png" w="512" h="512" inPoint="0.04166666666667" outPoint="0.08333333333333" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_3_02.png" type="Footage" parent="none" index="3" source="sparkAnim_3_02.png" w="512" h="512" inPoint="0.08333333333333" outPoint="0.125" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_3_03.png" type="Footage" parent="none" index="4" source="sparkAnim_3_03.png" w="512" h="512" inPoint="0.125" outPoint="0.16666666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_3_04.png" type="Footage" parent="none" index="5" source="sparkAnim_3_04.png" w="512" h="512" inPoint="0.16666666666667" outPoint="0.20833333333333" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_3_05.png" type="Footage" parent="none" index="6" source="sparkAnim_3_05.png" w="512" h="512" inPoint="0.20833333333333" outPoint="0.25" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<meta duration="0.25" totalFrames="6"/>
+</composition>
+</sub_items>
+<meta frameDuration="0.04166666666667" totalFrames="24" duration="1.00"/>
+</after_affect_animation_doc>
