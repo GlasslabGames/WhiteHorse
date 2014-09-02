@@ -1,0 +1,1499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<after_affect_animation_doc>
+<composition w="1000" h="1000" id="15168" >
+<layer name="sparkAnim_2" type="Composition" id="640" parent="52" index="1" w="512" h="512" inPoint="0.95833333333333" outPoint="1.125" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="21.5214176845332"  y="277.543938585787"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="-12.2568933575663"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_2" type="Composition" id="640" parent="none" index="2" w="512" h="512" inPoint="0.95833333333333" outPoint="1.125" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="519.000000000009"  y="301.000000000009"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="206.185007455217"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="325.768898892008"  y="53.4233459961473"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_3" type="Composition" id="655" parent="17" index="3" w="512" h="512" inPoint="0.58333333333333" outPoint="0.83333333333333" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="70.8980938007848"  y="6.76390497270421"  z="0"/>
+<property name="Scale"  x="125"  y="125"  z="100"/>
+<property name="Rotation" val="-19.4269565127155"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_2" type="Composition" id="640" parent="21" index="4" w="512" h="512" inPoint="0.45833333333333" outPoint="0.625" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="-29.6019872157095"  y="268.052172728367"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="-0.33191907100533"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_1" type="Composition" id="626" parent="none" index="5" w="512" h="512" inPoint="0.25" outPoint="0.375" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="419"  y="452"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_orbBlue.png" type="Footage" parent="19" index="6" source="analogyBot_orbBlue.png" w="111" h="111" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="74.5"  y="-5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="55.5"  y="101.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_orbDarkBlue.png" type="Footage" parent="6" index="7" source="analogyBot_orbDarkBlue.png" w="111" h="111" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="55.5"  y="55.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="55.5"  y="55.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_orbGreen.png" type="Footage" parent="6" index="8" source="analogyBot_orbGreen.png" w="111" h="111" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="55.5"  y="55.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="55.5"  y="55.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_orbRed.png" type="Footage" parent="6" index="9" source="analogyBot_orbRed.png" w="111" h="111" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="55.5"  y="55.75"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="55.5"  y="55.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="12">
+<source name="Transform">
+<property name="Opacity" val="50"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Opacity" val="100"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Opacity" val="75"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Opacity" val="50"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Opacity" val="25"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Opacity" val="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_orbGrey.png" type="Footage" parent="6" index="10" source="analogyBot_orbGrey.png" w="111" h="111" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="55.5"  y="55.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="55.5"  y="55.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_orbOrange.png" type="Footage" parent="6" index="11" source="analogyBot_orbOrange.png" w="111" h="111" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="55.5"  y="55.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="55.5"  y="55.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_reflectBlue.png" type="Footage" parent="19" index="12" source="analogyBot_reflectBlue.png" w="93" h="5" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="76"  y="3.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="46.5"  y="2.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_reflectDarkBlue.png" type="Footage" parent="12" index="13" source="analogyBot_reflectDarkBlue.png" w="93" h="5" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="46.5"  y="2.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="46.5"  y="2.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_reflectGreen.png" type="Footage" parent="12" index="14" source="analogyBot_reflectGreen.png" w="93" h="5" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="46.5"  y="2.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="46.5"  y="2.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_reflectOrange.png" type="Footage" parent="12" index="15" source="analogyBot_reflectOrange.png" w="93" h="5" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="46.5"  y="2.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="46.5"  y="2.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_reflectRed.png" type="Footage" parent="12" index="16" source="analogyBot_reflectRed.png" w="93" h="5" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="46.5"  y="2.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="46.5"  y="2.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="12">
+<source name="Transform">
+<property name="Opacity" val="50"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Opacity" val="100"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Opacity" val="75"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Opacity" val="50"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Opacity" val="25"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Opacity" val="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_balanceBeamFront.png" type="Footage" parent="35" index="17" source="analogyBot_balanceBeamFront.png" w="360" h="98" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="111"  y="42"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="-12.0813221513365"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="199"  y="48.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="-13.170510526146"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Rotation" val="-14.2596989009554"/>
+</source>
+</keyframe>
+<keyframe frame="11">
+<source name="Transform">
+<property name="Rotation" val="-15.3488872757648"/>
+</source>
+</keyframe>
+<keyframe frame="12">
+<source name="Transform">
+<property name="Rotation" val="-9.42239445624301"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Rotation" val="-3.49590163672117"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Rotation" val="2.43059118280067"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Rotation" val="0.39355414576364"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Rotation" val="-1.6434828912734"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Rotation" val="-0.98641841939411"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Rotation" val="-0.32935394751483"/>
+</source>
+</keyframe>
+<keyframe frame="19">
+<source name="Transform">
+<property name="Rotation" val="0.32771052436446"/>
+</source>
+</keyframe>
+<keyframe frame="24">
+<source name="Transform">
+<property name="Rotation" val="-6.73277289167533"/>
+</source>
+</keyframe>
+<keyframe frame="25">
+<source name="Transform">
+<property name="Rotation" val="-13.7932563077151"/>
+</source>
+</keyframe>
+<keyframe frame="26">
+<source name="Transform">
+<property name="Rotation" val="-12.2130093941349"/>
+</source>
+</keyframe>
+<keyframe frame="27">
+<source name="Transform">
+<property name="Rotation" val="-10.6327624805546"/>
+</source>
+</keyframe>
+<keyframe frame="28">
+<source name="Transform">
+<property name="Rotation" val="-11.1156157041486"/>
+</source>
+</keyframe>
+<keyframe frame="29">
+<source name="Transform">
+<property name="Rotation" val="-11.5984689277426"/>
+</source>
+</keyframe>
+<keyframe frame="30">
+<source name="Transform">
+<property name="Rotation" val="-12.0813221513365"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_balanceBaseTopDark.png" type="Footage" parent="19" index="18" source="analogyBot_balanceBaseTopDark.png" w="153" h="8" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="76.5"  y="4.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="76.5"  y="4"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_balanceBaseTop.png" type="Footage" parent="21" index="19" source="analogyBot_balanceBaseTop.png" w="153" h="39" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="38.5"  y="-35.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="76.5"  y="19.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_balanceBaseStalk.png" type="Footage" parent="21" index="20" source="analogyBot_balanceBaseStalk.png" w="22" h="28" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="38.5"  y="0.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="11"  y="27.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_balanceBaseOrb.png" type="Footage" parent="53" index="21" source="analogyBot_balanceBaseOrb.png" w="77" h="76" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="22.5"  y="56"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="12.4132412223418"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="38.5"  y="38"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="13.448467232558"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Rotation" val="14.4836932427741"/>
+</source>
+</keyframe>
+<keyframe frame="11">
+<source name="Transform">
+<property name="Rotation" val="15.5189192529903"/>
+</source>
+</keyframe>
+<keyframe frame="12">
+<source name="Transform">
+<property name="Rotation" val="9.57295671112792"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Rotation" val="3.62699416926556"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Rotation" val="-2.31896837259681"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Rotation" val="-0.29697889841448"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Rotation" val="1.72501057576785"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Rotation" val="0.9240629048532"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Rotation" val="0.12311523393854"/>
+</source>
+</keyframe>
+<keyframe frame="19">
+<source name="Transform">
+<property name="Rotation" val="-0.67783243697611"/>
+</source>
+</keyframe>
+<keyframe frame="24">
+<source name="Transform">
+<property name="Rotation" val="6.46385566510751"/>
+</source>
+</keyframe>
+<keyframe frame="25">
+<source name="Transform">
+<property name="Rotation" val="13.6055437671911"/>
+</source>
+</keyframe>
+<keyframe frame="26">
+<source name="Transform">
+<property name="Rotation" val="12.2476244251743"/>
+</source>
+</keyframe>
+<keyframe frame="27">
+<source name="Transform">
+<property name="Rotation" val="10.8897050831575"/>
+</source>
+</keyframe>
+<keyframe frame="28">
+<source name="Transform">
+<property name="Rotation" val="11.3975504628856"/>
+</source>
+</keyframe>
+<keyframe frame="29">
+<source name="Transform">
+<property name="Rotation" val="11.9053958426137"/>
+</source>
+</keyframe>
+<keyframe frame="30">
+<source name="Transform">
+<property name="Rotation" val="12.4132412223418"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_headFront.png" type="Footage" parent="35" index="22" source="analogyBot_headFront.png" w="148" h="170" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="83.5"  y="3.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="59"  y="161"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="24">
+<source name="Transform">
+<property name="Rotation" val="-4.90153429359455"/>
+</source>
+</keyframe>
+<keyframe frame="25">
+<source name="Transform">
+<property name="Rotation" val="-9.8030685871891"/>
+</source>
+</keyframe>
+<keyframe frame="26">
+<source name="Transform">
+<property name="Rotation" val="-2.13907025611798"/>
+</source>
+</keyframe>
+<keyframe frame="27">
+<source name="Transform">
+<property name="Rotation" val="5.52492807495313"/>
+</source>
+</keyframe>
+<keyframe frame="28">
+<source name="Transform">
+<property name="Rotation" val="4.14369605621485"/>
+</source>
+</keyframe>
+<keyframe frame="29">
+<source name="Transform">
+<property name="Rotation" val="2.76246403747657"/>
+</source>
+</keyframe>
+<keyframe frame="30">
+<source name="Transform">
+<property name="Rotation" val="1.38123201873828"/>
+</source>
+</keyframe>
+<keyframe frame="31">
+<source name="Transform">
+<property name="Rotation" val="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_eyeBlue.png" type="Footage" parent="29" index="23" source="analogyBot_eyeBlue.png" w="21" h="75" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="16.25"  y="108"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="10.5"  y="37.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="26">
+<source name="Transform">
+<property name="Position"  x="9.02025456032222"  y="108"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="27">
+<source name="Transform">
+<property name="Position"  x="2.25"  y="108"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="28">
+<source name="Transform">
+<property name="Position"  x="15.7543105495447"  y="108"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="29">
+<source name="Transform">
+<property name="Position"  x="29.25"  y="108"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="30">
+<source name="Transform">
+<property name="Position"  x="25.1769912671353"  y="108"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="31">
+<source name="Transform">
+<property name="Position"  x="20.8621396328593"  y="108"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="32">
+<source name="Transform">
+<property name="Position"  x="16.563528634019"  y="108"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="33">
+<source name="Transform">
+<property name="Position"  x="12.25"  y="108"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="34">
+<source name="Transform">
+<property name="Position"  x="12.4968015390339"  y="108"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="35">
+<source name="Transform">
+<property name="Position"  x="13.7473734170204"  y="108"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="36">
+<source name="Transform">
+<property name="Position"  x="14.9987654708868"  y="108"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="37">
+<source name="Transform">
+<property name="Position"  x="16.25"  y="108"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_eyeBlueLit.png" type="Footage" parent="23" index="24" source="analogyBot_eyeBlueLit.png" w="21" h="75" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="10.5"  y="37.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="10.5"  y="37.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_eyeRed.png" type="Footage" parent="23" index="25" source="analogyBot_eyeRed.png" w="21" h="75" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="10.5"  y="37.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="10.5"  y="37.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Opacity" val="50"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Opacity" val="100"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Opacity" val="50"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Opacity" val="0"/>
+</source>
+</keyframe>
+<keyframe frame="26">
+<source name="Transform">
+<property name="Opacity" val="50"/>
+</source>
+</keyframe>
+<keyframe frame="27">
+<source name="Transform">
+<property name="Opacity" val="100"/>
+</source>
+</keyframe>
+<keyframe frame="28">
+<source name="Transform">
+<property name="Opacity" val="83.5"/>
+</source>
+</keyframe>
+<keyframe frame="29">
+<source name="Transform">
+<property name="Opacity" val="67"/>
+</source>
+</keyframe>
+<keyframe frame="30">
+<source name="Transform">
+<property name="Opacity" val="50.5"/>
+</source>
+</keyframe>
+<keyframe frame="31">
+<source name="Transform">
+<property name="Opacity" val="34"/>
+</source>
+</keyframe>
+<keyframe frame="32">
+<source name="Transform">
+<property name="Opacity" val="17.5"/>
+</source>
+</keyframe>
+<keyframe frame="33">
+<source name="Transform">
+<property name="Opacity" val="1"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_eyeDark.png" type="Footage" parent="23" index="26" source="analogyBot_eyeDark.png" w="21" h="75" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="10.5"  y="37.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="10.5"  y="37.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_eyeStalk.png" type="Footage" parent="28" index="27" source="analogyBot_eyeStalk.png" w="14" h="89" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="25.25"  y="70"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="13.75"  y="44.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="26">
+<source name="Transform">
+<property name="Scale"  x="152.5"  y="100"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="27">
+<source name="Transform">
+<property name="Scale"  x="205"  y="100"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="28">
+<source name="Transform">
+<property name="Scale"  x="122"  y="100"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="29">
+<source name="Transform">
+<property name="Scale"  x="39"  y="100"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="30">
+<source name="Transform">
+<property name="Scale"  x="61.75"  y="100"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="31">
+<source name="Transform">
+<property name="Scale"  x="84.5"  y="100"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="32">
+<source name="Transform">
+<property name="Scale"  x="107.25"  y="100"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="33">
+<source name="Transform">
+<property name="Scale"  x="130"  y="100"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="34">
+<source name="Transform">
+<property name="Scale"  x="122.5"  y="100"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="35">
+<source name="Transform">
+<property name="Scale"  x="115"  y="100"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="36">
+<source name="Transform">
+<property name="Scale"  x="107.5"  y="100"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="37">
+<source name="Transform">
+<property name="Scale"  x="100"  y="100"  z="100"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_eyeBase.png" type="Footage" parent="29" index="28" source="analogyBot_eyeBase.png" w="47" h="140" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="28"  y="107.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="23.5"  y="70"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_head.png" type="Footage" parent="22" index="29" source="analogyBot_head.png" w="192" h="211" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="74.5"  y="47.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="-12.8045024190632"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="105"  y="105.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="1">
+<source name="Transform">
+<property name="Rotation" val="-12.6482049225075"/>
+</source>
+</keyframe>
+<keyframe frame="2">
+<source name="Transform">
+<property name="Rotation" val="-12.4919074259518"/>
+</source>
+</keyframe>
+<keyframe frame="3">
+<source name="Transform">
+<property name="Rotation" val="-12.3356099293961"/>
+</source>
+</keyframe>
+<keyframe frame="4">
+<source name="Transform">
+<property name="Rotation" val="-12.1793124328405"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Rotation" val="-15.5264290842864"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Rotation" val="-18.8735457357324"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Rotation" val="-14.2727226904649"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Rotation" val="-9.6718996451974"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="-10.7161005698193"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Rotation" val="-11.7603014944413"/>
+</source>
+</keyframe>
+<keyframe frame="11">
+<source name="Transform">
+<property name="Rotation" val="-12.8045024190632"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_headBack.png" type="Footage" parent="22" index="30" source="analogyBot_headBack.png" w="97" h="153" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="15.5"  y="82"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="48.5"  y="76.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_wheelBig.png" type="Footage" parent="none" index="31" source="analogyBot_wheelBig.png" w="95" h="95" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="554"  y="626.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="47.5"  y="47.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_wheelSmall.png" type="Footage" parent="33" index="32" source="analogyBot_wheelSmall.png" w="59" h="59" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="1.25980329239636"  y="20.2535781249427"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="51.3746861678618"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="29.5"  y="29.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_legB.png" type="Footage" parent="35" index="33" source="analogyBot_legB.png" w="49" h="38" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="53.7499999999999"  y="114.25"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="-42.4737882132657"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="48.0721042446473"  y="21.5701948329822"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_legA.png" type="Footage" parent="35" index="34" source="analogyBot_legA.png" w="46" h="28" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="36.3749999999989"  y="112.125"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="-37.2224916751596"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="45.2879108360517"  y="14.3940565494769"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_body.png" type="Footage" parent="none" index="35" source="analogyBot_body.png" w="160" h="158" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="478"  y="573"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="80"  y="79"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_wheelSmallB.png" type="Footage" parent="34" index="36" source="analogyBot_wheelSmallB.png" w="59" h="59" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="-1.44252394164855"  y="11.5572069787265"  z="0"/>
+<property name="Scale"  x="96.6101694915254"  y="96.6101694915254"  z="100"/>
+<property name="Rotation" val="43.9259308083138"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="29.5"  y="29.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_wheelBig.png" type="Footage" parent="none" index="37" source="analogyBot_wheelBig.png" w="95" h="95" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="510"  y="617"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="47.5"  y="47.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_orbBlue.png" type="Footage" parent="50" index="38" source="analogyBot_orbBlue.png" w="111" h="111" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="76"  y="-2.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="55.5"  y="103.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_orbDarkBlue.png" type="Footage" parent="38" index="39" source="analogyBot_orbDarkBlue.png" w="111" h="111" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="55.5"  y="55.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="55.5"  y="55.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_orbGreen.png" type="Footage" parent="38" index="40" source="analogyBot_orbGreen.png" w="111" h="111" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="55.5"  y="55.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="55.5"  y="55.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_orbRed.png" type="Footage" parent="38" index="41" source="analogyBot_orbRed.png" w="111" h="111" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="55.5"  y="55.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="55.5"  y="55.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="24">
+<source name="Transform">
+<property name="Opacity" val="50"/>
+</source>
+</keyframe>
+<keyframe frame="25">
+<source name="Transform">
+<property name="Opacity" val="100"/>
+</source>
+</keyframe>
+<keyframe frame="26">
+<source name="Transform">
+<property name="Opacity" val="75"/>
+</source>
+</keyframe>
+<keyframe frame="27">
+<source name="Transform">
+<property name="Opacity" val="50"/>
+</source>
+</keyframe>
+<keyframe frame="28">
+<source name="Transform">
+<property name="Opacity" val="25"/>
+</source>
+</keyframe>
+<keyframe frame="29">
+<source name="Transform">
+<property name="Opacity" val="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_orbGrey.png" type="Footage" parent="38" index="42" source="analogyBot_orbGrey.png" w="111" h="111" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="55.5"  y="55.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="55.5"  y="55.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_orbOrange.png" type="Footage" parent="38" index="43" source="analogyBot_orbOrange.png" w="111" h="111" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="55.5"  y="55.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="55.5"  y="55.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="LeftanalogyBot_reflectBlue.png" type="Footage" parent="50" index="44" source="analogyBot_reflectBlue.png" w="93" h="5" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="73.75"  y="4"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="46.5"  y="2.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="LeftanalogyBot_reflectDarkBlue.png" type="Footage" parent="44" index="45" source="analogyBot_reflectDarkBlue.png" w="93" h="5" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="46.5"  y="2.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="46.5"  y="2.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="LeftanalogyBot_reflectGreen.png" type="Footage" parent="44" index="46" source="analogyBot_reflectGreen.png" w="93" h="5" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="46.5"  y="2.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="46.5"  y="2.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_reflectOrange.png" type="Footage" parent="44" index="47" source="analogyBot_reflectOrange.png" w="93" h="5" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="46.5"  y="2.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="46.5"  y="2.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_reflectRed.png" type="Footage" parent="44" index="48" source="analogyBot_reflectRed.png" w="93" h="5" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="46.5"  y="2.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="46.5"  y="2.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="24">
+<source name="Transform">
+<property name="Opacity" val="50"/>
+</source>
+</keyframe>
+<keyframe frame="25">
+<source name="Transform">
+<property name="Opacity" val="100"/>
+</source>
+</keyframe>
+<keyframe frame="26">
+<source name="Transform">
+<property name="Opacity" val="75"/>
+</source>
+</keyframe>
+<keyframe frame="27">
+<source name="Transform">
+<property name="Opacity" val="50"/>
+</source>
+</keyframe>
+<keyframe frame="28">
+<source name="Transform">
+<property name="Opacity" val="25"/>
+</source>
+</keyframe>
+<keyframe frame="29">
+<source name="Transform">
+<property name="Opacity" val="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_balanceBaseTopDark.png" type="Footage" parent="50" index="49" source="analogyBot_balanceBaseTopDark.png" w="153" h="8" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="76.5"  y="4.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="76.5"  y="4"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_balanceBaseTop.png" type="Footage" parent="52" index="50" source="analogyBot_balanceBaseTop.png" w="153" h="39" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="38.5"  y="-35"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="76.5"  y="19.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_balanceBaseStalk.png" type="Footage" parent="52" index="51" source="analogyBot_balanceBaseStalk.png" w="22" h="28" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="38.5"  y="0"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="11"  y="26.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_balanceBaseOrb.png" type="Footage" parent="53" index="52" source="analogyBot_balanceBaseOrb.png" w="77" h="76" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="366"  y="56.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="11.9291828332018"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="38.5"  y="38"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="12.9915690234151"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Rotation" val="14.0539552136284"/>
+</source>
+</keyframe>
+<keyframe frame="11">
+<source name="Transform">
+<property name="Rotation" val="15.1163414038417"/>
+</source>
+</keyframe>
+<keyframe frame="12">
+<source name="Transform">
+<property name="Rotation" val="9.21141237329449"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Rotation" val="3.30648334274725"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Rotation" val="-2.59844568779999"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Rotation" val="-0.46666795376503"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Rotation" val="1.66510978026992"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Rotation" val="1.11363388661"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Rotation" val="0.56215799295007"/>
+</source>
+</keyframe>
+<keyframe frame="19">
+<source name="Transform">
+<property name="Rotation" val="0.01068209929015"/>
+</source>
+</keyframe>
+<keyframe frame="24">
+<source name="Transform">
+<property name="Rotation" val="6.91155284383589"/>
+</source>
+</keyframe>
+<keyframe frame="25">
+<source name="Transform">
+<property name="Rotation" val="13.8124235883816"/>
+</source>
+</keyframe>
+<keyframe frame="26">
+<source name="Transform">
+<property name="Rotation" val="12.4301765010846"/>
+</source>
+</keyframe>
+<keyframe frame="27">
+<source name="Transform">
+<property name="Rotation" val="11.0479294137876"/>
+</source>
+</keyframe>
+<keyframe frame="28">
+<source name="Transform">
+<property name="Rotation" val="11.3416805535923"/>
+</source>
+</keyframe>
+<keyframe frame="29">
+<source name="Transform">
+<property name="Rotation" val="11.6354316933971"/>
+</source>
+</keyframe>
+<keyframe frame="30">
+<source name="Transform">
+<property name="Rotation" val="11.9291828332018"/>
+</source>
+</keyframe>
+</layer>
+<layer name="analogyBot_balanceBeamBack.png" type="Footage" parent="35" index="53" source="analogyBot_balanceBeamBack.png" w="347" h="95" inPoint="0" outPoint="6" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="79"  y="33.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="-12.0813221513365"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="187.5"  y="47.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="-13.170510526146"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Rotation" val="-14.2596989009554"/>
+</source>
+</keyframe>
+<keyframe frame="11">
+<source name="Transform">
+<property name="Rotation" val="-15.3488872757648"/>
+</source>
+</keyframe>
+<keyframe frame="12">
+<source name="Transform">
+<property name="Rotation" val="-9.42239445624301"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Rotation" val="-3.49590163672117"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Rotation" val="2.43059118280067"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Rotation" val="0.39355414576364"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Rotation" val="-1.6434828912734"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Rotation" val="-0.98641841939411"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Rotation" val="-0.32935394751483"/>
+</source>
+</keyframe>
+<keyframe frame="19">
+<source name="Transform">
+<property name="Rotation" val="0.32771052436446"/>
+</source>
+</keyframe>
+<keyframe frame="24">
+<source name="Transform">
+<property name="Rotation" val="-6.73277289167533"/>
+</source>
+</keyframe>
+<keyframe frame="25">
+<source name="Transform">
+<property name="Rotation" val="-13.7932563077151"/>
+</source>
+</keyframe>
+<keyframe frame="26">
+<source name="Transform">
+<property name="Rotation" val="-12.2130093941349"/>
+</source>
+</keyframe>
+<keyframe frame="27">
+<source name="Transform">
+<property name="Rotation" val="-10.6327624805546"/>
+</source>
+</keyframe>
+<keyframe frame="28">
+<source name="Transform">
+<property name="Rotation" val="-11.1156157041486"/>
+</source>
+</keyframe>
+<keyframe frame="29">
+<source name="Transform">
+<property name="Rotation" val="-11.5984689277426"/>
+</source>
+</keyframe>
+<keyframe frame="30">
+<source name="Transform">
+<property name="Rotation" val="-12.0813221513365"/>
+</source>
+</keyframe>
+</layer>
+<meta duration="6.00" totalFrames="144"/>
+</composition>
+<sub_items>
+<composition w="512" h="512" id="626" >
+<layer name="sparkAnim_1_00.png" type="Footage" parent="none" index="1" source="sparkAnim_1_00.png" w="512" h="512" inPoint="0" outPoint="0.04166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_1_01.png" type="Footage" parent="none" index="2" source="sparkAnim_1_01.png" w="512" h="512" inPoint="0.04166666666667" outPoint="0.08333333333333" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_1_02.png" type="Footage" parent="none" index="3" source="sparkAnim_1_02.png" w="512" h="512" inPoint="0.08333333333333" outPoint="0.125" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<meta duration="0.13" totalFrames="3"/>
+</composition>
+<composition w="512" h="512" id="655" >
+<layer name="sparkAnim_3_00.png" type="Footage" parent="none" index="1" source="sparkAnim_3_00.png" w="512" h="512" inPoint="0" outPoint="0.04166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_3_01.png" type="Footage" parent="none" index="2" source="sparkAnim_3_01.png" w="512" h="512" inPoint="0.04166666666667" outPoint="0.08333333333333" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_3_02.png" type="Footage" parent="none" index="3" source="sparkAnim_3_02.png" w="512" h="512" inPoint="0.08333333333333" outPoint="0.125" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_3_03.png" type="Footage" parent="none" index="4" source="sparkAnim_3_03.png" w="512" h="512" inPoint="0.125" outPoint="0.16666666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_3_04.png" type="Footage" parent="none" index="5" source="sparkAnim_3_04.png" w="512" h="512" inPoint="0.16666666666667" outPoint="0.20833333333333" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_3_05.png" type="Footage" parent="none" index="6" source="sparkAnim_3_05.png" w="512" h="512" inPoint="0.20833333333333" outPoint="0.25" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<meta duration="0.25" totalFrames="6"/>
+</composition>
+<composition w="512" h="512" id="640" >
+<layer name="sparkAnim_2_00.png" type="Footage" parent="none" index="1" source="sparkAnim_2_00.png" w="512" h="512" inPoint="0" outPoint="0.04166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_2_01.png" type="Footage" parent="none" index="2" source="sparkAnim_2_01.png" w="512" h="512" inPoint="0.04166666666667" outPoint="0.08333333333333" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_2_02.png" type="Footage" parent="none" index="3" source="sparkAnim_2_02.png" w="512" h="512" inPoint="0.08333333333333" outPoint="0.125" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="sparkAnim_2_03.png" type="Footage" parent="none" index="4" source="sparkAnim_2_03.png" w="512" h="512" inPoint="0.125" outPoint="0.16666666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="256"  y="256"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="256"  y="256"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<meta duration="0.17" totalFrames="4"/>
+</composition>
+</sub_items>
+<meta frameDuration="0.04166666666667" totalFrames="144" duration="6.00"/>
+</after_affect_animation_doc>
