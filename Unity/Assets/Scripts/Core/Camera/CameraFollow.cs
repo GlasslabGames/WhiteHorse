@@ -16,16 +16,7 @@ public class CameraFollow : MonoBehaviour
   public event distanceDel OnScroll;
 
   private static Vector3 VECTOR3 = new Vector3();
-  
-  void Awake()
-  {
-    SignalManager.RoomChanged += onRoomChanged;
-  }
 
-  void Destroy()
-  {
-    SignalManager.RoomChanged -= onRoomChanged;
-  }
 
 	void Start ()
 	{
