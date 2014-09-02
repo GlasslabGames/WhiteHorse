@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using MiniJSON;
 using System.Collections.Generic;
 
 
@@ -10,12 +9,13 @@ public class PhysicsBot : MonoBehaviour
 	public GameObject m_blastPrefab;
 	public Transform m_blastSpawnPoint;
 
-	public float m_currentVelocity = 0.0f;
-	public float m_accelerationRate = 1.0f;
-	public float m_decelerationRate = 0.95f;
-	public float m_maxVelocity = 4.0f;
+	private bool m_facingRight = false;
+
+	private float m_currentVelocity = 0.0f;
+	public float m_maxVelocity = 25.0f;
 
 	public float m_shootPower = 2250.0f;
+	public float m_recoilForce = 100.0f;
 
 
 	public void Update()
@@ -27,30 +27,22 @@ public class PhysicsBot : MonoBehaviour
 
 		if( Input.GetKey( KeyCode.LeftArrow ) )
 		{
-			m_currentVelocity = m_currentVelocity - ( m_accelerationRate * Time.deltaTime );
+			m_currentVelocity = -m_maxVelocity;
 			gameObject.transform.rotation = Quaternion.Euler( 0, 0, 0 );
-
-			if( m_currentVelocity <= -m_maxVelocity )
-			{
-				m_currentVelocity = -m_maxVelocity;
-      		}
+			m_facingRight = false;
 		}
 		else if( Input.GetKey( KeyCode.RightArrow ) )
 		{
-			m_currentVelocity = m_currentVelocity + ( m_accelerationRate * Time.deltaTime );
+			m_currentVelocity = m_maxVelocity;
 			gameObject.transform.rotation = Quaternion.Euler( 0, 180, 0 );
-
-			if( m_currentVelocity >= m_maxVelocity )
-			{
-				m_currentVelocity = m_maxVelocity;
-      		}
+			m_facingRight = true;
 		}
 		else
 		{
-			m_currentVelocity *= m_decelerationRate;
+			m_currentVelocity = 0.0f;
     	}
 
-		rigidbody2D.velocity = new Vector2( m_currentVelocity, 0 );
+		rigidbody2D.AddRelativeForce( Vector2.right * m_currentVelocity );
 	}
 
 	public void FirePills()
@@ -64,5 +56,8 @@ public class PhysicsBot : MonoBehaviour
 		GameObject blast = Instantiate( m_blastPrefab, m_blastSpawnPoint.position, Quaternion.identity ) as GameObject;
 		blast.transform.parent = m_blastSpawnPoint;
 		//blast.transform.rotation = m_blastSpawnPoint.rotation;
+
+		// Create an impulse on the bot backward
+		rigidbody2D.AddRelativeForce( ( m_facingRight ? -Vector2.right : Vector2.right ) * m_recoilForce, ForceMode2D.Impulse );
 	}
 }
