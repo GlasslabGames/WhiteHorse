@@ -9,4 +9,5 @@ public class DemoEnemyModel: Model<DemoEnemyModel>
 	public List<float> Position;
 	public List<float> Scale;
 	public int Bark;
+	public List<string> Conversations;
 }

@@ -26,6 +26,8 @@ public class GLDialogueUI : NGUIDialogueUI
 
   private Transform m_prevPanel;
 
+  private bool m_setPortraits = true;
+
   /**
    * Depending on whether the player is male or female, these are the sprites to use.
    * NOTE: The order must be the same as the declaration order in AvatarType (excluding AvatarType.NONE).
@@ -49,7 +51,7 @@ public class GLDialogueUI : NGUIDialogueUI
     }
 
   }
-
+  
   override public void Start() {
     base.Start();
   }
@@ -89,11 +91,6 @@ public class GLDialogueUI : NGUIDialogueUI
   
   override public void Update() {
     if (m_updateTable) RefreshTable();
-  }
-
-  protected void OnClick() {
-    // When you click the background, it continues the dialogue
-    OnContinue();
   }
 
   override public void ShowSubtitle(Subtitle subtitle) {
@@ -178,11 +175,13 @@ public class GLDialogueUI : NGUIDialogueUI
       npcTalking = true;
     }
 
-    string npcMood = DialogueLua.GetVariable("npcMood").AsString;
-    string pcMood = DialogueLua.GetVariable("pcMood").AsString;
+    if (m_setPortraits) {
+      string npcMood = DialogueLua.GetVariable("npcMood").AsString;
+      string pcMood = DialogueLua.GetVariable("pcMood").AsString;
 
-    SetPortrait(NpcPortrait, npcInfo, npcMood, npcTalking);
-    SetPortrait(PcPortrait, pcInfo, pcMood, pcTalking);
+      if (NpcPortrait != null) SetPortrait(NpcPortrait, npcInfo, npcMood, npcTalking);
+      if (PcPortrait != null) SetPortrait(PcPortrait, pcInfo, pcMood, pcTalking);
+    }
 
     if (GlSoundManager.Instance != null) {
       GlSoundManager.Instance.PlaySoundByEvent("InputSFXGroup/ConversationTap");

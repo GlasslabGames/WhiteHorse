@@ -10,6 +10,7 @@ public class DemoEnemy : MonoBehaviour {
       Utility.NextFrame( Refresh );
     }
   }
+  private int m_convoIndex = 0;
 
   public void Refresh() {
     transform.localPosition = new Vector3( Model.Position[0], Model.Position[1], 0);
@@ -17,6 +18,14 @@ public class DemoEnemy : MonoBehaviour {
   }
 
 	public void Interact() {
-    DemoManager.Instance.Dialog.Show(transform.position, Model.Name, DemoBarkModel.GetModel(Model.Bark).Text);
+    if (Model.Conversations != null && Model.Conversations.Count > m_convoIndex) {
+      Utility.NextFrame( delegate() {
+        GLDialogueManager.Instance.StartConversation(Model.Conversations[m_convoIndex]);
+        m_convoIndex ++;
+      }
+        );
+    } else {
+      DemoManager.Instance.Dialog.Show(transform.position, Model.Name, DemoBarkModel.GetModel(Model.Bark).Text);
+    }
 	}
 }

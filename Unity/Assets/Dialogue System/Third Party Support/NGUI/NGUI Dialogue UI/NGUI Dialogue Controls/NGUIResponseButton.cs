@@ -62,10 +62,11 @@ namespace PixelCrushers.DialogueSystem.NGUI {
 		/// <value>
 		/// <c>true</c> if clickable; otherwise, <c>false</c>.
 		/// </value>
-		public bool clickable {
+    public bool clickable = true; // hack because we have the collider on a subobject, so this won't work
+    /*{
 			get { return (collider != null) ? collider.enabled : false; }
 			set { if (collider != null) collider.enabled = value; }
-		}
+		}*/
 		
 		/// <summary>
 		/// Indicates whether the button is shown or not.
@@ -82,7 +83,7 @@ namespace PixelCrushers.DialogueSystem.NGUI {
 		/// <value>
 		/// The response.
 		/// </value>
-		public Response response { get; set; }
+    public Response response { get; set; }
 		
 		/// <summary>
 		/// Gets or sets the target that will receive click notifications.
@@ -90,7 +91,7 @@ namespace PixelCrushers.DialogueSystem.NGUI {
 		/// <value>
 		/// The target.
 		/// </value>
-		public Transform target { get; set; }
+    public Transform target { get; set; }
 		
 
 		/// <summary>

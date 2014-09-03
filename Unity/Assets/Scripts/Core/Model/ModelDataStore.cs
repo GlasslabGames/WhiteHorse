@@ -68,18 +68,18 @@ public static class ModelDataStore
 
     // Set each field/property of that object to the value based on the dictionary
     foreach (string key in node.Keys) {
-      Debug.Log ("[ModelDataStore] "+key + ": " + node[key]);
+      //Debug.Log ("[ModelDataStore] "+key + ": " + node[key]);
 
       // We don't know if it's a field or a property, so try both
       PropertyInfo propertyInfo = type.GetProperty(key);
       FieldInfo fieldInfo = type.GetField(key);
       if (propertyInfo == null && fieldInfo == null) {
-        Debug.LogError("[ModelDataStore] Can't access field/property "+key+" in "+type+"!");
+        //Debug.LogError("[ModelDataStore] Can't access field/property "+key+" in "+type+"!");
         continue;
       }
 
       Type propType = (propertyInfo != null)? propertyInfo.PropertyType : fieldInfo.FieldType;
-      Debug.Log("PropType: "+propType+" IsGeneric?"+propType.IsGenericType);
+      //Debug.Log("PropType: "+propType+" IsGeneric?"+propType.IsGenericType);
 
       // If the property is a list, we need to convert all the entries to the appropriate type
       if (propType.IsGenericType) {

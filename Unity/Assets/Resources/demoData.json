@@ -4,21 +4,23 @@
       "Name": "text",
       "Position": "group x:(number -1800 1800) y:(number -500 500)",
       "Scale": "group x:(number -1 1) y:(number -1 1)",
-      "Bark": "select Barks"
+      "Bark": "select Barks",
+      "Conversations": "list 3 (text)"
     },
     "nodes": [
       {
         "Id": 1,
         "Name": "Bob",
         "Position": [
-          -36,
+          500,
           -430
         ],
         "Scale": [
           1,
           1
         ],
-        "Bark": 1
+        "Bark": 1,
+        "Conversations": ["Bob1", "Bob2"]
       },
       {
         "Id": 2,
