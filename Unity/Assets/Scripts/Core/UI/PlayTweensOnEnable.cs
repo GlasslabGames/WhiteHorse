@@ -8,11 +8,13 @@ public class PlayTweensOnEnable : MonoBehaviour {
 
   void OnStart() {}
 
+  // This doesn't really work the first time that the tweens are supposed to be played.
 	void OnEnable() {
-
     foreach (UITweener tween in Tweens) {
       tween.ResetToBeginning();
-      tween.PlayForward();
+      Utility.NextFrame ( tween.PlayForward ); // delay because doing it right away wasn't working.
     }
   }
+
+  // Basically tweens are hard to use, and this script is definitely not perfect. But it does its job most of the time.
 }
