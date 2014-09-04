@@ -20,7 +20,7 @@
           1
         ],
         "Bark": 1,
-        "Conversations": ["Bob1", "Bob2"]
+        "Conversations": ["Bob1", "Bob2", "Bob2"]
       },
       {
         "Id": 2,

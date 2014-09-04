@@ -287,14 +287,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
   ignoreTimeScale: 1
-  delay: 0
+  delay: .300000012
   duration: .400000006
   steeperCurves: 0
   tweenGroup: 1
   onFinished: []
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: {x: -1000, y: 0, z: 0}
+  from: {x: 1000, y: 0, z: 0}
   to: {x: 0, y: 0, z: 0}
   worldSpace: 0
 --- !u!114 &47044839
@@ -327,7 +327,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
   ignoreTimeScale: 1
-  delay: .100000001
+  delay: .400000006
   duration: .100000001
   steeperCurves: 0
   tweenGroup: 1
@@ -382,7 +382,7 @@ MonoBehaviour:
   mWidth: 924
   mHeight: 150
   mDepth: 1
-  autoResizeBoxCollider: 0
+  autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 6.15999985
@@ -1269,7 +1269,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 601061929}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 249.697906, z: 0}
+  m_LocalPosition: {x: 0, y: 249.697937, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 428788449}
@@ -1504,7 +1504,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
   ignoreTimeScale: 1
-  delay: 0
+  delay: .200000003
   duration: .400000006
   steeperCurves: 0
   tweenGroup: 1
@@ -1544,7 +1544,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
   ignoreTimeScale: 1
-  delay: .100000001
+  delay: .300000012
   duration: .100000001
   steeperCurves: 0
   tweenGroup: 1
@@ -1599,7 +1599,7 @@ MonoBehaviour:
   mWidth: 924
   mHeight: 150
   mDepth: 1
-  autoResizeBoxCollider: 0
+  autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 6.15999985
@@ -1708,7 +1708,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3010
+  startingRenderQueue: 3003
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
@@ -1821,7 +1821,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3006
+  startingRenderQueue: 3007
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
@@ -2141,7 +2141,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 701983778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -57.2000008, z: 0}
+  m_LocalPosition: {x: 0, y: -57.1999893, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 718347132}
@@ -2232,7 +2232,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 718347131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 246.797913, z: 0}
+  m_LocalPosition: {x: 0, y: 246.797989, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 701983779}
@@ -3083,6 +3083,7 @@ MonoBehaviour:
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   setButtonColor: 1
   setLabelColor: 1
+  clickable: 1
 --- !u!1 &1000976942
 GameObject:
   m_ObjectHideFlags: 0
@@ -3221,6 +3222,7 @@ MonoBehaviour:
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   setButtonColor: 1
   setLabelColor: 1
+  clickable: 1
 --- !u!114 &1020495562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3256,7 +3258,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1036481995}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 571.599976, y: -33.1999931, z: 0}
+  m_LocalPosition: {x: 571.599976, y: -33.2000046, z: 0}
   m_LocalScale: {x: .800000012, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 718347132}
@@ -3427,7 +3429,7 @@ MonoBehaviour:
   mWidth: 924
   mHeight: 150
   mDepth: 1
-  autoResizeBoxCollider: 0
+  autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 6.15999985
@@ -3829,6 +3831,7 @@ MonoBehaviour:
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   setButtonColor: 1
   setLabelColor: 1
+  clickable: 1
 --- !u!1 &1425749346
 GameObject:
   m_ObjectHideFlags: 0
@@ -3949,7 +3952,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1487120048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 601.199951, y: -33.2000046, z: 0}
+  m_LocalPosition: {x: 601.199951, y: -33.1999893, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 718347132}
@@ -4247,6 +4250,7 @@ MonoBehaviour:
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   setButtonColor: 1
   setLabelColor: 1
+  clickable: 1
 --- !u!1 &1734873239
 GameObject:
   m_ObjectHideFlags: 0
@@ -4735,7 +4739,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3003
+  startingRenderQueue: 3011
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
@@ -5082,14 +5086,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
   ignoreTimeScale: 1
-  delay: 0
+  delay: .100000001
   duration: .400000006
   steeperCurves: 0
   tweenGroup: 1
   onFinished: []
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: {x: -1000, y: 0, z: 0}
+  from: {x: 1000, y: 0, z: 0}
   to: {x: 0, y: 0, z: 0}
   worldSpace: 0
 --- !u!114 &1971293728
@@ -5122,7 +5126,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
   ignoreTimeScale: 1
-  delay: .100000001
+  delay: .200000003
   duration: .100000001
   steeperCurves: 0
   tweenGroup: 1
@@ -5177,7 +5181,7 @@ MonoBehaviour:
   mWidth: 924
   mHeight: 150
   mDepth: 1
-  autoResizeBoxCollider: 0
+  autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 6.15999985
