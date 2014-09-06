@@ -142,8 +142,8 @@ public class GlasslabSDK {
 			mInst = GlasslabSDK_CreateInstance (clientId, deviceUUID, dataPath, uri);
 			mInstSet = true;
 			
-			Debug.Log ( dataPath );
-			iPhone.SetNoBackupFlag( dataPath + "/glasslabsdk.db" );
+			//Debug.Log ( dataPath );
+			//iPhone.SetNoBackupFlag( dataPath + "/glasslabsdk.db" );
 		}
 		
 		// If the client requests to reset the database, do so
