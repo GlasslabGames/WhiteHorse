@@ -14,4 +14,6 @@ public class GameObjectAccessor : SingletonBehavior<GameObjectAccessor>
   public GameObject PulseTextPrefab;
   public Camera MainCamera;
   public Camera UICamera;
+  public UILabel RedVotesLabel;
+  public UILabel BlueVotesLabel;
 }

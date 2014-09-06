@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
   private Color m_opponentColor;
 
   public Leaning m_leaning;
+  public Leaning m_opponentLeaning;
 
 
   public Color PlayerColor

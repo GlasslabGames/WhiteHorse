@@ -4,6 +4,8 @@ using System.Collections;
 
 public class NetworkManager : MonoBehaviour
 {
+  public bool m_enableNetworking;
+
   public bool m_actAsServer;
   public string m_url;
   public int m_port;
@@ -15,12 +17,22 @@ public class NetworkManager : MonoBehaviour
     if( m_actAsServer )
     {
       GameObjectAccessor.Instance.Player.m_leaning = Leaning.Red;
-      LaunchServer();
+      GameObjectAccessor.Instance.Player.m_opponentLeaning = Leaning.Blue;
+
+      if( m_enableNetworking )
+      {
+        LaunchServer();
+      }
     }
     else
     {
       GameObjectAccessor.Instance.Player.m_leaning = Leaning.Blue;
-      ConnectToServer();
+      GameObjectAccessor.Instance.Player.m_opponentLeaning = Leaning.Red;
+
+      if( m_enableNetworking )
+      {
+        ConnectToServer();
+      }
     }
   }
 

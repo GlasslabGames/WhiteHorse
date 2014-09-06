@@ -12,10 +12,14 @@ public enum Leaning
 
 public class State : MonoBehaviour
 {
-  private Color blueStateColor = new Color( 79.0f / 255.0f, 131.0f / 255.0f, 255.0f / 255.0f );
-  private Color redStateColor = new Color( 255.0f / 255.0f, 79.0f / 255.0f, 79.0f / 255.0f );
+  private Color blueStateColor = new Color( 26.0f / 255.0f, 94.0f / 255.0f, 255.0f / 255.0f );
+  private Color blueStateColorInactive = new Color( 135.0f / 255.0f, 160.0f / 255.0f, 219.0f / 255.0f );
+
+  private Color redStateColor = new Color( 255.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f );
+  private Color redStateColorInactive = new Color( 255.0f / 255.0f, 134.0f / 255.0f, 134.0f / 255.0f );
+
   private Color undiscoveredStateColor = new Color( 79.0f / 255.0f, 79.0f / 255.0f, 79.0f / 255.0f );
-  private Color neutralStateColor = new Color( 156.0f / 255.0f, 103.0f / 255.0f, 152.0f / 255.0f );
+  private Color neutralStateColor = new Color( 165.0f / 255.0f, 32.0f / 255.0f, 155.0f / 255.0f );
 
   private Vector3 m_workerOffset = new Vector3( 0.25f, 0, 0 );
   private Vector3 m_workerAdjacencyOffset = new Vector3( 0, -0.2f, 0 );
@@ -26,7 +30,7 @@ public class State : MonoBehaviour
 
   public int m_electoralCount;
   public float m_populationInMillions;
-  private int m_popularVote;  // blue negative, red positive
+  private float m_popularVote;  // blue negative, red positive
 
   public string m_name;
   public string m_abbreviation;
@@ -43,10 +47,15 @@ public class State : MonoBehaviour
   private int m_playerSupportersAddedThisTurn;
   private int m_opponentSupportersAddedThisTurn;
 
+  private bool m_playerSupportersSentToOpponent;
   private int m_currentPlayerSupporterIteration;
   private int m_currentOpponentSupporterIteration;
+  private bool m_popularVoteUpdatedForPlayer;
+  private bool m_popularVoteUpdatedForOpponent;
+  private bool m_stateUpdatedWithPopularVote;
   private GameObject m_playerFloatingText;
   private GameObject m_opponentFloatingText;
+  private GameObject m_popularVoteText;
 
 
   public void Start()
@@ -62,34 +71,40 @@ public class State : MonoBehaviour
     m_popularVote = 0;
 
     UpdateColor();
+
+    m_playerFloatingText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( -m_workerCountOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
+    m_playerFloatingText.GetComponent< FloatingText >().Display( "" );
+    
+    m_opponentFloatingText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( m_workerCountOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
+    m_opponentFloatingText.GetComponent< FloatingText >().Display( "" );
+
+    m_popularVoteText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( m_popularVoteOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
+    m_popularVoteText.GetComponent< FloatingText >().Display( "" );
   }
 
 
   public bool SendOpponentPlayerSupporters()
   {
-    if( m_playerSupportersAddedThisTurn == 0 ) { return PlayerIncrement(); }
+    if( m_playerSupportersSentToOpponent ) { return PlayerIncrement(); }
 
     networkView.RPC( "OpponentCreateSupporters", RPCMode.Others, m_playerSupportersAddedThisTurn );
 
     // TEMP
-    m_opponentSupportersAddedThisTurn = 2;
+    //m_opponentSupportersAddedThisTurn = m_playerSupporterList.Count == 0 ? 0 : 2;
     // TEMP
 
     m_currentPlayerSupporterIteration = 0;
     m_currentOpponentSupporterIteration = 0;
 
-    m_playerFloatingText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( -m_workerCountOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
-    m_playerFloatingText.GetComponent< FloatingText >().Display( "" );
-
-    m_opponentFloatingText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( m_workerCountOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
-    m_opponentFloatingText.GetComponent< FloatingText >().Display( "" );
-
     m_playerSupportersAddedThisTurn = 0;
+
+    m_playerSupportersSentToOpponent = true;
+
     return false;
   }
   public bool PlayerIncrement()
   {
-    if( m_currentPlayerSupporterIteration >= m_playerSupporterList.Count ) { return OpponentIncrement(); }
+    if( m_currentPlayerSupporterIteration >= m_playerSupporterList.Count ) { return UpdatePopularVotePlayer(); }
 
     CampaignWorker worker = m_playerSupporterList[ m_currentPlayerSupporterIteration ].GetComponent< CampaignWorker >();
     m_playerBasisCount += worker.m_currentLevel;
@@ -102,9 +117,25 @@ public class State : MonoBehaviour
 
     return false;
   }
+  public bool UpdatePopularVotePlayer()
+  {
+    float totalBasis = m_playerBasisCount + m_opponentBasisCount;
+    
+    if( m_popularVoteUpdatedForPlayer || totalBasis == 0 )  return OpponentIncrement();
+    
+    float playerPercentage = ( m_playerBasisCount / totalBasis ) * m_populationInMillions;
+    float opponentPercentage = ( m_opponentBasisCount / totalBasis ) * m_populationInMillions;
+    
+    m_popularVoteText.SendMessage( "Display", playerPercentage.ToString( "0.0" ) + "m | " + opponentPercentage.ToString( "0.0" ) + "m" );
+    m_popularVoteText.SendMessage( "BounceOut" );
+    
+    m_popularVoteUpdatedForPlayer = true;
+    
+    return false;
+  }
   public bool OpponentIncrement()
   {
-    if( m_currentOpponentSupporterIteration >= ( m_opponentSupporterList.Count + m_opponentSupportersAddedThisTurn ) ) { return true; }
+    if( m_currentOpponentSupporterIteration >= ( m_opponentSupporterList.Count + m_opponentSupportersAddedThisTurn ) ) { return UpdatePopularVoteOpponent(); }
 
     if( m_currentOpponentSupporterIteration >= m_opponentSupporterList.Count )
     {
@@ -122,6 +153,46 @@ public class State : MonoBehaviour
     m_currentOpponentSupporterIteration++;
 
     return false;
+  }
+  public bool UpdatePopularVoteOpponent()
+  {
+    float totalBasis = m_playerBasisCount + m_opponentBasisCount;
+    
+    if( m_popularVoteUpdatedForOpponent || totalBasis == 0 )  return UpdateStateWithPopularVote();
+    
+    float playerPercentage = ( m_playerBasisCount / totalBasis ) * m_populationInMillions;
+    float opponentPercentage = ( m_opponentBasisCount / totalBasis ) * m_populationInMillions;
+    
+    m_popularVoteText.SendMessage( "Display", playerPercentage.ToString( "0.0" ) + "m | " + opponentPercentage.ToString( "0.0" ) + "m" );
+    m_popularVoteText.SendMessage( "BounceOut" );
+    
+    m_popularVoteUpdatedForOpponent = true;
+    
+    return false;
+  }
+  public bool UpdateStateWithPopularVote()
+  {
+    float totalBasis = m_playerBasisCount + m_opponentBasisCount;
+
+    if( m_stateUpdatedWithPopularVote || totalBasis == 0 ) return true;
+
+    if( m_playerBasisCount > m_opponentBasisCount ) m_stateLeaning = GameObjectAccessor.Instance.Player.m_leaning;
+    else if( m_playerBasisCount < m_opponentBasisCount ) m_stateLeaning = GameObjectAccessor.Instance.Player.m_opponentLeaning;
+    else m_stateLeaning = Leaning.Neutral;
+
+    UpdateColor();
+
+    m_stateUpdatedWithPopularVote = true;
+
+    return false;
+  }
+
+  public void PrepareToUpdate()
+  {
+    m_playerSupportersSentToOpponent = false;
+    m_popularVoteUpdatedForPlayer = false;
+    m_popularVoteUpdatedForOpponent = false;
+    m_stateUpdatedWithPopularVote = false;
   }
 
   // boolean this returns indicates has completed
@@ -148,7 +219,7 @@ public class State : MonoBehaviour
 
   public void UpdateColor()
   {
-    if( m_inPlay && m_hidden )
+    if( m_hidden )
     {
       gameObject.GetComponentInChildren<SpriteRenderer>().color = undiscoveredStateColor;
       return;
@@ -157,11 +228,11 @@ public class State : MonoBehaviour
     switch( m_stateLeaning )
     {
     case Leaning.Blue:
-      gameObject.GetComponentInChildren<SpriteRenderer>().color = blueStateColor;
+      gameObject.GetComponentInChildren<SpriteRenderer>().color = m_inPlay ? blueStateColor : blueStateColorInactive;
       break;
 
     case Leaning.Red:
-      gameObject.GetComponentInChildren<SpriteRenderer>().color = redStateColor;
+      gameObject.GetComponentInChildren<SpriteRenderer>().color = m_inPlay ? redStateColor : redStateColorInactive;
       break;
 
     default:
@@ -174,13 +245,14 @@ public class State : MonoBehaviour
   {
     if( !m_inPlay )  return;
     if( GameObjectAccessor.Instance.GameStateManager.CurrentTurnState != TurnState.Placement )  return;
+    if( !GameObjectAccessor.Instance.Budget.IsAmountAvailable( 10 ) ) return;
 
     if( m_playerSupporterList.Count < m_populationInMillions )
     {
       m_playerSupportersAddedThisTurn++;
       CreateSupporterPrefab( true );
 
-      GameObjectAccessor.Instance.Budget.ConsumeAmount( 30 );
+      GameObjectAccessor.Instance.Budget.ConsumeAmount( 10 );
     }
   }
 
