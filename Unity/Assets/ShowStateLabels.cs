@@ -1,0 +1,29 @@
+﻿using UnityEngine;
+using System.Collections;
+
+// This will automatically add a label with each state's abbreviation.
+// You can set the label position for a state by adding a "stateLabel" object as its child. Else it's automatic.
+// This is just a first pass, it will have to be refined to work with the zoom.
+public class ShowStateLabels : MonoBehaviour {
+	public Transform StateContainer;
+
+	void Awake () {
+		if (!enabled) return;
+
+		Object statePrefab = Resources.Load("StateLabel");
+		Transform newTransform;
+		Transform stateTransform;
+		UILabel label;
+		foreach (State state in StateContainer.GetComponentsInChildren<State>()) {
+			newTransform = Utility.InstantiateAsChild(statePrefab, transform);
+			label = newTransform.GetComponent<UILabel>();
+			label.text = state.m_abbreviation;
+
+			stateTransform = state.transform.Find("labelAnchor");
+			if (stateTransform == null) stateTransform = state.transform;
+			newTransform.position = Utility.ConvertFromGameToUiPosition(stateTransform.position);
+		}
+	}
+
+	void Start() {}
+}

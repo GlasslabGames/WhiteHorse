@@ -150,22 +150,22 @@ public class State : MonoBehaviour
   {
     if( m_inPlay && m_hidden )
     {
-      gameObject.GetComponent<SpriteRenderer>().color = undiscoveredStateColor;
+      gameObject.GetComponentInChildren<SpriteRenderer>().color = undiscoveredStateColor;
       return;
     }
 
     switch( m_stateLeaning )
     {
     case Leaning.Blue:
-      gameObject.GetComponent<SpriteRenderer>().color = blueStateColor;
+      gameObject.GetComponentInChildren<SpriteRenderer>().color = blueStateColor;
       break;
 
     case Leaning.Red:
-      gameObject.GetComponent<SpriteRenderer>().color = redStateColor;
+      gameObject.GetComponentInChildren<SpriteRenderer>().color = redStateColor;
       break;
 
     default:
-      gameObject.GetComponent<SpriteRenderer>().color = neutralStateColor;
+      gameObject.GetComponentInChildren<SpriteRenderer>().color = neutralStateColor;
       break;
     }
   }
