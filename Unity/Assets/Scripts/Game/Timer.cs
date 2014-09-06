@@ -11,19 +11,14 @@ public enum TimerType
 
 public class Timer : MonoBehaviour
 {
-  private float m_duration;
+  public float m_duration;
   private float m_currentTime;
 
   private bool m_active;
 
-  private TimerType m_type;
+  public TimerType m_type;
   private Action m_callback;
 
-
-	public float Duration
-	{
-	  get { return m_duration; }
-	}
 
   public float CurrentTime
   {
@@ -49,22 +44,14 @@ public class Timer : MonoBehaviour
     get { return m_active; }
   }
 
-  public TimerType Type
-  {
-    get { return m_type; }
-  }
-
 
   public void TimerCompleteCallback() {}
 
-  public void StartTimer( float duration, TimerType type, Action callback = null )
+  public void StartTimer( Action callback = null )
   {
-    m_duration = duration;
     m_currentTime = 0.0f;
-
     m_active = true;
 
-    m_type = type;
     m_callback = callback == null ? TimerCompleteCallback : callback;
   }
 
@@ -76,7 +63,7 @@ public class Timer : MonoBehaviour
   public void Restart()
   {
     StopTimer();
-    StartTimer( m_duration, m_type, m_callback );
+    StartTimer( m_callback );
   }
 
   public void Update()

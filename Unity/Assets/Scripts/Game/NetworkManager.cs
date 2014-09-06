@@ -28,14 +28,14 @@ public class NetworkManager : MonoBehaviour
   {
     //Network.incomingPassword = "glasslab2014";
     bool useNatPunchthrough = !Network.HavePublicAddress();
-    NetworkConnectionError connectionResult = Network.InitializeServer( 4, 25000, useNatPunchthrough );
+    NetworkConnectionError connectionResult = Network.InitializeServer( m_allowedConnections, m_port, useNatPunchthrough );
     Debug.Log( "\n\nLaunchServer() Result: " + connectionResult + "\n\n" );
   }
 
   public void ConnectToServer()
   {
     //10.71.8.230
-    NetworkConnectionError connectionResult = Network.Connect( "10.71.8.230", 25000 );
+    NetworkConnectionError connectionResult = Network.Connect( m_url, m_port );
     Debug.Log( "\n\nConnectToServer() Result: " + connectionResult + "\n\n" );
   }
 }

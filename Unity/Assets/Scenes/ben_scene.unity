@@ -87,7 +87,7 @@ GameObject:
   - 61: {fileID: 64293269}
   - 114: {fileID: 64293270}
   - 148: {fileID: 64293271}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Montana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 64293265}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.97880125, y: 3.43312764, z: 0}
+  m_LocalPosition: {x: 5.9117775, y: 3.70121789, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1035177328}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stateLeaning: 0
-  m_electoralCount: 10
+  m_electoralCount: 3
   m_populationInMillions: 2
   m_name: Montana
   m_abbreviation: MO
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a92b5d748695fd44aac9feef17ba415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventType: 1
+  eventType: 3
   eventReceiverMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -295,7 +295,6 @@ GameObject:
   - 92: {fileID: 190567211}
   - 124: {fileID: 190567210}
   - 81: {fileID: 190567209}
-  - 114: {fileID: 190567214}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -348,7 +347,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294966783
+    m_Bits: 4294967263
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -368,23 +367,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &190567214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 190567208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b25f17645f914c438721d22abd8caed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xMargin: .100000001
-  yMargin: .100000001
-  xSmooth: 8
-  ySmooth: 8
-  maxXAndY: {x: 10, y: 0}
-  minXAndY: {x: -52, y: 0}
 --- !u!1 &482363348
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +380,7 @@ GameObject:
   - 61: {fileID: 482363352}
   - 114: {fileID: 482363353}
   - 148: {fileID: 482363354}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Vermont
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,7 +394,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 482363348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.1220131, y: 3.8066628, z: 0}
+  m_LocalPosition: {x: 17.0549927, y: 3.73964047, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1035177328}
@@ -511,7 +493,7 @@ GameObject:
   - 61: {fileID: 518291367}
   - 114: {fileID: 518291368}
   - 148: {fileID: 518291369}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Texas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,7 +507,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 518291363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.5447435, y: -4.98900127, z: 0}
+  m_LocalPosition: {x: 9.60643482, y: -3.91664553, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1035177328}
@@ -543,7 +525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_stateLeaning: 0
   m_electoralCount: 38
-  m_populationInMillions: 12
+  m_populationInMillions: 25
   m_name: Texas
   m_abbreviation: TX
   m_hidden: 1
@@ -711,6 +693,8 @@ GameObject:
   - 4: {fileID: 733379576}
   - 114: {fileID: 733379575}
   - 114: {fileID: 733379577}
+  - 114: {fileID: 733379578}
+  - 148: {fileID: 733379579}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -729,6 +713,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd146471220464f7ca99b3cd5c93ab7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_totalElectionWeeks: 30
+  m_harvestTimer: {fileID: 733379578}
 --- !u!4 &733379576
 Transform:
   m_ObjectHideFlags: 0
@@ -754,9 +740,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 1603097798}
   Budget: {fileID: 1603097800}
+  GameStateManager: {fileID: 733379575}
+  StatesContainer: {fileID: 1035177327}
   SupporterPrefab: {fileID: 100000, guid: e90e124610cf945e393dbadcb041f064, type: 2}
   RedPlayerMarker: {fileID: 1757090851}
   BluePlayerMarker: {fileID: 1486788903}
+  FloatingTextPrefab: {fileID: 100000, guid: 5696f393549dd44d8b216644e408e38c, type: 2}
+  PulseTextPrefab: {fileID: 100000, guid: 3b0c10f1722ac4901b6ddfb04732e1ba, type: 2}
+  MainCamera: {fileID: 190567212}
+  UICamera: {fileID: 95394700}
+--- !u!114 &733379578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 733379574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56963f85bd0624a06823e706723b2e81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_duration: .400000006
+  m_type: 1
+--- !u!148 &733379579
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 733379574}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 733379575}
+  m_ViewID:
+    m_ID: 4
+    m_Type: 1
 --- !u!1 &886292404
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &886292405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,7 +802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_actAsServer: 1
-  m_url: 10.71.8.230
+  m_url: 10.130.13.162
   m_port: 25000
   m_allowedConnections: 4
 --- !u!4 &886292406
@@ -811,8 +828,7 @@ GameObject:
   - 212: {fileID: 894858354}
   - 114: {fileID: 894858353}
   - 61: {fileID: 894858355}
-  - 114: {fileID: 894858356}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: California
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -882,24 +898,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 5.19999981, y: 4.0999999}
   m_Center: {x: 0, y: 0}
---- !u!114 &894858356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 894858351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f01d2edd8f88b31489374e9c7e0b7722, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onClick:
-  - mTarget: {fileID: 894858353}
-    mMethodName: PlayerPlaceSupporter
-    mParameters: []
-    oneShot: 0
-  debug: 0
-  UseDragProof: 0
 --- !u!1 &971908931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1004,7 +1002,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 971908931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.98999977, y: 0, z: -10}
   m_LocalScale: {x: .00260416674, y: .00260416674, z: .00260416674}
   m_Children:
   - {fileID: 95394698}
@@ -1013,6 +1011,7 @@ Transform:
   - {fileID: 711063746}
   - {fileID: 1757090852}
   - {fileID: 1486788904}
+  - {fileID: 2128866682}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!1 &1035177327
@@ -1023,7 +1022,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1035177328}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Country
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1160,7 +1159,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1281150278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 480, y: -350, z: 0}
+  m_LocalPosition: {x: 0, y: -350, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 971908935}
@@ -1194,7 +1193,7 @@ MonoBehaviour:
     absolute: 0
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 5
+  mPivot: 4
   mWidth: 120
   mHeight: 20
   mDepth: 0
@@ -1419,7 +1418,7 @@ GameObject:
   - 212: {fileID: 1564465534}
   - 114: {fileID: 1564465532}
   - 61: {fileID: 1564465535}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: New York
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1438,8 +1437,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stateLeaning: 1
-  m_electoralCount: 50
-  m_populationInMillions: 20
+  m_electoralCount: 20
+  m_populationInMillions: 10
   m_name: New York
   m_abbreviation: NY
   m_hidden: 0
@@ -1451,7 +1450,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1564465531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.821558, y: -.525436401, z: 0}
+  m_LocalPosition: {x: 12.4864445, y: .34585005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1035177328}
@@ -1625,6 +1624,123 @@ MonoBehaviour:
     width: 1
     height: 1
   mTexture: {fileID: 2800000, guid: 0ca36855e4233f4409cbe14b556e6b39, type: 3}
+  mMat: {fileID: 0}
+  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
+  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mFixedAspect: 0
+--- !u!1 &2128866681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2128866682}
+  - 114: {fileID: 2128866685}
+  - 114: {fileID: 2128866684}
+  - 61: {fileID: 2128866683}
+  m_Layer: 9
+  m_Name: CompleteTurnButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2128866682
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128866681}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: -1.62920685e-07}
+  m_LocalPosition: {x: 450, y: -330, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 971908935}
+  m_RootOrder: 6
+--- !u!61 &2128866683
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128866681}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: 80, y: 56}
+  m_Center: {x: 0, y: 0}
+--- !u!114 &2128866684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128866681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01d2edd8f88b31489374e9c7e0b7722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+  - mTarget: {fileID: 733379575}
+    mMethodName: CompletePlayerTurn
+    mParameters: []
+    oneShot: 0
+  debug: 0
+  UseDragProof: 0
+--- !u!114 &2128866685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128866681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 80
+  mHeight: 56
+  mDepth: 0
+  autoResizeBoxCollider: 1
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1.42857146
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  mTexture: {fileID: 2800000, guid: e078e101cb226db48aff093d66f1df6a, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
   mBorder: {x: 0, y: 0, z: 0, w: 0}
