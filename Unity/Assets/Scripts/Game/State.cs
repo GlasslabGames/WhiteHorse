@@ -17,10 +17,10 @@ public class State : MonoBehaviour
   private Color undiscoveredStateColor = new Color( 79.0f / 255.0f, 79.0f / 255.0f, 79.0f / 255.0f );
   private Color neutralStateColor = new Color( 156.0f / 255.0f, 103.0f / 255.0f, 152.0f / 255.0f );
 
-  private Vector3 m_workerOffset = new Vector3( 0.5f, 0, 0 );
-  private Vector3 m_workerAdjacencyOffset = new Vector3( 0, -0.4f, 0 );
-  private Vector3 m_workerCountOffset = new Vector3( 1, 0, 0 );
-  private Vector3 m_popularVoteOffset = new Vector3( 0, 0.5f, 0 );
+  private Vector3 m_workerOffset = new Vector3( 0.25f, 0, 0 );
+  private Vector3 m_workerAdjacencyOffset = new Vector3( 0, -0.2f, 0 );
+  private Vector3 m_workerCountOffset = new Vector3( 0.5f, 0, 0 );
+  private Vector3 m_popularVoteOffset = new Vector3( 0, 0.3f, 0 );
 
   public Leaning m_stateLeaning;
 
@@ -193,8 +193,7 @@ public class State : MonoBehaviour
 
   public void CreateSupporterPrefab( bool isPlayer )
   {
-    Vector3 supporterPosition = gameObject.transform.position + ( isPlayer ? -m_workerOffset + ( m_playerSupporterList.Count * m_workerAdjacencyOffset ) : m_workerOffset + ( ( m_opponentSupporterList.Count + m_opponentSupportersAddedThisTurn ) * m_workerAdjacencyOffset ) );
-    supporterPosition.y += isPlayer ? 0 : 1;
+    Vector3 supporterPosition = gameObject.transform.position + ( isPlayer ? -m_workerOffset + ( m_playerSupporterList.Count * m_workerAdjacencyOffset ) : m_workerOffset + ( ( m_opponentSupporterList.Count ) * m_workerAdjacencyOffset ) );
 
     GameObject newSupporter = GameObject.Instantiate( GameObjectAccessor.Instance.SupporterPrefab, supporterPosition, Quaternion.identity ) as GameObject;
     newSupporter.GetComponent<SpriteRenderer>().color = isPlayer ? GameObjectAccessor.Instance.Player.PlayerColor : GameObjectAccessor.Instance.Player.OpponentColor;

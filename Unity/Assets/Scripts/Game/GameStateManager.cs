@@ -72,6 +72,8 @@ public class GameStateManager : MonoBehaviour
       }
     }
 
+    Debug.Log( "outside harvest" );
+
     // If we've reached this point, then there are no more harvest actions, we can transition back to Placement
     m_currentElectionWeek++;
     if( m_currentElectionWeek >= m_totalElectionWeeks )
