@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<after_affect_animation_doc>
+<composition w="290" h="290" id="669" >
+<layer name="tutorialHand_press.psd" type="Footage" parent="none" index="1" source="tutorialHand_press.psd" w="220" h="250" inPoint="0" outPoint="0.79166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="112.5"  y="118"  z="0"/>
+<property name="Scale"  x="-100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="0"/>
+<property name="Anchor Point"  x="110"  y="125"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="1">
+<source name="Transform">
+<property name="Position"  x="112.885168894587"  y="118.813134333018"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="2">
+<source name="Transform">
+<property name="Position"  x="114.105342667555"  y="121.389056742616"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="3">
+<source name="Transform">
+<property name="Position"  x="116.247099562105"  y="125.91054352"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="4">
+<source name="Transform">
+<property name="Position"  x="119.455201502596"  y="132.683203172147"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Position"  x="123.97125680572"  y="142.217097700965"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Position"  x="130.5"  y="156"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Opacity" val="100"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Position"  x="123.971434948445"  y="142.21747378005"  z="0"/>
+<property name="Opacity" val="0"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Position"  x="119.455330235177"  y="132.68347494093"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Position"  x="116.247175472205"  y="125.910703774654"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Position"  x="114.105377282574"  y="121.389129818768"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Position"  x="112.885177696199"  y="118.813152914198"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Position"  x="112.5"  y="118"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="tutorialHand_point.psd" type="Footage" parent="none" index="2" source="tutorialHand_point.psd" w="220" h="250" inPoint="0" outPoint="0.79166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="112.5"  y="118"  z="0"/>
+<property name="Scale"  x="-100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="110"  y="125"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="1">
+<source name="Transform">
+<property name="Position"  x="112.885168894587"  y="118.813134333018"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="2">
+<source name="Transform">
+<property name="Position"  x="114.105342667555"  y="121.389056742616"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="3">
+<source name="Transform">
+<property name="Position"  x="116.247099562105"  y="125.91054352"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="4">
+<source name="Transform">
+<property name="Position"  x="119.455201502596"  y="132.683203172147"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Position"  x="123.97125680572"  y="142.217097700965"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Position"  x="130.5"  y="156"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Opacity" val="0"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Position"  x="123.971434948445"  y="142.21747378005"  z="0"/>
+<property name="Opacity" val="100"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Position"  x="119.455330235177"  y="132.68347494093"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Position"  x="116.247175472205"  y="125.910703774654"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Position"  x="114.105377282574"  y="121.389129818768"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Position"  x="112.885177696199"  y="118.813152914198"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Position"  x="112.5"  y="118"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="attackLasso_sourceRing_white.psd" type="Footage" parent="none" index="3" source="attackLasso_sourceRing_white.psd" w="400" h="120" inPoint="0.25" outPoint="0.79166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="201.5"  y="262"  z="0"/>
+<property name="Scale"  x="0"  y="0"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="200"  y="60"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Scale"  x="7.17203215418465"  y="7.17203215418465"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Scale"  x="13.4513230753712"  y="13.4513230753712"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Scale"  x="18.9402509047425"  y="18.9402509047425"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Scale"  x="23.7313807541309"  y="23.7313807541309"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="11">
+<source name="Transform">
+<property name="Scale"  x="27.8799690713998"  y="27.8799690713998"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="12">
+<source name="Transform">
+<property name="Scale"  x="31.422586070161"  y="31.4225860701609"  z="100"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Scale"  x="34.3849097116547"  y="34.3849097116547"  z="100"/>
+<property name="Opacity" val="83.3333333333333"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Scale"  x="36.785600467211"  y="36.785600467211"  z="100"/>
+<property name="Opacity" val="66.6666666666667"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Scale"  x="38.638467485682"  y="38.638467485682"  z="100"/>
+<property name="Opacity" val="50"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Scale"  x="39.9537840457756"  y="39.9537840457756"  z="100"/>
+<property name="Opacity" val="33.3333333333333"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Scale"  x="40.7391367553431"  y="40.7391367553431"  z="100"/>
+<property name="Opacity" val="16.6666666666667"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Scale"  x="41"  y="41"  z="100"/>
+<property name="Opacity" val="0"/>
+</source>
+</keyframe>
+</layer>
+<meta duration="0.79" totalFrames="19"/>
+</composition>
+<sub_items>
+</sub_items>
+<meta frameDuration="0.04166666666667" totalFrames="19" duration="0.79"/>
+</after_affect_animation_doc>
