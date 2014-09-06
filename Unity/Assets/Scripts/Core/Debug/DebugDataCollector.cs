@@ -244,7 +244,7 @@ public class DebugDataCollector : SingletonBehavior<DebugDataCollector> {
       string dir = Application.persistentDataPath + "/";
       if (Directory.Exists(dir))
       {
-        string fileName = dir + DEBUG_LOG_PREFIX + DebugSystemManager.DebugLogNum.ToString();
+        /*string fileName = dir + DEBUG_LOG_PREFIX + DebugSystemManager.DebugLogNum.ToString();
         try{
           File.AppendAllText(fileName, m_leftOver);
         }
@@ -253,7 +253,7 @@ public class DebugDataCollector : SingletonBehavior<DebugDataCollector> {
         }
         finally{
           m_leftOver = "";
-        }
+        }*/
       }
     }
     else

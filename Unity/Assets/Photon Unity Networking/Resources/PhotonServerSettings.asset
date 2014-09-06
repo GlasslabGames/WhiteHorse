@@ -22,4 +22,6 @@ MonoBehaviour:
   - OnAwakeRPC
   - DestroyRpc
   - Chat
+  - PlayerPlaceSupporter
+  - OpponentPlaceSupporter
   DisableAutoOpenWizard: 0

@@ -1,4 +1,4 @@
-#if !UNITY_EDITOR
+#if !UNITY_EDITOR && !UNITY_WEBPLAYER && !UNITY_IPHONE
 using UnityEngine;
 
 public static class Debug
