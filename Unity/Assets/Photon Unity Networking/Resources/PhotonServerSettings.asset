@@ -24,4 +24,6 @@ MonoBehaviour:
   - Chat
   - PlayerPlaceSupporter
   - OpponentPlaceSupporter
+  - CompleteOpponentTurn
+  - OpponentCreateSupporters
   DisableAutoOpenWizard: 0
