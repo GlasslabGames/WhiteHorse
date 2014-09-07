@@ -3,22 +3,28 @@ using System.Collections;
 
 public class VoteMeter : MonoBehaviour {
 	public UITexture[] m_markers;
-	public UITexture m_redBar; // right anchor
-	public UITexture m_blueBar; // left anchor
+	public UITexture m_opponentBar; // right anchor
+	public UITexture m_playerBar; // left anchor
 	public int m_maxWidth;
 	public int maxVotes;
 
-	void Start() {}
+	void Start() {
+		m_opponentBar.color = (GameObjectAccessor.Instance.Player.m_opponentLeaning == Leaning.Blue) ?
+			GameObjectAccessor.Instance.GameColorSettings.blueDarker : GameObjectAccessor.Instance.GameColorSettings.redDarker;
 
-	public void Refresh(int blueVotes, int redVotes) {
-		Debug.Log ("Updating vote meter: "+blueVotes+", "+redVotes);
+		m_playerBar.color = (GameObjectAccessor.Instance.Player.m_leaning == Leaning.Blue) ?
+			GameObjectAccessor.Instance.GameColorSettings.blueDarker : GameObjectAccessor.Instance.GameColorSettings.redDarker;
+	}
 
-		float bluePercent = (float) blueVotes / maxVotes;
-		m_blueBar.width = (int) (bluePercent * m_maxWidth);
-		m_markers[0].transform.localPosition = new Vector3 (m_blueBar.width, m_markers[0].transform.localPosition.y, 0);
+	public void Refresh(int playerVotes, int opponentVotes) {
+		Debug.Log ("Updating vote meter: "+playerVotes+", "+opponentVotes);
 
-		float redPercent = (float) redVotes / maxVotes;
-		m_redBar.width = (int) (redPercent * m_maxWidth);
-		m_markers[1].transform.localPosition = new Vector3 (m_maxWidth - m_redBar.width, m_markers[1].transform.localPosition.y, 0);
+		float playerPercent = (float) playerVotes / maxVotes;
+		m_playerBar.width = (int) (playerPercent * m_maxWidth);
+		m_markers[0].transform.localPosition = new Vector3 (m_playerBar.width, m_markers[0].transform.localPosition.y, 0);
+
+		float opponentPercent = (float) opponentVotes / maxVotes;
+		m_opponentBar.width = (int) (opponentPercent * m_maxWidth);
+		m_markers[1].transform.localPosition = new Vector3 (m_maxWidth - m_opponentBar.width, m_markers[1].transform.localPosition.y, 0);
 	}
 }
