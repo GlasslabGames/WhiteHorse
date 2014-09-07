@@ -4954,6 +4954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_totalElectionWeeks: 30
   m_harvestTimer: {fileID: 733379578}
+  m_currentAnte: 0
 --- !u!4 &733379576
 Transform:
   m_ObjectHideFlags: 0
@@ -4990,7 +4991,9 @@ MonoBehaviour:
   UICamera: {fileID: 95394700}
   RedVotesLabel: {fileID: 1125819943}
   BlueVotesLabel: {fileID: 711063745}
+  WeekCounter: {fileID: 0}
   ToggleWorkerButton: {fileID: 1796317097}
+  UseAI: 0
 --- !u!114 &733379578
 MonoBehaviour:
   m_ObjectHideFlags: 0

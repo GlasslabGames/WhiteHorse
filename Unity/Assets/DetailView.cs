@@ -18,14 +18,23 @@ public class DetailView : MonoBehaviour {
 	public UILabel m_unit1Count;
 	public UILabel m_unit2Count;
 	public UILabel m_unit3Count;
-	public UITexture m_unitsBullet;
+	public UITexture m_unitsBulletRed;
+	public UITexture m_unitsBulletBlue;
 
 	public Transform m_stateIndicator;
 
 	private State m_currentState;
 
+	private SpriteRenderer m_scaledState;
+	private Vector3 m_originalStateScale;
+
 	void Start() {
 		ClearState ();
+
+		Leaning color = GameObjectAccessor.Instance.Player.m_leaning;
+		if (m_unitsBulletRed != null) m_unitsBulletRed.gameObject.SetActive( color == Leaning.Red );
+		if (m_unitsBulletBlue != null) m_unitsBulletBlue.gameObject.SetActive( color == Leaning.Blue );
+
 	}
 
 	// Update is called once per frame
@@ -104,6 +113,22 @@ public class DetailView : MonoBehaviour {
 				m_unit3Count.text = workerCounts [2].ToString () + "x";
 		}
 
+		if (showIndicator) {
+			// reset the previous scaled state
+			if (m_scaledState != null) {
+				m_scaledState.transform.localScale = m_originalStateScale;
+				m_scaledState.sortingOrder = 0;
+			}
+
+			m_scaledState = state.GetComponentInChildren<SpriteRenderer>();
+			m_originalStateScale = m_scaledState.transform.localScale;
+			Vector3 scale = m_scaledState.transform.localScale;
+			scale.x *= 1.1f;
+			scale.y *= 1.1f;
+			m_scaledState.transform.localScale = scale;
+			m_scaledState.sortingOrder = 1;
+		}
+
 		if (m_stateIndicator != null) {
 			if (showIndicator) {
 				m_stateIndicator.gameObject.SetActive (true);
@@ -119,5 +144,11 @@ public class DetailView : MonoBehaviour {
 		if (m_row2 != null) m_row2.SetActive (false);
 		if (m_row2Inactive != null) m_row2Inactive.SetActive (false);
 		if (m_stateIndicator != null) m_stateIndicator.gameObject.SetActive(false);
+
+		if (m_scaledState != null) {
+			m_scaledState.transform.localScale = m_originalStateScale;
+			m_scaledState.sortingOrder = 1;
+			m_scaledState = null;
+		}
 	}
 }
