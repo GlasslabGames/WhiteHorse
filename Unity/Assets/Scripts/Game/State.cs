@@ -301,6 +301,19 @@ public class State : MonoBehaviour
       return;
     }
 
+		float t = m_popularVote / 2f + 0.5f;
+		Color c = Color.Lerp (redStateColor, blueStateColor, t);
+
+		// desat color
+		if (!m_inPlay) {
+			c.r = c.r / 3 + 0.5f;
+			c.g = c.g / 3 + 0.5f;
+			c.b = c.b / 3 + 0.5f;
+		}
+
+		gameObject.GetComponentInChildren<SpriteRenderer> ().color = c;
+
+		/*
     switch( m_stateLeaning )
     {
     case Leaning.Blue:
@@ -315,6 +328,7 @@ public class State : MonoBehaviour
       gameObject.GetComponentInChildren<SpriteRenderer>().color = neutralStateColor;
       break;
     }
+    */
   }
 
   public void PlayerPlaceSupporter()
