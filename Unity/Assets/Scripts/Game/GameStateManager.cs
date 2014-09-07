@@ -44,13 +44,16 @@ public class GameStateManager : MonoBehaviour
       State nextState = child.gameObject.GetComponent< State >();
       //Debug.Log( "Found state: " + nextState.m_name + ", in play: " + nextState.m_inPlay );
 
-      if( nextState.m_inPlay )
+      if( nextState != null )
       {
-        m_statesInPlay.Add( nextState );
-      }
-      else
-      {
-        m_statesNotInPlay.Add( nextState );
+        if( nextState.m_inPlay )
+        {
+          m_statesInPlay.Add( nextState );
+        }
+        else
+        {
+          m_statesNotInPlay.Add( nextState );
+        }
       }
     }
 
