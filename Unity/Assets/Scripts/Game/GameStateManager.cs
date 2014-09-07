@@ -101,11 +101,15 @@ public class GameStateManager : MonoBehaviour
     {
       GoToState( TurnState.ElectionDay );
       GameObjectAccessor.Instance.GameOverScreen.SetActive( true );
-			// TODO: FIX THIS!
+
+			// Rather than renaming the GameOverRedVotes, etc, just know that RedVotes is on the left (the player) and BlueVotes is on the right (the opponent)
       GameObjectAccessor.Instance.GameOverRedVotes.text = GameObjectAccessor.Instance.PlayerVotesLabel.text;
-      GameObjectAccessor.Instance.GameOverBlueVotes.text = GameObjectAccessor.Instance.OpponentVotesLabel.text;
-    }
-    else
+			GameObjectAccessor.Instance.GameOverRedVotes.color = AutoSetColor.GetColor(true, AutoSetColor.ColorChoice.LIGHT);
+
+			GameObjectAccessor.Instance.GameOverBlueVotes.text = GameObjectAccessor.Instance.OpponentVotesLabel.text;
+			GameObjectAccessor.Instance.GameOverBlueVotes.color = AutoSetColor.GetColor(false, AutoSetColor.ColorChoice.LIGHT);
+		}
+		else
     {
       m_playerTurnCompleted = false;
       m_opponentTurnCompleted = false;
