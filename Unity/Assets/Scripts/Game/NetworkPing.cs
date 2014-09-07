@@ -4,7 +4,7 @@ using System.Collections;
 
 public class NetworkPing : MonoBehaviour
 {
-  public Timer m_timer;
+  /*public Timer m_timer;
   public NetworkManager m_networkManager;
 
 
@@ -28,5 +28,5 @@ public class NetworkPing : MonoBehaviour
     Debug.Log( "Ping: " + www.isDone + ", " + www.text );
 
     m_timer.Restart();
-  }
+  }*/
 }
