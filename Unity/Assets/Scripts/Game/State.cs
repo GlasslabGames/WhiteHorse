@@ -35,10 +35,12 @@ public class State : MonoBehaviour
   private int m_playerBasisCountIncrement = 0;
 
   private List< GameObject > m_opponentSupporterList;
+  private List< int > m_nextOpponentSupporterList;
   private int m_opponentBasisCount;
   private int m_opponentBasisCountIncrement = 0;
 
   private int[] m_playerCampaignWorkerCounts = new int[ 3 ];
+  private int[] m_opponentCampaignWorkerCounts = new int[ 3 ];
 
   private int m_playerSupportersAddedThisTurn;
   private int m_opponentSupportersAddedThisTurn;
@@ -104,6 +106,7 @@ public class State : MonoBehaviour
   {
     m_playerSupporterList = new List< GameObject >();
     m_opponentSupporterList = new List< GameObject >();
+    m_nextOpponentSupporterList = new List< int >();
 
     m_playerBasisCount = 0;
     m_opponentBasisCount = 0;
@@ -150,12 +153,13 @@ public class State : MonoBehaviour
   {
     if( m_playerSupportersSentToOpponent ) { return PlayerIncrement(); }
 
-    networkView.RPC( "OpponentCreateSupporters", RPCMode.Others, m_playerSupportersAddedThisTurn );
+    networkView.RPC( "OpponentCreateSupporters", RPCMode.Others, new Vector3( PlayerCampaignWorkerCounts[0], PlayerCampaignWorkerCounts[1], PlayerCampaignWorkerCounts[2] ) );
 
     // TEMP
-    if( GameObjectAccessor.Instance.UseAI )
+    if( GameObjectAccessor.Instance.UseAI && m_playerSupporterList.Count > 0 )
     {
-      m_opponentSupportersAddedThisTurn = m_playerSupporterList.Count == 0 ? 0 : 2;
+      m_nextOpponentSupporterList.Add( 1 );
+      m_nextOpponentSupporterList.Add( 1 );
     }
     // TEMP
 
@@ -213,9 +217,81 @@ public class State : MonoBehaviour
   }
   public bool OpponentIncrement()
   {
-    if( m_currentOpponentSupporterIteration >= ( m_opponentSupporterList.Count + m_opponentSupportersAddedThisTurn ) ) { return UpdatePopularVoteOpponent(); }
+    if( m_currentOpponentSupporterIteration >= Math.Max( m_opponentSupporterList.Count, m_nextOpponentSupporterList.Count ) ) { return UpdatePopularVoteOpponent(); }
 
-    if( m_currentOpponentSupporterIteration >= m_opponentSupporterList.Count )
+
+    CampaignWorker workerToChange = null;
+
+    // Still within current list?
+    if( m_currentOpponentSupporterIteration < m_opponentSupporterList.Count )
+    {
+      // Still within next list?
+      if( m_currentOpponentSupporterIteration < m_nextOpponentSupporterList.Count )
+      {
+        // compare and update
+        CampaignWorker worker = m_opponentSupporterList[ m_currentOpponentSupporterIteration ].GetComponent< CampaignWorker >();
+        //CampaignWorker compareWorker = m_nextOpponentSupporterList[ m_currentOpponentSupporterIteration ].GetComponent< CampaignWorker >();
+        while( worker.m_currentLevel < m_nextOpponentSupporterList[ m_currentOpponentSupporterIteration ] )
+        {
+          m_opponentBasisCountIncrement -= worker.GetValueForLevel();
+          worker.Upgrade();
+          m_opponentBasisCountIncrement += worker.GetValueForLevel();
+        }
+
+        // set the worker
+        workerToChange = worker;
+      }
+      // Not within next list
+      else
+      {
+        // no change
+        CampaignWorker worker = m_opponentSupporterList[ m_currentOpponentSupporterIteration ].GetComponent< CampaignWorker >();
+
+        // set the worker
+        workerToChange = worker;
+      }
+    }
+    // Not within current list, still within next list?
+    else if( m_currentOpponentSupporterIteration < m_nextOpponentSupporterList.Count )
+    {
+      // add and potentially upgrade
+      CreateSupporterPrefab( false );
+      CampaignWorker worker = m_opponentSupporterList[ m_currentOpponentSupporterIteration ].GetComponent< CampaignWorker >();
+      //CampaignWorker compareWorker = m_nextOpponentSupporterList[ m_currentOpponentSupporterIteration ].GetComponent< CampaignWorker >();
+      int compareWorker = m_nextOpponentSupporterList[ m_currentOpponentSupporterIteration ];
+
+      m_opponentBasisCountIncrement -= worker.GetValueForLevel();
+      if( compareWorker == 2 )
+      {
+        worker.Upgrade();
+      }
+      if( compareWorker == 3 )
+      {
+        worker.Upgrade();
+        worker.Upgrade();
+      }
+      m_opponentBasisCountIncrement += worker.GetValueForLevel();
+            
+      // set the worker
+      workerToChange = worker;
+    }
+
+
+    // animate
+    if( workerToChange != null )
+    {
+      m_opponentBasisCount += workerToChange.GetValueForLevel();
+      workerToChange.gameObject.SendMessage( "BounceOut" );
+      m_opponentFloatingText.SendMessage( "Display", "" + m_opponentBasisCount );
+      m_opponentFloatingText.SendMessage( "BounceOut" );
+    }
+
+
+    // Update the current supporter iteration
+    m_currentOpponentSupporterIteration++;
+
+
+    /*if( m_currentOpponentSupporterIteration >= m_opponentSupporterList.Count )
     {
       CreateSupporterPrefab( false );
       m_opponentSupportersAddedThisTurn--;
@@ -228,7 +304,7 @@ public class State : MonoBehaviour
     m_opponentFloatingText.SendMessage( "Display", "" + m_opponentBasisCount );
     m_opponentFloatingText.SendMessage( "BounceOut" );
     
-    m_currentOpponentSupporterIteration++;
+    m_currentOpponentSupporterIteration++;*/
 
     return false;
   }
@@ -283,6 +359,11 @@ public class State : MonoBehaviour
     m_popularVoteUpdatedForPlayer = false;
     m_popularVoteUpdatedForOpponent = false;
     m_stateUpdatedWithPopularVote = false;
+
+    if( GameObjectAccessor.Instance.UseAI )
+    {
+      m_nextOpponentSupporterList.Clear();
+    }
   }
 
   // boolean this returns indicates has completed
@@ -370,9 +451,29 @@ public class State : MonoBehaviour
   }
 
   [RPC]
-  public void OpponentCreateSupporters( int count )
+  public void OpponentCreateSupporters( Vector3 nextOpponentsList )
   {
-    m_opponentSupportersAddedThisTurn = count;
+    Debug.Log ( nextOpponentsList );
+    m_nextOpponentSupporterList.Clear();
+    
+    for( int i = 2; i >= 0; i-- )
+    {
+      for( int j = 0; j < nextOpponentsList[ i ]; j++ )
+      {
+        m_nextOpponentSupporterList.Add( i + 1 );
+      }
+    }
+
+
+    //m_opponentSupportersAddedThisTurn = count;
+    //m_nextOpponentCampaignWorkerCounts = counts;
+    //m_nextOpponentSupporterList = nextOpponentsList;
+      Debug.Log ( m_nextOpponentSupporterList.Count );
+      for( int i = 0; i < m_nextOpponentSupporterList.Count; i++ )
+      {
+        Debug.Log ( m_nextOpponentSupporterList[i] );
+      }
+    //m_opponentCampaignWorkerCounts = counts;
     //CreateSupporterPrefab( false );
   }
 
@@ -401,41 +502,49 @@ public class State : MonoBehaviour
     }
   }
 
-  public void Upgrade1()
+  public void Upgrade1( bool bounce = true )
   {
-    Debug.Log( "upgrade 1" );
-
-    if( m_playerCampaignWorkerCounts[ 0 ] > 0 )
+    if( GameObjectAccessor.Instance.Budget.IsAmountAvailable( 15 ) && m_playerCampaignWorkerCounts[ 0 ] > 0 )
     {
       m_playerCampaignWorkerCounts[ 0 ]--;
       m_playerCampaignWorkerCounts[ 1 ]++;
 
-      for( int i = m_playerSupporterList.Count - 1; i >= 0; i-- )
+      for( int i = 0; i < m_playerSupporterList.Count; i++ )
       {
         CampaignWorker worker = m_playerSupporterList[ i ].GetComponent< CampaignWorker >();
         if( worker.m_currentLevel == 1 )
         {
-          worker.m_currentLevel++;
+          m_playerBasisCountIncrement -= worker.GetValueForLevel();
+          worker.Upgrade();
+          m_playerBasisCountIncrement += worker.GetValueForLevel();
+
+          if( bounce )  worker.gameObject.SendMessage( "BounceOut" );
+          GameObjectAccessor.Instance.Budget.ConsumeAmount( 15 );
+          GameObjectAccessor.Instance.DetailView.SetState( GameObjectAccessor.Instance.DetailView.CurrentState, false );
           break;
         }
       }
     }
   }
-  public void Upgrade2()
+  public void Upgrade2( bool bounce = true )
   {
-    Debug.Log( "upgrade 2" );
-
-    if( m_playerCampaignWorkerCounts[ 1 ] > 0 )
+    if( GameObjectAccessor.Instance.Budget.IsAmountAvailable( 20 ) && m_playerCampaignWorkerCounts[ 1 ] > 0 )
     {
       m_playerCampaignWorkerCounts[ 1 ]--;
       m_playerCampaignWorkerCounts[ 2 ]++;
 
-      for( int i = m_playerSupporterList.Count - 1; i >= 0; i-- )
+      for( int i = 0; i < m_playerSupporterList.Count; i++ )
       {
         CampaignWorker worker = m_playerSupporterList[ i ].GetComponent< CampaignWorker >();
         if( worker.m_currentLevel == 2 )
         {
-          worker.m_currentLevel++;
+          m_playerBasisCountIncrement -= worker.GetValueForLevel();
+          worker.Upgrade();
+          m_playerBasisCountIncrement += worker.GetValueForLevel();
+
+          if( bounce )  worker.gameObject.SendMessage( "BounceOut" );
+          GameObjectAccessor.Instance.Budget.ConsumeAmount( 20 );
+          GameObjectAccessor.Instance.DetailView.SetState( GameObjectAccessor.Instance.DetailView.CurrentState, false );
           break;
         }
       }

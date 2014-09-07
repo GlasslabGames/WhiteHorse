@@ -68,7 +68,7 @@ public class DetailView : MonoBehaviour {
 		}
 	}
 
-	void SetState(State state, bool showIndicator) {
+	public void SetState(State state, bool showIndicator) {
 		if (m_row1 != null)
 			m_row1.SetActive (true);
 		if (m_row2 != null)
@@ -138,12 +138,10 @@ public class DetailView : MonoBehaviour {
 
   public void Upgrade1()
   {
-    Debug.Log( "upgrade 1 in DV" );
     CurrentState.Upgrade1();
   }
   public void Upgrade2()
   {
-    Debug.Log( "upgrade 2 in DV" );
     CurrentState.Upgrade2();
   }
 }
