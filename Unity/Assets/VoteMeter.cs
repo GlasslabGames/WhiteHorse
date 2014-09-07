@@ -2,14 +2,17 @@
 using System.Collections;
 
 public class VoteMeter : MonoBehaviour {
+	public UITexture[] m_markers;
+	public UITexture m_redBar; // right anchor
+	public UITexture m_blueBar; // left anchor
+	public int m_maxWidth;
+	public int maxVotes;
 
-	// Use this for initialization
-	void Start () {
-	
+	void Start() {
+		Refresh (50, 50);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public void Refresh(int blueVotes, int redVotes) {
+
 	}
 }

@@ -6222,7 +6222,7 @@ MonoBehaviour:
   UICamera: {fileID: 95394700}
   RedVotesLabel: {fileID: 1125819943}
   BlueVotesLabel: {fileID: 711063745}
-  WeekCounter: {fileID: 0}
+  WeekCounter: {fileID: 1941787913}
   ToggleWorkerButton: {fileID: 1796317097}
   GameOverScreen: {fileID: 930477515}
   GameOverRedVotes: {fileID: 52761863}
@@ -6365,7 +6365,7 @@ MonoBehaviour:
   mPivot: 3
   mWidth: 940
   mHeight: 14
-  mDepth: 2
+  mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -8089,6 +8089,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54af671e326164063a97265755ff22f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_markers:
+  - {fileID: 1874595561}
+  - {fileID: 2038992998}
+  m_redBar: {fileID: 932927409}
+  m_blueBar: {fileID: 1741304848}
+  m_whiteBar: {fileID: 754473349}
+  m_maxWidth: 940
+  maxVotes: 538
 --- !u!1 &885447195
 GameObject:
   m_ObjectHideFlags: 0
@@ -8643,7 +8651,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 932927407}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalPosition: {x: 940, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 882632762}
@@ -8677,10 +8685,10 @@ MonoBehaviour:
     absolute: 0
   updateAnchors: 1
   mColor: {r: .647058845, g: .168627456, b: .172549024, a: 1}
-  mPivot: 3
+  mPivot: 5
   mWidth: 940
   mHeight: 14
-  mDepth: 1
+  mDepth: 2
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -8997,7 +9005,7 @@ Transform:
   m_GameObject: {fileID: 971908931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.0600004, y: 0, z: -10}
-  m_LocalScale: {x: .00130123622, y: .00130123622, z: .00130123622}
+  m_LocalScale: {x: .00130293157, y: .00130293157, z: .00130293157}
   m_Children:
   - {fileID: 95394698}
   - {fileID: 1281150279}
@@ -10192,7 +10200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1065484888
 Transform:
   m_ObjectHideFlags: 0
@@ -19235,7 +19243,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 4e5846f028338401090599565d74f595, type: 3}
   mFont: {fileID: 0}
-  mText: 12
+  mText: 1
   mFontSize: 110
   mFontStyle: 0
   mAlignment: 0
@@ -19426,9 +19434,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1968050568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54af671e326164063a97265755ff22f9, type: 3}
+  m_Script: {fileID: 11500000, guid: f8a7d0701cd0f4f6ca3db46a3cb5deee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_markers:
+  - {fileID: 855064760}
+  m_redBar: {fileID: 1807061318}
+  m_blueBar: {fileID: 1065484889}
+  m_whiteBar: {fileID: 0}
+  m_maxWidth: 940
+  maxVotes: 0
 --- !u!1 &1973129946
 GameObject:
   m_ObjectHideFlags: 0

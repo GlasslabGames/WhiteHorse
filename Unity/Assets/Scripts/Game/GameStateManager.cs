@@ -88,7 +88,9 @@ public class GameStateManager : MonoBehaviour
 
     // If we've reached this point, then there are no more harvest actions, we can transition back to Placement
     m_weeksLeft--;
-    GameObjectAccessor.Instance.WeekMeter.Update(m_weeksLeft);
+		int week = (m_totalElectionWeeks - m_weeksLeft);
+    GameObjectAccessor.Instance.WeekMeter.Refresh(week);
+		GameObjectAccessor.Instance.WeekCounter.text = ((week+1 > m_totalElectionWeeks)? m_totalElectionWeeks : week+1).ToString();
     if( m_weeksLeft < 5 )  m_currentAnte = 50;
     else if( m_weeksLeft < 9 ) m_currentAnte = 30;
 

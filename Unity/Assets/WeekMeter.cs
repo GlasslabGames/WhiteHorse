@@ -21,11 +21,11 @@ public class WeekMeter : MonoBehaviour {
 		m_rulerGrid.cellWidth = m_rulerWidth / m_totalTurns;
 		m_rulerGrid.Reposition ();
 
-		Update (m_totalTurns);
+		Refresh (0);
 	}
 
-	public void Update(int weeksLeft) {
+	public void Refresh(int weeks) {
 		float beginning = m_maxFillWidth - m_rulerWidth;
-		m_fill.width = (int) ((m_rulerWidth / m_totalTurns) * (m_totalTurns - weeksLeft) + beginning); 
+		m_fill.width = (int) ((m_rulerWidth / m_totalTurns) * weeks + beginning); 
 	}
 }
