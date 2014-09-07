@@ -105,6 +105,7 @@ public class GameStateManager : MonoBehaviour
     {
       m_playerTurnCompleted = false;
       m_opponentTurnCompleted = false;
+      GameObjectAccessor.Instance.Player.ToggleCampaignWorker( true );
       GoToState( TurnState.Placement );
     }
   }

@@ -43,9 +43,14 @@ public class Player : MonoBehaviour
     }
   }
 
-  public void ToggleCampaignWorker()
+  public void ToggleCampaignWorker( bool forceUntoggled = false )
   {
     m_campaignWorkerSelected = !m_campaignWorkerSelected;
+
+    if( forceUntoggled )
+    {
+      m_campaignWorkerSelected = false;
+    }
 
     if( m_leaning == Leaning.Red )
     {
