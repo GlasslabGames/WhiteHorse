@@ -18,5 +18,8 @@ public class GameObjectAccessor : SingletonBehavior<GameObjectAccessor>
   public UILabel BlueVotesLabel;
   public UILabel WeekCounter;
   public GameObject ToggleWorkerButton;
+  public GameObject GameOverScreen;
+  public UILabel GameOverRedVotes;
+  public UILabel GameOverBlueVotes;
   public bool UseAI;
 }

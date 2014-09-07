@@ -97,6 +97,9 @@ public class GameStateManager : MonoBehaviour
     if( m_weeksLeft == 0 )
     {
       GoToState( TurnState.ElectionDay );
+      GameObjectAccessor.Instance.GameOverScreen.SetActive( true );
+      GameObjectAccessor.Instance.GameOverRedVotes.text = GameObjectAccessor.Instance.RedVotesLabel.text;
+      GameObjectAccessor.Instance.GameOverBlueVotes.text = GameObjectAccessor.Instance.BlueVotesLabel.text;
     }
     else
     {
@@ -160,12 +163,15 @@ public class GameStateManager : MonoBehaviour
 
   public void CompletePlayerTurn()
   {
-    Debug.Log( "player turn completed!" );
+    if( m_currentTurnState == TurnState.Placement )
+    {
+      Debug.Log( "player turn completed!" );
 
-    m_playerTurnCompleted = true;
-    CheckForHarvest();
+      m_playerTurnCompleted = true;
+      CheckForHarvest();
 
-    networkView.RPC( "CompleteOpponentTurn", RPCMode.Others );
+      networkView.RPC( "CompleteOpponentTurn", RPCMode.Others );
+    }
   }
 
   [RPC]
