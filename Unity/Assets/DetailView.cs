@@ -148,5 +148,6 @@ public class DetailView : MonoBehaviour {
 
 	public void PlaceSupporter() {
 		CurrentState.PlayerPlaceSupporter (true);
+		SetState (m_currentState, false); // update the current state
 	}
 }
