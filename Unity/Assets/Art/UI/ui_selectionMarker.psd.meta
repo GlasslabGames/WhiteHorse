@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 6f0bd266d67694ed5bd2f0bcfb040b15
+guid: 3c80c8ee8569a4a31ac1cd070b72e74a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: WV
+    21300000: ui_selectionMarker
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -22,13 +22,13 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -2
-  maxTextureSize: 2048
+  textureFormat: -1
+  maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
