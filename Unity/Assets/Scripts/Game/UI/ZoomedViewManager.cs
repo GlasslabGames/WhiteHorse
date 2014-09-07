@@ -33,6 +33,10 @@ public class ZoomedViewManager : MonoBehaviour {
 			Vector3 pos = MainCamera.ScreenToWorldPoint(Input.mousePosition);
 			pos.z = transform.position.z;
 			transform.position = pos;
+
+			// change the magnification depending on how far east you are
+			float t = Mathf.InverseLerp(-10f, 10f, pos.x);
+			GetComponentInChildren<Camera>().orthographicSize = Mathf.Lerp(1.5f, 0.5f, t);
 		}
 	}
 	

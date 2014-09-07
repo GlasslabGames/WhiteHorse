@@ -27,6 +27,7 @@ public class DetailView : MonoBehaviour {
 
 	private SpriteRenderer m_scaledState;
 	private Vector3 m_originalStateScale;
+	private int m_originalLayer;
 
 	void Start() {
 		ClearState ();
@@ -117,7 +118,7 @@ public class DetailView : MonoBehaviour {
 			// reset the previous scaled state
 			if (m_scaledState != null) {
 				m_scaledState.transform.localScale = m_originalStateScale;
-				m_scaledState.sortingOrder = 0;
+				m_scaledState.sortingOrder = m_originalLayer;
 			}
 
 			m_scaledState = state.GetComponentInChildren<SpriteRenderer>();
@@ -126,7 +127,9 @@ public class DetailView : MonoBehaviour {
 			scale.x *= 1.1f;
 			scale.y *= 1.1f;
 			m_scaledState.transform.localScale = scale;
-			m_scaledState.sortingOrder = 1;
+
+			m_originalLayer = m_scaledState.sortingOrder;
+			m_scaledState.sortingOrder ++;
 		}
 
 		if (m_stateIndicator != null) {
@@ -147,7 +150,7 @@ public class DetailView : MonoBehaviour {
 
 		if (m_scaledState != null) {
 			m_scaledState.transform.localScale = m_originalStateScale;
-			m_scaledState.sortingOrder = 1;
+			m_scaledState.sortingOrder = m_originalLayer;
 			m_scaledState = null;
 		}
 	}
