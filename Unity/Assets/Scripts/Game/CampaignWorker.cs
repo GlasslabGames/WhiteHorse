@@ -20,6 +20,5 @@ public class CampaignWorker : MonoBehaviour
   {
     m_currentLevel++;
     GetComponent< SpriteRenderer >().sprite = m_levelSprites[ m_currentLevel - 1 ];
-    gameObject.SendMessage( "BounceOut" );
   }
 }

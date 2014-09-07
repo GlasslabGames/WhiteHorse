@@ -25,7 +25,11 @@ public class Pulse : MonoBehaviour
   }
   public void BounceIn()
   {
-    m_bounceTimerIn.StartTimer();
+    m_bounceTimerIn.StartTimer( Complete );
+  }
+  public void Complete()
+  {
+    gameObject.transform.localScale = m_scaleStart;
   }
   
   public void Update()
