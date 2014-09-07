@@ -33,6 +33,10 @@ public class ZoomedViewManager : MonoBehaviour {
 			Vector3 pos = MainCamera.ScreenToWorldPoint(Input.mousePosition);
 			pos.z = transform.position.z;
 			transform.position = pos;
+
+			// change the magnification depending on how far east you are
+			float t = Mathf.InverseLerp(-10f, 10f, pos.x);
+			GetComponentInChildren<Camera>().orthographicSize = Mathf.Lerp(1.5f, 0.5f, t);
 		}
 	}
 	
@@ -40,6 +44,14 @@ public class ZoomedViewManager : MonoBehaviour {
 		Active = visible;
 		foreach (Renderer r in GetComponentsInChildren<Renderer> (true)) {
 			r.enabled = visible;
+		}
+
+		// for now, hide the UI things that don't work well with the zoom
+		foreach (Transform t in GameObjectAccessor.Instance.FloatingTextContainer.transform) {
+			t.gameObject.SetActive( !visible );
+		}
+		foreach (Transform t in GameObjectAccessor.Instance.StateLabelContainer.transform) {
+			t.gameObject.SetActive( !visible );
 		}
 	}
 }

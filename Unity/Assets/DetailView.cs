@@ -21,12 +21,11 @@ public class DetailView : MonoBehaviour {
 	public UITexture m_unitsBulletRed;
 	public UITexture m_unitsBulletBlue;
 
-	public Transform m_stateIndicator;
-
 	private State m_currentState;
 
 	private SpriteRenderer m_scaledState;
 	private Vector3 m_originalStateScale;
+	private int m_originalLayer;
 
   public State CurrentState
   {
@@ -122,7 +121,7 @@ public class DetailView : MonoBehaviour {
 			// reset the previous scaled state
 			if (m_scaledState != null) {
 				m_scaledState.transform.localScale = m_originalStateScale;
-				m_scaledState.sortingOrder = 0;
+				m_scaledState.sortingOrder = m_originalLayer;
 			}
 
 			m_scaledState = state.GetComponentInChildren<SpriteRenderer>();
@@ -131,16 +130,9 @@ public class DetailView : MonoBehaviour {
 			scale.x *= 1.1f;
 			scale.y *= 1.1f;
 			m_scaledState.transform.localScale = scale;
-			m_scaledState.sortingOrder = 1;
-		}
 
-		if (m_stateIndicator != null) {
-			if (showIndicator) {
-				m_stateIndicator.gameObject.SetActive (true);
-				m_stateIndicator.position = Utility.ConvertFromGameToUiPosition (state.transform.position);
-			} else {
-				m_stateIndicator.gameObject.SetActive (false);
-			}
+			m_originalLayer = m_scaledState.sortingOrder;
+			m_scaledState.sortingOrder ++;
 		}
 	}
 
@@ -148,11 +140,10 @@ public class DetailView : MonoBehaviour {
 		if (m_row1 != null) m_row1.SetActive (false);
 		if (m_row2 != null) m_row2.SetActive (false);
 		if (m_row2Inactive != null) m_row2Inactive.SetActive (false);
-		if (m_stateIndicator != null) m_stateIndicator.gameObject.SetActive(false);
 
 		if (m_scaledState != null) {
 			m_scaledState.transform.localScale = m_originalStateScale;
-			m_scaledState.sortingOrder = 1;
+			m_scaledState.sortingOrder = m_originalLayer;
 			m_scaledState = null;
 		}
 	}
