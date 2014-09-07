@@ -40,9 +40,13 @@ public class State : MonoBehaviour
 
   private List< GameObject > m_playerSupporterList;
   private int m_playerBasisCount;
+  private int m_playerBasisCountIncrement = 0;
 
   private List< GameObject > m_opponentSupporterList;
   private int m_opponentBasisCount;
+  private int m_opponentBasisCountIncrement = 0;
+
+  private int[] m_playerCampaignWorkerCounts = new int[ 3 ];
 
   private int m_playerSupportersAddedThisTurn;
   private int m_opponentSupportersAddedThisTurn;
@@ -56,6 +60,48 @@ public class State : MonoBehaviour
   private GameObject m_playerFloatingText;
   private GameObject m_opponentFloatingText;
   private GameObject m_popularVoteText;
+
+
+  public int PlayerBasisCount
+  {
+    get { return m_playerBasisCount; }
+  }
+  public int PlayerBasisCountIncrement
+  {
+    get { return m_playerBasisCountIncrement; }
+  }
+  public int OpponentBasisCount
+  {
+    get { return m_opponentBasisCount; }
+  }
+  public int OpponentBasisCountIncrement
+  {
+    get { return m_opponentBasisCountIncrement; }
+  }
+  public int PlayerSupporters
+  {
+    get { return m_playerSupporterList.Count; }
+  }
+  public int OpponentSupporters
+  {
+    get { return m_opponentSupporterList.Count; }
+  }
+  public int RoundedPopulation
+  {
+    get { return (int)m_populationInMillions; }
+  }
+  public int TotalBasis
+  {
+    get { return m_playerBasisCount + m_opponentBasisCount; }
+  }
+  public float PopularVote
+  {
+    get { return m_popularVote; }
+  }
+  public int[] PlayerCampaignWorkerCounts
+  {
+    get { return m_playerCampaignWorkerCounts; }
+  }
 
 
   public void Start()
@@ -90,7 +136,7 @@ public class State : MonoBehaviour
     networkView.RPC( "OpponentCreateSupporters", RPCMode.Others, m_playerSupportersAddedThisTurn );
 
     // TEMP
-    m_opponentSupportersAddedThisTurn = m_playerSupporterList.Count == 0 ? 0 : 2;
+    //m_opponentSupportersAddedThisTurn = m_playerSupporterList.Count == 0 ? 0 : 2;
     // TEMP
 
     m_currentPlayerSupporterIteration = 0;
@@ -119,12 +165,24 @@ public class State : MonoBehaviour
   }
   public bool UpdatePopularVotePlayer()
   {
-    float totalBasis = m_playerBasisCount + m_opponentBasisCount;
+    float totalBasis = TotalBasis;
     
     if( m_popularVoteUpdatedForPlayer || totalBasis == 0 )  return OpponentIncrement();
     
-    float playerPercentage = ( m_playerBasisCount / totalBasis ) * m_populationInMillions;
-    float opponentPercentage = ( m_opponentBasisCount / totalBasis ) * m_populationInMillions;
+    float playerPercentage = ( m_playerBasisCount / totalBasis );
+    float opponentPercentage = ( m_opponentBasisCount / totalBasis );
+
+    if( GameObjectAccessor.Instance.Player.m_leaning == Leaning.Red )
+    {
+      m_popularVote = -playerPercentage + opponentPercentage;
+    }
+    else
+    {
+      m_popularVote = playerPercentage - opponentPercentage;
+    }
+
+    playerPercentage *= m_populationInMillions;
+    opponentPercentage *= m_populationInMillions;
     
     m_popularVoteText.SendMessage( "Display", playerPercentage.ToString( "0.0" ) + "m | " + opponentPercentage.ToString( "0.0" ) + "m" );
     m_popularVoteText.SendMessage( "BounceOut" );
@@ -156,12 +214,24 @@ public class State : MonoBehaviour
   }
   public bool UpdatePopularVoteOpponent()
   {
-    float totalBasis = m_playerBasisCount + m_opponentBasisCount;
+    float totalBasis = TotalBasis;
     
     if( m_popularVoteUpdatedForOpponent || totalBasis == 0 )  return UpdateStateWithPopularVote();
     
-    float playerPercentage = ( m_playerBasisCount / totalBasis ) * m_populationInMillions;
-    float opponentPercentage = ( m_opponentBasisCount / totalBasis ) * m_populationInMillions;
+    float playerPercentage = ( m_playerBasisCount / totalBasis );
+    float opponentPercentage = ( m_opponentBasisCount / totalBasis );
+
+    if( GameObjectAccessor.Instance.Player.m_leaning == Leaning.Red )
+    {
+      m_popularVote = -playerPercentage + opponentPercentage;
+    }
+    else
+    {
+      m_popularVote = playerPercentage - opponentPercentage;
+    }
+    
+    playerPercentage *= m_populationInMillions;
+    opponentPercentage *= m_populationInMillions;
     
     m_popularVoteText.SendMessage( "Display", playerPercentage.ToString( "0.0" ) + "m | " + opponentPercentage.ToString( "0.0" ) + "m" );
     m_popularVoteText.SendMessage( "BounceOut" );
@@ -172,7 +242,7 @@ public class State : MonoBehaviour
   }
   public bool UpdateStateWithPopularVote()
   {
-    float totalBasis = m_playerBasisCount + m_opponentBasisCount;
+    float totalBasis = TotalBasis;
 
     if( m_stateUpdatedWithPopularVote || totalBasis == 0 ) return true;
 
@@ -274,10 +344,13 @@ public class State : MonoBehaviour
     if( isPlayer )
     {
       m_playerSupporterList.Add( newSupporter );
+      m_playerBasisCountIncrement += newSupporter.GetComponent< CampaignWorker >().GetValueForLevel();
+      m_playerCampaignWorkerCounts[ 0 ]++;
     }
     else
     {
       m_opponentSupporterList.Add( newSupporter );
+      m_opponentBasisCountIncrement += newSupporter.GetComponent< CampaignWorker >().GetValueForLevel();
     }
   }
 }

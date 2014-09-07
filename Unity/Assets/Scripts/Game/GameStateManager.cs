@@ -107,7 +107,7 @@ public class GameStateManager : MonoBehaviour
 
   public void CheckForHarvest()
   {
-    if( m_playerTurnCompleted || m_opponentTurnCompleted )
+    if( m_playerTurnCompleted && m_opponentTurnCompleted )
     {
       foreach( State state in m_statesInPlay )
       {

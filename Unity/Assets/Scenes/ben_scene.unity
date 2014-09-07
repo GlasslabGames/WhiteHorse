@@ -2188,12 +2188,14 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 313217471}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a16c4313afaf64340a49d2fd8939fc83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StateContainer: {fileID: 622527103}
+  Content: 1
+  ShowOnlyOnActiveStates: 1
 --- !u!1 &319570703
 GameObject:
   m_ObjectHideFlags: 0
@@ -6203,7 +6205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90b02db2fba94ce49a3e25af9995a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_enableNetworking: 0
+  m_enableNetworking: 1
   m_actAsServer: 1
   m_url: 10.130.13.162
   m_port: 25000
@@ -12311,7 +12313,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1796317097}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 604.700012, y: -645.469971, z: 0}
+  m_LocalPosition: {x: 881.200012, y: -645.469971, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 971908935}
@@ -14051,7 +14053,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2128866681}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: -1.62920685e-07}
-  m_LocalPosition: {x: 900, y: -660, z: 0}
+  m_LocalPosition: {x: 900, y: 8.93000031, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 971908935}

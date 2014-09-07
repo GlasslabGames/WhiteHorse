@@ -6,7 +6,11 @@ public class CampaignWorker : MonoBehaviour
 {
   public int m_currentLevel;
 
-  public int m_level1Value;
-  public int m_level2Value;
-  public int m_level3Value;
+  public int[] m_levelValues;
+
+
+  public int GetValueForLevel()
+  {
+    return m_levelValues[ m_currentLevel - 1 ];
+  }
 }
