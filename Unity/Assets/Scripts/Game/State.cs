@@ -136,7 +136,10 @@ public class State : MonoBehaviour
     networkView.RPC( "OpponentCreateSupporters", RPCMode.Others, m_playerSupportersAddedThisTurn );
 
     // TEMP
-    //m_opponentSupportersAddedThisTurn = m_playerSupporterList.Count == 0 ? 0 : 2;
+    if( GameObjectAccessor.Instance.UseAI )
+    {
+      m_opponentSupportersAddedThisTurn = m_playerSupporterList.Count == 0 ? 0 : 2;
+    }
     // TEMP
 
     m_currentPlayerSupporterIteration = 0;

@@ -2555,6 +2555,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 348852594}
   - 114: {fileID: 348852595}
+  - 148: {fileID: 348852596}
   m_Layer: 0
   m_Name: MI
   m_TagString: Untagged
@@ -2586,13 +2587,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
+  m_stateLeaning: 0
   m_electoralCount: 16
   m_populationInMillions: 9.89999962
   m_name: Michigan
   m_abbreviation: MI
   m_hidden: 0
-  m_inPlay: 0
+  m_inPlay: 1
+--- !u!148 &348852596
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 348852593}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 348852595}
+  m_ViewID:
+    m_ID: 27
+    m_Type: 1
 --- !u!1 &380096281
 GameObject:
   m_ObjectHideFlags: 0
@@ -4128,6 +4141,7 @@ GameObject:
   - 4: {fileID: 622701583}
   - 212: {fileID: 622701585}
   - 60: {fileID: 622701584}
+  - 114: {fileID: 622701586}
   m_Layer: 0
   m_Name: mi
   m_TagString: Untagged
@@ -4292,6 +4306,24 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c432e5285574441a9af10ed9161e952f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &622701586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 622701582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01d2edd8f88b31489374e9c7e0b7722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+  - mTarget: {fileID: 348852595}
+    mMethodName: PlayerPlaceSupporter
+    mParameters: []
+    oneShot: 0
+  debug: 0
+  UseDragProof: 0
 --- !u!1 &629523356
 GameObject:
   m_ObjectHideFlags: 0
@@ -4941,8 +4973,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd146471220464f7ca99b3cd5c93ab7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_totalElectionWeeks: 30
+  m_totalElectionWeeks: 12
   m_harvestTimer: {fileID: 733379578}
+  m_currentAnte: 20
 --- !u!4 &733379576
 Transform:
   m_ObjectHideFlags: 0
@@ -4979,7 +5012,9 @@ MonoBehaviour:
   UICamera: {fileID: 95394700}
   RedVotesLabel: {fileID: 1125819943}
   BlueVotesLabel: {fileID: 711063745}
+  WeekCounter: {fileID: 2088854189}
   ToggleWorkerButton: {fileID: 1796317097}
+  UseAI: 1
 --- !u!114 &733379578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5414,6 +5449,7 @@ GameObject:
   - 4: {fileID: 798378489}
   - 212: {fileID: 798378491}
   - 60: {fileID: 798378490}
+  - 114: {fileID: 798378492}
   m_Layer: 0
   m_Name: pa
   m_TagString: Untagged
@@ -5549,6 +5585,24 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f35d57ae483094a5e88504be8d210a0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &798378492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 798378488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01d2edd8f88b31489374e9c7e0b7722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+  - mTarget: {fileID: 1086634522}
+    mMethodName: PlayerPlaceSupporter
+    mParameters: []
+    oneShot: 0
+  debug: 0
+  UseDragProof: 0
 --- !u!1 &803388096
 GameObject:
   m_ObjectHideFlags: 0
@@ -6205,7 +6259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90b02db2fba94ce49a3e25af9995a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_enableNetworking: 1
+  m_enableNetworking: 0
   m_actAsServer: 1
   m_url: 10.130.13.162
   m_port: 25000
@@ -6671,6 +6725,7 @@ Transform:
   - {fileID: 313217472}
   - {fileID: 629523357}
   - {fileID: 1796317098}
+  - {fileID: 2088854188}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!1 &988901591
@@ -7326,6 +7381,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1086634521}
   - 114: {fileID: 1086634522}
+  - 148: {fileID: 1086634523}
   m_Layer: 0
   m_Name: PA
   m_TagString: Untagged
@@ -7357,13 +7413,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
+  m_stateLeaning: 0
   m_electoralCount: 20
   m_populationInMillions: 12.6999998
   m_name: Pennsylvania
   m_abbreviation: PA
   m_hidden: 0
-  m_inPlay: 0
+  m_inPlay: 1
+--- !u!148 &1086634523
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1086634520}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1086634522}
+  m_ViewID:
+    m_ID: 28
+    m_Type: 1
 --- !u!1 &1086887822
 GameObject:
   m_ObjectHideFlags: 0
@@ -7403,6 +7471,7 @@ GameObject:
   - 4: {fileID: 1097931120}
   - 212: {fileID: 1097931122}
   - 60: {fileID: 1097931121}
+  - 114: {fileID: 1097931123}
   m_Layer: 0
   m_Name: wi
   m_TagString: Untagged
@@ -7536,6 +7605,24 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 881dd5fa26c0c4582a7742ce96b5ff9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1097931123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1097931119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01d2edd8f88b31489374e9c7e0b7722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+  - mTarget: {fileID: 1541714869}
+    mMethodName: PlayerPlaceSupporter
+    mParameters: []
+    oneShot: 0
+  debug: 0
+  UseDragProof: 0
 --- !u!1 &1112048573
 GameObject:
   m_ObjectHideFlags: 0
@@ -8754,7 +8841,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1281150278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 700, z: 0}
+  m_LocalPosition: {x: -212.330002, y: 700, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 971908935}
@@ -10916,6 +11003,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1541714868}
   - 114: {fileID: 1541714869}
+  - 148: {fileID: 1541714870}
   m_Layer: 0
   m_Name: WI
   m_TagString: Untagged
@@ -10947,13 +11035,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
+  m_stateLeaning: 0
   m_electoralCount: 10
   m_populationInMillions: 5.69999981
   m_name: Wisconsin
   m_abbreviation: WI
   m_hidden: 0
-  m_inPlay: 0
+  m_inPlay: 1
+--- !u!148 &1541714870
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1541714867}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1541714869}
+  m_ViewID:
+    m_ID: 26
+    m_Type: 1
 --- !u!1 &1564465531
 GameObject:
   m_ObjectHideFlags: 0
@@ -12415,6 +12515,7 @@ GameObject:
   - 4: {fileID: 1811607013}
   - 212: {fileID: 1811607015}
   - 60: {fileID: 1811607014}
+  - 114: {fileID: 1811607016}
   m_Layer: 0
   m_Name: nc
   m_TagString: Untagged
@@ -12557,6 +12658,24 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7fcbfd5cc24c3417fa8cb5df84b35c17, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1811607016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1811607012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01d2edd8f88b31489374e9c7e0b7722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+  - mTarget: {fileID: 2073647087}
+    mMethodName: PlayerPlaceSupporter
+    mParameters: []
+    oneShot: 0
+  debug: 0
+  UseDragProof: 0
 --- !u!1 &1834813811
 GameObject:
   m_ObjectHideFlags: 0
@@ -13825,6 +13944,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2073647086}
   - 114: {fileID: 2073647087}
+  - 148: {fileID: 2073647088}
   m_Layer: 0
   m_Name: NC
   m_TagString: Untagged
@@ -13856,13 +13976,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
+  m_stateLeaning: 0
   m_electoralCount: 15
   m_populationInMillions: 9.5
   m_name: North Carolina
   m_abbreviation: NC
   m_hidden: 0
-  m_inPlay: 0
+  m_inPlay: 1
+--- !u!148 &2073647088
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2073647085}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 2073647087}
+  m_ViewID:
+    m_ID: 25
+    m_Type: 1
 --- !u!1 &2086551609
 GameObject:
   m_ObjectHideFlags: 0
@@ -13910,6 +14042,96 @@ MonoBehaviour:
   m_abbreviation: ID
   m_hidden: 0
   m_inPlay: 0
+--- !u!1 &2088854187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2088854188}
+  - 114: {fileID: 2088854189}
+  m_Layer: 9
+  m_Name: WeekCounter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2088854188
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2088854187}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 156, y: 700, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 971908935}
+  m_RootOrder: 10
+--- !u!114 &2088854189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2088854187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 439
+  mHeight: 60
+  mDepth: 0
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 7.3166666
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  mFont: {fileID: 0}
+  mText: 12 Weeks
+  mFontSize: 60
+  mFontStyle: 1
+  mAlignment: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 0
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1, y: 1}
+  mOverflow: 0
+  mMaterial: {fileID: 0}
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: .699999988, g: .699999988, b: .699999988, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
 --- !u!1 &2118518977
 GameObject:
   m_ObjectHideFlags: 0

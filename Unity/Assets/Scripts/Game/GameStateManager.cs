@@ -22,10 +22,12 @@ public class GameStateManager : MonoBehaviour
   private bool m_playerTurnCompleted;
   private bool m_opponentTurnCompleted;
 
-  private int m_currentElectionWeek;
+  private int m_weeksLeft;
   public int m_totalElectionWeeks;
 
   public Timer m_harvestTimer;
+
+  public int m_currentAnte;
 
 
   public TurnState CurrentTurnState
@@ -56,7 +58,7 @@ public class GameStateManager : MonoBehaviour
     //Debug.Log( "States not in play: " + m_statesNotInPlay.Count );
 
     m_currentTurnState = TurnState.Placement;
-    m_currentElectionWeek = 1;
+    m_weeksLeft = m_totalElectionWeeks;
   }
 
   public void Start()
@@ -82,12 +84,17 @@ public class GameStateManager : MonoBehaviour
 
 
     UpdateElectoralVotes();
-    GameObjectAccessor.Instance.Budget.GainAmount( 20 );
 
 
     // If we've reached this point, then there are no more harvest actions, we can transition back to Placement
-    m_currentElectionWeek++;
-    if( m_currentElectionWeek >= m_totalElectionWeeks )
+    m_weeksLeft--;
+    GameObjectAccessor.Instance.WeekCounter.text = m_weeksLeft + " Weeks";
+    if( m_weeksLeft < 5 )  m_currentAnte = 50;
+    else if( m_weeksLeft < 9 ) m_currentAnte = 30;
+
+    GameObjectAccessor.Instance.Budget.GainAmount( m_currentAnte );
+
+    if( m_weeksLeft == 0 )
     {
       GoToState( TurnState.ElectionDay );
     }
@@ -107,7 +114,7 @@ public class GameStateManager : MonoBehaviour
 
   public void CheckForHarvest()
   {
-    if( m_playerTurnCompleted && m_opponentTurnCompleted )
+    if( m_playerTurnCompleted && ( GameObjectAccessor.Instance.UseAI || m_opponentTurnCompleted ) )
     {
       foreach( State state in m_statesInPlay )
       {
