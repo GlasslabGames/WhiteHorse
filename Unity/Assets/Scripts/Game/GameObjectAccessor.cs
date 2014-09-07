@@ -25,5 +25,6 @@ public class GameObjectAccessor : SingletonBehavior<GameObjectAccessor>
   public UILabel GameOverRedVotes;
   public UILabel GameOverBlueVotes;
   public DetailView DetailView;
+	public WeekMeter WeekMeter;
   public bool UseAI;
 }

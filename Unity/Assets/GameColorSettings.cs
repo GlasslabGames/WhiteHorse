@@ -17,4 +17,7 @@ public class GameColorSettings {
 	public Color neutralOutline;
 
 	public Color highlightOutline;
+
+	public Color blueDarker;
+	public Color redDarker;
 }
