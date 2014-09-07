@@ -51,7 +51,7 @@ public class BudgetController : MonoBehaviour
   {
     if( m_label )
     {
-      m_label.text = "$" + m_amount;
+      m_label.text = m_amount.ToString();
     }
   }
 }
