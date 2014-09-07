@@ -14,9 +14,11 @@ public class State : MonoBehaviour
 {
   public static Color blueStateColor = new Color( 26.0f / 255.0f, 94.0f / 255.0f, 255.0f / 255.0f );
   public static Color blueStateColorInactive = new Color( 135.0f / 255.0f, 160.0f / 255.0f, 219.0f / 255.0f );
+  public static Color blueStateColorDark = new Color( 0.0f / 255.0f, 43.0f / 255.0f, 144.0f / 255.0f );
 
   public static Color redStateColor = new Color( 255.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f );
   public static Color redStateColorInactive = new Color( 255.0f / 255.0f, 134.0f / 255.0f, 134.0f / 255.0f );
+  public static Color redStateColorDark = new Color( 146.0f / 255.0f, 38.0f / 255.0f, 38.0f / 255.0f );
 
   public static Color undiscoveredStateColor = new Color( 79.0f / 255.0f, 79.0f / 255.0f, 79.0f / 255.0f );
   public static Color neutralStateColor = new Color( 165.0f / 255.0f, 32.0f / 255.0f, 155.0f / 255.0f );
@@ -346,7 +348,7 @@ public class State : MonoBehaviour
 
     if( isPlayer )
     {
-      newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.Player.m_leaning == Leaning.Red ? redStateColorInactive : blueStateColorInactive;
+      newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.Player.m_leaning == Leaning.Red ? redStateColorDark : blueStateColorDark;
 
       m_playerSupporterList.Add( newSupporter );
       m_playerBasisCountIncrement += newSupporter.GetComponent< CampaignWorker >().GetValueForLevel();
@@ -354,7 +356,7 @@ public class State : MonoBehaviour
     }
     else
     {
-      newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.Player.m_opponentLeaning == Leaning.Red ? redStateColorInactive : blueStateColorInactive;
+      newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.Player.m_opponentLeaning == Leaning.Red ? redStateColorDark : blueStateColorDark;
 
       m_opponentSupporterList.Add( newSupporter );
       m_opponentBasisCountIncrement += newSupporter.GetComponent< CampaignWorker >().GetValueForLevel();
