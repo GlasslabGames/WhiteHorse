@@ -3952,6 +3952,8 @@ MonoBehaviour:
   PulseTextPrefab: {fileID: 100000, guid: 3b0c10f1722ac4901b6ddfb04732e1ba, type: 2}
   MainCamera: {fileID: 190567212}
   UICamera: {fileID: 95394700}
+  RedVotesLabel: {fileID: 1125819943}
+  BlueVotesLabel: {fileID: 711063745}
 --- !u!114 &733379578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3963,7 +3965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56963f85bd0624a06823e706723b2e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_duration: .400000006
+  m_duration: .300000012
   m_type: 1
 --- !u!148 &733379579
 NetworkView:
@@ -4906,7 +4908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &886292405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4918,7 +4920,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90b02db2fba94ce49a3e25af9995a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_actAsServer: 1
+  m_enableNetworking: 1
+  m_actAsServer: 0
   m_url: 10.130.13.162
   m_port: 25000
   m_allowedConnections: 4
@@ -5166,7 +5169,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 971908931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.98999977, y: 0, z: -10}
+  m_LocalPosition: {x: -13.0600004, y: 0, z: -10}
   m_LocalScale: {x: .00130123622, y: .00130123622, z: .00130123622}
   m_Children:
   - {fileID: 95394698}
@@ -9013,6 +9016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_leaning: 2
+  m_opponentLeaning: 0
 --- !u!4 &1603097799
 Transform:
   m_ObjectHideFlags: 0
@@ -9036,7 +9040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a351754cab6b4327ad302c9483a4ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_amount: 1000
+  m_amount: 30
   m_label: {fileID: 1281150280}
 --- !u!1 &1607737325
 GameObject:

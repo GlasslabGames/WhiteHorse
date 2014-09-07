@@ -21,10 +21,21 @@ public class FloatingText : MonoBehaviour
 
     m_startPosition = gameObject.transform.position;
     m_endPosition = m_startPosition + m_offset;
+
+    if( m_duration == -1 )
+    {
+      gameObject.transform.position = m_startPosition;
+    }
   }
 
   public void Update()
   {
+    if( m_duration == -1 )
+    {
+      gameObject.transform.position = Vector3.Lerp( m_startPosition, m_endPosition, 1.0f );
+      return;
+    }
+
     m_currentTime += Time.deltaTime;
 
     if( m_currentTime >= m_duration )

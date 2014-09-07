@@ -40,7 +40,7 @@ public class GameStateManager : MonoBehaviour
     foreach( Transform child in GameObjectAccessor.Instance.StatesContainer.transform )
     {
       State nextState = child.gameObject.GetComponent< State >();
-      Debug.Log( "Found state: " + nextState.m_name + ", in play: " + nextState.m_inPlay );
+      //Debug.Log( "Found state: " + nextState.m_name + ", in play: " + nextState.m_inPlay );
 
       if( nextState.m_inPlay )
       {
@@ -52,11 +52,16 @@ public class GameStateManager : MonoBehaviour
       }
     }
 
-    Debug.Log( "States in play: " + m_statesInPlay.Count );
-    Debug.Log( "States not in play: " + m_statesNotInPlay.Count );
+    //Debug.Log( "States in play: " + m_statesInPlay.Count );
+    //Debug.Log( "States not in play: " + m_statesNotInPlay.Count );
 
     m_currentTurnState = TurnState.Placement;
     m_currentElectionWeek = 1;
+  }
+
+  public void Start()
+  {
+    UpdateElectoralVotes();
   }
 
 
@@ -72,7 +77,13 @@ public class GameStateManager : MonoBehaviour
       }
     }
 
-    Debug.Log( "outside harvest" );
+    Debug.Log( "completed harvest" );
+    m_harvestTimer.StopTimer();
+
+
+    UpdateElectoralVotes();
+    GameObjectAccessor.Instance.Budget.GainAmount( 20 );
+
 
     // If we've reached this point, then there are no more harvest actions, we can transition back to Placement
     m_currentElectionWeek++;
@@ -82,6 +93,8 @@ public class GameStateManager : MonoBehaviour
     }
     else
     {
+      m_playerTurnCompleted = false;
+      m_opponentTurnCompleted = false;
       GoToState( TurnState.Placement );
     }
   }
@@ -94,12 +107,49 @@ public class GameStateManager : MonoBehaviour
 
   public void CheckForHarvest()
   {
-    if( m_playerTurnCompleted || m_opponentTurnCompleted )
+    if( m_playerTurnCompleted && m_opponentTurnCompleted )
     {
+      foreach( State state in m_statesInPlay )
+      {
+        state.PrepareToUpdate();
+      }
+
       GoToState( TurnState.Harvest );
       m_harvestTimer.StartTimer( NextHarvestAction );
     }
   }
+
+
+  public void UpdateElectoralVotes()
+  {
+    int totalRedVotes = 0;
+    int totalBlueVotes = 0;
+    foreach( State state in m_statesInPlay )
+    {
+      if( state.m_stateLeaning == Leaning.Red )
+      {
+        totalRedVotes += state.m_electoralCount;
+      }
+      else if( state.m_stateLeaning == Leaning.Blue )
+      {
+        totalBlueVotes += state.m_electoralCount;
+      }
+    }
+    foreach( State state in m_statesNotInPlay )
+    {
+      if( state.m_stateLeaning == Leaning.Red )
+      {
+        totalRedVotes += state.m_electoralCount;
+      }
+      else if( state.m_stateLeaning == Leaning.Blue )
+      {
+        totalBlueVotes += state.m_electoralCount;
+      }
+    }
+    GameObjectAccessor.Instance.RedVotesLabel.text = totalRedVotes + " Votes";
+    GameObjectAccessor.Instance.BlueVotesLabel.text = totalBlueVotes + " Votes";
+  }
+
 
   public void CompletePlayerTurn()
   {

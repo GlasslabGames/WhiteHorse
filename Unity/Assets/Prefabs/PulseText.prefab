@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3044dd479400149538d53eef03740502, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_duration: 5
+  m_duration: -1
   m_label: {fileID: 11400002}
   m_offset: {x: 0, y: 0, z: 0}
 --- !u!114 &11400002
