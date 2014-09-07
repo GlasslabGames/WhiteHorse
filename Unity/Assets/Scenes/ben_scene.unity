@@ -6840,7 +6840,7 @@ Transform:
   m_GameObject: {fileID: 971908931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.0600004, y: 0, z: -10}
-  m_LocalScale: {x: .00130123622, y: .00130123622, z: .00130123622}
+  m_LocalScale: {x: .00130208337, y: .00130208337, z: .00130208337}
   m_Children:
   - {fileID: 95394698}
   - {fileID: 1281150279}
@@ -12724,6 +12724,8 @@ GameObject:
   - 114: {fileID: 1796317101}
   - 114: {fileID: 1796317100}
   - 61: {fileID: 1796317099}
+  - 82: {fileID: 1796317103}
+  - 114: {fileID: 1796317102}
   m_Layer: 9
   m_Name: ToggleWorkerButton
   m_TagString: Untagged
@@ -12768,6 +12770,10 @@ MonoBehaviour:
   onClick:
   - mTarget: {fileID: 1603097798}
     mMethodName: ToggleCampaignWorker
+    mParameters: []
+    oneShot: 0
+  - mTarget: {fileID: 1796317102}
+    mMethodName: Play
     mParameters: []
     oneShot: 0
   debug: 0
@@ -12830,6 +12836,75 @@ MonoBehaviour:
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
   mBorder: {x: 0, y: 0, z: 0, w: 0}
   mFixedAspect: 0
+--- !u!114 &1796317102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1796317097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eba0ee403f1d4520877af4e4e03e8f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &1796317103
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1796317097}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 38727172d4992f14d9723ac447e8cd38, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1811607012
 GameObject:
   m_ObjectHideFlags: 0
@@ -14925,6 +15000,8 @@ GameObject:
   - 114: {fileID: 2128866685}
   - 114: {fileID: 2128866684}
   - 61: {fileID: 2128866683}
+  - 82: {fileID: 2128866687}
+  - 114: {fileID: 2128866686}
   m_Layer: 9
   m_Name: CompleteTurnButton
   m_TagString: Untagged
@@ -14969,6 +15046,10 @@ MonoBehaviour:
   onClick:
   - mTarget: {fileID: 733379575}
     mMethodName: CompletePlayerTurn
+    mParameters: []
+    oneShot: 0
+  - mTarget: {fileID: 2128866686}
+    mMethodName: Play
     mParameters: []
     oneShot: 0
   debug: 0
@@ -15031,6 +15112,75 @@ MonoBehaviour:
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
   mBorder: {x: 0, y: 0, z: 0, w: 0}
   mFixedAspect: 0
+--- !u!114 &2128866686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128866681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eba0ee403f1d4520877af4e4e03e8f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &2128866687
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128866681}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 65935cd1d6599b7458747f3d5ce8759a, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &2129440267
 GameObject:
   m_ObjectHideFlags: 0
