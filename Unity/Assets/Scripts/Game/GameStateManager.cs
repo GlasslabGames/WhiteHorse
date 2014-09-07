@@ -43,18 +43,16 @@ public class GameStateManager : MonoBehaviour
     {
       State nextState = child.gameObject.GetComponent< State >();
       //Debug.Log( "Found state: " + nextState.m_name + ", in play: " + nextState.m_inPlay );
-
-      if( nextState != null )
+			if (nextState != null) {
+      if( nextState.m_inPlay )
       {
-        if( nextState.m_inPlay )
-        {
-          m_statesInPlay.Add( nextState );
-        }
-        else
-        {
-          m_statesNotInPlay.Add( nextState );
-        }
+        m_statesInPlay.Add( nextState );
       }
+      else
+      {
+        m_statesNotInPlay.Add( nextState );
+      }
+			}
     }
 
     //Debug.Log( "States in play: " + m_statesInPlay.Count );
@@ -91,7 +89,9 @@ public class GameStateManager : MonoBehaviour
 
     // If we've reached this point, then there are no more harvest actions, we can transition back to Placement
     m_weeksLeft--;
-    GameObjectAccessor.Instance.WeekCounter.text = m_weeksLeft + " Weeks";
+		int week = (m_totalElectionWeeks - m_weeksLeft);
+		if (GameObjectAccessor.Instance.WeekMeter != null) GameObjectAccessor.Instance.WeekMeter.Refresh(week);
+		GameObjectAccessor.Instance.WeekCounter.text = ((week+1 > m_totalElectionWeeks)? m_totalElectionWeeks : week+1).ToString();
     if( m_weeksLeft < 5 )  m_currentAnte = 50;
     else if( m_weeksLeft < 9 ) m_currentAnte = 30;
 
@@ -138,6 +138,7 @@ public class GameStateManager : MonoBehaviour
   {
     int totalRedVotes = 0;
     int totalBlueVotes = 0;
+		float totalOpinion = 0;
     foreach( State state in m_statesInPlay )
     {
       if( state.m_stateLeaning == Leaning.Red )
@@ -148,6 +149,7 @@ public class GameStateManager : MonoBehaviour
       {
         totalBlueVotes += state.m_electoralCount;
       }
+			totalOpinion += state.PopularVote;
     }
     foreach( State state in m_statesNotInPlay )
     {
@@ -159,9 +161,17 @@ public class GameStateManager : MonoBehaviour
       {
         totalBlueVotes += state.m_electoralCount;
       }
-    }
+			totalOpinion += state.PopularVote;
+		}
     GameObjectAccessor.Instance.RedVotesLabel.text = "" + totalRedVotes;
     GameObjectAccessor.Instance.BlueVotesLabel.text = "" + totalBlueVotes;
+
+		if (GameObjectAccessor.Instance.ElectoralVoteMeter != null)
+			GameObjectAccessor.Instance.ElectoralVoteMeter.Refresh(totalBlueVotes, totalRedVotes);
+		
+		if (GameObjectAccessor.Instance.PopularVoteMeter != null)
+			GameObjectAccessor.Instance.PopularVoteMeter.Refresh( totalOpinion / 50f );
+
   }
 
 
