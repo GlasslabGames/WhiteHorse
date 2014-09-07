@@ -106,6 +106,7 @@ public class State : MonoBehaviour
     get { return m_playerCampaignWorkerCounts; }
   }
 
+	public UILabel StateLabel { get; set; } // will be set by ShowStateLabels.cs
 
   public void Start()
   {
@@ -126,16 +127,21 @@ public class State : MonoBehaviour
 		}
 
     UpdateColor();
+	
+		Transform container = GameObjectAccessor.Instance.FloatingTextContainer.transform;
 
     m_playerFloatingText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( m_workerOffsetY + m_workerCountOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
     m_playerFloatingText.GetComponent< FloatingText >().Display( "" );
+		m_playerFloatingText.transform.parent = container;
     
     m_opponentFloatingText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( -m_workerOffsetY + m_workerCountOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
     m_opponentFloatingText.GetComponent< FloatingText >().Display( "" );
-
-    m_popularVoteText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( m_popularVoteOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
+		m_opponentFloatingText.transform.parent = container;
+		
+		m_popularVoteText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( m_popularVoteOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
     m_popularVoteText.GetComponent< FloatingText >().Display( "" );
-  }
+		m_popularVoteText.transform.parent = container;
+	}
 
 
   public bool SendOpponentPlayerSupporters()
@@ -319,22 +325,21 @@ public class State : MonoBehaviour
 
 		gameObject.GetComponentInChildren<SpriteRenderer> ().color = c;
 
-		/*
-    switch( m_stateLeaning )
-    {
-    case Leaning.Blue:
-      gameObject.GetComponentInChildren<SpriteRenderer>().color = m_inPlay ? blueStateColor : blueStateColorInactive;
-      break;
+		if (StateLabel != null) {
+			switch (m_stateLeaning) {
+			case Leaning.Blue:
+				StateLabel.color = Color.blue;
+				break;
 
-    case Leaning.Red:
-      gameObject.GetComponentInChildren<SpriteRenderer>().color = m_inPlay ? redStateColor : redStateColorInactive;
-      break;
+			case Leaning.Red:
+				StateLabel.color = Color.red;
+				break;
 
-    default:
-      gameObject.GetComponentInChildren<SpriteRenderer>().color = neutralStateColor;
-      break;
-    }
-    */
+			default:
+				StateLabel.color = Color.black;
+				break;
+			}
+		}
   }
 
   public void PlayerPlaceSupporter()

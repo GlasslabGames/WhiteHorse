@@ -45,5 +45,13 @@ public class ZoomedViewManager : MonoBehaviour {
 		foreach (Renderer r in GetComponentsInChildren<Renderer> (true)) {
 			r.enabled = visible;
 		}
+
+		// for now, hide the UI things that don't work well with the zoom
+		foreach (Transform t in GameObjectAccessor.Instance.FloatingTextContainer.transform) {
+			t.gameObject.SetActive( !visible );
+		}
+		foreach (Transform t in GameObjectAccessor.Instance.StateLabelContainer.transform) {
+			t.gameObject.SetActive( !visible );
+		}
 	}
 }

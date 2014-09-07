@@ -28,6 +28,8 @@ public class ShowStateLabels : MonoBehaviour {
 			stateTransform = state.transform.Find("uiAnchor");
 			if (stateTransform == null) stateTransform = state.transform;
 			newTransform.position = Utility.ConvertFromGameToUiPosition(stateTransform.position);
+
+			state.StateLabel = label;
 		}
 	}
 }

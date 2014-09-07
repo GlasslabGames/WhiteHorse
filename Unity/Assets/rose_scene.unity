@@ -4432,6 +4432,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 190567212}
+  uiParents:
+  - {fileID: 313217472}
   SecsBeforeDisplay: .200000003
   Active: 0
 --- !u!1 &668934975
@@ -4890,6 +4892,8 @@ MonoBehaviour:
   Budget: {fileID: 1603097800}
   GameStateManager: {fileID: 733379575}
   StatesContainer: {fileID: 622527102}
+  FloatingTextContainer: {fileID: 1541655049}
+  StateLabelContainer: {fileID: 313217471}
   SupporterPrefab: {fileID: 100000, guid: e90e124610cf945e393dbadcb041f064, type: 2}
   RedPlayerMarker: {fileID: 1757090851}
   BluePlayerMarker: {fileID: 1486788903}
@@ -6702,6 +6706,7 @@ Transform:
   - {fileID: 1796317098}
   - {fileID: 2088854188}
   - {fileID: 987924412}
+  - {fileID: 1541655050}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!1 &987924411
@@ -6766,7 +6771,6 @@ MonoBehaviour:
   m_unit3Count: {fileID: 429156264}
   m_unitsBulletRed: {fileID: 1332617561}
   m_unitsBulletBlue: {fileID: 1133029550}
-  m_stateIndicator: {fileID: 0}
 --- !u!1 &992269214
 GameObject:
   m_ObjectHideFlags: 0
@@ -11125,6 +11129,33 @@ MonoBehaviour:
     oneShot: 0
   debug: 0
   UseDragProof: 0
+--- !u!1 &1541655049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1541655050}
+  m_Layer: 9
+  m_Name: FloatingTextContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1541655050
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1541655049}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 971908935}
+  m_RootOrder: 11
 --- !u!1 &1541714867
 GameObject:
   m_ObjectHideFlags: 0

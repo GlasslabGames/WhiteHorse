@@ -21,8 +21,6 @@ public class DetailView : MonoBehaviour {
 	public UITexture m_unitsBulletRed;
 	public UITexture m_unitsBulletBlue;
 
-	public Transform m_stateIndicator;
-
 	private State m_currentState;
 
 	private SpriteRenderer m_scaledState;
@@ -131,22 +129,12 @@ public class DetailView : MonoBehaviour {
 			m_originalLayer = m_scaledState.sortingOrder;
 			m_scaledState.sortingOrder ++;
 		}
-
-		if (m_stateIndicator != null) {
-			if (showIndicator) {
-				m_stateIndicator.gameObject.SetActive (true);
-				m_stateIndicator.position = Utility.ConvertFromGameToUiPosition (state.transform.position);
-			} else {
-				m_stateIndicator.gameObject.SetActive (false);
-			}
-		}
 	}
 
 	void ClearState() {
 		if (m_row1 != null) m_row1.SetActive (false);
 		if (m_row2 != null) m_row2.SetActive (false);
 		if (m_row2Inactive != null) m_row2Inactive.SetActive (false);
-		if (m_stateIndicator != null) m_stateIndicator.gameObject.SetActive(false);
 
 		if (m_scaledState != null) {
 			m_scaledState.transform.localScale = m_originalStateScale;
