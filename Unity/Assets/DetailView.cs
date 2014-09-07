@@ -27,6 +27,11 @@ public class DetailView : MonoBehaviour {
 	private Vector3 m_originalStateScale;
 	private int m_originalLayer;
 
+  public State CurrentState
+  {
+    get { return m_currentState; }
+  }
+
 	void Start() {
 		ClearState ();
 
@@ -143,4 +148,15 @@ public class DetailView : MonoBehaviour {
 			m_scaledState = null;
 		}
 	}
+
+  public void Upgrade1()
+  {
+    Debug.Log( "upgrade 1 in DV" );
+    CurrentState.Upgrade1();
+  }
+  public void Upgrade2()
+  {
+    Debug.Log( "upgrade 2 in DV" );
+    CurrentState.Upgrade2();
+  }
 }
