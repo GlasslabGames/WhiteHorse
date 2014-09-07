@@ -13,16 +13,14 @@ public enum Leaning
 public class State : MonoBehaviour
 {
   public static Color blueStateColor = new Color( 43.0f / 255.0f, 131.0f / 255.0f, 190.0f / 255.0f );
-  //public static Color blueStateColorInactive = new Color( 135.0f / 255.0f, 160.0f / 255.0f, 219.0f / 255.0f );
   public static Color blueStateColorDark = new Color( 27.0f / 255.0f, 93.0f / 255.0f, 139.0f / 255.0f );
 
   public static Color redStateColor = new Color( 229.0f / 255.0f, 90.0f / 255.0f, 91.0f / 255.0f );
-  //public static Color redStateColorInactive = new Color( 255.0f / 255.0f, 134.0f / 255.0f, 134.0f / 255.0f );
   public static Color redStateColorDark = new Color( 165.0f / 255.0f, 43.0f / 255.0f, 44.0f / 255.0f );
 
   public static Color undiscoveredStateColor = new Color( 79.0f / 255.0f, 79.0f / 255.0f, 79.0f / 255.0f );
-  //public static Color neutralStateColor = new Color( 165.0f / 255.0f, 32.0f / 255.0f, 155.0f / 255.0f ); // purple
   public static Color neutralStateColor = Color.white;
+	
 
   private Vector3 m_workerOffsetX = new Vector3( -0.4f, 0, 0 );
   private Vector3 m_workerOffsetY = new Vector3( 0, 0.25f, 0 );
