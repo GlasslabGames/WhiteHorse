@@ -38,6 +38,7 @@ public class DetailView : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (Input.mousePosition.y < 85) return; // kinda hacky way to ignore clicks on the bottom ui
 
 		// if they just released the mouse, select the state they were over
 		if (Input.GetMouseButtonUp (0) && m_currentState != null) {
