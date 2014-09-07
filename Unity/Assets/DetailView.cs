@@ -31,13 +31,6 @@ public class DetailView : MonoBehaviour {
 
 	void Start() {
 		ClearState ();
-
-		Leaning color = GameObjectAccessor.Instance.Player.m_leaning;
-		if (m_newUnit != null) {
-			m_newUnit.color = (color == Leaning.Red) ?
-			GameObjectAccessor.Instance.GameColorSettings.redStateDark : GameObjectAccessor.Instance.GameColorSettings.blueStateDark;
-		}
-
 	}
 
 	// Update is called once per frame
@@ -110,7 +103,7 @@ public class DetailView : MonoBehaviour {
 		if (state.m_inPlay) {
 			// assign labels for number of units
 			if (m_unitsCount != null)
-				m_unitsCount.text = "Workers: "+state.PlayerCampaignWorkers.ToString () + "/" + state.UnitCap.ToString();
+				m_unitsCount.text = state.PlayerCampaignWorkers.ToString () + "/" + state.UnitCap.ToString();
 			int[] workerCounts = state.PlayerCampaignWorkerCounts;
 			if (m_unit1Count != null)
 				m_unit1Count.text = workerCounts [0].ToString () + "x";
