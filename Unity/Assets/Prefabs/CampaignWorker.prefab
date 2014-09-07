@@ -44,9 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_currentLevel: 1
-  m_level1Value: 1
-  m_level2Value: 2
-  m_level3Value: 4
+  m_levelValues: 010000000200000004000000
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
