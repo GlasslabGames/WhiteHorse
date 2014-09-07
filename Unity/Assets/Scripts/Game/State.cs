@@ -12,16 +12,17 @@ public enum Leaning
 
 public class State : MonoBehaviour
 {
-  public static Color blueStateColor = new Color( 26.0f / 255.0f, 94.0f / 255.0f, 255.0f / 255.0f );
-  public static Color blueStateColorInactive = new Color( 135.0f / 255.0f, 160.0f / 255.0f, 219.0f / 255.0f );
-  public static Color blueStateColorDark = new Color( 0.0f / 255.0f, 43.0f / 255.0f, 144.0f / 255.0f );
+  public static Color blueStateColor = new Color( 43.0f / 255.0f, 131.0f / 255.0f, 190.0f / 255.0f );
+  //public static Color blueStateColorInactive = new Color( 135.0f / 255.0f, 160.0f / 255.0f, 219.0f / 255.0f );
+  public static Color blueStateColorDark = new Color( 27.0f / 255.0f, 93.0f / 255.0f, 139.0f / 255.0f );
 
-  public static Color redStateColor = new Color( 255.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f );
-  public static Color redStateColorInactive = new Color( 255.0f / 255.0f, 134.0f / 255.0f, 134.0f / 255.0f );
-  public static Color redStateColorDark = new Color( 146.0f / 255.0f, 38.0f / 255.0f, 38.0f / 255.0f );
+  public static Color redStateColor = new Color( 229.0f / 255.0f, 90.0f / 255.0f, 91.0f / 255.0f );
+  //public static Color redStateColorInactive = new Color( 255.0f / 255.0f, 134.0f / 255.0f, 134.0f / 255.0f );
+  public static Color redStateColorDark = new Color( 165.0f / 255.0f, 43.0f / 255.0f, 44.0f / 255.0f );
 
   public static Color undiscoveredStateColor = new Color( 79.0f / 255.0f, 79.0f / 255.0f, 79.0f / 255.0f );
-  public static Color neutralStateColor = new Color( 165.0f / 255.0f, 32.0f / 255.0f, 155.0f / 255.0f );
+  //public static Color neutralStateColor = new Color( 165.0f / 255.0f, 32.0f / 255.0f, 155.0f / 255.0f ); // purple
+  public static Color neutralStateColor = Color.white;
 
   private Vector3 m_workerOffsetX = new Vector3( -0.4f, 0, 0 );
   private Vector3 m_workerOffsetY = new Vector3( 0, 0.25f, 0 );
@@ -314,33 +315,33 @@ public class State : MonoBehaviour
       return;
     }
 
-		float t = m_popularVote / 2f + 0.5f;
-		Color c = Color.Lerp (redStateColor, blueStateColor, t);
+		Color c = Color.white;
+		float t = Mathf.Abs(m_popularVote) * 0.8f + 0.2f; // 0.2 - 1 so that we don't go all the way to purple
 
+		switch (m_stateLeaning) {
+		case Leaning.Blue:
+			c = Color.Lerp (neutralStateColor, blueStateColor, t);
+			break;
+
+		case Leaning.Red:
+			c = Color.Lerp (neutralStateColor, redStateColor, t);
+			break;
+
+		default:
+			c = neutralStateColor;
+			break;
+		}
+		
 		// desat color
+		/*
 		if (!m_inPlay) {
 			c.r = c.r / 3 + 0.5f;
 			c.g = c.g / 3 + 0.5f;
 			c.b = c.b / 3 + 0.5f;
 		}
-
+		*/
+		
 		gameObject.GetComponentInChildren<SpriteRenderer> ().color = c;
-
-		if (StateLabel != null) {
-			switch (m_stateLeaning) {
-			case Leaning.Blue:
-				StateLabel.color = Color.blue;
-				break;
-
-			case Leaning.Red:
-				StateLabel.color = Color.red;
-				break;
-
-			default:
-				StateLabel.color = Color.black;
-				break;
-			}
-		}
   }
 
   public void PlayerPlaceSupporter()
