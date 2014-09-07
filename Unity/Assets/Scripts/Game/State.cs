@@ -12,6 +12,8 @@ public enum Leaning
 
 public class State : MonoBehaviour
 {
+  public static float populationPerWorker = 1.2f;
+
   private Vector3 m_workerOffsetX = new Vector3( -0.4f, 0, 0 );
   private Vector3 m_workerOffsetY = new Vector3( 0, 0.25f, 0 );
   private Vector3 m_workerAdjacencyOffset = new Vector3( 0.15f, 0, 0 );
@@ -83,6 +85,10 @@ public class State : MonoBehaviour
   public int RoundedPopulation
   {
     get { return Mathf.CeilToInt(m_populationInMillions); }
+  }
+  public int UnitCap
+  {
+    get { return Mathf.CeilToInt( m_populationInMillions / State.populationPerWorker ); }
   }
   public int TotalBasis
   {
@@ -441,7 +447,7 @@ public class State : MonoBehaviour
     if( !GameObjectAccessor.Instance.Budget.IsAmountAvailable( 10 ) ) return;
     if( !GameObjectAccessor.Instance.Player.m_campaignWorkerSelected ) return;
 
-    if( m_playerSupporterList.Count < m_populationInMillions )
+    if( m_playerSupporterList.Count < UnitCap )
     {
       m_playerSupportersAddedThisTurn++;
       CreateSupporterPrefab( true );
