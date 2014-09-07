@@ -8,14 +8,6 @@ public class VoteMeter : MonoBehaviour {
 	public int m_maxWidth;
 	public int maxVotes;
 
-	void Start() {
-		m_opponentBar.color = (GameObjectAccessor.Instance.Player.m_opponentLeaning == Leaning.Blue) ?
-			GameObjectAccessor.Instance.GameColorSettings.blueDarker : GameObjectAccessor.Instance.GameColorSettings.redDarker;
-
-		m_playerBar.color = (GameObjectAccessor.Instance.Player.m_leaning == Leaning.Blue) ?
-			GameObjectAccessor.Instance.GameColorSettings.blueDarker : GameObjectAccessor.Instance.GameColorSettings.redDarker;
-	}
-
 	public void Refresh(int playerVotes, int opponentVotes) {
 		Debug.Log ("Updating vote meter: "+playerVotes+", "+opponentVotes);
 

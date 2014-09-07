@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 2a01b75131d984b1f9e8f9d83de1aa3f
+guid: 4ba96b332d3364ebc9ed4688042ba6d5
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ui_upgradeButtonRED_UP
+    21300000: ui_unitTier2Lrg
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
