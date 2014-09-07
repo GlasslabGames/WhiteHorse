@@ -21,10 +21,11 @@ public class State : MonoBehaviour
   public static Color undiscoveredStateColor = new Color( 79.0f / 255.0f, 79.0f / 255.0f, 79.0f / 255.0f );
   public static Color neutralStateColor = new Color( 165.0f / 255.0f, 32.0f / 255.0f, 155.0f / 255.0f );
 
-  private Vector3 m_workerOffset = new Vector3( 0.25f, 0, 0 );
-  private Vector3 m_workerAdjacencyOffset = new Vector3( 0, -0.2f, 0 );
-  private Vector3 m_workerCountOffset = new Vector3( 0.5f, 0, 0 );
-  private Vector3 m_popularVoteOffset = new Vector3( 0, 0.3f, 0 );
+  private Vector3 m_workerOffsetX = new Vector3( -0.4f, 0, 0 );
+  private Vector3 m_workerOffsetY = new Vector3( 0, 0.25f, 0 );
+  private Vector3 m_workerAdjacencyOffset = new Vector3( 0.15f, 0, 0 );
+  private Vector3 m_workerCountOffset = new Vector3( -0.5f, 0, 0 );
+  private Vector3 m_popularVoteOffset = new Vector3( 0, 0.6f, 0 );
 
   public Leaning m_stateLeaning;
 
@@ -118,10 +119,10 @@ public class State : MonoBehaviour
 
     UpdateColor();
 
-    m_playerFloatingText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( -m_workerCountOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
+    m_playerFloatingText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( m_workerOffsetY + m_workerCountOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
     m_playerFloatingText.GetComponent< FloatingText >().Display( "" );
     
-    m_opponentFloatingText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( m_workerCountOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
+    m_opponentFloatingText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( -m_workerOffsetY + m_workerCountOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
     m_opponentFloatingText.GetComponent< FloatingText >().Display( "" );
 
     m_popularVoteText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( m_popularVoteOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
@@ -339,19 +340,22 @@ public class State : MonoBehaviour
 
   public void CreateSupporterPrefab( bool isPlayer )
   {
-    Vector3 supporterPosition = gameObject.transform.position + ( isPlayer ? -m_workerOffset + ( m_playerSupporterList.Count * m_workerAdjacencyOffset ) : m_workerOffset + ( ( m_opponentSupporterList.Count ) * m_workerAdjacencyOffset ) );
+    Vector3 supporterPosition = gameObject.transform.position + m_workerOffsetX + ( isPlayer ? m_workerOffsetY + ( m_playerSupporterList.Count * m_workerAdjacencyOffset ) : -m_workerOffsetY + ( ( m_opponentSupporterList.Count ) * m_workerAdjacencyOffset ) );
 
     GameObject newSupporter = GameObject.Instantiate( GameObjectAccessor.Instance.SupporterPrefab, supporterPosition, Quaternion.identity ) as GameObject;
-    newSupporter.GetComponent<SpriteRenderer>().color = isPlayer ? GameObjectAccessor.Instance.Player.PlayerColor : GameObjectAccessor.Instance.Player.OpponentColor;
 
     if( isPlayer )
     {
+      newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.Player.m_leaning == Leaning.Red ? redStateColorInactive : blueStateColorInactive;
+
       m_playerSupporterList.Add( newSupporter );
       m_playerBasisCountIncrement += newSupporter.GetComponent< CampaignWorker >().GetValueForLevel();
       m_playerCampaignWorkerCounts[ 0 ]++;
     }
     else
     {
+      newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.Player.m_opponentLeaning == Leaning.Red ? redStateColorInactive : blueStateColorInactive;
+
       m_opponentSupporterList.Add( newSupporter );
       m_opponentBasisCountIncrement += newSupporter.GetComponent< CampaignWorker >().GetValueForLevel();
     }
