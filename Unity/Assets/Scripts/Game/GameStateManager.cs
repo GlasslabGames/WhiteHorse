@@ -91,7 +91,7 @@ public class GameStateManager : MonoBehaviour
     m_weeksLeft--;
 		int week = (m_totalElectionWeeks - m_weeksLeft);
 		if (GameObjectAccessor.Instance.WeekMeter != null) GameObjectAccessor.Instance.WeekMeter.Refresh(week);
-		GameObjectAccessor.Instance.WeekCounter.text = ((week+1 > m_totalElectionWeeks)? m_totalElectionWeeks : week+1).ToString();
+		if (GameObjectAccessor.Instance.WeekCounter != null) GameObjectAccessor.Instance.WeekCounter.text = ((week+1 > m_totalElectionWeeks)? m_totalElectionWeeks : week+1).ToString();
     if( m_weeksLeft < 5 )  m_currentAnte = 50;
     else if( m_weeksLeft < 9 ) m_currentAnte = 30;
 
@@ -101,8 +101,9 @@ public class GameStateManager : MonoBehaviour
     {
       GoToState( TurnState.ElectionDay );
       GameObjectAccessor.Instance.GameOverScreen.SetActive( true );
-      GameObjectAccessor.Instance.GameOverRedVotes.text = GameObjectAccessor.Instance.RedVotesLabel.text;
-      GameObjectAccessor.Instance.GameOverBlueVotes.text = GameObjectAccessor.Instance.BlueVotesLabel.text;
+			// TODO: FIX THIS!
+      GameObjectAccessor.Instance.GameOverRedVotes.text = GameObjectAccessor.Instance.PlayerVotesLabel.text;
+      GameObjectAccessor.Instance.GameOverBlueVotes.text = GameObjectAccessor.Instance.OpponentVotesLabel.text;
     }
     else
     {
@@ -163,11 +164,15 @@ public class GameStateManager : MonoBehaviour
       }
 			totalOpinion += state.PopularVote;
 		}
-    GameObjectAccessor.Instance.RedVotesLabel.text = "" + totalRedVotes;
-    GameObjectAccessor.Instance.BlueVotesLabel.text = "" + totalBlueVotes;
+
+		int playerVotes = (GameObjectAccessor.Instance.Player.m_leaning == Leaning.Blue) ? totalBlueVotes : totalRedVotes;
+		int opponentVotes = (GameObjectAccessor.Instance.Player.m_opponentLeaning == Leaning.Blue) ? totalBlueVotes : totalRedVotes;
+
+    GameObjectAccessor.Instance.PlayerVotesLabel.text = "" + playerVotes;
+    GameObjectAccessor.Instance.OpponentVotesLabel.text = "" + opponentVotes;
 
 		if (GameObjectAccessor.Instance.ElectoralVoteMeter != null)
-			GameObjectAccessor.Instance.ElectoralVoteMeter.Refresh(totalBlueVotes, totalRedVotes);
+			GameObjectAccessor.Instance.ElectoralVoteMeter.Refresh(playerVotes, opponentVotes);
 		
 		if (GameObjectAccessor.Instance.PopularVoteMeter != null)
 			GameObjectAccessor.Instance.PopularVoteMeter.Refresh( totalOpinion / 50f );

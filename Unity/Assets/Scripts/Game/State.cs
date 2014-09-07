@@ -440,12 +440,12 @@ public class State : MonoBehaviour
 		}
 	}
 		
-	public void PlayerPlaceSupporter()
+	public void PlayerPlaceSupporter(bool definitely = false)
   {
     if( !m_inPlay )  return;
     if( GameObjectAccessor.Instance.GameStateManager.CurrentTurnState != TurnState.Placement )  return;
     if( !GameObjectAccessor.Instance.Budget.IsAmountAvailable( 10 ) ) return;
-    if( !GameObjectAccessor.Instance.Player.m_campaignWorkerSelected ) return;
+    if( !definitely && !GameObjectAccessor.Instance.Player.m_campaignWorkerSelected ) return;
 
     if( m_playerSupporterList.Count < UnitCap )
     {

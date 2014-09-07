@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: cbeb28418cbb84ae28a98a055d8d527e
+guid: d43b4292c44044caaabd584db4a7248d
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ui_redOrb
+    21300000: ui_unitTier1Lrg
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,9 +26,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -41,11 +41,7 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings:
-  - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -2
-    compressionQuality: 50
+  buildTargetSettings: []
   spriteSheet:
     sprites: []
   spritePackingTag: 
