@@ -104,6 +104,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_currentLevel: 1
   m_levelValues: 010000000200000004000000
+  m_levelSprites:
+  - {fileID: 21300000, guid: 3c804c851fd6a4a119c4f3e27d773d8a, type: 3}
+  - {fileID: 21300000, guid: b2b2e0e832c97417a9e9561eb572dabe, type: 3}
+  - {fileID: 21300000, guid: dfab7e2eb9dd24a8898f1d853b5bff2f, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

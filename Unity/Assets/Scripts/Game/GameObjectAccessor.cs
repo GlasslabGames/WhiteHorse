@@ -23,5 +23,6 @@ public class GameObjectAccessor : SingletonBehavior<GameObjectAccessor>
   public GameObject GameOverScreen;
   public UILabel GameOverRedVotes;
   public UILabel GameOverBlueVotes;
+  public DetailView DetailView;
   public bool UseAI;
 }

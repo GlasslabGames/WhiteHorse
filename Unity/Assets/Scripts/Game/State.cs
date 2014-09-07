@@ -50,6 +50,7 @@ public class State : MonoBehaviour
   private int m_opponentBasisCountIncrement = 0;
 
   private int[] m_playerCampaignWorkerCounts = new int[ 3 ];
+  private int[] m_opponentCampaignWorkerCounts = new int[ 3 ];
 
   private int m_playerSupportersAddedThisTurn;
   private int m_opponentSupportersAddedThisTurn;
@@ -148,7 +149,7 @@ public class State : MonoBehaviour
   {
     if( m_playerSupportersSentToOpponent ) { return PlayerIncrement(); }
 
-    networkView.RPC( "OpponentCreateSupporters", RPCMode.Others, m_playerSupportersAddedThisTurn );
+    networkView.RPC( "OpponentCreateSupporters", RPCMode.Others, m_playerCampaignWorkerCounts );
 
     // TEMP
     if( GameObjectAccessor.Instance.UseAI )
@@ -359,9 +360,10 @@ public class State : MonoBehaviour
   }
 
   [RPC]
-  public void OpponentCreateSupporters( int count )
+  public void OpponentCreateSupporters( int[] counts )
   {
-    m_opponentSupportersAddedThisTurn = count;
+    //m_opponentSupportersAddedThisTurn = count;
+    m_opponentCampaignWorkerCounts = counts;
     //CreateSupporterPrefab( false );
   }
 
@@ -390,19 +392,19 @@ public class State : MonoBehaviour
 
   public void Upgrade1()
   {
-    Debug.Log( "upgrade 1" );
-
-    if( m_playerCampaignWorkerCounts[ 0 ] > 0 )
+    if( GameObjectAccessor.Instance.Budget.IsAmountAvailable( 15 ) && m_playerCampaignWorkerCounts[ 0 ] > 0 )
     {
       m_playerCampaignWorkerCounts[ 0 ]--;
       m_playerCampaignWorkerCounts[ 1 ]++;
 
-      for( int i = m_playerSupporterList.Count - 1; i >= 0; i-- )
+      for( int i = 0; i < m_playerSupporterList.Count; i++ )
       {
         CampaignWorker worker = m_playerSupporterList[ i ].GetComponent< CampaignWorker >();
         if( worker.m_currentLevel == 1 )
         {
-          worker.m_currentLevel++;
+          worker.Upgrade();
+          GameObjectAccessor.Instance.Budget.ConsumeAmount( 15 );
+          GameObjectAccessor.Instance.DetailView.SetState( GameObjectAccessor.Instance.DetailView.CurrentState, false );
           break;
         }
       }
@@ -410,19 +412,19 @@ public class State : MonoBehaviour
   }
   public void Upgrade2()
   {
-    Debug.Log( "upgrade 2" );
-
-    if( m_playerCampaignWorkerCounts[ 1 ] > 0 )
+    if( GameObjectAccessor.Instance.Budget.IsAmountAvailable( 20 ) && m_playerCampaignWorkerCounts[ 1 ] > 0 )
     {
       m_playerCampaignWorkerCounts[ 1 ]--;
       m_playerCampaignWorkerCounts[ 2 ]++;
 
-      for( int i = m_playerSupporterList.Count - 1; i >= 0; i-- )
+      for( int i = 0; i < m_playerSupporterList.Count; i++ )
       {
         CampaignWorker worker = m_playerSupporterList[ i ].GetComponent< CampaignWorker >();
         if( worker.m_currentLevel == 2 )
         {
           worker.m_currentLevel++;
+          GameObjectAccessor.Instance.Budget.ConsumeAmount( 20 );
+          GameObjectAccessor.Instance.DetailView.SetState( GameObjectAccessor.Instance.DetailView.CurrentState, false );
           break;
         }
       }
