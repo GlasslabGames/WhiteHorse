@@ -4865,18 +4865,18 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: .198529422, g: .237220988, b: 1, a: 1}
   mPivot: 5
-  mWidth: 279
-  mHeight: 60
+  mWidth: 4830
+  mHeight: 600
   mDepth: 0
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 4.6500001
+  keepAspectRatio: 2
+  aspectRatio: 8.05000019
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   mFont: {fileID: 0}
-  mText: 100 Votes
-  mFontSize: 60
+  mText: 0
+  mFontSize: 160
   mFontStyle: 1
   mAlignment: 0
   mEncoding: 1
@@ -4904,7 +4904,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 711063744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 900, y: 700, z: 0}
+  m_LocalPosition: {x: 900, y: 670, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 971908935}
@@ -4977,6 +4977,7 @@ MonoBehaviour:
   UICamera: {fileID: 95394700}
   RedVotesLabel: {fileID: 1125819943}
   BlueVotesLabel: {fileID: 711063745}
+  ToggleWorkerButton: {fileID: 1796317097}
 --- !u!114 &733379578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6667,6 +6668,7 @@ Transform:
   - {fileID: 2128866682}
   - {fileID: 313217472}
   - {fileID: 629523357}
+  - {fileID: 1796317098}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!1 &988901591
@@ -7602,7 +7604,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1125819941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -900, y: 700, z: 0}
+  m_LocalPosition: {x: -900, y: 670, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 971908935}
@@ -7637,18 +7639,18 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: .220588207, b: .220588207, a: 1}
   mPivot: 3
-  mWidth: 279
-  mHeight: 60
+  mWidth: 4830
+  mHeight: 600
   mDepth: 0
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 4.6500001
+  keepAspectRatio: 2
+  aspectRatio: 8.05000019
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   mFont: {fileID: 0}
-  mText: 100 Votes
-  mFontSize: 60
+  mText: 0
+  mFontSize: 160
   mFontStyle: 1
   mAlignment: 0
   mEncoding: 1
@@ -11736,6 +11738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_leaning: 2
   m_opponentLeaning: 0
+  m_campaignWorkerSelected: 0
 --- !u!4 &1603097799
 Transform:
   m_ObjectHideFlags: 0
@@ -12279,6 +12282,123 @@ MonoBehaviour:
     width: 1
     height: 1
   mTexture: {fileID: 2800000, guid: 0ca36855e4233f4409cbe14b556e6b39, type: 3}
+  mMat: {fileID: 0}
+  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
+  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mFixedAspect: 0
+--- !u!1 &1796317097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1796317098}
+  - 114: {fileID: 1796317101}
+  - 114: {fileID: 1796317100}
+  - 61: {fileID: 1796317099}
+  m_Layer: 9
+  m_Name: ToggleWorkerButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1796317098
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1796317097}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 604.700012, y: -645.469971, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 971908935}
+  m_RootOrder: 9
+--- !u!61 &1796317099
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1796317097}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: 193, y: 215}
+  m_Center: {x: 0, y: 0}
+--- !u!114 &1796317100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1796317097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01d2edd8f88b31489374e9c7e0b7722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+  - mTarget: {fileID: 1603097798}
+    mMethodName: ToggleCampaignWorker
+    mParameters: []
+    oneShot: 0
+  debug: 0
+  UseDragProof: 0
+--- !u!114 &1796317101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1796317097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 193
+  mHeight: 215
+  mDepth: 1
+  autoResizeBoxCollider: 1
+  hideIfOffScreen: 0
+  keepAspectRatio: 1
+  aspectRatio: .8984375
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  mTexture: {fileID: 2800000, guid: 21118f0a5a75b124bb340e2b3a26c54b, type: 3}
   mMat: {fileID: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
   mBorder: {x: 0, y: 0, z: 0, w: 0}

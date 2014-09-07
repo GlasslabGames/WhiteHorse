@@ -107,7 +107,7 @@ public class GameStateManager : MonoBehaviour
 
   public void CheckForHarvest()
   {
-    if( m_playerTurnCompleted && m_opponentTurnCompleted )
+    if( m_playerTurnCompleted || m_opponentTurnCompleted )
     {
       foreach( State state in m_statesInPlay )
       {
@@ -146,8 +146,8 @@ public class GameStateManager : MonoBehaviour
         totalBlueVotes += state.m_electoralCount;
       }
     }
-    GameObjectAccessor.Instance.RedVotesLabel.text = totalRedVotes + " Votes";
-    GameObjectAccessor.Instance.BlueVotesLabel.text = totalBlueVotes + " Votes";
+    GameObjectAccessor.Instance.RedVotesLabel.text = "" + totalRedVotes;
+    GameObjectAccessor.Instance.BlueVotesLabel.text = "" + totalBlueVotes;
   }
 
 

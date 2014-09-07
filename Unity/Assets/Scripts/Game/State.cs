@@ -12,14 +12,14 @@ public enum Leaning
 
 public class State : MonoBehaviour
 {
-  private Color blueStateColor = new Color( 26.0f / 255.0f, 94.0f / 255.0f, 255.0f / 255.0f );
-  private Color blueStateColorInactive = new Color( 135.0f / 255.0f, 160.0f / 255.0f, 219.0f / 255.0f );
+  public static Color blueStateColor = new Color( 26.0f / 255.0f, 94.0f / 255.0f, 255.0f / 255.0f );
+  public static Color blueStateColorInactive = new Color( 135.0f / 255.0f, 160.0f / 255.0f, 219.0f / 255.0f );
 
-  private Color redStateColor = new Color( 255.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f );
-  private Color redStateColorInactive = new Color( 255.0f / 255.0f, 134.0f / 255.0f, 134.0f / 255.0f );
+  public static Color redStateColor = new Color( 255.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f );
+  public static Color redStateColorInactive = new Color( 255.0f / 255.0f, 134.0f / 255.0f, 134.0f / 255.0f );
 
-  private Color undiscoveredStateColor = new Color( 79.0f / 255.0f, 79.0f / 255.0f, 79.0f / 255.0f );
-  private Color neutralStateColor = new Color( 165.0f / 255.0f, 32.0f / 255.0f, 155.0f / 255.0f );
+  public static Color undiscoveredStateColor = new Color( 79.0f / 255.0f, 79.0f / 255.0f, 79.0f / 255.0f );
+  public static Color neutralStateColor = new Color( 165.0f / 255.0f, 32.0f / 255.0f, 155.0f / 255.0f );
 
   private Vector3 m_workerOffset = new Vector3( 0.25f, 0, 0 );
   private Vector3 m_workerAdjacencyOffset = new Vector3( 0, -0.2f, 0 );
@@ -90,7 +90,7 @@ public class State : MonoBehaviour
     networkView.RPC( "OpponentCreateSupporters", RPCMode.Others, m_playerSupportersAddedThisTurn );
 
     // TEMP
-    //m_opponentSupportersAddedThisTurn = m_playerSupporterList.Count == 0 ? 0 : 2;
+    m_opponentSupportersAddedThisTurn = m_playerSupporterList.Count == 0 ? 0 : 2;
     // TEMP
 
     m_currentPlayerSupporterIteration = 0;
@@ -246,6 +246,7 @@ public class State : MonoBehaviour
     if( !m_inPlay )  return;
     if( GameObjectAccessor.Instance.GameStateManager.CurrentTurnState != TurnState.Placement )  return;
     if( !GameObjectAccessor.Instance.Budget.IsAmountAvailable( 10 ) ) return;
+    if( !GameObjectAccessor.Instance.Player.m_campaignWorkerSelected ) return;
 
     if( m_playerSupporterList.Count < m_populationInMillions )
     {

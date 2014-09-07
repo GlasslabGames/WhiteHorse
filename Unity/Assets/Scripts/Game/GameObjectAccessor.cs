@@ -16,4 +16,5 @@ public class GameObjectAccessor : SingletonBehavior<GameObjectAccessor>
   public Camera UICamera;
   public UILabel RedVotesLabel;
   public UILabel BlueVotesLabel;
+  public GameObject ToggleWorkerButton;
 }
