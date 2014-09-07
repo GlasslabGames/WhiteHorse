@@ -16,5 +16,7 @@ public class GameObjectAccessor : SingletonBehavior<GameObjectAccessor>
   public Camera UICamera;
   public UILabel RedVotesLabel;
   public UILabel BlueVotesLabel;
+  public UILabel WeekCounter;
   public GameObject ToggleWorkerButton;
+  public bool UseAI;
 }
