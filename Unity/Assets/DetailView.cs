@@ -23,9 +23,7 @@ public class DetailView : MonoBehaviour {
 
 	private State m_currentState;
 
-	private SpriteRenderer m_scaledState;
-	private Vector3 m_originalStateScale;
-	private int m_originalLayer;
+	private State m_highlightedState;
 
   public State CurrentState
   {
@@ -120,20 +118,10 @@ public class DetailView : MonoBehaviour {
 
 		if (showIndicator) {
 			// reset the previous scaled state
-			if (m_scaledState != null) {
-				m_scaledState.transform.localScale = m_originalStateScale;
-				m_scaledState.sortingOrder = m_originalLayer;
-			}
+			if (m_highlightedState != null) m_highlightedState.Highlight(false);
 
-			m_scaledState = state.GetComponentInChildren<SpriteRenderer>();
-			m_originalStateScale = m_scaledState.transform.localScale;
-			Vector3 scale = m_scaledState.transform.localScale;
-			scale.x *= 1.1f;
-			scale.y *= 1.1f;
-			m_scaledState.transform.localScale = scale;
-
-			m_originalLayer = m_scaledState.sortingOrder;
-			m_scaledState.sortingOrder ++;
+			state.Highlight(true);
+			m_highlightedState = state;
 		}
 	}
 
@@ -142,10 +130,9 @@ public class DetailView : MonoBehaviour {
 		if (m_row2 != null) m_row2.SetActive (false);
 		if (m_row2Inactive != null) m_row2Inactive.SetActive (false);
 
-		if (m_scaledState != null) {
-			m_scaledState.transform.localScale = m_originalStateScale;
-			m_scaledState.sortingOrder = m_originalLayer;
-			m_scaledState = null;
+		if (m_highlightedState != null) {
+			m_highlightedState.Highlight (false);
+			m_highlightedState = null;
 		}
 	}
 

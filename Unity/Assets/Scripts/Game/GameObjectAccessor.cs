@@ -6,6 +6,7 @@ public class GameObjectAccessor : SingletonBehavior<GameObjectAccessor>
   public Player Player;
   public BudgetController Budget;
   public GameStateManager GameStateManager;
+	public GameColorSettings GameColorSettings;
   public GameObject StatesContainer;
 	public GameObject FloatingTextContainer;
 	public GameObject StateLabelContainer;
