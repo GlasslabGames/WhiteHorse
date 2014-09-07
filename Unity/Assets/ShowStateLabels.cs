@@ -10,7 +10,7 @@ public class ShowStateLabels : MonoBehaviour {
 	public LabelOptions Content = LabelOptions.VOTES;
 	public bool ShowOnlyOnActiveStates = true;
 
-	void Awake () {
+	void Start () {
 		if (!enabled) return;
 
 		Object statePrefab = Resources.Load("StateLabel");
@@ -19,16 +19,15 @@ public class ShowStateLabels : MonoBehaviour {
 		UILabel label;
 		foreach (State state in StateContainer.GetComponentsInChildren<State>()) {
 			if (ShowOnlyOnActiveStates && !state.m_inPlay) continue;
+			Debug.Log("showing label over "+state.name);
 			newTransform = Utility.InstantiateAsChild(statePrefab, transform);
 			label = newTransform.GetComponent<UILabel>();
 			if (Content == LabelOptions.VOTES) label.text = state.m_electoralCount.ToString();
 			else if (Content == LabelOptions.ABBREVIATION) label.text = state.m_abbreviation;
 
-			stateTransform = state.transform.Find("labelAnchor");
+			stateTransform = state.transform.Find("uiAnchor");
 			if (stateTransform == null) stateTransform = state.transform;
 			newTransform.position = Utility.ConvertFromGameToUiPosition(stateTransform.position);
 		}
 	}
-
-	void Start() {}
 }
