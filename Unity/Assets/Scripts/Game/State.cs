@@ -78,17 +78,17 @@ public class State : MonoBehaviour
   {
     get { return m_opponentBasisCountIncrement; }
   }
-  public int PlayerSupporters
+  public int PlayerCampaignWorkers
   {
     get { return m_playerSupporterList.Count; }
   }
-  public int OpponentSupporters
-  {
+	public int OpponentCampaignWorkers
+	{
     get { return m_opponentSupporterList.Count; }
   }
   public int RoundedPopulation
   {
-    get { return (int)m_populationInMillions; }
+    get { return Mathf.CeilToInt(m_populationInMillions); }
   }
   public int TotalBasis
   {
@@ -115,6 +115,12 @@ public class State : MonoBehaviour
     m_playerSupportersAddedThisTurn = 0;
 
     m_popularVote = 0;
+
+		// for inactive states, set the popular vote based on the leaning
+		if (!m_inPlay) {
+			if (m_stateLeaning == Leaning.Red) m_popularVote = -1;
+			else if (m_stateLeaning == Leaning.Blue) m_popularVote = 1;
+		}
 
     UpdateColor();
 

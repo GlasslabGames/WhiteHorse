@@ -10,6 +10,19 @@ public class DetailView : MonoBehaviour {
 	public UILabel m_name;
 	public UILabel m_population;
 	public UILabel m_votes;
+	public UILabel m_redPercent;
+	public UILabel m_bluePercent;
+	public UILabel m_redPoints;
+	public UILabel m_bluePoints;
+	public UILabel m_unitsCount;
+	public UILabel m_unit1Count;
+	public UILabel m_unit2Count;
+	public UILabel m_unit3Count;
+	public UITexture m_unitsBullet;
+
+	public Transform m_stateIndicator;
+
+	private State m_currentState;
 
 	void Start() {
 		ClearState ();
@@ -18,38 +31,86 @@ public class DetailView : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		// if they just released the mouse, select the state they were over
+		if (Input.GetMouseButtonUp (0) && m_currentState != null) {
+			SetState(m_currentState, true);
+		}
+
 		// if the mouse is down, find the state it's over
-		if (Input.GetMouseButton (0)) {
+		else if (Input.GetMouseButton (0)) {
 			Vector3 clickPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			RaycastHit2D[] hits = Physics2D.LinecastAll (clickPosition, clickPosition);
-			State state = null;
+			m_currentState = null;
 
 			foreach (RaycastHit2D hit in hits) {
 				if (hit.collider.transform.parent != null) {
-					state = hit.collider.transform.parent.GetComponent<State> ();
-					if (state != null) {
-						SetState(state);
+					m_currentState = hit.collider.transform.parent.GetComponent<State> ();
+					if (m_currentState != null) {
+						SetState(m_currentState, false);
 						break;
 					}
 				}
 			}
 
-			if (state == null) ClearState();
+			if (m_currentState == null) ClearState();
 		}
 	}
 
-	void SetState(State state) {
-		if (m_row1 != null) m_row1.SetActive (true);
-		if (m_row2 != null) m_row2.SetActive ( state.m_inPlay);
-		if (m_row2Inactive != null) m_row2Inactive.SetActive (true);
+	void SetState(State state, bool showIndicator) {
+		if (m_row1 != null)
+			m_row1.SetActive (true);
+		if (m_row2 != null)
+			m_row2.SetActive (state.m_inPlay);
+		if (m_row2Inactive != null)
+			m_row2Inactive.SetActive (!state.m_inPlay);
 
-		if (m_name != null) m_name.text = state.m_name;
-		if (m_abbreviation != null) m_abbreviation.text = state.m_abbreviation;
-		if (m_population != null) m_population.text = "Population "+state.m_populationInMillions.ToString() + "M";
-		if (m_votes != null) m_votes.text = "Electoral College Votes "+state.m_electoralCount.ToString();
+		if (m_name != null)
+			m_name.text = state.m_name;
+		if (m_abbreviation != null)
+			m_abbreviation.text = state.m_abbreviation;
+		if (m_population != null)
+			m_population.text = "Population " + state.m_populationInMillions.ToString () + "M";
+		if (m_votes != null)
+			m_votes.text = "Electoral College Votes " + state.m_electoralCount.ToString ();
 
+		Leaning color = GameObjectAccessor.Instance.Player.m_leaning;
+		if (m_redPoints != null) {
+			int points = (color == Leaning.Red) ? state.PlayerBasisCountIncrement : state.OpponentBasisCountIncrement;
+			m_redPoints.text = points.ToString () + "pts";
+		}
+		if (m_bluePoints != null) {
+			int points = (color == Leaning.Blue) ? state.PlayerBasisCountIncrement : state.OpponentBasisCountIncrement;
+			m_bluePoints.text = points.ToString () + "pts";
+		}
+
+		float bluePercent = state.PopularVote / 2f + 0.5f;
+		float redPercent = 1 - bluePercent;
+		if (m_redPercent != null)
+			m_redPercent.text = Mathf.Round (redPercent * 100).ToString () + "%";
+		if (m_bluePercent != null)
+			m_bluePercent.text = Mathf.Round (bluePercent * 100).ToString () + "%";
+
+		
 		if (state.m_inPlay) {
 			// assign labels for number of units
+			if (m_unitsCount != null)
+				m_unitsCount.text = state.PlayerCampaignWorkers.ToString () + "/" + state.RoundedPopulation.ToString ();
+			int[] workerCounts = state.PlayerCampaignWorkerCounts;
+			if (m_unit1Count != null)
+				m_unit1Count.text = workerCounts [0].ToString () + "x";
+			if (m_unit2Count != null)
+				m_unit2Count.text = workerCounts [1].ToString () + "x";
+			if (m_unit3Count != null)
+				m_unit3Count.text = workerCounts [2].ToString () + "x";
+		}
+
+		if (m_stateIndicator != null) {
+			if (showIndicator) {
+				m_stateIndicator.gameObject.SetActive (true);
+				m_stateIndicator.position = Utility.ConvertFromGameToUiPosition (state.transform.position);
+			} else {
+				m_stateIndicator.gameObject.SetActive (false);
+			}
 		}
 	}
 
@@ -57,5 +118,6 @@ public class DetailView : MonoBehaviour {
 		if (m_row1 != null) m_row1.SetActive (false);
 		if (m_row2 != null) m_row2.SetActive (false);
 		if (m_row2Inactive != null) m_row2Inactive.SetActive (false);
+		if (m_stateIndicator != null) m_stateIndicator.gameObject.SetActive(false);
 	}
 }
