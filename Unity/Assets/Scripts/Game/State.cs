@@ -12,16 +12,6 @@ public enum Leaning
 
 public class State : MonoBehaviour
 {
-  public static Color blueStateColor = new Color( 43.0f / 255.0f, 131.0f / 255.0f, 190.0f / 255.0f );
-  public static Color blueStateColorDark = new Color( 27.0f / 255.0f, 93.0f / 255.0f, 139.0f / 255.0f );
-
-  public static Color redStateColor = new Color( 229.0f / 255.0f, 90.0f / 255.0f, 91.0f / 255.0f );
-  public static Color redStateColorDark = new Color( 165.0f / 255.0f, 43.0f / 255.0f, 44.0f / 255.0f );
-
-  public static Color undiscoveredStateColor = new Color( 79.0f / 255.0f, 79.0f / 255.0f, 79.0f / 255.0f );
-  public static Color neutralStateColor = Color.white;
-	
-
   private Vector3 m_workerOffsetX = new Vector3( -0.4f, 0, 0 );
   private Vector3 m_workerOffsetY = new Vector3( 0, 0.25f, 0 );
   private Vector3 m_workerAdjacencyOffset = new Vector3( 0.15f, 0, 0 );
@@ -105,7 +95,10 @@ public class State : MonoBehaviour
     get { return m_playerCampaignWorkerCounts; }
   }
 
-	public UILabel StateLabel { get; set; } // will be set by ShowStateLabels.cs
+	private SpriteRenderer m_stateColor;
+	private SpriteRenderer m_stateOutline;
+	private SpriteRenderer m_stateStripes;
+
 
   public void Start()
   {
@@ -124,6 +117,16 @@ public class State : MonoBehaviour
 			if (m_stateLeaning == Leaning.Red) m_popularVote = -1;
 			else if (m_stateLeaning == Leaning.Blue) m_popularVote = 1;
 		}
+
+		// automatically figure out which of the child textures are which
+		foreach (SpriteRenderer t in GetComponentsInChildren<SpriteRenderer>(true)) {
+			if (t.name.Contains("dashed")) m_stateStripes = t;
+			else if (t.name.Contains("oline")) m_stateOutline = t;
+			else m_stateColor = t;
+		}
+
+		if (m_stateStripes == null) Debug.LogError ("No stripes on " + m_name, this);
+		if (m_stateOutline == null) Debug.LogError ("No outline on " + m_name, this);
 
     UpdateColor();
 	
@@ -308,40 +311,49 @@ public class State : MonoBehaviour
   {
     if( m_hidden )
     {
-      gameObject.GetComponentInChildren<SpriteRenderer>().color = undiscoveredStateColor;
+      m_stateColor.color = GameObjectAccessor.Instance.GameColorSettings.undiscoveredState;
+      m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.outline;
+			m_stateStripes.enabled = true;
       return;
     }
 
-		Color c = Color.white;
 		float t = Mathf.Abs(m_popularVote) * 0.8f + 0.2f; // 0.2 - 1 so that we don't go all the way to purple
 
 		switch (m_stateLeaning) {
 		case Leaning.Blue:
-			c = Color.Lerp (neutralStateColor, blueStateColor, t);
+			m_stateColor.color = Color.Lerp (GameObjectAccessor.Instance.GameColorSettings.neutralState, GameObjectAccessor.Instance.GameColorSettings.blueState, t);
+			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.outline;
+			m_stateOutline.sortingOrder = -7;
 			break;
 
 		case Leaning.Red:
-			c = Color.Lerp (neutralStateColor, redStateColor, t);
+			m_stateColor.color = Color.Lerp (GameObjectAccessor.Instance.GameColorSettings.neutralState, GameObjectAccessor.Instance.GameColorSettings.redState, t);
+			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.outline;
+			m_stateOutline.sortingOrder = -7;
 			break;
 
 		default:
-			c = neutralStateColor;
+			m_stateColor.color = GameObjectAccessor.Instance.GameColorSettings.neutralState;
+			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.neutralOutline;
+			m_stateOutline.sortingOrder = -6;
 			break;
 		}
-		
-		// desat color
-		/*
-		if (!m_inPlay) {
-			c.r = c.r / 3 + 0.5f;
-			c.g = c.g / 3 + 0.5f;
-			c.b = c.b / 3 + 0.5f;
-		}
-		*/
-		
-		gameObject.GetComponentInChildren<SpriteRenderer> ().color = c;
-  }
 
-  public void PlayerPlaceSupporter()
+		m_stateStripes.enabled = !m_inPlay;
+	}
+	
+	public void Highlight(bool active) {
+		if (active) {
+			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.highlightOutline;
+			m_stateOutline.sortingOrder = -5;
+			//transform.localScale = new Vector3(1.1f, 1.1f, 1f);
+		} else {
+			UpdateColor(); // reset
+			//transform.localScale = Vector3.one;
+		}
+	}
+		
+	public void PlayerPlaceSupporter()
   {
     if( !m_inPlay )  return;
     if( GameObjectAccessor.Instance.GameStateManager.CurrentTurnState != TurnState.Placement )  return;
@@ -372,7 +384,8 @@ public class State : MonoBehaviour
 
     if( isPlayer )
     {
-      newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.Player.m_leaning == Leaning.Red ? redStateColorDark : blueStateColorDark;
+      newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.Player.m_leaning == Leaning.Red ?
+				GameObjectAccessor.Instance.GameColorSettings.redStateDark : GameObjectAccessor.Instance.GameColorSettings.blueStateDark;
 
       m_playerSupporterList.Add( newSupporter );
       m_playerBasisCountIncrement += newSupporter.GetComponent< CampaignWorker >().GetValueForLevel();
@@ -380,7 +393,8 @@ public class State : MonoBehaviour
     }
     else
     {
-      newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.Player.m_opponentLeaning == Leaning.Red ? redStateColorDark : blueStateColorDark;
+      newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.Player.m_opponentLeaning == Leaning.Red ?
+				GameObjectAccessor.Instance.GameColorSettings.redStateDark : GameObjectAccessor.Instance.GameColorSettings.blueStateDark;
 
       m_opponentSupporterList.Add( newSupporter );
       m_opponentBasisCountIncrement += newSupporter.GetComponent< CampaignWorker >().GetValueForLevel();

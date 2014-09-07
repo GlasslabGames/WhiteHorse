@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameColorSettings : MonoBehaviour {
+[System.Serializable]
+public class GameColorSettings {
 
 	public Color blueState;
 	public Color blueStateDark;
@@ -14,4 +15,6 @@ public class GameColorSettings : MonoBehaviour {
 
 	public Color outline;
 	public Color neutralOutline;
+
+	public Color highlightOutline;
 }
