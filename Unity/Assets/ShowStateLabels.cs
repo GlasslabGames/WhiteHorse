@@ -6,6 +6,9 @@ using System.Collections;
 // This is just a first pass, it will have to be refined to work with the zoom.
 public class ShowStateLabels : MonoBehaviour {
 	public Transform StateContainer;
+	public enum LabelOptions { ABBREVIATION, VOTES };
+	public LabelOptions Content = LabelOptions.VOTES;
+	public bool ShowOnlyOnActiveStates = true;
 
 	void Awake () {
 		if (!enabled) return;
@@ -15,9 +18,11 @@ public class ShowStateLabels : MonoBehaviour {
 		Transform stateTransform;
 		UILabel label;
 		foreach (State state in StateContainer.GetComponentsInChildren<State>()) {
+			if (ShowOnlyOnActiveStates && !state.m_inPlay) continue;
 			newTransform = Utility.InstantiateAsChild(statePrefab, transform);
 			label = newTransform.GetComponent<UILabel>();
-			label.text = state.m_abbreviation;
+			if (Content == LabelOptions.VOTES) label.text = state.m_electoralCount.ToString();
+			else if (Content == LabelOptions.ABBREVIATION) label.text = state.m_abbreviation;
 
 			stateTransform = state.transform.Find("labelAnchor");
 			if (stateTransform == null) stateTransform = state.transform;
