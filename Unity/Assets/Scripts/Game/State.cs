@@ -168,7 +168,7 @@ public class State : MonoBehaviour
     if( m_currentPlayerSupporterIteration >= m_playerSupporterList.Count ) { return UpdatePopularVotePlayer(); }
 
     CampaignWorker worker = m_playerSupporterList[ m_currentPlayerSupporterIteration ].GetComponent< CampaignWorker >();
-    m_playerBasisCount += worker.m_currentLevel;
+    m_playerBasisCount += worker.GetValueForLevel();
 
     worker.gameObject.SendMessage( "BounceOut" );
     m_playerFloatingText.SendMessage( "Display", "" + m_playerBasisCount );
@@ -217,7 +217,7 @@ public class State : MonoBehaviour
     }
 
     CampaignWorker worker = m_opponentSupporterList[ m_currentOpponentSupporterIteration ].GetComponent< CampaignWorker >();
-    m_opponentBasisCount += worker.m_currentLevel;
+    m_opponentBasisCount += worker.GetValueForLevel();
     
     worker.gameObject.SendMessage( "BounceOut" );
     m_opponentFloatingText.SendMessage( "Display", "" + m_opponentBasisCount );
@@ -383,6 +383,47 @@ public class State : MonoBehaviour
 
       m_opponentSupporterList.Add( newSupporter );
       m_opponentBasisCountIncrement += newSupporter.GetComponent< CampaignWorker >().GetValueForLevel();
+    }
+  }
+
+  public void Upgrade1()
+  {
+    Debug.Log( "upgrade 1" );
+
+    if( m_playerCampaignWorkerCounts[ 0 ] > 0 )
+    {
+      m_playerCampaignWorkerCounts[ 0 ]--;
+      m_playerCampaignWorkerCounts[ 1 ]++;
+
+      for( int i = m_playerSupporterList.Count - 1; i >= 0; i-- )
+      {
+        CampaignWorker worker = m_playerSupporterList[ i ].GetComponent< CampaignWorker >();
+        if( worker.m_currentLevel == 1 )
+        {
+          worker.m_currentLevel++;
+          break;
+        }
+      }
+    }
+  }
+  public void Upgrade2()
+  {
+    Debug.Log( "upgrade 2" );
+
+    if( m_playerCampaignWorkerCounts[ 1 ] > 0 )
+    {
+      m_playerCampaignWorkerCounts[ 1 ]--;
+      m_playerCampaignWorkerCounts[ 2 ]++;
+
+      for( int i = m_playerSupporterList.Count - 1; i >= 0; i-- )
+      {
+        CampaignWorker worker = m_playerSupporterList[ i ].GetComponent< CampaignWorker >();
+        if( worker.m_currentLevel == 2 )
+        {
+          worker.m_currentLevel++;
+          break;
+        }
+      }
     }
   }
 }
