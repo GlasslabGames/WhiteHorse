@@ -18,8 +18,7 @@ public class DetailView : MonoBehaviour {
 	public UILabel m_unit1Count;
 	public UILabel m_unit2Count;
 	public UILabel m_unit3Count;
-	public UITexture m_unitsBulletRed;
-	public UITexture m_unitsBulletBlue;
+	public UITexture m_newUnit;
 
 	private State m_currentState;
 
@@ -34,8 +33,10 @@ public class DetailView : MonoBehaviour {
 		ClearState ();
 
 		Leaning color = GameObjectAccessor.Instance.Player.m_leaning;
-		if (m_unitsBulletRed != null) m_unitsBulletRed.gameObject.SetActive( color == Leaning.Red );
-		if (m_unitsBulletBlue != null) m_unitsBulletBlue.gameObject.SetActive( color == Leaning.Blue );
+		if (m_newUnit != null) {
+			m_newUnit.color = (color == Leaning.Red) ?
+			GameObjectAccessor.Instance.GameColorSettings.redStateDark : GameObjectAccessor.Instance.GameColorSettings.blueStateDark;
+		}
 
 	}
 
@@ -106,7 +107,7 @@ public class DetailView : MonoBehaviour {
 		if (state.m_inPlay) {
 			// assign labels for number of units
 			if (m_unitsCount != null)
-				m_unitsCount.text = state.PlayerCampaignWorkers.ToString () + "/" + state.UnitCap.ToString();
+				m_unitsCount.text = "Workers: "+state.PlayerCampaignWorkers.ToString () + "/" + state.UnitCap.ToString();
 			int[] workerCounts = state.PlayerCampaignWorkerCounts;
 			if (m_unit1Count != null)
 				m_unit1Count.text = workerCounts [0].ToString () + "x";
@@ -144,4 +145,8 @@ public class DetailView : MonoBehaviour {
   {
     CurrentState.Upgrade2();
   }
+
+	public void PlaceSupporter() {
+		CurrentState.PlayerPlaceSupporter (true);
+	}
 }
