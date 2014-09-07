@@ -15907,11 +15907,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 29
-  m_populationInMillions: 18.7999992
-  m_name: Florida
-  m_abbreviation: FL
+  m_stateLeaning: 2
+  m_electoralCount: 3
+  m_populationInMillions: .600000024
+  m_name: District of Columbia
+  m_abbreviation: DC
   m_hidden: 0
   m_inPlay: 0
 --- !u!1 &1707451869
