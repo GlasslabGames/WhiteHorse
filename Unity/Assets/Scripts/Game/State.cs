@@ -352,7 +352,7 @@ public class State : MonoBehaviour
     else if( m_playerBasisCount < m_opponentBasisCount ) m_stateLeaning = GameObjectAccessor.Instance.Player.m_opponentLeaning;
     else m_stateLeaning = Leaning.Neutral;
 
-    UpdateColor();
+    UpdateColor( true );
 
     m_stateUpdatedWithPopularVote = true;
 
@@ -394,7 +394,7 @@ public class State : MonoBehaviour
     return true;*/
   }
 
-  public void UpdateColor()
+  public void UpdateColor( bool playParticles = false )
   {
     if( m_hidden )
     {
@@ -411,18 +411,33 @@ public class State : MonoBehaviour
 			m_stateColor.color = Color.Lerp (GameObjectAccessor.Instance.GameColorSettings.neutralState, GameObjectAccessor.Instance.GameColorSettings.blueState, t);
 			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.outline;
 			m_stateOutline.sortingOrder = -7;
+
+      if( playParticles )
+      {
+        GameObject.Instantiate( GameObjectAccessor.Instance.FlipStateParticleSystemBlue, new Vector3( gameObject.transform.position.x, gameObject.transform.position.y, -0.5f ), Quaternion.identity );
+      }
 			break;
 
 		case Leaning.Red:
 			m_stateColor.color = Color.Lerp (GameObjectAccessor.Instance.GameColorSettings.neutralState, GameObjectAccessor.Instance.GameColorSettings.redState, t);
 			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.outline;
 			m_stateOutline.sortingOrder = -7;
+
+      if( playParticles )
+      {
+        GameObject.Instantiate( GameObjectAccessor.Instance.FlipStateParticleSystemRed, new Vector3( gameObject.transform.position.x, gameObject.transform.position.y, -0.5f ), Quaternion.identity );
+      }
 			break;
 
 		default:
 			m_stateColor.color = GameObjectAccessor.Instance.GameColorSettings.neutralState;
 			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.neutralOutline;
 			m_stateOutline.sortingOrder = -6;
+
+      if( playParticles )
+      {
+        //GameObject.Instantiate( GameObjectAccessor.Instance.FlipStateParticleSystemNeutral, new Vector3( gameObject.transform.position.x, gameObject.transform.position.y, -0.5f ), Quaternion.identity );
+      }
 			break;
 		}
 
