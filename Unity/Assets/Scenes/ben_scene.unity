@@ -275,6 +275,8 @@ MonoBehaviour:
   m_abbreviation: MI
   m_hidden: 0
   m_inPlay: 1
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!148 &19865705
 NetworkView:
   m_ObjectHideFlags: 0
@@ -1916,6 +1918,8 @@ MonoBehaviour:
   m_abbreviation: DE
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &144630198
 GameObject:
   m_ObjectHideFlags: 0
@@ -2343,6 +2347,8 @@ MonoBehaviour:
   m_abbreviation: NY
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &168938583
 GameObject:
   m_ObjectHideFlags: 0
@@ -2925,6 +2931,8 @@ MonoBehaviour:
   m_abbreviation: WV
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &214570238
 GameObject:
   m_ObjectHideFlags: 0
@@ -3283,6 +3291,8 @@ MonoBehaviour:
   m_abbreviation: NM
   m_hidden: 0
   m_inPlay: 1
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!148 &248017228
 NetworkView:
   m_ObjectHideFlags: 0
@@ -3345,6 +3355,8 @@ MonoBehaviour:
   m_abbreviation: IA
   m_hidden: 0
   m_inPlay: 1
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!148 &258094117
 NetworkView:
   m_ObjectHideFlags: 0
@@ -3585,6 +3597,8 @@ MonoBehaviour:
   m_abbreviation: KY
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &313217471
 GameObject:
   m_ObjectHideFlags: 0
@@ -4008,6 +4022,8 @@ MonoBehaviour:
   m_abbreviation: AL
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &357759560
 GameObject:
   m_ObjectHideFlags: 0
@@ -4724,6 +4740,8 @@ MonoBehaviour:
   m_abbreviation: CO
   m_hidden: 0
   m_inPlay: 1
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &418059116
 GameObject:
   m_ObjectHideFlags: 0
@@ -5056,6 +5074,8 @@ MonoBehaviour:
   m_abbreviation: AR
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &434392730
 GameObject:
   m_ObjectHideFlags: 0
@@ -5492,6 +5512,8 @@ MonoBehaviour:
   m_abbreviation: DC
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &471028957
 GameObject:
   m_ObjectHideFlags: 0
@@ -7270,6 +7292,8 @@ MonoBehaviour:
   m_abbreviation: OH
   m_hidden: 0
   m_inPlay: 1
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!148 &663125999
 NetworkView:
   m_ObjectHideFlags: 0
@@ -7331,6 +7355,8 @@ MonoBehaviour:
   m_abbreviation: OK
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &680663581
 GameObject:
   m_ObjectHideFlags: 0
@@ -7505,6 +7531,8 @@ MonoBehaviour:
   m_abbreviation: WY
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &682730137
 GameObject:
   m_ObjectHideFlags: 0
@@ -7554,6 +7582,8 @@ MonoBehaviour:
   m_abbreviation: VA
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &683767451
 GameObject:
   m_ObjectHideFlags: 0
@@ -7683,6 +7713,8 @@ MonoBehaviour:
   m_abbreviation: IL
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &700876995
 GameObject:
   m_ObjectHideFlags: 0
@@ -7829,6 +7861,8 @@ MonoBehaviour:
   m_abbreviation: ME
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &702932960
 GameObject:
   m_ObjectHideFlags: 0
@@ -7972,6 +8006,8 @@ MonoBehaviour:
   m_abbreviation: WA
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &709354831
 GameObject:
   m_ObjectHideFlags: 0
@@ -8175,6 +8211,8 @@ MonoBehaviour:
   m_abbreviation: PA
   m_hidden: 0
   m_inPlay: 1
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &721991566
 GameObject:
   m_ObjectHideFlags: 0
@@ -8634,6 +8672,8 @@ MonoBehaviour:
   m_abbreviation: MA
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &746625913
 GameObject:
   m_ObjectHideFlags: 0
@@ -9748,7 +9788,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 886292404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90b02db2fba94ce49a3e25af9995a06, type: 3}
+  m_Script: {fileID: 11500000, guid: 65f90ad2befcc421d81033d0571d3ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_port: 25000
@@ -9815,6 +9855,8 @@ MonoBehaviour:
   m_abbreviation: OR
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &930477515
 GameObject:
   m_ObjectHideFlags: 0
@@ -9995,6 +10037,8 @@ MonoBehaviour:
   m_abbreviation: ID
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &951809411
 GameObject:
   m_ObjectHideFlags: 0
@@ -10145,6 +10189,8 @@ MonoBehaviour:
   m_abbreviation: CT
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &971908931
 GameObject:
   m_ObjectHideFlags: 0
@@ -10583,6 +10629,8 @@ MonoBehaviour:
   m_abbreviation: VT
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1011213497
 GameObject:
   m_ObjectHideFlags: 0
@@ -12657,6 +12705,8 @@ MonoBehaviour:
   m_abbreviation: NE
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1309588396
 GameObject:
   m_ObjectHideFlags: 0
@@ -12719,6 +12769,8 @@ MonoBehaviour:
   m_abbreviation: WI
   m_hidden: 0
   m_inPlay: 1
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1327718854
 GameObject:
   m_ObjectHideFlags: 0
@@ -12768,6 +12820,8 @@ MonoBehaviour:
   m_abbreviation: AZ
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1354458937
 GameObject:
   m_ObjectHideFlags: 0
@@ -12917,6 +12971,8 @@ MonoBehaviour:
   m_abbreviation: TX
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1367954632
 GameObject:
   m_ObjectHideFlags: 0
@@ -12966,6 +13022,8 @@ MonoBehaviour:
   m_abbreviation: RI
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1371982643
 GameObject:
   m_ObjectHideFlags: 0
@@ -13371,6 +13429,8 @@ MonoBehaviour:
   m_abbreviation: IN
   m_hidden: 0
   m_inPlay: 1
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1405221142
 GameObject:
   m_ObjectHideFlags: 0
@@ -13480,6 +13540,8 @@ MonoBehaviour:
   m_abbreviation: NH
   m_hidden: 0
   m_inPlay: 1
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1426211758
 GameObject:
   m_ObjectHideFlags: 0
@@ -13860,6 +13922,8 @@ MonoBehaviour:
   m_abbreviation: CA
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1465345263
 GameObject:
   m_ObjectHideFlags: 0
@@ -14199,6 +14263,8 @@ MonoBehaviour:
   m_abbreviation: AK
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1486788903
 GameObject:
   m_ObjectHideFlags: 0
@@ -14671,6 +14737,8 @@ MonoBehaviour:
   m_abbreviation: SD
   m_hidden: 0
   m_inPlay: 1
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!148 &1529232806
 NetworkView:
   m_ObjectHideFlags: 0
@@ -14822,6 +14890,8 @@ MonoBehaviour:
   m_abbreviation: MN
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1544245808
 GameObject:
   m_ObjectHideFlags: 0
@@ -16001,6 +16071,8 @@ MonoBehaviour:
   m_abbreviation: NJ
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1594641273
 GameObject:
   m_ObjectHideFlags: 0
@@ -16292,6 +16364,8 @@ MonoBehaviour:
   m_abbreviation: TN
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1635361257
 GameObject:
   m_ObjectHideFlags: 0
@@ -17782,6 +17856,8 @@ MonoBehaviour:
   m_abbreviation: FL
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1704690524
 GameObject:
   m_ObjectHideFlags: 0
@@ -17881,6 +17957,8 @@ MonoBehaviour:
   m_abbreviation: KS
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1710559156
 GameObject:
   m_ObjectHideFlags: 0
@@ -18567,6 +18645,8 @@ MonoBehaviour:
   m_abbreviation: NV
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1766301366
 GameObject:
   m_ObjectHideFlags: 0
@@ -18616,6 +18696,8 @@ MonoBehaviour:
   m_abbreviation: MS
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1770629974
 GameObject:
   m_ObjectHideFlags: 0
@@ -19321,6 +19403,8 @@ MonoBehaviour:
   m_abbreviation: ND
   m_hidden: 0
   m_inPlay: 1
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!148 &1839210466
 NetworkView:
   m_ObjectHideFlags: 0
@@ -19482,6 +19566,8 @@ MonoBehaviour:
   m_abbreviation: MD
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1853978504
 GameObject:
   m_ObjectHideFlags: 0
@@ -19902,6 +19988,8 @@ MonoBehaviour:
   m_abbreviation: UT
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &1906570253
 GameObject:
   m_ObjectHideFlags: 0
@@ -19952,6 +20040,8 @@ MonoBehaviour:
   m_abbreviation: MO
   m_hidden: 0
   m_inPlay: 1
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!148 &1906570256
 NetworkView:
   m_ObjectHideFlags: 0
@@ -20472,6 +20562,8 @@ MonoBehaviour:
   m_abbreviation: NC
   m_hidden: 0
   m_inPlay: 1
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!4 &1946492624
 Transform:
   m_ObjectHideFlags: 0
@@ -21075,6 +21167,8 @@ MonoBehaviour:
   m_abbreviation: LA
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &2023673855
 GameObject:
   m_ObjectHideFlags: 0
@@ -21480,6 +21574,8 @@ MonoBehaviour:
   m_abbreviation: GA
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &2045694512
 GameObject:
   m_ObjectHideFlags: 0
@@ -21803,6 +21899,8 @@ MonoBehaviour:
   m_abbreviation: MT
   m_hidden: 0
   m_inPlay: 1
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!148 &2092980522
 NetworkView:
   m_ObjectHideFlags: 0
@@ -22037,6 +22135,8 @@ MonoBehaviour:
   m_abbreviation: SC
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &2107821650
 GameObject:
   m_ObjectHideFlags: 0
@@ -22226,6 +22326,8 @@ MonoBehaviour:
   m_abbreviation: HI
   m_hidden: 0
   m_inPlay: 0
+  m_dirty: 0
+  m_receivedOpponentInfo: 0
 --- !u!1 &2128866681
 GameObject:
   m_ObjectHideFlags: 0

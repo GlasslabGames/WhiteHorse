@@ -72,7 +72,12 @@ public class GameStateManager : MonoBehaviour
   {
     foreach( State state in m_statesInPlay )
     {
-      bool hasCompleted = state.UpdateState();
+      bool hasCompleted = true;
+
+      //if( state.m_dirty )
+      {
+        hasCompleted = state.UpdateState();
+      }
 
       if( !hasCompleted )
       {
@@ -115,6 +120,11 @@ public class GameStateManager : MonoBehaviour
       m_opponentTurnCompleted = false;
       GameObjectAccessor.Instance.Player.ToggleCampaignWorker( true );
       GoToState( TurnState.Placement );
+
+      foreach( State state in m_statesInPlay )
+      {
+        state.m_receivedOpponentInfo = false;
+      }
     }
   }
 
@@ -155,6 +165,8 @@ public class GameStateManager : MonoBehaviour
         totalBlueVotes += state.m_electoralCount;
       }
 			totalOpinion += state.PopularVote;
+
+      //state.m_dirty = false;
     }
     foreach( State state in m_statesNotInPlay )
     {
