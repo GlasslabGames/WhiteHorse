@@ -7058,6 +7058,7 @@ MonoBehaviour:
   WeekMeter: {fileID: 1689833998}
   ElectoralVoteMeter: {fileID: 842112744}
   PopularVoteMeter: {fileID: 1405221144}
+  TitleScreen: {fileID: 0}
   UseAI: 1
 --- !u!114 &733379578
 MonoBehaviour:
@@ -8923,11 +8924,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90b02db2fba94ce49a3e25af9995a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_enableNetworking: 0
-  m_actAsServer: 1
-  m_url: 10.130.13.73
   m_port: 25000
   m_allowedConnections: 4
+  m_hostLabel: {fileID: 0}
 --- !u!4 &886292406
 Transform:
   m_ObjectHideFlags: 0
