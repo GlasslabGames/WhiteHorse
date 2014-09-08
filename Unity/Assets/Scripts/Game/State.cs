@@ -57,6 +57,9 @@ public class State : MonoBehaviour
   private GameObject m_opponentFloatingText;
   private GameObject m_popularVoteText;
 
+  public bool m_dirty = false;
+  public bool m_receivedOpponentInfo = false;
+
 
   public int PlayerBasisCount
   {
@@ -101,6 +104,10 @@ public class State : MonoBehaviour
   public int[] PlayerCampaignWorkerCounts
   {
     get { return m_playerCampaignWorkerCounts; }
+  }
+  public bool IsPeestoneState
+  {
+    get { return m_electoralCount >= 10; }
   }
 
 	private SpriteRenderer m_stateColor;
@@ -174,13 +181,20 @@ public class State : MonoBehaviour
   {
     if( m_playerSupportersSentToOpponent ) { return PlayerIncrement(); }
 
-    networkView.RPC( "OpponentCreateSupporters", RPCMode.Others, new Vector3( PlayerCampaignWorkerCounts[0], PlayerCampaignWorkerCounts[1], PlayerCampaignWorkerCounts[2] ) );
+    //if( m_dirty )
+    {
+      networkView.RPC( "OpponentCreateSupporters", RPCMode.Others, new Vector3( PlayerCampaignWorkerCounts[0], PlayerCampaignWorkerCounts[1], PlayerCampaignWorkerCounts[2] ) );
+    }
 
     // TEMP
-    if( GameObjectAccessor.Instance.UseAI && m_playerSupporterList.Count > 0 )
+    if( GameObjectAccessor.Instance.UseAI )
     {
-      m_nextOpponentSupporterList.Add( 1 );
-      m_nextOpponentSupporterList.Add( 1 );
+      m_receivedOpponentInfo = true;
+      if( m_playerSupporterList.Count > 0 )
+      {
+        m_nextOpponentSupporterList.Add( 1 );
+        m_nextOpponentSupporterList.Add( 1 );
+      }
     }
     // TEMP
 
@@ -234,12 +248,16 @@ public class State : MonoBehaviour
     
     m_popularVoteUpdatedForPlayer = true;
     
-    return false;
+    return OpponentIncrement();
   }
   public bool OpponentIncrement()
   {
-    if( m_currentOpponentSupporterIteration >= Math.Max( m_opponentSupporterList.Count, m_nextOpponentSupporterList.Count ) ) { return UpdatePopularVoteOpponent(); }
+    if( !m_receivedOpponentInfo )
+    {
+      return false;
+    }
 
+    if( m_currentOpponentSupporterIteration >= Math.Max( m_opponentSupporterList.Count, m_nextOpponentSupporterList.Count ) ) { return UpdatePopularVoteOpponent(); }
 
     CampaignWorker workerToChange = null;
 
@@ -355,7 +373,7 @@ public class State : MonoBehaviour
     
     m_popularVoteUpdatedForOpponent = true;
     
-    return false;
+    return UpdateStateWithPopularVote();
   }
   public bool UpdateStateWithPopularVote()
   {
@@ -373,7 +391,7 @@ public class State : MonoBehaviour
 
     m_stateUpdatedWithPopularVote = true;
 
-    return false;
+    return true;
   }
 
   public void PrepareToUpdate()
@@ -453,7 +471,7 @@ public class State : MonoBehaviour
 
       if( playParticles )
       {
-        //GameObject.Instantiate( GameObjectAccessor.Instance.FlipStateParticleSystemNeutral, new Vector3( gameObject.transform.position.x, gameObject.transform.position.y, -0.5f ), Quaternion.identity );
+        GameObject.Instantiate( GameObjectAccessor.Instance.FlipStateParticleSystemNeutral, new Vector3( gameObject.transform.position.x, gameObject.transform.position.y, -0.5f ), Quaternion.identity );
       }
 			break;
 		}
@@ -487,12 +505,16 @@ public class State : MonoBehaviour
       CreateSupporterPrefab( true );
 
       GameObjectAccessor.Instance.Budget.ConsumeAmount( 10 );
+
+      m_dirty = true;
     }
   }
 
   [RPC]
   public void OpponentCreateSupporters( Vector3 nextOpponentsList )
   {
+    m_receivedOpponentInfo = true;
+
     Debug.Log ( nextOpponentsList );
     m_nextOpponentSupporterList.Clear();
     
@@ -508,11 +530,11 @@ public class State : MonoBehaviour
     //m_opponentSupportersAddedThisTurn = count;
     //m_nextOpponentCampaignWorkerCounts = counts;
     //m_nextOpponentSupporterList = nextOpponentsList;
-      Debug.Log ( m_nextOpponentSupporterList.Count );
-      for( int i = 0; i < m_nextOpponentSupporterList.Count; i++ )
+      Debug.Log ( "Received opponent info: " + m_nextOpponentSupporterList.Count );
+      /*for( int i = 0; i < m_nextOpponentSupporterList.Count; i++ )
       {
         Debug.Log ( m_nextOpponentSupporterList[i] );
-      }
+      }*/
     //m_opponentCampaignWorkerCounts = counts;
     //CreateSupporterPrefab( false );
   }
@@ -561,6 +583,8 @@ public class State : MonoBehaviour
           if( bounce )  worker.gameObject.SendMessage( "BounceOut" );
           GameObjectAccessor.Instance.Budget.ConsumeAmount( 15 );
           GameObjectAccessor.Instance.DetailView.SetState( GameObjectAccessor.Instance.DetailView.CurrentState, false );
+
+          m_dirty = true;
           break;
         }
       }
@@ -585,6 +609,8 @@ public class State : MonoBehaviour
           if( bounce )  worker.gameObject.SendMessage( "BounceOut" );
           GameObjectAccessor.Instance.Budget.ConsumeAmount( 20 );
           GameObjectAccessor.Instance.DetailView.SetState( GameObjectAccessor.Instance.DetailView.CurrentState, false );
+
+          m_dirty = true;
           break;
         }
       }
