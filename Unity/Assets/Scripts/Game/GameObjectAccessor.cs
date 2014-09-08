@@ -29,5 +29,8 @@ public class GameObjectAccessor : SingletonBehavior<GameObjectAccessor>
 	public VoteMeter ElectoralVoteMeter;
 	public OpinionMeter PopularVoteMeter;
   public GameObject TitleScreen;
+  public GameObject FlipStateParticleSystemRed;
+  public GameObject FlipStateParticleSystemBlue;
+  public GameObject FlipStateParticleSystemNeutral;
   public bool UseAI;
 }
