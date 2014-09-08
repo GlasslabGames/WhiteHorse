@@ -107,7 +107,22 @@ public class State : MonoBehaviour
 	private SpriteRenderer m_stateOutline;
 	private SpriteRenderer m_stateStripes;
 
-
+	private Transform m_center;
+	public Vector3 Center {
+		get {
+			if (m_center == null) {
+				m_center = transform.Find ("uiAnchor");
+				if (m_center == null) m_center = transform;
+			}
+			return m_center.position;
+		}
+	}
+	public Vector3 UiCenter {
+		get {
+			return Utility.ConvertFromGameToUiPosition(Center);
+		}
+	}	
+	
   public void Start()
   {
     m_playerSupporterList = new List< GameObject >();
@@ -141,15 +156,15 @@ public class State : MonoBehaviour
 	
 		Transform container = GameObjectAccessor.Instance.FloatingTextContainer.transform;
 
-    m_playerFloatingText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( m_workerOffsetY + m_workerCountOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
+    m_playerFloatingText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( m_workerOffsetY + m_workerCountOffset + Center ), Quaternion.identity ) as GameObject;
     m_playerFloatingText.GetComponent< FloatingText >().Display( "" );
 		m_playerFloatingText.transform.parent = container;
     
-    m_opponentFloatingText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( -m_workerOffsetY + m_workerCountOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
+    m_opponentFloatingText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( -m_workerOffsetY + m_workerCountOffset + Center ), Quaternion.identity ) as GameObject;
     m_opponentFloatingText.GetComponent< FloatingText >().Display( "" );
 		m_opponentFloatingText.transform.parent = container;
 		
-		m_popularVoteText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( m_popularVoteOffset + gameObject.transform.position ), Quaternion.identity ) as GameObject;
+		m_popularVoteText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( m_popularVoteOffset + Center ), Quaternion.identity ) as GameObject;
     m_popularVoteText.GetComponent< FloatingText >().Display( "" );
 		m_popularVoteText.transform.parent = container;
 	}
@@ -504,7 +519,7 @@ public class State : MonoBehaviour
 
   public void CreateSupporterPrefab( bool isPlayer )
   {
-    Vector3 supporterPosition = gameObject.transform.position + m_workerOffsetX + ( isPlayer ? m_workerOffsetY + ( m_playerSupporterList.Count * m_workerAdjacencyOffset ) : -m_workerOffsetY + ( ( m_opponentSupporterList.Count ) * m_workerAdjacencyOffset ) );
+    Vector3 supporterPosition = Center + m_workerOffsetX + ( isPlayer ? m_workerOffsetY + ( m_playerSupporterList.Count * m_workerAdjacencyOffset ) : -m_workerOffsetY + ( ( m_opponentSupporterList.Count ) * m_workerAdjacencyOffset ) );
 
     GameObject newSupporter = GameObject.Instantiate( GameObjectAccessor.Instance.SupporterPrefab, supporterPosition, Quaternion.identity ) as GameObject;
 

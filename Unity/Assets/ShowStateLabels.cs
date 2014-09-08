@@ -24,9 +24,7 @@ public class ShowStateLabels : MonoBehaviour {
 			if (Content == LabelOptions.VOTES) label.text = state.m_electoralCount.ToString();
 			else if (Content == LabelOptions.ABBREVIATION) label.text = state.m_abbreviation;
 
-			stateTransform = state.transform.Find("uiAnchor");
-			if (stateTransform == null) stateTransform = state.transform;
-			newTransform.position = Utility.ConvertFromGameToUiPosition(stateTransform.position);
+			newTransform.position = state.UiCenter;
 		}
 	}
 }

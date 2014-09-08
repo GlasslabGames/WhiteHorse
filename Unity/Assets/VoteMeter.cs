@@ -25,8 +25,6 @@ public class VoteMeter : MonoBehaviour {
 		m_startingOpponentWidth = m_opponentBar.width;
 		m_targetOpponentWidth = (int) (opponentPercent * m_maxWidth);
 
-		Debug.Log (m_startingPlayerWidth + ", " + m_targetPlayerWidth);
-
 		m_time = 0;
 	}
 
