@@ -7581,6 +7581,12 @@ MonoBehaviour:
   ElectoralVoteMeter: {fileID: 842112744}
   PopularVoteMeter: {fileID: 1405221144}
   TitleScreen: {fileID: 0}
+  FlipStateParticleSystemRed: {fileID: 100014, guid: 80d3b2a064b5f48c18f0e501cd210621,
+    type: 2}
+  FlipStateParticleSystemBlue: {fileID: 100014, guid: fa97c806948be4ac1add97a7c8497392,
+    type: 2}
+  FlipStateParticleSystemNeutral: {fileID: 100014, guid: 61ae8e37fdd4a43da8f20fc5854edfe8,
+    type: 2}
   UseAI: 1
 --- !u!114 &733379578
 MonoBehaviour:
@@ -15742,7 +15748,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3028
+  startingRenderQueue: 3027
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
@@ -17022,7 +17028,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3029
+  startingRenderQueue: 3028
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
