@@ -64,7 +64,7 @@ public class GameStateManager : MonoBehaviour
 
   public void Start()
   {
-    UpdateElectoralVotes();
+    UpdateElectoralVotes(true);
   }
 
 
@@ -139,7 +139,7 @@ public class GameStateManager : MonoBehaviour
   }
 
 
-  public void UpdateElectoralVotes()
+  public void UpdateElectoralVotes(bool atBeginning = false)
   {
     int totalRedVotes = 0;
     int totalBlueVotes = 0;
@@ -172,8 +172,8 @@ public class GameStateManager : MonoBehaviour
 		int playerVotes = (GameObjectAccessor.Instance.Player.m_leaning == Leaning.Blue) ? totalBlueVotes : totalRedVotes;
 		int opponentVotes = (GameObjectAccessor.Instance.Player.m_opponentLeaning == Leaning.Blue) ? totalBlueVotes : totalRedVotes;
 
-    GameObjectAccessor.Instance.PlayerVoteCount.Set(playerVotes);
-    GameObjectAccessor.Instance.OpponentVoteCount.Set (opponentVotes);
+    GameObjectAccessor.Instance.PlayerVoteCount.Set(playerVotes, !atBeginning);
+    GameObjectAccessor.Instance.OpponentVoteCount.Set (opponentVotes, !atBeginning);
 
 		if (GameObjectAccessor.Instance.ElectoralVoteMeter != null)
 			GameObjectAccessor.Instance.ElectoralVoteMeter.Refresh(playerVotes, opponentVotes);

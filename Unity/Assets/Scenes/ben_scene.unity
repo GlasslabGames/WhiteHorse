@@ -7587,6 +7587,8 @@ MonoBehaviour:
     type: 2}
   FlipStateParticleSystemNeutral: {fileID: 100014, guid: 61ae8e37fdd4a43da8f20fc5854edfe8,
     type: 2}
+  PlayerVoteCount: {fileID: 866550216}
+  OpponentVoteCount: {fileID: 1638443906}
   UseAI: 1
 --- !u!114 &733379578
 MonoBehaviour:
@@ -8863,6 +8865,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 866550214}
   - 114: {fileID: 866550215}
+  - 114: {fileID: 866550216}
   m_Layer: 9
   m_Name: Electoral count
   m_TagString: Untagged
@@ -8944,6 +8947,17 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &866550216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 866550213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8dde94581bd472e92d123d284c7f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &867267501
 GameObject:
   m_ObjectHideFlags: 0
@@ -17045,6 +17059,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1638443904}
   - 114: {fileID: 1638443905}
+  - 114: {fileID: 1638443906}
   m_Layer: 9
   m_Name: Electoral count
   m_TagString: Untagged
@@ -17126,6 +17141,17 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &1638443906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1638443903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8dde94581bd472e92d123d284c7f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1645567105
 GameObject:
   m_ObjectHideFlags: 0
