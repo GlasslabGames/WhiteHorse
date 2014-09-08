@@ -10,9 +10,6 @@ public class WeekMeter : MonoBehaviour {
 	private int m_totalTurns;
 
 	void Awake () {
-		m_fill.color = (GameObjectAccessor.Instance.Player.m_leaning == Leaning.Blue) ?
-			GameObjectAccessor.Instance.GameColorSettings.blueDarker : GameObjectAccessor.Instance.GameColorSettings.redDarker;
-
 		m_totalTurns = GameObjectAccessor.Instance.GameStateManager.m_totalElectionWeeks;
 		GameObject copy = m_rulerGrid.transform.GetChild (0).gameObject;
 		while (m_rulerGrid.transform.childCount < m_totalTurns) {
