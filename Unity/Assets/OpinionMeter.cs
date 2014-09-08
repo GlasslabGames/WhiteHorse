@@ -12,7 +12,6 @@ public class OpinionMeter : MonoBehaviour {
 	private float m_targetPlayerWidth;
 
 	public void Refresh (float popularVote) {
-		Debug.Log ("Updating opinion meter: "+popularVote);
 		popularVote = popularVote / 2f + 0.5f; // blueness, 0 to 1
 
 		// if the player's not blue, use the inverse instead

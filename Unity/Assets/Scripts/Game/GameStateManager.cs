@@ -203,9 +203,9 @@ public class GameStateManager : MonoBehaviour
       {
         totalBlueVotes += state.m_electoralCount;
       }
-			
 			totalOpinion += state.PopularVote * state.m_populationInMillions;
 			totalPopulation += state.m_populationInMillions;
+
 		}
 
 		m_playerVotes = (GameObjectAccessor.Instance.Player.m_leaning == Leaning.Blue) ? totalBlueVotes : totalRedVotes;
@@ -216,7 +216,9 @@ public class GameStateManager : MonoBehaviour
 
 		if (GameObjectAccessor.Instance.ElectoralVoteMeter != null)
       GameObjectAccessor.Instance.ElectoralVoteMeter.Refresh(m_playerVotes, m_opponentVotes);
-		
+
+		Debug.Log("Average opinion: "+totalOpinion / totalPopulation);
+
 		if (GameObjectAccessor.Instance.PopularVoteMeter != null)
 			GameObjectAccessor.Instance.PopularVoteMeter.Refresh( totalOpinion / totalPopulation );
 

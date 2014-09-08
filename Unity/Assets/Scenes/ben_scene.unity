@@ -13483,7 +13483,7 @@ MonoBehaviour:
   m_marker: {fileID: 234997770}
   m_playerBar: {fileID: 1457197045}
   m_opponentBar: {fileID: 117328479}
-  m_maxWidth: 940
+  m_maxWidth: 766
 --- !u!1 &1408028704
 GameObject:
   m_ObjectHideFlags: 0
