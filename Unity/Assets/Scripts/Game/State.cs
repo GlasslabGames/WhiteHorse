@@ -471,7 +471,7 @@ public class State : MonoBehaviour
 
       if( playParticles )
       {
-        //GameObject.Instantiate( GameObjectAccessor.Instance.FlipStateParticleSystemNeutral, new Vector3( gameObject.transform.position.x, gameObject.transform.position.y, -0.5f ), Quaternion.identity );
+        GameObject.Instantiate( GameObjectAccessor.Instance.FlipStateParticleSystemNeutral, new Vector3( gameObject.transform.position.x, gameObject.transform.position.y, -0.5f ), Quaternion.identity );
       }
 			break;
 		}
