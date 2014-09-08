@@ -172,8 +172,8 @@ public class GameStateManager : MonoBehaviour
 		int playerVotes = (GameObjectAccessor.Instance.Player.m_leaning == Leaning.Blue) ? totalBlueVotes : totalRedVotes;
 		int opponentVotes = (GameObjectAccessor.Instance.Player.m_opponentLeaning == Leaning.Blue) ? totalBlueVotes : totalRedVotes;
 
-    GameObjectAccessor.Instance.PlayerVotesLabel.text = "" + playerVotes;
-    GameObjectAccessor.Instance.OpponentVotesLabel.text = "" + opponentVotes;
+    GameObjectAccessor.Instance.PlayerVoteCount.Set(playerVotes);
+    GameObjectAccessor.Instance.OpponentVoteCount.Set (opponentVotes);
 
 		if (GameObjectAccessor.Instance.ElectoralVoteMeter != null)
 			GameObjectAccessor.Instance.ElectoralVoteMeter.Refresh(playerVotes, opponentVotes);

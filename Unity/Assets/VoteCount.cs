@@ -21,7 +21,7 @@ public class VoteCount : MonoBehaviour {
 			if (m_current < m_target) m_current ++;
 			else m_current --;
 
-			m_label = m_target;
+			m_label.text = m_target.ToString();
 		}
 	}
 
