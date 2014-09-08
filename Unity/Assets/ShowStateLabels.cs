@@ -5,7 +5,6 @@ using System.Collections;
 // You can set the label position for a state by adding a "stateLabel" object as its child. Else it's automatic.
 // This is just a first pass, it will have to be refined to work with the zoom.
 public class ShowStateLabels : MonoBehaviour {
-	public Transform StateContainer;
 	public enum LabelOptions { ABBREVIATION, VOTES };
 	public LabelOptions Content = LabelOptions.VOTES;
 	public bool ShowOnlyOnActiveStates = true;
@@ -17,7 +16,7 @@ public class ShowStateLabels : MonoBehaviour {
 		Transform newTransform;
 		Transform stateTransform;
 		UILabel label;
-		foreach (State state in StateContainer.GetComponentsInChildren<State>()) {
+		foreach (State state in GameObjectAccessor.Instance.StatesContainer.transform.GetComponentsInChildren<State>()) {
 			if (ShowOnlyOnActiveStates && !state.m_inPlay) continue;
 			Debug.Log("showing label over "+state.name);
 			newTransform = Utility.InstantiateAsChild(statePrefab, transform);
