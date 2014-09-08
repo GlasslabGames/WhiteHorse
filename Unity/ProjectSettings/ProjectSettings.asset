@@ -87,20 +87,27 @@ PlayerSettings:
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
   uIStatusBarHidden: 1
-  uIExitOnSuspend: 0
+  uIExitOnSuspend: 1
   uIStatusBarStyle: 0
-  iPhoneSplashScreen: {fileID: 0}
-  iPhoneHighResSplashScreen: {fileID: 0}
-  iPhoneTallHighResSplashScreen: {fileID: 0}
-  iPadPortraitSplashScreen: {fileID: 0}
-  iPadHighResPortraitSplashScreen: {fileID: 0}
-  iPadLandscapeSplashScreen: {fileID: 0}
-  iPadHighResLandscapeSplashScreen: {fileID: 0}
+  iPhoneSplashScreen: {fileID: 2800000, guid: f634da8ef6f3e4131940a04eb58a4ead, type: 3}
+  iPhoneHighResSplashScreen: {fileID: 2800000, guid: f634da8ef6f3e4131940a04eb58a4ead,
+    type: 3}
+  iPhoneTallHighResSplashScreen: {fileID: 2800000, guid: f634da8ef6f3e4131940a04eb58a4ead,
+    type: 3}
+  iPadPortraitSplashScreen: {fileID: 2800000, guid: f634da8ef6f3e4131940a04eb58a4ead,
+    type: 3}
+  iPadHighResPortraitSplashScreen: {fileID: 2800000, guid: f634da8ef6f3e4131940a04eb58a4ead,
+    type: 3}
+  iPadLandscapeSplashScreen: {fileID: 2800000, guid: f634da8ef6f3e4131940a04eb58a4ead,
+    type: 3}
+  iPadHighResLandscapeSplashScreen: {fileID: 2800000, guid: f634da8ef6f3e4131940a04eb58a4ead,
+    type: 3}
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   AndroidKeystoreName: 
   AndroidKeyaliasName: 
-  resolutionDialogBanner: {fileID: 0}
+  resolutionDialogBanner: {fileID: 2800000, guid: f634da8ef6f3e4131940a04eb58a4ead,
+    type: 3}
   m_BuildTargetIcons:
   - m_BuildTarget: 
     m_Icons:
@@ -149,7 +156,9 @@ PlayerSettings:
   psp2PackagedResourcesPath: 
   flashStrippingLevel: 2
   spritePackerPolicy: 
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: States
+    2: States
   metroPackageName: New folder
   metroPackageLogo: 
   metroPackageLogo140: 
