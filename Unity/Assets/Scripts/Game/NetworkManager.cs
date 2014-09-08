@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 
@@ -17,87 +17,7 @@ public class NetworkManager : MonoBehaviour
 
   public void Awake()
   {
-    Debug.Log ( "Prefs: " + PlayerPrefs.GetString( "NetworkType" ) );
-
-    if( PlayerPrefs.GetString( "NetworkType" ) == "Client" )
-    {
-      GameObjectAccessor.Instance.Player.m_leaning = Leaning.Blue;
-      GameObjectAccessor.Instance.Player.m_opponentLeaning = Leaning.Red;
-      GameObjectAccessor.Instance.UseAI = false;
-    }
-    else if( PlayerPrefs.GetString( "NetworkType" ) == "Server" )
-    {
-      GameObjectAccessor.Instance.Player.m_leaning = Leaning.Red;
-      GameObjectAccessor.Instance.Player.m_opponentLeaning = Leaning.Blue;
-      GameObjectAccessor.Instance.UseAI = false;
-    }
-    else if( PlayerPrefs.GetString( "NetworkType" ) == "Offline" )
-    {
-      GameObjectAccessor.Instance.Player.m_leaning = Leaning.Red;
-      GameObjectAccessor.Instance.Player.m_opponentLeaning = Leaning.Blue;
-      GameObjectAccessor.Instance.UseAI = true;
-    }
-
     PlayerPrefs.SetString( "NetworkType", "NONE" );
-
-
-    /*Debug.Log ( "Offline" );
-    Debug.Log ( Network.peerType );
-    if( Network.peerType == NetworkPeerType.Client )
-    {
-      Debug.Log ( "Client" );
-
-      if( GameObjectAccessor.Instance != null )
-      {
-        GameObjectAccessor.Instance.Player.m_leaning = Leaning.Blue;
-        GameObjectAccessor.Instance.Player.m_opponentLeaning = Leaning.Red;
-        GameObjectAccessor.Instance.UseAI = false;
-      }
-    }
-    else if( Network.peerType == NetworkPeerType.Server )
-    {
-      Debug.Log ( "Server" );
-
-      if( GameObjectAccessor.Instance != null )
-      {
-        GameObjectAccessor.Instance.Player.m_leaning = Leaning.Red;
-        GameObjectAccessor.Instance.Player.m_opponentLeaning = Leaning.Blue;
-        GameObjectAccessor.Instance.UseAI = false;
-      }
-    }
-    else
-    {
-      Debug.Log ( "Offline" );
-
-      if( GameObjectAccessor.Instance != null )
-      {
-        GameObjectAccessor.Instance.Player.m_leaning = Leaning.Red;
-        GameObjectAccessor.Instance.Player.m_opponentLeaning = Leaning.Blue;
-        GameObjectAccessor.Instance.UseAI = true;
-      }
-    }*/
-    //Debug.Log ( Network.peerType );
-
-    /*if( m_actAsServer )
-    {
-      GameObjectAccessor.Instance.Player.m_leaning = Leaning.Red;
-      GameObjectAccessor.Instance.Player.m_opponentLeaning = Leaning.Blue;
-
-      if( m_enableNetworking )
-      {
-        LaunchServer();
-      }
-    }
-    else
-    {
-      GameObjectAccessor.Instance.Player.m_leaning = Leaning.Blue;
-      GameObjectAccessor.Instance.Player.m_opponentLeaning = Leaning.Red;
-
-      if( m_enableNetworking )
-      {
-        ConnectToServer();
-      }
-    }*/
   }
 
   public void Update()
@@ -156,7 +76,7 @@ public class NetworkManager : MonoBehaviour
         
     //Network.incomingPassword = "glasslab2014";
     Debug.Log( "Launching server at" );
-    bool useNatPunchthrough = !Network.HavePublicAddress();
+    bool useNatPunchthrough = false;// !Network.HavePublicAddress();
     NetworkConnectionError connectionResult = Network.InitializeServer( m_allowedConnections, m_port, useNatPunchthrough );
     Debug.Log( "\n\nLaunchServer() Result: " + connectionResult + "\n\n" );
 

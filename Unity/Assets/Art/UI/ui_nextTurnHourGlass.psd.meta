@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 36c589c75a6a94ef182d4cd93ab59001
+guid: 7be8965f8e7f340a09f2896c4aa445c2
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ui_nextTurnUP
+    21300000: ui_nextTurnHourGlass
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,9 +26,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -41,11 +41,7 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings:
-  - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -2
-    compressionQuality: 50
+  buildTargetSettings: []
   spriteSheet:
     sprites: []
   spritePackingTag: 

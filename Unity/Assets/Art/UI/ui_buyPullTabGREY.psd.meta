@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 36c589c75a6a94ef182d4cd93ab59001
+guid: a6427395d4ce448d0a52712856b1bfff
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ui_nextTurnUP
+    21300000: ui_buyPullTabGREY
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,9 +26,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -41,11 +41,7 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings:
-  - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -2
-    compressionQuality: 50
+  buildTargetSettings: []
   spriteSheet:
     sprites: []
   spritePackingTag: 
