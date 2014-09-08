@@ -42,10 +42,11 @@ public class DetailView : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.mousePosition.y < 85 || (Input.mousePosition.x > 655 && Input.mousePosition.y < 147)) return; // kinda hacky way to ignore clicks on the bottom ui
+    //Debug.Log ( Input.mousePosition );
+		if (Input.mousePosition.y < ( Screen.height * 0.15f ) || (Input.mousePosition.x > ( Screen.width * 0.85f ) && Input.mousePosition.y < ( Screen.height * 0.25f ) ) ) return; // kinda hacky way to ignore clicks on the bottom ui
 
-		if (Input.GetMouseButtonDown (0))
-			Debug.Log (Input.mousePosition);
+		//if (Input.GetMouseButtonDown (0))
+			//Debug.Log (Input.mousePosition);
 
 		// if they just released the mouse, select the state they were over
 		if (Input.GetMouseButtonUp (0) && m_currentState != null) {

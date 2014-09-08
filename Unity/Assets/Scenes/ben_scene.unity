@@ -6979,6 +6979,7 @@ MonoBehaviour:
   WeekMeter: {fileID: 1689833998}
   ElectoralVoteMeter: {fileID: 842112744}
   PopularVoteMeter: {fileID: 1405221144}
+  TitleScreen: {fileID: 0}
   UseAI: 1
 --- !u!114 &733379578
 MonoBehaviour:
@@ -8931,11 +8932,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90b02db2fba94ce49a3e25af9995a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_enableNetworking: 0
-  m_actAsServer: 1
-  m_url: 10.130.13.73
   m_port: 25000
   m_allowedConnections: 4
+  m_hostLabel: {fileID: 0}
 --- !u!4 &886292406
 Transform:
   m_ObjectHideFlags: 0
@@ -17105,7 +17104,7 @@ MonoBehaviour:
     mMethodName: PlaceSupporter
     mParameters: []
     oneShot: 0
-  debug: 0
+  debug: 1
   UseDragProof: 0
 --- !u!61 &1674475521
 BoxCollider2D:
@@ -20466,7 +20465,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3022
+  startingRenderQueue: 3025
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
