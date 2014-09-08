@@ -39,7 +39,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 4a659ec2e952a45138e0584b59147811, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .300000012
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1359aeb37551d8a49b82c3d932442b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 5
+  destroyTime: 40
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
