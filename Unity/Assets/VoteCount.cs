@@ -14,7 +14,12 @@ public class VoteCount : MonoBehaviour {
 
 	public void Set(int target, bool animate = true) {
 		m_target = target;
-		m_count = m_waitTime;
+		if (animate) {
+			m_count = m_waitTime;
+		} else {
+			m_current = target;
+			m_label.text = m_current.ToString();
+		}
 	}
 
 	void Update() {
