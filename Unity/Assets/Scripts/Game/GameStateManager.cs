@@ -30,6 +30,10 @@ public class GameStateManager : MonoBehaviour
   public int m_currentAnte;
 
 
+  private int m_playerVotes;
+  private int m_opponentVotes;
+
+
   public TurnState CurrentTurnState
   {
     get { return m_currentTurnState; }
@@ -113,6 +117,17 @@ public class GameStateManager : MonoBehaviour
 
 			GameObjectAccessor.Instance.GameOverBlueVotes.text = GameObjectAccessor.Instance.OpponentVotesLabel.text;
 			GameObjectAccessor.Instance.GameOverBlueVotes.color = AutoSetColor.GetColor(false, AutoSetColor.ColorChoice.LIGHT);
+
+      if( m_playerVotes > m_opponentVotes )
+      {
+        // victory sound
+        GameObject.Instantiate( GameObjectAccessor.Instance.VictorySound );
+      }
+      else
+      {
+        // defeat sound
+        GameObject.Instantiate( GameObjectAccessor.Instance.DefeatSound );
+      }
 		}
 		else
     {
@@ -181,14 +196,14 @@ public class GameStateManager : MonoBehaviour
 			totalOpinion += state.PopularVote;
 		}
 
-		int playerVotes = (GameObjectAccessor.Instance.Player.m_leaning == Leaning.Blue) ? totalBlueVotes : totalRedVotes;
-		int opponentVotes = (GameObjectAccessor.Instance.Player.m_opponentLeaning == Leaning.Blue) ? totalBlueVotes : totalRedVotes;
+		m_playerVotes = (GameObjectAccessor.Instance.Player.m_leaning == Leaning.Blue) ? totalBlueVotes : totalRedVotes;
+		m_opponentVotes = (GameObjectAccessor.Instance.Player.m_opponentLeaning == Leaning.Blue) ? totalBlueVotes : totalRedVotes;
 
-    GameObjectAccessor.Instance.PlayerVoteCount.Set(playerVotes, !atBeginning);
-    GameObjectAccessor.Instance.OpponentVoteCount.Set (opponentVotes, !atBeginning);
+    GameObjectAccessor.Instance.PlayerVoteCount.Set(m_playerVotes, !atBeginning);
+    GameObjectAccessor.Instance.OpponentVoteCount.Set (m_opponentVotes, !atBeginning);
 
 		if (GameObjectAccessor.Instance.ElectoralVoteMeter != null)
-			GameObjectAccessor.Instance.ElectoralVoteMeter.Refresh(playerVotes, opponentVotes);
+      GameObjectAccessor.Instance.ElectoralVoteMeter.Refresh(m_playerVotes, m_opponentVotes);
 		
 		if (GameObjectAccessor.Instance.PopularVoteMeter != null)
 			GameObjectAccessor.Instance.PopularVoteMeter.Refresh( totalOpinion / 50f );
