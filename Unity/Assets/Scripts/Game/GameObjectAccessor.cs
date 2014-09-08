@@ -28,5 +28,6 @@ public class GameObjectAccessor : SingletonBehavior<GameObjectAccessor>
 	public WeekMeter WeekMeter;
 	public VoteMeter ElectoralVoteMeter;
 	public OpinionMeter PopularVoteMeter;
+  public GameObject TitleScreen;
   public bool UseAI;
 }

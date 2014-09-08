@@ -12,6 +12,8 @@ public class ZoomedViewManager : MonoBehaviour {
 	}
 
 	void Update () {
+    if( GameObjectAccessor.Instance.GameStateManager.CurrentTurnState == TurnState.ConnectPlayers )  return;
+
 		// if they released the button, hide the zoom
 		if (Input.GetMouseButtonUp(0)) Show(false);
 		// else if they pressed the button, start the countdown to showing the zoom
@@ -41,6 +43,8 @@ public class ZoomedViewManager : MonoBehaviour {
 	}
 	
 	void Show(bool visible) {
+    if( GameObjectAccessor.Instance.GameStateManager.CurrentTurnState == TurnState.ConnectPlayers && visible )  return;
+
 		Active = visible;
 		foreach (Renderer r in GetComponentsInChildren<Renderer> (true)) {
 			r.enabled = visible;

@@ -430,6 +430,8 @@ public class State : MonoBehaviour
 	}
 	
 	public void Highlight(bool active) {
+    if( GameObjectAccessor.Instance.GameStateManager.CurrentTurnState == TurnState.ConnectPlayers )  return;
+
 		if (active) {
 			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.highlightOutline;
 			m_stateOutline.sortingOrder = -5;
