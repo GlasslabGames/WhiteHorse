@@ -1,6 +1,8 @@
 fileFormatVersion: 2
 guid: c62fedf676a7f1c428e67e88696682f4
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: chargeParticle_halfSize
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -35,6 +37,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 1
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 50
   alphaIsTransparency: 1
   textureType: 8

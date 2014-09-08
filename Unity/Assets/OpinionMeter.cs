@@ -6,6 +6,10 @@ public class OpinionMeter : MonoBehaviour {
 	public UITexture m_playerBar; // left
 	public UITexture m_opponentBar; // bg
 	public int m_maxWidth;
+	
+	private float m_time = -1;
+	private float m_startingPlayerWidth;
+	private float m_targetPlayerWidth;
 
 	public void Refresh (float popularVote) {
 		Debug.Log ("Updating opinion meter: "+popularVote);
@@ -14,7 +18,19 @@ public class OpinionMeter : MonoBehaviour {
 		// if the player's not blue, use the inverse instead
 		if (GameObjectAccessor.Instance.Player.m_leaning != Leaning.Blue) popularVote = 1 - popularVote;
 
-		m_playerBar.width = (int) (m_maxWidth * popularVote);
-		m_marker.transform.localPosition = new Vector3 (m_playerBar.width, m_marker.transform.localPosition.y, 0);
+		m_startingPlayerWidth = m_playerBar.width;
+		m_targetPlayerWidth = (int) (m_maxWidth * popularVote);
+		m_time = 0;
+	}
+
+	void Update() {
+		if (m_time > -1) {
+			m_time += Time.deltaTime;
+			
+			m_playerBar.width = (int) Mathf.Lerp(m_startingPlayerWidth, m_targetPlayerWidth, m_time / GameObjectAccessor.Instance.VoteUpdateTime);
+			m_marker.transform.localPosition = new Vector3 (m_playerBar.width, m_marker.transform.localPosition.y, 0);
+			
+			if (m_time >= GameObjectAccessor.Instance.VoteUpdateTime) m_time = -1; // stop lerping
+		}
 	}
 }

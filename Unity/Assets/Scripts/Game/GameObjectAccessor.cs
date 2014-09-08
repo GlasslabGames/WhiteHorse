@@ -32,5 +32,8 @@ public class GameObjectAccessor : SingletonBehavior<GameObjectAccessor>
   public GameObject FlipStateParticleSystemRed;
   public GameObject FlipStateParticleSystemBlue;
   public GameObject FlipStateParticleSystemNeutral;
+	public VoteCount PlayerVoteCount;
+	public VoteCount OpponentVoteCount;
   public bool UseAI;
+	public float VoteUpdateTime;
 }
