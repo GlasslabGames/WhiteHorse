@@ -187,10 +187,14 @@ public class State : MonoBehaviour
     }
 
     // TEMP
-    if( GameObjectAccessor.Instance.UseAI && m_playerSupporterList.Count > 0 )
+    if( GameObjectAccessor.Instance.UseAI )
     {
-      m_nextOpponentSupporterList.Add( 1 );
-      m_nextOpponentSupporterList.Add( 1 );
+      m_receivedOpponentInfo = true;
+      if( m_playerSupporterList.Count > 0 )
+      {
+        m_nextOpponentSupporterList.Add( 1 );
+        m_nextOpponentSupporterList.Add( 1 );
+      }
     }
     // TEMP
 
