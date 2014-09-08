@@ -8,6 +8,10 @@ public class WeekMeter : MonoBehaviour {
 	public float m_maxFillWidth;
 
 	private int m_totalTurns;
+	
+	private float m_time = -1;
+	private float m_startingWidth;
+	private float m_targetWidth;
 
 	void Awake () {
 		m_totalTurns = GameObjectAccessor.Instance.GameStateManager.m_totalElectionWeeks;
@@ -23,6 +27,18 @@ public class WeekMeter : MonoBehaviour {
 
 	public void Refresh(int weeks) {
 		float beginning = m_maxFillWidth - m_rulerWidth;
-		m_fill.width = (int) ((m_rulerWidth / m_totalTurns) * weeks + beginning); 
+		m_startingWidth = m_fill.width;
+		m_targetWidth = (int) ((m_rulerWidth / m_totalTurns) * weeks + beginning);
+		m_time = 0;
+	}
+
+	void Update() {
+		if (m_time > -1) {
+			m_time += Time.deltaTime;
+			
+			m_fill.width = (int) Mathf.Lerp(m_startingWidth, m_targetWidth, m_time / GameObjectAccessor.Instance.VoteUpdateTime);
+			
+			if (m_time >= GameObjectAccessor.Instance.VoteUpdateTime) m_time = -1; // stop lerping
+		}
 	}
 }

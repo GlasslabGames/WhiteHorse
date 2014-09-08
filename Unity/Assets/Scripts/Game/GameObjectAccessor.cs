@@ -35,4 +35,5 @@ public class GameObjectAccessor : SingletonBehavior<GameObjectAccessor>
 	public VoteCount PlayerVoteCount;
 	public VoteCount OpponentVoteCount;
   public bool UseAI;
+	public float VoteUpdateTime;
 }
