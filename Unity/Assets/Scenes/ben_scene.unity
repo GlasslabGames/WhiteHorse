@@ -7878,7 +7878,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &702932961
 Transform:
   m_ObjectHideFlags: 0
@@ -8497,6 +8497,10 @@ MonoBehaviour:
   VoteUpdateTime: 1
   VictorySound: {fileID: 100000, guid: f88edff21dd924997b203ab4336c22f4, type: 2}
   DefeatSound: {fileID: 100000, guid: 55c704952ca504ccfadec1b40f2f0776, type: 2}
+  Textures:
+    EndTurnButton: {fileID: 2800000, guid: 36c589c75a6a94ef182d4cd93ab59001, type: 3}
+    WaitButton: {fileID: 2800000, guid: 9531c6754a4444c7db52246e9333dd9d, type: 3}
+    ResultsButton: {fileID: 2800000, guid: b809e3c404dea49a29f5ff8863f06011, type: 3}
 --- !u!114 &733379578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10298,7 +10302,7 @@ Transform:
   m_GameObject: {fileID: 971908931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.0600004, y: 0, z: -10}
-  m_LocalScale: {x: .00130123622, y: .00130123622, z: .00130123622}
+  m_LocalScale: {x: .00130208337, y: .00130208337, z: .00130208337}
   m_Children:
   - {fileID: 95394698}
   - {fileID: 1757090852}
@@ -15564,7 +15568,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3027
+  startingRenderQueue: 3026
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
@@ -16546,7 +16550,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3028
+  startingRenderQueue: 3027
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
@@ -19347,7 +19351,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3012
+  startingRenderQueue: 3011
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
@@ -22357,7 +22361,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2128866681}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 870.5, y: -85, z: 0}
+  m_LocalPosition: {x: 869, y: -81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 702932961}
@@ -22372,7 +22376,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 128, y: 128}
+  m_Size: {x: 140, y: 140}
   m_Center: {x: 0, y: 0}
 --- !u!114 &2128866684
 MonoBehaviour:
@@ -22426,12 +22430,12 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 128
-  mHeight: 128
-  mDepth: 0
+  mWidth: 140
+  mHeight: 140
+  mDepth: -1
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
-  keepAspectRatio: 0
+  keepAspectRatio: 1
   aspectRatio: 1
   mType: 0
   mFillDirection: 4

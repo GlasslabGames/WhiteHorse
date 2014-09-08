@@ -21,3 +21,10 @@ public class GameColorSettings {
 	public Color blueDarker;
 	public Color redDarker;
 }
+
+[System.Serializable]
+public class GameTextures {
+	public Texture EndTurnButton;
+	public Texture WaitButton;
+	public Texture ResultsButton;
+}

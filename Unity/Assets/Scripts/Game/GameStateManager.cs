@@ -140,6 +140,9 @@ public class GameStateManager : MonoBehaviour
       {
         state.m_receivedOpponentInfo = false;
       }
+
+			// indicate that we can end the turn
+			GameObjectAccessor.Instance.EndTurnButton.mainTexture = GameObjectAccessor.Instance.Textures.EndTurnButton;
     }
   }
 
@@ -160,6 +163,9 @@ public class GameStateManager : MonoBehaviour
 
       GoToState( TurnState.Harvest );
       m_harvestTimer.StartTimer( NextHarvestAction );
+
+			// indicate that we're showing the harvest
+			GameObjectAccessor.Instance.EndTurnButton.mainTexture = GameObjectAccessor.Instance.Textures.ResultsButton;
     }
   }
 
@@ -168,7 +174,10 @@ public class GameStateManager : MonoBehaviour
   {
     int totalRedVotes = 0;
     int totalBlueVotes = 0;
+
 		float totalOpinion = 0;
+		float totalPopulation = 0;
+
     foreach( State state in m_statesInPlay )
     {
       if( state.m_stateLeaning == Leaning.Red )
@@ -179,7 +188,8 @@ public class GameStateManager : MonoBehaviour
       {
         totalBlueVotes += state.m_electoralCount;
       }
-			totalOpinion += state.PopularVote;
+			totalOpinion += state.PopularVote * state.m_populationInMillions;
+			totalPopulation += state.m_populationInMillions;
 
       //state.m_dirty = false;
     }
@@ -193,7 +203,9 @@ public class GameStateManager : MonoBehaviour
       {
         totalBlueVotes += state.m_electoralCount;
       }
-			totalOpinion += state.PopularVote;
+			
+			totalOpinion += state.PopularVote * state.m_populationInMillions;
+			totalPopulation += state.m_populationInMillions;
 		}
 
 		m_playerVotes = (GameObjectAccessor.Instance.Player.m_leaning == Leaning.Blue) ? totalBlueVotes : totalRedVotes;
@@ -206,7 +218,7 @@ public class GameStateManager : MonoBehaviour
       GameObjectAccessor.Instance.ElectoralVoteMeter.Refresh(m_playerVotes, m_opponentVotes);
 		
 		if (GameObjectAccessor.Instance.PopularVoteMeter != null)
-			GameObjectAccessor.Instance.PopularVoteMeter.Refresh( totalOpinion / 50f );
+			GameObjectAccessor.Instance.PopularVoteMeter.Refresh( totalOpinion / totalPopulation );
 
   }
 
@@ -218,6 +230,10 @@ public class GameStateManager : MonoBehaviour
       Debug.Log( "player turn completed!" );
 
       m_playerTurnCompleted = true;
+
+			// indicate that we're waiting for the opponent
+			GameObjectAccessor.Instance.EndTurnButton.mainTexture = GameObjectAccessor.Instance.Textures.WaitButton;
+
       CheckForHarvest();
 
       networkView.RPC( "CompleteOpponentTurn", RPCMode.Others );

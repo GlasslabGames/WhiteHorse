@@ -38,4 +38,6 @@ public class GameObjectAccessor : SingletonBehavior<GameObjectAccessor>
 	public float VoteUpdateTime;
   public GameObject VictorySound;
   public GameObject DefeatSound;
+  public GameTextures Textures;
+	public UITexture EndTurnButton;
 }
