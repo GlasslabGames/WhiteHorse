@@ -8501,6 +8501,7 @@ MonoBehaviour:
     EndTurnButton: {fileID: 2800000, guid: 36c589c75a6a94ef182d4cd93ab59001, type: 3}
     WaitButton: {fileID: 2800000, guid: 9531c6754a4444c7db52246e9333dd9d, type: 3}
     ResultsButton: {fileID: 2800000, guid: b809e3c404dea49a29f5ff8863f06011, type: 3}
+  EndTurnButton: {fileID: 2128866685}
 --- !u!114 &733379578
 MonoBehaviour:
   m_ObjectHideFlags: 0
