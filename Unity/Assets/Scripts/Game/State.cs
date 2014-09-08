@@ -348,11 +348,13 @@ public class State : MonoBehaviour
 
     if( m_stateUpdatedWithPopularVote || totalBasis == 0 ) return true;
 
+    Leaning currentLeaning = m_stateLeaning;
+
     if( m_playerBasisCount > m_opponentBasisCount ) m_stateLeaning = GameObjectAccessor.Instance.Player.m_leaning;
     else if( m_playerBasisCount < m_opponentBasisCount ) m_stateLeaning = GameObjectAccessor.Instance.Player.m_opponentLeaning;
     else m_stateLeaning = Leaning.Neutral;
 
-    UpdateColor( true );
+    UpdateColor( currentLeaning == m_stateLeaning ? false : true );
 
     m_stateUpdatedWithPopularVote = true;
 
