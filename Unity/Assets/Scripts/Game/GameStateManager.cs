@@ -62,12 +62,13 @@ public class GameStateManager : MonoBehaviour
     //Debug.Log( "States in play: " + m_statesInPlay.Count );
     //Debug.Log( "States not in play: " + m_statesNotInPlay.Count );
 
-    m_currentTurnState = TurnState.Placement;
     m_weeksLeft = m_totalElectionWeeks;
   }
 
   public void Start()
   {
+    GoToState( TurnState.Placement );
+
     UpdateElectoralVotes(true);
   }
 
@@ -105,6 +106,8 @@ public class GameStateManager : MonoBehaviour
     else if( m_weeksLeft < 9 ) m_currentAnte = 30;
 
     GameObjectAccessor.Instance.Budget.GainAmount( m_currentAnte );
+    // also give the AI money
+    GameObjectAccessor.Instance.OpponentAi.Budget.GainAmount( m_currentAnte );
 
     if( m_weeksLeft == 0 )
     {
@@ -150,12 +153,18 @@ public class GameStateManager : MonoBehaviour
   public void GoToState( TurnState nextState )
   {
     m_currentTurnState = nextState;
+    if (nextState == TurnState.Placement) {
+      if (GameObjectAccessor.Instance.UseAI) GameObjectAccessor.Instance.OpponentAi.DoTurn();
+    }
   }
 
   public void CheckForHarvest()
   {
     if( m_playerTurnCompleted && ( GameObjectAccessor.Instance.UseAI || m_opponentTurnCompleted ) )
     {
+      // indicate that we're showing the harvest
+      GameObjectAccessor.Instance.EndTurnButton.mainTexture = GameObjectAccessor.Instance.Textures.ResultsButton;
+
       foreach( State state in m_statesInPlay )
       {
         state.PrepareToUpdate();
@@ -163,9 +172,6 @@ public class GameStateManager : MonoBehaviour
 
       GoToState( TurnState.Harvest );
       m_harvestTimer.StartTimer( NextHarvestAction );
-
-			// indicate that we're showing the harvest
-			GameObjectAccessor.Instance.EndTurnButton.mainTexture = GameObjectAccessor.Instance.Textures.ResultsButton;
     }
   }
 
@@ -234,7 +240,7 @@ public class GameStateManager : MonoBehaviour
       m_playerTurnCompleted = true;
 
 			// indicate that we're waiting for the opponent
-			GameObjectAccessor.Instance.EndTurnButton.mainTexture = GameObjectAccessor.Instance.Textures.WaitButton;
+			GameObjectAccessor.Instance.EndTurnButton.mainTexture = GameObjectAccessor.Instance.Textures.SubmittedButton;
 
       CheckForHarvest();
 

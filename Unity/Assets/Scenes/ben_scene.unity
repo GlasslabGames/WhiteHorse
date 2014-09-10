@@ -6529,6 +6529,63 @@ SpriteRenderer:
   m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: f1c442021a0a64b3cbe401b202f1353d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &561919616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 561919619}
+  - 114: {fileID: 561919618}
+  - 114: {fileID: 561919617}
+  m_Layer: 0
+  m_Name: OpponentAi
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &561919617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 561919616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a351754cab6b4327ad302c9483a4ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_amount: 30
+  m_label: {fileID: 0}
+--- !u!114 &561919618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 561919616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d777f766fb9f1f4429f8b3be0a63d69d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_leaning: 0
+  m_opponentLeaning: 0
+  m_campaignWorkerSelected: 0
+  Budget: {fileID: 561919617}
+--- !u!4 &561919619
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 561919616}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!1 &579927874
 GameObject:
   m_ObjectHideFlags: 0
@@ -7209,9 +7266,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 655467804}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106709}
+  m_LocalRotation: {x: -.707106888, y: 0, z: 0, w: .707106769}
   m_LocalPosition: {x: 0, y: 0, z: -5}
-  m_LocalScale: {x: -.649999976, y: .649999976, z: -.649999976}
+  m_LocalScale: {x: -.660000026, y: .660000026, z: -.660000026}
   m_Children: []
   m_Father: {fileID: 997125581}
   m_RootOrder: 0
@@ -8499,9 +8556,10 @@ MonoBehaviour:
   DefeatSound: {fileID: 100000, guid: 55c704952ca504ccfadec1b40f2f0776, type: 2}
   Textures:
     EndTurnButton: {fileID: 2800000, guid: 36c589c75a6a94ef182d4cd93ab59001, type: 3}
-    WaitButton: {fileID: 2800000, guid: 9531c6754a4444c7db52246e9333dd9d, type: 3}
+    SubmittedButton: {fileID: 0}
     ResultsButton: {fileID: 2800000, guid: b809e3c404dea49a29f5ff8863f06011, type: 3}
   EndTurnButton: {fileID: 2128866685}
+  OpponentAi: {fileID: 561919618}
 --- !u!114 &733379578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15829,7 +15887,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3027
+  startingRenderQueue: 3026
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
@@ -16811,7 +16869,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3028
+  startingRenderQueue: 3027
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
@@ -19613,7 +19671,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3012
+  startingRenderQueue: 3011
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}

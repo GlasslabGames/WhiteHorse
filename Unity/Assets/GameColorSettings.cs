@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 [System.Serializable]
@@ -25,6 +25,6 @@ public class GameColorSettings {
 [System.Serializable]
 public class GameTextures {
 	public Texture EndTurnButton;
-	public Texture WaitButton;
+	public Texture SubmittedButton;
 	public Texture ResultsButton;
 }

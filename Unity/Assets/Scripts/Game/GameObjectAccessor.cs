@@ -40,4 +40,6 @@ public class GameObjectAccessor : SingletonBehavior<GameObjectAccessor>
   public GameObject DefeatSound;
   public GameTextures Textures;
 	public UITexture EndTurnButton;
+
+  public OpponentAi OpponentAi;
 }

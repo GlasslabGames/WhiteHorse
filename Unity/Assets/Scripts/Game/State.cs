@@ -38,6 +38,7 @@ public class State : MonoBehaviour
 
   private List< GameObject > m_opponentSupporterList;
   private List< int > m_nextOpponentSupporterList;
+  public List<int> NextOpponentSupporters { get { return m_nextOpponentSupporterList; } }
   private int m_opponentBasisCount;
   private int m_opponentBasisCountIncrement = 0;
 
@@ -104,6 +105,10 @@ public class State : MonoBehaviour
   public int[] PlayerCampaignWorkerCounts
   {
     get { return m_playerCampaignWorkerCounts; }
+  }
+  public int[] OpponentCampaignWorkerCounts
+  {
+    get { return m_opponentCampaignWorkerCounts; }
   }
   public bool IsPeestoneState
   {
@@ -187,15 +192,18 @@ public class State : MonoBehaviour
     }
 
     // TEMP
+
     if( GameObjectAccessor.Instance.UseAI )
     {
       m_receivedOpponentInfo = true;
-      if( m_playerSupporterList.Count > 0 )
+      /*if( m_playerSupporterList.Count > 0 )
       {
         m_nextOpponentSupporterList.Add( 1 );
         m_nextOpponentSupporterList.Add( 1 );
-      }
+      }*/
+
     }
+
     // TEMP
 
     m_currentPlayerSupporterIteration = 0;
@@ -403,7 +411,7 @@ public class State : MonoBehaviour
 
     if( GameObjectAccessor.Instance.UseAI )
     {
-      m_nextOpponentSupporterList.Clear();
+      //m_nextOpponentSupporterList.Clear();
     }
   }
 
@@ -496,7 +504,7 @@ public class State : MonoBehaviour
   {
     if( !m_inPlay )  return;
     if( GameObjectAccessor.Instance.GameStateManager.CurrentTurnState != TurnState.Placement )  return;
-    if( !GameObjectAccessor.Instance.Budget.IsAmountAvailable( 10 ) ) return;
+    if( !GameObjectAccessor.Instance.Budget.IsAmountAvailable( GameMove.GetCost(GameActions.NEW_SUPPORTER)) ) return;
     if( !definitely && !GameObjectAccessor.Instance.Player.m_campaignWorkerSelected ) return;
 
     if( m_playerSupporterList.Count < UnitCap )
@@ -504,7 +512,7 @@ public class State : MonoBehaviour
       m_playerSupportersAddedThisTurn++;
       CreateSupporterPrefab( true );
 
-      GameObjectAccessor.Instance.Budget.ConsumeAmount( 10 );
+      GameObjectAccessor.Instance.Budget.ConsumeAmount( GameMove.GetCost(GameActions.NEW_SUPPORTER) );
 
       m_dirty = true;
     }
@@ -564,9 +572,29 @@ public class State : MonoBehaviour
     }
   }
 
+  public void OpponentUpgrade(int upgradeLevel) {
+    m_opponentCampaignWorkerCounts[ upgradeLevel - 1 ]--;
+    m_opponentCampaignWorkerCounts[ upgradeLevel ]++;
+
+    for( int i = 0; i < m_opponentSupporterList.Count; i++ )
+    {
+      CampaignWorker worker = m_opponentSupporterList[ i ].GetComponent< CampaignWorker >();
+      if( worker.m_currentLevel == upgradeLevel )
+      {
+        m_opponentBasisCountIncrement -= worker.GetValueForLevel();
+        worker.Upgrade();
+        m_opponentBasisCountIncrement += worker.GetValueForLevel();
+        
+        m_dirty = true;
+        break;
+      }
+    }
+  }
+
   public void Upgrade1( bool bounce = true )
   {
-    if( GameObjectAccessor.Instance.Budget.IsAmountAvailable( 15 ) && m_playerCampaignWorkerCounts[ 0 ] > 0 )
+    int cost = GameMove.GetCost( GameActions.UPGRADE1 );
+    if( GameObjectAccessor.Instance.Budget.IsAmountAvailable( cost ) && m_playerCampaignWorkerCounts[ 0 ] > 0 )
     {
       m_playerCampaignWorkerCounts[ 0 ]--;
       m_playerCampaignWorkerCounts[ 1 ]++;
@@ -581,7 +609,7 @@ public class State : MonoBehaviour
           m_playerBasisCountIncrement += worker.GetValueForLevel();
 
           if( bounce )  worker.gameObject.SendMessage( "BounceOut" );
-          GameObjectAccessor.Instance.Budget.ConsumeAmount( 15 );
+          GameObjectAccessor.Instance.Budget.ConsumeAmount( cost );
           GameObjectAccessor.Instance.DetailView.SetState( GameObjectAccessor.Instance.DetailView.CurrentState, false );
 
           m_dirty = true;
@@ -592,7 +620,8 @@ public class State : MonoBehaviour
   }
   public void Upgrade2( bool bounce = true )
   {
-    if( GameObjectAccessor.Instance.Budget.IsAmountAvailable( 20 ) && m_playerCampaignWorkerCounts[ 1 ] > 0 )
+    int cost = GameMove.GetCost( GameActions.UPGRADE2 );
+    if( GameObjectAccessor.Instance.Budget.IsAmountAvailable( cost ) && m_playerCampaignWorkerCounts[ 1 ] > 0 )
     {
       m_playerCampaignWorkerCounts[ 1 ]--;
       m_playerCampaignWorkerCounts[ 2 ]++;
@@ -607,7 +636,7 @@ public class State : MonoBehaviour
           m_playerBasisCountIncrement += worker.GetValueForLevel();
 
           if( bounce )  worker.gameObject.SendMessage( "BounceOut" );
-          GameObjectAccessor.Instance.Budget.ConsumeAmount( 20 );
+          GameObjectAccessor.Instance.Budget.ConsumeAmount( cost );
           GameObjectAccessor.Instance.DetailView.SetState( GameObjectAccessor.Instance.DetailView.CurrentState, false );
 
           m_dirty = true;
