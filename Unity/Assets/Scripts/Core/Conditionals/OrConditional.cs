@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GlassLab.Core.Conditional
 {
-  public class AndConditional : Conditional
+  public class OrConditional : Conditional
   {
     public Conditional[] Conditionals;
 
@@ -33,15 +33,14 @@ namespace GlassLab.Core.Conditional
       for (int i = Conditionals.Length - 1; i >= 0; i--)
       {
         Conditional conditional = Conditionals[i];
-        if (conditional != null && !conditional.IsSatisfied)
+        if (conditional != null && conditional.IsSatisfied)
         {
-          return false;
+          return true;
         }
       }
 
-      return true;
+      return false;
     }
-
 
     void OnDestroy()
     {

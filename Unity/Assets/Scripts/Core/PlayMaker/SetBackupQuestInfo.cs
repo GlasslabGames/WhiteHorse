@@ -1,6 +1,7 @@
 
 
 using UnityEngine;
+using GlassLab.Core.Serialization;
 
 namespace HutongGames.PlayMaker.Actions
 {
