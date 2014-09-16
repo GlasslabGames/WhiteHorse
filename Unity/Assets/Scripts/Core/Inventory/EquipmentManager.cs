@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using PixelCrushers.DialogueSystem;
 using System.Linq;
 using System;
+using GlassLab.Core.Serialization;
 
 public sealed class EquipmentManager : SingletonBehavior<EquipmentManager> {
   [PersistAttribute]

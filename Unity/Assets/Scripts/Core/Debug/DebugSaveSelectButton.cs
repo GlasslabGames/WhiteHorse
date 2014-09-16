@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GlassLab.Core.Serialization;
 
 public class DebugSaveSelectButton : MonoBehaviour
 {

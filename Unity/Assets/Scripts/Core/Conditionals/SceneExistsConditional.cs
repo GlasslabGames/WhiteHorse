@@ -5,6 +5,7 @@ namespace GlassLab.Core.Conditional
 {
   class SceneExistsConditional : Conditional
   {
+    [SerializeField]
     public string SceneName;
 
     protected override bool CalculateIsSatisfied()

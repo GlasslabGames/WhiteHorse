@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using MiniJSON;
+using GlassLab.Core.Serialization;
 
 public class AchievementManager : SingletonBehavior<AchievementManager> 
 {
@@ -27,7 +28,7 @@ public class AchievementManager : SingletonBehavior<AchievementManager>
   private void loadAchievements(TextAsset sourceData)
   {
     Dictionary<string, object> ddata = (Dictionary<string, object>) Json.Deserialize(sourceData.text);
-    m_achievements = (Dictionary<string, Achievement>) SessionManager.DeserializeDictionary(ddata, m_achievements.GetType());
+    m_achievements = (Dictionary<string, Achievement>) SessionDeserializer.DeserializeDictionary(ddata, m_achievements.GetType());
 
     foreach (string key in m_achievements.Keys)
     {

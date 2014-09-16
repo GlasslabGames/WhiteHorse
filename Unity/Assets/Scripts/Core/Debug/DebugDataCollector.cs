@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Globalization;
+using GlassLab.Core.Serialization;
 
 public class DebugDataCollector : SingletonBehavior<DebugDataCollector> {
 

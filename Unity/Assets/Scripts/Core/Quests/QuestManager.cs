@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using PixelCrushers.DialogueSystem;
 using System.Collections;
+using GlassLab.Core.Serialization;
 
 public class QuestManager : SingletonBehavior<QuestManager> {
   //private List<Chapter> m_chapters = new List<Chapter>();

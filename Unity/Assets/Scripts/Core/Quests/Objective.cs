@@ -1,4 +1,5 @@
 using UnityEngine;
+using GlassLab.Core.Serialization;
 public class Objective : MonoBehaviour {
   // NOTE: this event isn't being used yet.
   public event ObjectiveEvent ObjectiveCompleted; // Event defined in SignalManager

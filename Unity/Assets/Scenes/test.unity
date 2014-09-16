@@ -158,45 +158,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &358428133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba89c19e5bddde45b2c3e109cafffe6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SceneName: test
---- !u!114 &378671214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d6df5784e2880b44b4ba0a3a5c5c695, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Conditionals:
-  - {fileID: 0}
-  - {fileID: 565375113}
-  - {fileID: 0}
---- !u!114 &565375113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba89c19e5bddde45b2c3e109cafffe6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SceneName: 
 --- !u!1 &1804883586
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,13 +182,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1804883586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83c291c9fca43834aaa4f2be5009b852, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c76dd3f2561d0a49ae1a70f41f8983f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c:
-  - {fileID: 378671214}
-  - {fileID: 358428133}
-  - {fileID: 1959786670}
+  Conditional: {fileID: 0}
 --- !u!4 &1804883588
 Transform:
   m_ObjectHideFlags: 0
@@ -240,15 +198,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!114 &1959786670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72a498813a9c1e843a7b36ede9cee069, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Conditionals: []
