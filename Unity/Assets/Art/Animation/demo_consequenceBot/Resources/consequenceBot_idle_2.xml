@@ -1,0 +1,2076 @@
+<?xml version="1.0" encoding="utf-8"?>
+<after_affect_animation_doc>
+<composition w="1000" h="1000" id="1693" >
+<layer name="wheel_backFG.png" type="Footage" parent="none" index="1" source="wheel_backFG.png" w="191" h="191" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="635"  y="733"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="100.5"  y="94.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="wheel_frontFG.png" type="Footage" parent="16" index="2" source="wheel_frontFG.png" w="151" h="151" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="5"  y="47"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="79.5"  y="75.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="leg.png" type="Footage" parent="2" index="3" source="leg.png" w="101" h="168" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="77.5"  y="76.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="56.5"  y="165"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="1">
+<source name="Transform">
+<property name="Rotation" val="2.16761198891433"/>
+</source>
+</keyframe>
+<keyframe frame="2">
+<source name="Transform">
+<property name="Rotation" val="4.60093490235855"/>
+</source>
+</keyframe>
+<keyframe frame="3">
+<source name="Transform">
+<property name="Rotation" val="7.11212930059974"/>
+</source>
+</keyframe>
+<keyframe frame="4">
+<source name="Transform">
+<property name="Rotation" val="9.62921700621166"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Rotation" val="12.1126226287283"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Rotation" val="14.5351982500137"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Rotation" val="16.8749999541584"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Rotation" val="19.1119001384956"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="21.2255762337837"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Rotation" val="23.1939738568264"/>
+</source>
+</keyframe>
+<keyframe frame="11">
+<source name="Transform">
+<property name="Rotation" val="24.9918008541397"/>
+</source>
+</keyframe>
+<keyframe frame="12">
+<source name="Transform">
+<property name="Rotation" val="26.5887249909047"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Rotation" val="27.946897683267"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Rotation" val="29.0172089399092"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Rotation" val="29.7331595600145"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Rotation" val="30"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Rotation" val="30"/>
+</source>
+</keyframe>
+<keyframe frame="19">
+<source name="Transform">
+<property name="Rotation" val="30"/>
+</source>
+</keyframe>
+<keyframe frame="20">
+<source name="Transform">
+<property name="Rotation" val="30"/>
+</source>
+</keyframe>
+<keyframe frame="21">
+<source name="Transform">
+<property name="Rotation" val="30"/>
+</source>
+</keyframe>
+<keyframe frame="22">
+<source name="Transform">
+<property name="Rotation" val="30"/>
+</source>
+</keyframe>
+<keyframe frame="33">
+<source name="Transform">
+<property name="Rotation" val="29.5288788163002"/>
+</source>
+</keyframe>
+<keyframe frame="34">
+<source name="Transform">
+<property name="Rotation" val="28.5817196094022"/>
+</source>
+</keyframe>
+<keyframe frame="35">
+<source name="Transform">
+<property name="Rotation" val="27.4100976888737"/>
+</source>
+</keyframe>
+<keyframe frame="36">
+<source name="Transform">
+<property name="Rotation" val="26.1009223667063"/>
+</source>
+</keyframe>
+<keyframe frame="37">
+<source name="Transform">
+<property name="Rotation" val="24.6966991411438"/>
+</source>
+</keyframe>
+<keyframe frame="38">
+<source name="Transform">
+<property name="Rotation" val="23.222071936025"/>
+</source>
+</keyframe>
+<keyframe frame="39">
+<source name="Transform">
+<property name="Rotation" val="21.6929186001384"/>
+</source>
+</keyframe>
+<keyframe frame="40">
+<source name="Transform">
+<property name="Rotation" val="20.1202591227733"/>
+</source>
+</keyframe>
+<keyframe frame="41">
+<source name="Transform">
+<property name="Rotation" val="18.5121981773469"/>
+</source>
+</keyframe>
+<keyframe frame="42">
+<source name="Transform">
+<property name="Rotation" val="16.8750000000375"/>
+</source>
+</keyframe>
+<keyframe frame="43">
+<source name="Transform">
+<property name="Rotation" val="15.213740105957"/>
+</source>
+</keyframe>
+<keyframe frame="44">
+<source name="Transform">
+<property name="Rotation" val="13.5327398249885"/>
+</source>
+</keyframe>
+<keyframe frame="45">
+<source name="Transform">
+<property name="Rotation" val="11.8358936170327"/>
+</source>
+</keyframe>
+<keyframe frame="46">
+<source name="Transform">
+<property name="Rotation" val="10.1269622478508"/>
+</source>
+</keyframe>
+<keyframe frame="47">
+<source name="Transform">
+<property name="Rotation" val="8.40990257671176"/>
+</source>
+</keyframe>
+<keyframe frame="48">
+<source name="Transform">
+<property name="Rotation" val="6.68934233878993"/>
+</source>
+</keyframe>
+<keyframe frame="49">
+<source name="Transform">
+<property name="Rotation" val="4.97143762156127"/>
+</source>
+</keyframe>
+<keyframe frame="50">
+<source name="Transform">
+<property name="Rotation" val="3.26579077826177"/>
+</source>
+</keyframe>
+<keyframe frame="51">
+<source name="Transform">
+<property name="Rotation" val="1.59100449212116"/>
+</source>
+</keyframe>
+<keyframe frame="52">
+<source name="Transform">
+<property name="Rotation" val="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="quad.png" type="Footage" parent="3" index="4" source="quad.png" w="313" h="218" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="43.5"  y="45"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="56.5"  y="171"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="1">
+<source name="Transform">
+<property name="Rotation" val="-4.33522397782865"/>
+</source>
+</keyframe>
+<keyframe frame="2">
+<source name="Transform">
+<property name="Rotation" val="-9.20186980471709"/>
+</source>
+</keyframe>
+<keyframe frame="3">
+<source name="Transform">
+<property name="Rotation" val="-14.2242586011995"/>
+</source>
+</keyframe>
+<keyframe frame="4">
+<source name="Transform">
+<property name="Rotation" val="-19.2584340124233"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Rotation" val="-24.2252452574566"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Rotation" val="-29.0703965000273"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Rotation" val="-33.7499999083168"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Rotation" val="-38.2238002769913"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="-42.4511524675675"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Rotation" val="-46.3879477136527"/>
+</source>
+</keyframe>
+<keyframe frame="11">
+<source name="Transform">
+<property name="Rotation" val="-49.9836017082793"/>
+</source>
+</keyframe>
+<keyframe frame="12">
+<source name="Transform">
+<property name="Rotation" val="-53.1774499818093"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Rotation" val="-55.893795366534"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Rotation" val="-58.0344178798184"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Rotation" val="-59.466319120029"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Rotation" val="-59.8959999990791"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Rotation" val="-59.6479999993059"/>
+</source>
+</keyframe>
+<keyframe frame="19">
+<source name="Transform">
+<property name="Rotation" val="-59.3520000006898"/>
+</source>
+</keyframe>
+<keyframe frame="20">
+<source name="Transform">
+<property name="Rotation" val="-59.104000000918"/>
+</source>
+</keyframe>
+<keyframe frame="21">
+<source name="Transform">
+<property name="Rotation" val="-59"/>
+</source>
+</keyframe>
+<keyframe frame="22">
+<source name="Transform">
+<property name="Rotation" val="-59.1562500010606"/>
+</source>
+</keyframe>
+<keyframe frame="23">
+<source name="Transform">
+<property name="Rotation" val="-59.5000000000023"/>
+</source>
+</keyframe>
+<keyframe frame="24">
+<source name="Transform">
+<property name="Rotation" val="-59.8437499989427"/>
+</source>
+</keyframe>
+<keyframe frame="25">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="27">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="28">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="30">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="31">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="32">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="33">
+<source name="Transform">
+<property name="Rotation" val="-59.0577576326003"/>
+</source>
+</keyframe>
+<keyframe frame="34">
+<source name="Transform">
+<property name="Rotation" val="-57.1634392188043"/>
+</source>
+</keyframe>
+<keyframe frame="35">
+<source name="Transform">
+<property name="Rotation" val="-54.8201953777474"/>
+</source>
+</keyframe>
+<keyframe frame="36">
+<source name="Transform">
+<property name="Rotation" val="-52.2018447334126"/>
+</source>
+</keyframe>
+<keyframe frame="37">
+<source name="Transform">
+<property name="Rotation" val="-49.3933982822876"/>
+</source>
+</keyframe>
+<keyframe frame="38">
+<source name="Transform">
+<property name="Rotation" val="-46.4441438720499"/>
+</source>
+</keyframe>
+<keyframe frame="39">
+<source name="Transform">
+<property name="Rotation" val="-43.3858372002768"/>
+</source>
+</keyframe>
+<keyframe frame="40">
+<source name="Transform">
+<property name="Rotation" val="-40.2405182455467"/>
+</source>
+</keyframe>
+<keyframe frame="41">
+<source name="Transform">
+<property name="Rotation" val="-37.0243963546938"/>
+</source>
+</keyframe>
+<keyframe frame="42">
+<source name="Transform">
+<property name="Rotation" val="-33.750000000075"/>
+</source>
+</keyframe>
+<keyframe frame="43">
+<source name="Transform">
+<property name="Rotation" val="-30.427480211914"/>
+</source>
+</keyframe>
+<keyframe frame="44">
+<source name="Transform">
+<property name="Rotation" val="-27.0654796499769"/>
+</source>
+</keyframe>
+<keyframe frame="45">
+<source name="Transform">
+<property name="Rotation" val="-23.6717872340654"/>
+</source>
+</keyframe>
+<keyframe frame="46">
+<source name="Transform">
+<property name="Rotation" val="-20.2539244957016"/>
+</source>
+</keyframe>
+<keyframe frame="47">
+<source name="Transform">
+<property name="Rotation" val="-16.8198051534235"/>
+</source>
+</keyframe>
+<keyframe frame="48">
+<source name="Transform">
+<property name="Rotation" val="-13.3786846775799"/>
+</source>
+</keyframe>
+<keyframe frame="49">
+<source name="Transform">
+<property name="Rotation" val="-9.94287524312253"/>
+</source>
+</keyframe>
+<keyframe frame="50">
+<source name="Transform">
+<property name="Rotation" val="-6.53158155652353"/>
+</source>
+</keyframe>
+<keyframe frame="51">
+<source name="Transform">
+<property name="Rotation" val="-3.18200898424232"/>
+</source>
+</keyframe>
+<keyframe frame="52">
+<source name="Transform">
+<property name="Rotation" val="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_button.png" type="Footage" parent="7" index="5" source="body_button.png" w="24" h="24" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="96"  y="111"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="12"  y="12"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_fgBottom.png" type="Footage" parent="4" index="6" source="body_fgBottom.png" w="148" h="143" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="148"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="73"  y="152.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="1">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="145.939698303437"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="2">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="143.874740250494"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="3">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="141.810882464491"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="4">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="139.749992482005"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="137.684041409986"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="135.618198597569"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="133.556221508881"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="131.497347506859"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="129.438826283845"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="127.377904617179"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="11">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="125.313807316199"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="12">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="123.250245374763"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="121.189524560992"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="119.125068561707"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="117.060400930836"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="115"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="33">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="116.646167177446"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="34">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="118.299954108326"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="35">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="119.951224274998"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="36">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="121.601329922464"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="37">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="123.250007517995"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="38">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="124.902540446438"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="39">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="126.555852025366"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="40">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="128.207083408946"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="41">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="129.855728760723"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="42">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="131.502652493141"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="43">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="133.149350398653"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="44">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="134.797319375604"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="45">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="136.447428110485"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="46">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="138.099181381157"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="47">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="139.749754625237"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="48">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="141.39807314534"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="49">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="143.048971509883"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="50">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="144.699980093916"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="51">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="146.353752937338"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="52">
+<source name="Transform">
+<property name="Position"  x="133.25"  y="148"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_fgTop.png" type="Footage" parent="6" index="7" source="body_fgTop.png" w="165" h="250" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="77.25"  y="121.432835820896"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="94.5"  y="235"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_eye.png" type="Footage" parent="7" index="8" source="body_eye.png" w="93" h="100" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="23"  y="79"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="46.5"  y="50"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="1">
+<source name="Transform">
+<property name="Rotation" val="-4.11111111111111"/>
+</source>
+</keyframe>
+<keyframe frame="2">
+<source name="Transform">
+<property name="Rotation" val="-8.22222222222222"/>
+</source>
+</keyframe>
+<keyframe frame="3">
+<source name="Transform">
+<property name="Rotation" val="-12.3333333333333"/>
+</source>
+</keyframe>
+<keyframe frame="4">
+<source name="Transform">
+<property name="Rotation" val="-16.4444444444444"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Rotation" val="-20.5555555555556"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Rotation" val="-24.6666666666667"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Rotation" val="-28.7777777777778"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Rotation" val="-32.8888888888889"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="-37"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Opacity" val="80"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Opacity" val="60"/>
+</source>
+</keyframe>
+<keyframe frame="19">
+<source name="Transform">
+<property name="Opacity" val="40"/>
+</source>
+</keyframe>
+<keyframe frame="20">
+<source name="Transform">
+<property name="Opacity" val="20"/>
+</source>
+</keyframe>
+<keyframe frame="21">
+<source name="Transform">
+<property name="Opacity" val="0"/>
+</source>
+</keyframe>
+<keyframe frame="22">
+<source name="Transform">
+<property name="Opacity" val="25"/>
+</source>
+</keyframe>
+<keyframe frame="23">
+<source name="Transform">
+<property name="Opacity" val="50"/>
+</source>
+</keyframe>
+<keyframe frame="24">
+<source name="Transform">
+<property name="Opacity" val="75"/>
+</source>
+</keyframe>
+<keyframe frame="25">
+<source name="Transform">
+<property name="Opacity" val="100"/>
+</source>
+</keyframe>
+<keyframe frame="26">
+<source name="Transform">
+<property name="Opacity" val="50"/>
+</source>
+</keyframe>
+<keyframe frame="27">
+<source name="Transform">
+<property name="Opacity" val="0"/>
+</source>
+</keyframe>
+<keyframe frame="33">
+<source name="Transform">
+<property name="Rotation" val="-36.786279265019"/>
+</source>
+</keyframe>
+<keyframe frame="34">
+<source name="Transform">
+<property name="Rotation" val="-36.0801524941395"/>
+</source>
+</keyframe>
+<keyframe frame="35">
+<source name="Transform">
+<property name="Rotation" val="-34.7597730217422"/>
+</source>
+</keyframe>
+<keyframe frame="36">
+<source name="Transform">
+<property name="Rotation" val="-32.6588624875884"/>
+</source>
+</keyframe>
+<keyframe frame="37">
+<source name="Transform">
+<property name="Rotation" val="-29.5446561775744"/>
+</source>
+</keyframe>
+<keyframe frame="38">
+<source name="Transform">
+<property name="Rotation" val="-25.082300409235"/>
+</source>
+</keyframe>
+<keyframe frame="39">
+<source name="Transform">
+<property name="Rotation" val="-18.7771470437916"/>
+</source>
+</keyframe>
+<keyframe frame="40">
+<source name="Transform">
+<property name="Rotation" val="-9.88537098142924"/>
+</source>
+</keyframe>
+<keyframe frame="41">
+<source name="Transform">
+<property name="Rotation" val="2.69655256153202"/>
+</source>
+</keyframe>
+<keyframe frame="42">
+<source name="Transform">
+<property name="Rotation" val="20.4314233300681"/>
+</source>
+</keyframe>
+<keyframe frame="43">
+<source name="Transform">
+<property name="Rotation" val="44.5314394004049"/>
+</source>
+</keyframe>
+<keyframe frame="44">
+<source name="Transform">
+<property name="Rotation" val="74.2994115156501"/>
+</source>
+</keyframe>
+<keyframe frame="45">
+<source name="Transform">
+<property name="Rotation" val="106.556868908782"/>
+</source>
+</keyframe>
+<keyframe frame="46">
+<source name="Transform">
+<property name="Rotation" val="138.171292227891"/>
+</source>
+</keyframe>
+<keyframe frame="47">
+<source name="Transform">
+<property name="Rotation" val="167.745880847423"/>
+</source>
+</keyframe>
+<keyframe frame="48">
+<source name="Transform">
+<property name="Rotation" val="195.06354752187"/>
+</source>
+</keyframe>
+<keyframe frame="49">
+<source name="Transform">
+<property name="Rotation" val="220.329256293737"/>
+</source>
+</keyframe>
+<keyframe frame="50">
+<source name="Transform">
+<property name="Rotation" val="243.832186363352"/>
+</source>
+</keyframe>
+<keyframe frame="51">
+<source name="Transform">
+<property name="Rotation" val="265.840601626995"/>
+</source>
+</keyframe>
+<keyframe frame="52">
+<source name="Transform">
+<property name="Rotation" val="286.579079555939"/>
+</source>
+</keyframe>
+<keyframe frame="53">
+<source name="Transform">
+<property name="Rotation" val="306.230062218062"/>
+</source>
+</keyframe>
+<keyframe frame="54">
+<source name="Transform">
+<property name="Rotation" val="324.941005749686"/>
+</source>
+</keyframe>
+<keyframe frame="55">
+<source name="Transform">
+<property name="Rotation" val="342.831639117538"/>
+</source>
+</keyframe>
+<keyframe frame="56">
+<source name="Transform">
+<property name="Rotation" val="360"/>
+</source>
+</keyframe>
+<keyframe frame="57">
+<source name="Transform">
+<property name="Rotation" val="366"/>
+</source>
+</keyframe>
+<keyframe frame="58">
+<source name="Transform">
+<property name="Rotation" val="363"/>
+</source>
+</keyframe>
+<keyframe frame="59">
+<source name="Transform">
+<property name="Rotation" val="360"/>
+</source>
+</keyframe>
+<keyframe frame="60">
+<source name="Transform">
+<property name="Rotation" val="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_eye_bright.png" type="Footage" parent="8" index="9" source="body_eye_bright.png" w="93" h="100" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="46.5"  y="50"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="46.5"  y="50"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_eye_red.png" type="Footage" parent="8" index="10" source="body_eye_red.png" w="93" h="100" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="46.5"  y="50"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="46.5"  y="50"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_eye_dark.png" type="Footage" parent="8" index="11" source="body_eye_dark.png" w="93" h="100" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="46.5"  y="50"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="46.5"  y="50"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="gear_topFG.png" type="Footage" parent="5" index="12" source="gear_topFG.png" w="85" h="85" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="1.25"  y="-100"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="42.5"  y="42.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="1">
+<source name="Transform">
+<property name="Rotation" val="4.11111111111111"/>
+</source>
+</keyframe>
+<keyframe frame="2">
+<source name="Transform">
+<property name="Rotation" val="8.22222222222222"/>
+</source>
+</keyframe>
+<keyframe frame="3">
+<source name="Transform">
+<property name="Rotation" val="12.3333333333333"/>
+</source>
+</keyframe>
+<keyframe frame="4">
+<source name="Transform">
+<property name="Rotation" val="16.4444444444444"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Rotation" val="20.5555555555556"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Rotation" val="24.6666666666667"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Rotation" val="28.7777777777778"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Rotation" val="32.8888888888889"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="11">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="19">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="20">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="33">
+<source name="Transform">
+<property name="Rotation" val="36.8166703254058"/>
+</source>
+</keyframe>
+<keyframe frame="34">
+<source name="Transform">
+<property name="Rotation" val="36.2122914072607"/>
+</source>
+</keyframe>
+<keyframe frame="35">
+<source name="Transform">
+<property name="Rotation" val="35.0850804295099"/>
+</source>
+</keyframe>
+<keyframe frame="36">
+<source name="Transform">
+<property name="Rotation" val="33.2963975466451"/>
+</source>
+</keyframe>
+<keyframe frame="37">
+<source name="Transform">
+<property name="Rotation" val="30.6520621896792"/>
+</source>
+</keyframe>
+<keyframe frame="38">
+<source name="Transform">
+<property name="Rotation" val="26.8712744009139"/>
+</source>
+</keyframe>
+<keyframe frame="39">
+<source name="Transform">
+<property name="Rotation" val="21.5332578899697"/>
+</source>
+</keyframe>
+<keyframe frame="40">
+<source name="Transform">
+<property name="Rotation" val="13.9841439696477"/>
+</source>
+</keyframe>
+<keyframe frame="41">
+<source name="Transform">
+<property name="Rotation" val="3.18096389351112"/>
+</source>
+</keyframe>
+<keyframe frame="42">
+<source name="Transform">
+<property name="Rotation" val="-12.5038163738717"/>
+</source>
+</keyframe>
+<keyframe frame="43">
+<source name="Transform">
+<property name="Rotation" val="-35.1365346584019"/>
+</source>
+</keyframe>
+<keyframe frame="44">
+<source name="Transform">
+<property name="Rotation" val="-65.4273901750878"/>
+</source>
+</keyframe>
+<keyframe frame="45">
+<source name="Transform">
+<property name="Rotation" val="-100.023090265541"/>
+</source>
+</keyframe>
+<keyframe frame="46">
+<source name="Transform">
+<property name="Rotation" val="-134.113915283009"/>
+</source>
+</keyframe>
+<keyframe frame="47">
+<source name="Transform">
+<property name="Rotation" val="-165.501894836337"/>
+</source>
+</keyframe>
+<keyframe frame="48">
+<source name="Transform">
+<property name="Rotation" val="-193.990220387997"/>
+</source>
+</keyframe>
+<keyframe frame="49">
+<source name="Transform">
+<property name="Rotation" val="-219.971764097149"/>
+</source>
+</keyframe>
+<keyframe frame="50">
+<source name="Transform">
+<property name="Rotation" val="-243.889304624594"/>
+</source>
+</keyframe>
+<keyframe frame="51">
+<source name="Transform">
+<property name="Rotation" val="-266.11321449171"/>
+</source>
+</keyframe>
+<keyframe frame="52">
+<source name="Transform">
+<property name="Rotation" val="-286.933426591071"/>
+</source>
+</keyframe>
+<keyframe frame="53">
+<source name="Transform">
+<property name="Rotation" val="-306.57450723913"/>
+</source>
+</keyframe>
+<keyframe frame="54">
+<source name="Transform">
+<property name="Rotation" val="-325.211621311829"/>
+</source>
+</keyframe>
+<keyframe frame="55">
+<source name="Transform">
+<property name="Rotation" val="-342.983155515765"/>
+</source>
+</keyframe>
+<keyframe frame="56">
+<source name="Transform">
+<property name="Rotation" val="-360"/>
+</source>
+</keyframe>
+<keyframe frame="57">
+<source name="Transform">
+<property name="Rotation" val="-366"/>
+</source>
+</keyframe>
+<keyframe frame="58">
+<source name="Transform">
+<property name="Rotation" val="-363"/>
+</source>
+</keyframe>
+<keyframe frame="59">
+<source name="Transform">
+<property name="Rotation" val="-360"/>
+</source>
+</keyframe>
+<keyframe frame="60">
+<source name="Transform">
+<property name="Rotation" val="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="gear_topBG.png" type="Footage" parent="5" index="13" source="gear_topBG.png" w="85" h="85" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="-3.5"  y="-98.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="42.5"  y="42.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="1">
+<source name="Transform">
+<property name="Rotation" val="4.11111111111111"/>
+</source>
+</keyframe>
+<keyframe frame="2">
+<source name="Transform">
+<property name="Rotation" val="8.22222222222222"/>
+</source>
+</keyframe>
+<keyframe frame="3">
+<source name="Transform">
+<property name="Rotation" val="12.3333333333333"/>
+</source>
+</keyframe>
+<keyframe frame="4">
+<source name="Transform">
+<property name="Rotation" val="16.4444444444444"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Rotation" val="20.5555555555556"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Rotation" val="24.6666666666667"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Rotation" val="28.7777777777778"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Rotation" val="32.8888888888889"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="11">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="19">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="20">
+<source name="Transform">
+<property name="Rotation" val="37"/>
+</source>
+</keyframe>
+<keyframe frame="33">
+<source name="Transform">
+<property name="Rotation" val="36.8166703254058"/>
+</source>
+</keyframe>
+<keyframe frame="34">
+<source name="Transform">
+<property name="Rotation" val="36.2122914072607"/>
+</source>
+</keyframe>
+<keyframe frame="35">
+<source name="Transform">
+<property name="Rotation" val="35.0850804295099"/>
+</source>
+</keyframe>
+<keyframe frame="36">
+<source name="Transform">
+<property name="Rotation" val="33.2963975466451"/>
+</source>
+</keyframe>
+<keyframe frame="37">
+<source name="Transform">
+<property name="Rotation" val="30.6520621896792"/>
+</source>
+</keyframe>
+<keyframe frame="38">
+<source name="Transform">
+<property name="Rotation" val="26.8712744009139"/>
+</source>
+</keyframe>
+<keyframe frame="39">
+<source name="Transform">
+<property name="Rotation" val="21.5332578899697"/>
+</source>
+</keyframe>
+<keyframe frame="40">
+<source name="Transform">
+<property name="Rotation" val="13.9841439696477"/>
+</source>
+</keyframe>
+<keyframe frame="41">
+<source name="Transform">
+<property name="Rotation" val="3.18096389351112"/>
+</source>
+</keyframe>
+<keyframe frame="42">
+<source name="Transform">
+<property name="Rotation" val="-12.5038163738717"/>
+</source>
+</keyframe>
+<keyframe frame="43">
+<source name="Transform">
+<property name="Rotation" val="-35.1365346584019"/>
+</source>
+</keyframe>
+<keyframe frame="44">
+<source name="Transform">
+<property name="Rotation" val="-65.4273901750878"/>
+</source>
+</keyframe>
+<keyframe frame="45">
+<source name="Transform">
+<property name="Rotation" val="-100.023090265541"/>
+</source>
+</keyframe>
+<keyframe frame="46">
+<source name="Transform">
+<property name="Rotation" val="-134.113915283009"/>
+</source>
+</keyframe>
+<keyframe frame="47">
+<source name="Transform">
+<property name="Rotation" val="-165.501894836337"/>
+</source>
+</keyframe>
+<keyframe frame="48">
+<source name="Transform">
+<property name="Rotation" val="-193.990220387997"/>
+</source>
+</keyframe>
+<keyframe frame="49">
+<source name="Transform">
+<property name="Rotation" val="-219.971764097149"/>
+</source>
+</keyframe>
+<keyframe frame="50">
+<source name="Transform">
+<property name="Rotation" val="-243.889304624594"/>
+</source>
+</keyframe>
+<keyframe frame="51">
+<source name="Transform">
+<property name="Rotation" val="-266.11321449171"/>
+</source>
+</keyframe>
+<keyframe frame="52">
+<source name="Transform">
+<property name="Rotation" val="-286.933426591071"/>
+</source>
+</keyframe>
+<keyframe frame="53">
+<source name="Transform">
+<property name="Rotation" val="-306.57450723913"/>
+</source>
+</keyframe>
+<keyframe frame="54">
+<source name="Transform">
+<property name="Rotation" val="-325.211621311829"/>
+</source>
+</keyframe>
+<keyframe frame="55">
+<source name="Transform">
+<property name="Rotation" val="-342.983155515765"/>
+</source>
+</keyframe>
+<keyframe frame="56">
+<source name="Transform">
+<property name="Rotation" val="-360"/>
+</source>
+</keyframe>
+<keyframe frame="57">
+<source name="Transform">
+<property name="Rotation" val="-366"/>
+</source>
+</keyframe>
+<keyframe frame="58">
+<source name="Transform">
+<property name="Rotation" val="-363"/>
+</source>
+</keyframe>
+<keyframe frame="59">
+<source name="Transform">
+<property name="Rotation" val="-360"/>
+</source>
+</keyframe>
+<keyframe frame="60">
+<source name="Transform">
+<property name="Rotation" val="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="gear_backFG.png" type="Footage" parent="4" index="14" source="gear_backFG.png" w="223" h="223" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="242.5"  y="62"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="111.5"  y="111.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="1">
+<source name="Transform">
+<property name="Rotation" val="-4.33522397782865"/>
+</source>
+</keyframe>
+<keyframe frame="2">
+<source name="Transform">
+<property name="Rotation" val="-9.20186980471709"/>
+</source>
+</keyframe>
+<keyframe frame="3">
+<source name="Transform">
+<property name="Rotation" val="-14.2242586011995"/>
+</source>
+</keyframe>
+<keyframe frame="4">
+<source name="Transform">
+<property name="Rotation" val="-19.2584340124233"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Rotation" val="-24.2252452574566"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Rotation" val="-29.0703965000273"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Rotation" val="-33.7499999083168"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Rotation" val="-38.2238002769913"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="-42.4511524675675"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Rotation" val="-46.3879477136527"/>
+</source>
+</keyframe>
+<keyframe frame="11">
+<source name="Transform">
+<property name="Rotation" val="-49.9836017082793"/>
+</source>
+</keyframe>
+<keyframe frame="12">
+<source name="Transform">
+<property name="Rotation" val="-53.1774499818093"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Rotation" val="-55.893795366534"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Rotation" val="-58.0344178798184"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Rotation" val="-59.466319120029"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Rotation" val="-59.8959999990791"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Rotation" val="-59.6479999993059"/>
+</source>
+</keyframe>
+<keyframe frame="19">
+<source name="Transform">
+<property name="Rotation" val="-59.3520000006898"/>
+</source>
+</keyframe>
+<keyframe frame="20">
+<source name="Transform">
+<property name="Rotation" val="-59.104000000918"/>
+</source>
+</keyframe>
+<keyframe frame="21">
+<source name="Transform">
+<property name="Rotation" val="-59"/>
+</source>
+</keyframe>
+<keyframe frame="22">
+<source name="Transform">
+<property name="Rotation" val="-59.1562500010606"/>
+</source>
+</keyframe>
+<keyframe frame="23">
+<source name="Transform">
+<property name="Rotation" val="-59.5000000000023"/>
+</source>
+</keyframe>
+<keyframe frame="24">
+<source name="Transform">
+<property name="Rotation" val="-59.8437499989427"/>
+</source>
+</keyframe>
+<keyframe frame="25">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="27">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="28">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="30">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="31">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="32">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="33">
+<source name="Transform">
+<property name="Rotation" val="-59.0577576326003"/>
+</source>
+</keyframe>
+<keyframe frame="34">
+<source name="Transform">
+<property name="Rotation" val="-57.1634392188043"/>
+</source>
+</keyframe>
+<keyframe frame="35">
+<source name="Transform">
+<property name="Rotation" val="-54.8201953777474"/>
+</source>
+</keyframe>
+<keyframe frame="36">
+<source name="Transform">
+<property name="Rotation" val="-52.2018447334126"/>
+</source>
+</keyframe>
+<keyframe frame="37">
+<source name="Transform">
+<property name="Rotation" val="-49.3933982822876"/>
+</source>
+</keyframe>
+<keyframe frame="38">
+<source name="Transform">
+<property name="Rotation" val="-46.4441438720499"/>
+</source>
+</keyframe>
+<keyframe frame="39">
+<source name="Transform">
+<property name="Rotation" val="-43.3858372002768"/>
+</source>
+</keyframe>
+<keyframe frame="40">
+<source name="Transform">
+<property name="Rotation" val="-40.2405182455467"/>
+</source>
+</keyframe>
+<keyframe frame="41">
+<source name="Transform">
+<property name="Rotation" val="-37.0243963546938"/>
+</source>
+</keyframe>
+<keyframe frame="42">
+<source name="Transform">
+<property name="Rotation" val="-33.750000000075"/>
+</source>
+</keyframe>
+<keyframe frame="43">
+<source name="Transform">
+<property name="Rotation" val="-30.427480211914"/>
+</source>
+</keyframe>
+<keyframe frame="44">
+<source name="Transform">
+<property name="Rotation" val="-27.0654796499769"/>
+</source>
+</keyframe>
+<keyframe frame="45">
+<source name="Transform">
+<property name="Rotation" val="-23.6717872340654"/>
+</source>
+</keyframe>
+<keyframe frame="46">
+<source name="Transform">
+<property name="Rotation" val="-20.2539244957016"/>
+</source>
+</keyframe>
+<keyframe frame="47">
+<source name="Transform">
+<property name="Rotation" val="-16.8198051534235"/>
+</source>
+</keyframe>
+<keyframe frame="48">
+<source name="Transform">
+<property name="Rotation" val="-13.3786846775799"/>
+</source>
+</keyframe>
+<keyframe frame="49">
+<source name="Transform">
+<property name="Rotation" val="-9.94287524312253"/>
+</source>
+</keyframe>
+<keyframe frame="50">
+<source name="Transform">
+<property name="Rotation" val="-6.53158155652353"/>
+</source>
+</keyframe>
+<keyframe frame="51">
+<source name="Transform">
+<property name="Rotation" val="-3.18200898424232"/>
+</source>
+</keyframe>
+<keyframe frame="52">
+<source name="Transform">
+<property name="Rotation" val="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="gear_backBG.png" type="Footage" parent="4" index="15" source="gear_backBG.png" w="223" h="223" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="236.5"  y="62"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="111.5"  y="111.5"  z="0"/>
+</source>
+</keyframe>
+<keyframe frame="1">
+<source name="Transform">
+<property name="Rotation" val="-4.33522397782865"/>
+</source>
+</keyframe>
+<keyframe frame="2">
+<source name="Transform">
+<property name="Rotation" val="-9.20186980471709"/>
+</source>
+</keyframe>
+<keyframe frame="3">
+<source name="Transform">
+<property name="Rotation" val="-14.2242586011995"/>
+</source>
+</keyframe>
+<keyframe frame="4">
+<source name="Transform">
+<property name="Rotation" val="-19.2584340124233"/>
+</source>
+</keyframe>
+<keyframe frame="5">
+<source name="Transform">
+<property name="Rotation" val="-24.2252452574566"/>
+</source>
+</keyframe>
+<keyframe frame="6">
+<source name="Transform">
+<property name="Rotation" val="-29.0703965000273"/>
+</source>
+</keyframe>
+<keyframe frame="7">
+<source name="Transform">
+<property name="Rotation" val="-33.7499999083168"/>
+</source>
+</keyframe>
+<keyframe frame="8">
+<source name="Transform">
+<property name="Rotation" val="-38.2238002769913"/>
+</source>
+</keyframe>
+<keyframe frame="9">
+<source name="Transform">
+<property name="Rotation" val="-42.4511524675675"/>
+</source>
+</keyframe>
+<keyframe frame="10">
+<source name="Transform">
+<property name="Rotation" val="-46.3879477136527"/>
+</source>
+</keyframe>
+<keyframe frame="11">
+<source name="Transform">
+<property name="Rotation" val="-49.9836017082793"/>
+</source>
+</keyframe>
+<keyframe frame="12">
+<source name="Transform">
+<property name="Rotation" val="-53.1774499818093"/>
+</source>
+</keyframe>
+<keyframe frame="13">
+<source name="Transform">
+<property name="Rotation" val="-55.893795366534"/>
+</source>
+</keyframe>
+<keyframe frame="14">
+<source name="Transform">
+<property name="Rotation" val="-58.0344178798184"/>
+</source>
+</keyframe>
+<keyframe frame="15">
+<source name="Transform">
+<property name="Rotation" val="-59.466319120029"/>
+</source>
+</keyframe>
+<keyframe frame="16">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="17">
+<source name="Transform">
+<property name="Rotation" val="-59.8959999990791"/>
+</source>
+</keyframe>
+<keyframe frame="18">
+<source name="Transform">
+<property name="Rotation" val="-59.6479999993059"/>
+</source>
+</keyframe>
+<keyframe frame="19">
+<source name="Transform">
+<property name="Rotation" val="-59.3520000006898"/>
+</source>
+</keyframe>
+<keyframe frame="20">
+<source name="Transform">
+<property name="Rotation" val="-59.104000000918"/>
+</source>
+</keyframe>
+<keyframe frame="21">
+<source name="Transform">
+<property name="Rotation" val="-59"/>
+</source>
+</keyframe>
+<keyframe frame="22">
+<source name="Transform">
+<property name="Rotation" val="-59.1562500010606"/>
+</source>
+</keyframe>
+<keyframe frame="23">
+<source name="Transform">
+<property name="Rotation" val="-59.5000000000023"/>
+</source>
+</keyframe>
+<keyframe frame="24">
+<source name="Transform">
+<property name="Rotation" val="-59.8437499989427"/>
+</source>
+</keyframe>
+<keyframe frame="25">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="27">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="28">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="30">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="31">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="32">
+<source name="Transform">
+<property name="Rotation" val="-60"/>
+</source>
+</keyframe>
+<keyframe frame="33">
+<source name="Transform">
+<property name="Rotation" val="-59.0577576326003"/>
+</source>
+</keyframe>
+<keyframe frame="34">
+<source name="Transform">
+<property name="Rotation" val="-57.1634392188043"/>
+</source>
+</keyframe>
+<keyframe frame="35">
+<source name="Transform">
+<property name="Rotation" val="-54.8201953777474"/>
+</source>
+</keyframe>
+<keyframe frame="36">
+<source name="Transform">
+<property name="Rotation" val="-52.2018447334126"/>
+</source>
+</keyframe>
+<keyframe frame="37">
+<source name="Transform">
+<property name="Rotation" val="-49.3933982822876"/>
+</source>
+</keyframe>
+<keyframe frame="38">
+<source name="Transform">
+<property name="Rotation" val="-46.4441438720499"/>
+</source>
+</keyframe>
+<keyframe frame="39">
+<source name="Transform">
+<property name="Rotation" val="-43.3858372002768"/>
+</source>
+</keyframe>
+<keyframe frame="40">
+<source name="Transform">
+<property name="Rotation" val="-40.2405182455467"/>
+</source>
+</keyframe>
+<keyframe frame="41">
+<source name="Transform">
+<property name="Rotation" val="-37.0243963546938"/>
+</source>
+</keyframe>
+<keyframe frame="42">
+<source name="Transform">
+<property name="Rotation" val="-33.750000000075"/>
+</source>
+</keyframe>
+<keyframe frame="43">
+<source name="Transform">
+<property name="Rotation" val="-30.427480211914"/>
+</source>
+</keyframe>
+<keyframe frame="44">
+<source name="Transform">
+<property name="Rotation" val="-27.0654796499769"/>
+</source>
+</keyframe>
+<keyframe frame="45">
+<source name="Transform">
+<property name="Rotation" val="-23.6717872340654"/>
+</source>
+</keyframe>
+<keyframe frame="46">
+<source name="Transform">
+<property name="Rotation" val="-20.2539244957016"/>
+</source>
+</keyframe>
+<keyframe frame="47">
+<source name="Transform">
+<property name="Rotation" val="-16.8198051534235"/>
+</source>
+</keyframe>
+<keyframe frame="48">
+<source name="Transform">
+<property name="Rotation" val="-13.3786846775799"/>
+</source>
+</keyframe>
+<keyframe frame="49">
+<source name="Transform">
+<property name="Rotation" val="-9.94287524312253"/>
+</source>
+</keyframe>
+<keyframe frame="50">
+<source name="Transform">
+<property name="Rotation" val="-6.53158155652353"/>
+</source>
+</keyframe>
+<keyframe frame="51">
+<source name="Transform">
+<property name="Rotation" val="-3.18200898424232"/>
+</source>
+</keyframe>
+<keyframe frame="52">
+<source name="Transform">
+<property name="Rotation" val="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="underCarriage.png" type="Footage" parent="1" index="16" source="underCarriage.png" w="192" h="84" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="51.5"  y="103.5"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="139"  y="36"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="gear_frontFG.png" type="Footage" parent="3" index="17" source="gear_frontFG.png" w="259" h="259" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="23.5"  y="41.9999999999999"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="129.5"  y="129.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="gear_frontBG.png" type="Footage" parent="3" index="18" source="gear_frontBG.png" w="259" h="259" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="16.5"  y="42.9999999999999"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="129.5"  y="129.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_bgTop.png" type="Footage" parent="7" index="19" source="body_bgTop.png" w="41" h="269" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="5.5"  y="135"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="20.5"  y="134.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="body_bgBottom.png" type="Footage" parent="6" index="20" source="body_bgBottom.png" w="37" h="151" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="-10.75"  y="69.4328358208955"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="18.5"  y="75.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="wheel_backBG.png" type="Footage" parent="16" index="21" source="wheel_backBG.png" w="175" h="175" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="129"  y="25"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="87.5"  y="87.5"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<layer name="wheel_frontBG.png" type="Footage" parent="16" index="22" source="wheel_frontBG.png" w="140" h="140" inPoint="0" outPoint="2.54166666666667" blending="NORMAL">
+<keyframe frame="0">
+<source name="Transform">
+<property name="Position"  x="-63"  y="43"  z="0"/>
+<property name="Scale"  x="100"  y="100"  z="100"/>
+<property name="Rotation" val="0"/>
+<property name="Opacity" val="100"/>
+<property name="Anchor Point"  x="70"  y="70"  z="0"/>
+</source>
+</keyframe>
+</layer>
+<meta duration="2.54" totalFrames="61"/>
+</composition>
+<sub_items>
+</sub_items>
+<meta frameDuration="0.04166666666667" totalFrames="60" duration="2.54"/>
+</after_affect_animation_doc>

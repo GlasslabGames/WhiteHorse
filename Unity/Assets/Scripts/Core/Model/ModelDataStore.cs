@@ -11,12 +11,7 @@ using System.Reflection;
 
 public static class ModelDataStore 
 {
-  /*
-  public static SortedDictionary<int, DataModel> ms_datas = new SortedDictionary<int, DataModel>();
-  public static SortedDictionary<int, ClaimModel> ms_claims = new SortedDictionary<int, ClaimModel>();
-  public static SortedDictionary<int, TopicModel> ms_topics = new SortedDictionary<int, TopicModel>();
-  */
-
+ 
   static ModelDataStore() 
   {
 #if UNITY_EDITOR
@@ -25,23 +20,21 @@ public static class ModelDataStore
     Load ();
   }
 
+  public static void SetUp() {} // the previous function will automatically be called if this is the first time SetUp was called
+
   static void Load()
   {
-    Dictionary<string, object> data = ReadJsonFile("JsonData");
-    /*
-    // Create a dictionary of models for each type
-    List<TopicModel> topics = ParseCategory<TopicModel>( data["Topics"] as Dictionary<string, object> );
-    topics.TrimExcess();
-    ms_topics = new SortedDictionary<int, TopicModel>(topics.ToDictionary(x => x.Id, x => x));
-
-    List<DataModel> datas = ParseCategory<DataModel>( data["Evidence"] as Dictionary<string, object> );
-    datas.TrimExcess();
-    ms_datas = new SortedDictionary<int, DataModel>(datas.ToDictionary(x => x.Id, x => x));
+    Debug.Log("Loading ModelDataStore");
+    	Dictionary<string, object> data = ReadJsonFile("demoData");
     
-    List<ClaimModel> claims = ParseCategory<ClaimModel>( data["Claims"] as Dictionary<string, object> );
-    claims.TrimExcess();
-    ms_claims = new SortedDictionary<int, ClaimModel>(claims.ToDictionary(x => x.Id, x => x));
-    */
+    	// Create a dictionary of models for each type
+		List<DemoEnemyModel> enemies = ParseCategory<DemoEnemyModel>( data["Enemies"] as Dictionary<string, object> );
+    	enemies.TrimExcess();
+		DemoEnemyModel.ms_models = new SortedDictionary<int, DemoEnemyModel>(enemies.ToDictionary(x => x.Id, x => x));
+
+		List<DemoBarkModel> barks = ParseCategory<DemoBarkModel>( data["Barks"] as Dictionary<string, object> );
+		barks.TrimExcess();
+		DemoBarkModel.ms_models = new SortedDictionary<int, DemoBarkModel>(barks.ToDictionary(x => x.Id, x => x));
   }
 
   static Dictionary<string, object> ReadJsonFile(string fileName) {
@@ -54,7 +47,6 @@ public static class ModelDataStore
     List<object> nodes = category["nodes"] as List<object>; // "nodes" is the tag with the list of claims/data/etc
     List<T> parsed = new List<T>();
     T obj;
-    bool isEquipment = category.ContainsKey("equipment") && (bool) category["equipment"]; // this tag indicates which ones can be collected
 
     // Loop through the nodes and create an object of the right type (claim, data, etc) for each
     foreach (Dictionary<string, object> node in nodes) {
@@ -62,7 +54,6 @@ public static class ModelDataStore
         //Debug.Log ("Parsing node with id "+node["Id"]);
         obj = ParseNode<T>(node); // this creates the actual object
         parsed.Add(obj);
-        if (isEquipment) EquipableModel.AddModel(obj as EquipableModel);
       } else {
         Debug.LogError("[ModelDataStore] Found bad/empty node.");
       }
@@ -77,7 +68,7 @@ public static class ModelDataStore
 
     // Set each field/property of that object to the value based on the dictionary
     foreach (string key in node.Keys) {
-      //Debug.Log ("[ModelDataStore] "+key + ": " + node[key]);
+      Debug.Log ("[ModelDataStore] "+key + ": " + node[key]);
 
       // We don't know if it's a field or a property, so try both
       PropertyInfo propertyInfo = type.GetProperty(key);
@@ -88,25 +79,55 @@ public static class ModelDataStore
       }
 
       Type propType = (propertyInfo != null)? propertyInfo.PropertyType : fieldInfo.FieldType;
+      Debug.Log("PropType: "+propType+" IsGeneric?"+propType.IsGenericType);
 
-      // If the property is a list of ints, we need to convert all the entries
+      // If the property is a list, we need to convert all the entries to the appropriate type
       if (propType.IsGenericType) {
         List<object> list = node[key] as List<object>;
         if (list != null)
         {
-          List<int> intList = new List<int>(); // for now, assume that we only care about lists of ints
+          Type listType = propType.GetGenericArguments()[0];
 
-          foreach (object entry in list)
-          {
-            int i = Convert.ToInt32 (entry);
-            intList.Add(i);
+          // based on the list type, we need to convert the entries in the list to the correct type, then save that list as the value
+          if (listType == typeof(System.Int64) || listType == typeof(System.Int32)) {
+            List<int> intList = new List<int>();
+
+            foreach (object entry in list)
+            {
+              int i = Convert.ToInt32 (entry);
+              intList.Add(i);
+            }
+            
+            if (propertyInfo != null) propertyInfo.SetValue(obj, intList, null);
+            else fieldInfo.SetValue(obj, intList);
           }
-
-          // Now that we have a list of ints, we can set that value for the field/property
-          if (propertyInfo != null) propertyInfo.SetValue(obj, intList, null);
-          else fieldInfo.SetValue(obj, intList);
+          else if (listType == typeof(System.Single) || listType == typeof(System.Double)) {
+            List<float> floatList = new List<float>();
+            
+            foreach (object entry in list)
+            {
+              float f = Convert.ToSingle (entry);
+              floatList.Add(f);
+            }
+            
+            if (propertyInfo != null) propertyInfo.SetValue(obj, floatList, null);
+            else fieldInfo.SetValue(obj, floatList);
+          }
+          else if (listType == typeof(System.String)) {
+            List<string> stringList = new List<string>();
+            
+            foreach (object entry in list)
+            {
+              string s = Convert.ToString (entry);
+              stringList.Add(s);
+            }
+            
+            if (propertyInfo != null) propertyInfo.SetValue(obj, stringList, null);
+            else fieldInfo.SetValue(obj, stringList);
+          }
+          else Debug.LogError ("[ModelDataStore] Property "+key+" has list with unusable type "+listType);
         }
-        //else Debug.LogWarning ("[ModelDataStore] Found generic type "+node[key].GetType());
+        else Debug.LogError ("[ModelDataStore] Property "+key+" has unusable generic type "+node[key].GetType());
       }
       else {
         //Debug.Log("[ModelDataStore] Trying to access field/property "+key+" in "+type+" with value "+node[key]);
