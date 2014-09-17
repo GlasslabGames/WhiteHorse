@@ -1,0 +1,551 @@
+{
+  "States": {
+    "spec": {
+      "Name": "text",
+      "Abbreviation": "text",
+      "ElectoralCount": "number 0 75 1",
+      "Population": "number 0 50 0.1"
+    },
+    "nodes": [
+      {
+        "Id": 1,
+        "Name": "Alabama",
+        "Abbreviation": "AL",
+        "Population": 4.7,
+        "ElectoralCount": 9
+      },
+      {
+        "Id": 2,
+        "Name": "Alaska",
+        "Abbreviation": "AK",
+        "Population": 0.7,
+        "ElectoralCount": 3
+      },
+      {
+        "Id": 3,
+        "Name": "Arizona",
+        "Abbreviation": "AZ",
+        "Population": 6.4,
+        "ElectoralCount": 11
+      },
+      {
+        "Id": 4,
+        "Name": "Arkansas",
+        "Abbreviation": "AR",
+        "ElectoralCount": 6,
+        "Population": 2.9
+      },
+      {
+        "Id": 5,
+        "Name": "California",
+        "Abbreviation": "CA",
+        "ElectoralCount": 55,
+        "Population": 37.3
+      },
+      {
+        "Id": 6,
+        "Name": "Colorado",
+        "Abbreviation": "CO",
+        "ElectoralCount": 9,
+        "Population": 5
+      },
+      {
+        "Id": 7,
+        "Name": "Connecticut",
+        "Abbreviation": "CT",
+        "ElectoralCount": 7,
+        "Population": 3.6
+      },
+      {
+        "Id": 8,
+        "Name": "Delaware",
+        "Abbreviation": "DE",
+        "ElectoralCount": 3,
+        "Population": 0.9
+      },
+      {
+        "Id": 9,
+        "Name": "District of Columbia",
+        "Abbreviation": "DC",
+        "Population": 0.6,
+        "ElectoralCount": 3
+      },
+      {
+        "Id": 10,
+        "Name": "Florida",
+        "Abbreviation": "FL",
+        "ElectoralCount": 29,
+        "Population": 18.8
+      },
+      {
+        "Id": 11,
+        "Name": "Georgia",
+        "Abbreviation": "GA",
+        "ElectoralCount": 16,
+        "Population": 9.7
+      },
+      {
+        "Id": 12,
+        "Name": "Hawaii",
+        "Abbreviation": "HI",
+        "Population": 1.4,
+        "ElectoralCount": 4
+      },
+      {
+        "Id": 13,
+        "Name": "Idaho",
+        "Abbreviation": "ID",
+        "ElectoralCount": 4,
+        "Population": 1.6
+      },
+      {
+        "Id": 14,
+        "Name": "Illinois",
+        "Abbreviation": "IL",
+        "ElectoralCount": 20,
+        "Population": 12.9
+      },
+      {
+        "Id": 15,
+        "Name": "Indiana",
+        "Abbreviation": "IN",
+        "ElectoralCount": 11,
+        "Population": 6.5
+      },
+      {
+        "Id": 16,
+        "Name": "Iowa",
+        "Abbreviation": "IA",
+        "ElectoralCount": 6,
+        "Population": 3.1
+      },
+      {
+        "Id": 17,
+        "Name": "Kansas",
+        "Abbreviation": "KS",
+        "ElectoralCount": 6,
+        "Population": 2.9
+      },
+      {
+        "Id": 18,
+        "Name": "Kentucky",
+        "Abbreviation": "KY",
+        "ElectoralCount": 8,
+        "Population": 4.4
+      },
+      {
+        "Id": 19,
+        "Name": "Louisiana",
+        "Abbreviation": "LA",
+        "ElectoralCount": 8,
+        "Population": 4.6
+      },
+      {
+        "Id": 20,
+        "Name": "Maine",
+        "Abbreviation": "ME",
+        "ElectoralCount": 4,
+        "Population": 1.3
+      },
+      {
+        "Id": 21,
+        "Name": "Montana",
+        "Abbreviation": "MT",
+        "ElectoralCount": 3,
+        "Population": 1
+      },
+      {
+        "Id": 22,
+        "Name": "Nebraska",
+        "Abbreviation": "NE",
+        "ElectoralCount": 5,
+        "Population": 1.8
+      },
+      {
+        "Id": 23,
+        "Name": "Nevada",
+        "Abbreviation": "NV",
+        "ElectoralCount": 6,
+        "Population": 2.7
+      },
+      {
+        "Id": 24,
+        "Name": "New Hampshire",
+        "Abbreviation": "NH",
+        "ElectoralCount": 4,
+        "Population": 1.3
+      },
+      {
+        "Id": 25,
+        "Name": "New Jersey",
+        "Abbreviation": "NJ",
+        "ElectoralCount": 14,
+        "Population": 8.8
+      },
+      {
+        "Id": 26,
+        "Name": "New Mexico",
+        "Abbreviation": "NM",
+        "ElectoralCount": 5,
+        "Population": 2.1
+      },
+      {
+        "Id": 27,
+        "Name": "New York",
+        "Abbreviation": "NY",
+        "ElectoralCount": 29,
+        "Population": 19.4
+      },
+      {
+        "Id": 28,
+        "Name": "North Carolina",
+        "Abbreviation": "NC",
+        "ElectoralCount": 15,
+        "Population": 9.5
+      },
+      {
+        "Id": 29,
+        "Name": "North Dakota",
+        "Abbreviation": "ND",
+        "ElectoralCount": 3,
+        "Population": 0.7
+      },
+      {
+        "Id": 30,
+        "Name": "Ohio",
+        "Abbreviation": "OH",
+        "ElectoralCount": 18,
+        "Population": 11.6
+      },
+      {
+        "Id": 31,
+        "Name": "Oklahoma",
+        "Abbreviation": "OK",
+        "ElectoralCount": 7,
+        "Population": 3.8
+      },
+      {
+        "Id": 32,
+        "Name": "Oregon",
+        "Abbreviation": "OR",
+        "ElectoralCount": 7,
+        "Population": 3.9
+      },
+      {
+        "Id": 33,
+        "Name": "Maryland",
+        "Abbreviation": "MD",
+        "ElectoralCount": 10,
+        "Population": 5.8
+      },
+      {
+        "Id": 34,
+        "Name": "Massachusetts",
+        "Abbreviation": "MA",
+        "ElectoralCount": 11,
+        "Population": 6.6
+      },
+      {
+        "Id": 35,
+        "Name": "Michigan",
+        "Abbreviation": "MI",
+        "ElectoralCount": 16,
+        "Population": 9.9
+      },
+      {
+        "Id": 36,
+        "Name": "Minnesota",
+        "Abbreviation": "MN",
+        "ElectoralCount": 10,
+        "Population": 5.3
+      },
+      {
+        "Id": 37,
+        "Name": "Mississippi",
+        "Abbreviation": "MS",
+        "ElectoralCount": 6,
+        "Population": 3
+      },
+      {
+        "Id": 38,
+        "Name": "Missouri",
+        "Abbreviation": "MO",
+        "ElectoralCount": 10,
+        "Population": 6
+      },
+      {
+        "Id": 39,
+        "Name": "Pennsylvania",
+        "Abbreviation": "PA",
+        "ElectoralCount": 20,
+        "Population": 12.7
+      },
+      {
+        "Id": 40,
+        "Name": "Rhode Island",
+        "Abbreviation": "RI",
+        "ElectoralCount": 4,
+        "Population": 1
+      },
+      {
+        "Id": 41,
+        "Name": "South Carolina",
+        "Abbreviation": "SC",
+        "ElectoralCount": 9,
+        "Population": 4.6
+      },
+      {
+        "Id": 42,
+        "Name": "South Dakota",
+        "Abbreviation": "SD",
+        "ElectoralCount": 3,
+        "Population": 0.8
+      },
+      {
+        "Id": 43,
+        "Name": "Tennessee",
+        "Abbreviation": "TN",
+        "ElectoralCount": 11,
+        "Population": 6.4
+      },
+      {
+        "Id": 44,
+        "Name": "Texas",
+        "Abbreviation": "TX",
+        "ElectoralCount": 38,
+        "Population": 25.3
+      },
+      {
+        "Id": 45,
+        "Name": "Utah",
+        "Abbreviation": "UT",
+        "ElectoralCount": 6,
+        "Population": 2.8
+      },
+      {
+        "Id": 46,
+        "Name": "Vermont",
+        "Abbreviation": "VT",
+        "ElectoralCount": 3,
+        "Population": 0.6
+      },
+      {
+        "Id": 47,
+        "Name": "Virginia",
+        "Abbreviation": "VA",
+        "ElectoralCount": 13,
+        "Population": 8
+      },
+      {
+        "Id": 48,
+        "Name": "Washington",
+        "Abbreviation": "WA",
+        "ElectoralCount": 12,
+        "Population": 6.8
+      },
+      {
+        "Id": 49,
+        "Name": "West Virginia",
+        "Abbreviation": "WV",
+        "ElectoralCount": 5,
+        "Population": 1.9
+      },
+      {
+        "Id": 50,
+        "Name": "Wisconsin",
+        "Abbreviation": "WI",
+        "ElectoralCount": 10,
+        "Population": 5.7
+      },
+      {
+        "Id": 51,
+        "Name": "Wyoming",
+        "Abbreviation": "WY",
+        "ElectoralCount": 3,
+        "Population": 0.6
+      }
+    ]
+  },
+  "Scenarios": {
+    "spec": {
+      "Name": "text",
+      "PresetStates": "checkboxes States",
+      "LeaningVariability": "select Randomness",
+      "StateLeanings": "foreach States (select Leanings)"
+    },
+    "nodes": [
+      {
+        "Id": 1,
+        "Name": "Swing States (WH Game Jam)",
+        "StateLeanings": [
+          2,
+          2,
+          2,
+          2,
+          6,
+          4,
+          6,
+          6,
+          6,
+          2,
+          2,
+          6,
+          2,
+          6,
+          4,
+          4,
+          2,
+          2,
+          2,
+          6,
+          4,
+          2,
+          6,
+          4,
+          6,
+          4,
+          6,
+          4,
+          4,
+          4,
+          2,
+          6,
+          6,
+          6,
+          4,
+          6,
+          2,
+          4,
+          4,
+          6,
+          2,
+          4,
+          2,
+          2,
+          2,
+          6,
+          2,
+          6,
+          2,
+          4,
+          2
+        ],
+        "LeaningVariability": 1,
+        "PresetStates": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          20,
+          22,
+          23,
+          25,
+          27,
+          31,
+          32,
+          33,
+          34,
+          36,
+          37,
+          40,
+          41,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          51
+        ]
+      },
+      {
+        "Id": 2,
+        "Name": "Totally Random",
+        "PresetStates": [],
+        "LeaningVariability": 5,
+        "StateLeanings": []
+      }
+    ]
+  },
+  "Randomness": {
+    "hideInEditor": false,
+    "spec": {
+      "Name": "text",
+      "Amount": "number 0 2 0.1"
+    },
+    "nodes": [
+      {
+        "Id": 1,
+        "Name": "None",
+        "Amount": 0
+      },
+      {
+        "Id": 2,
+        "Name": "Small",
+        "Amount": 0.2
+      },
+      {
+        "Id": 3,
+        "Name": "Medium",
+        "Amount": 0.5
+      },
+      {
+        "Id": 4,
+        "Name": "Large",
+        "Amount": 1
+      },
+      {
+        "Id": 5,
+        "Name": "Fully",
+        "Amount": 2
+      }
+    ]
+  },
+  "Leanings": {
+    "hideInEditor": false,
+    "spec": {
+      "Name": "text",
+      "Value": "number -1 1 0.5"
+    },
+    "nodes": [
+      {
+        "Id": 2,
+        "Name": "Red",
+        "Value": -1
+      },
+      {
+        "Id": 3,
+        "Name": "SlightRed",
+        "Value": -0.5
+      },
+      {
+        "Id": 4,
+        "Name": "Neutral",
+        "Value": 0
+      },
+      {
+        "Id": 5,
+        "Name": "SlightBlue",
+        "Value": 0.5
+      },
+      {
+        "Id": 6,
+        "Name": "Blue",
+        "Value": 1
+      }
+    ]
+  }
+}
