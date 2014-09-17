@@ -40,7 +40,7 @@ public class OpponentAi : Player {
 
     //float v = Evaluate(gameState);
     //Debug.Log("> "+v+" starting from state "+gameState.ToString()+" with "+funds+" left.");
-    foreach (StateModel state in gameState.StateModels.Values) {
+    foreach (AiStateModel state in gameState.StateModels.Values) {
       GameMove move = GetMoveForState(state);
       GameState newState = gameState.ApplyOpponentMove( move );
       newState = GetBestNextState (newState, funds - move.Cost, depth + 1);
@@ -60,7 +60,7 @@ public class OpponentAi : Player {
 
   float Evaluate(GameState gs) {
     float value = 0;
-    foreach (StateModel s in gs.StateModels.Values) {
+    foreach (AiStateModel s in gs.StateModels.Values) {
       int newOppCount = s.OpponentBasisCount + s.OpponentBasisIncrement;
       int newPlayerCount = s.PlayerBasisCount + s.PlayerBasisIncrement;
       if (newOppCount > newPlayerCount) {
@@ -73,7 +73,7 @@ public class OpponentAi : Player {
     return value + UnityEngine.Random.value; // some randomness to choose between ties
   }
 
-  public GameMove GetMoveForState(StateModel s) {
+  public GameMove GetMoveForState(AiStateModel s) {
     GameActions a;
     // hard coded rules: placing a new worker is best (as long as it's not full), followed by Upgrade 2 (as long as we have someone to upgrade.)
     if (s.OpponentWorkerCounts[0] < s.StateView.UnitCap) a = GameActions.NEW_SUPPORTER;

@@ -9,7 +9,7 @@ public enum GameActions {NEW_SUPPORTER, UPGRADE1, UPGRADE2 }
 // Represents one action in the game. Used by OpponentAi, could be used for the replay.
 public class GameMove {
 	public Player Player; // who made the move
-	public StateModel State; // which state they did it in
+	public AiStateModel State; // which state they did it in
 	public int Round; // when they did it - for use in a replay
 
   public GameActions Action;
@@ -29,7 +29,7 @@ public class GameMove {
 		}
 	}
 
-  public GameMove(Player p, StateModel s, GameActions a, int r = 0) {
+  public GameMove(Player p, AiStateModel s, GameActions a, int r = 0) {
     Player = p;
     State = s;
     Action = a;
@@ -42,7 +42,7 @@ public class GameMove {
 }
 
 // TODO: refactor to have each State have a StateModel instead of this
-public class StateModel {
+public class AiStateModel {
   public State StateView;
   public int PlayerBasisCount;
   public int PlayerBasisIncrement;
@@ -51,7 +51,7 @@ public class StateModel {
   public int[] PlayerWorkerCounts;
   public int[] OpponentWorkerCounts;
 
-  public StateModel(State s) {
+  public AiStateModel(State s) {
     StateView = s;
     PlayerBasisCount = s.PlayerBasisCount;
     OpponentBasisCount = s.OpponentBasisCount;
@@ -61,7 +61,7 @@ public class StateModel {
     OpponentWorkerCounts = s.OpponentCampaignWorkerCounts;
   }
 
-  public StateModel(StateModel s) {
+  public AiStateModel(AiStateModel s) {
     StateView = s.StateView;
     PlayerBasisCount = s.PlayerBasisCount;
     OpponentBasisCount = s.OpponentBasisCount;
@@ -74,13 +74,13 @@ public class StateModel {
 
 // just used for AI (for now)
 public class GameState {
-  public Dictionary<State, StateModel> StateModels = new Dictionary<State, StateModel>();
+  public Dictionary<State, AiStateModel> StateModels = new Dictionary<State, AiStateModel>();
   public List<GameMove> Moves = new List<GameMove>();
 
   // duplicate a game state
   public GameState(GameState gs) {
-    foreach (StateModel sm in gs.StateModels.Values) {
-      StateModels.Add(sm.StateView, new StateModel(sm));
+    foreach (AiStateModel sm in gs.StateModels.Values) {
+      StateModels.Add(sm.StateView, new AiStateModel(sm));
     }
     foreach (GameMove m in gs.Moves) {
       Moves.Add(m);
@@ -92,13 +92,13 @@ public class GameState {
     // only need to track states that are in play
     List<State> states = GameObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>().Where( s => s.m_inPlay ).ToList();
     foreach (State s in states) {
-      StateModels.Add(s, new StateModel(s));
+      StateModels.Add(s, new AiStateModel(s));
     }
   }
 
   public GameState ApplyOpponentMove(GameMove move) {
     GameState newGameState = new GameState(this);
-    StateModel s = newGameState.StateModels[move.State.StateView];
+    AiStateModel s = newGameState.StateModels[move.State.StateView];
     if (move.Action == GameActions.NEW_SUPPORTER) {
       s.OpponentBasisIncrement += 1;
     } else if (move.Action == GameActions.UPGRADE1) {

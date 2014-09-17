@@ -25,16 +25,20 @@ public static class ModelDataStore
   static void Load()
   {
     Debug.Log("Loading ModelDataStore");
-    	Dictionary<string, object> data = ReadJsonFile("demoData");
+    	Dictionary<string, object> data = ReadJsonFile("data");
     
     	// Create a dictionary of models for each type
-		List<DemoEnemyModel> enemies = ParseCategory<DemoEnemyModel>( data["Enemies"] as Dictionary<string, object> );
-    	enemies.TrimExcess();
-		DemoEnemyModel.ms_models = new SortedDictionary<int, DemoEnemyModel>(enemies.ToDictionary(x => x.Id, x => x));
+    List<StateModel> states = ParseCategory<StateModel>( data["States"] as Dictionary<string, object> );
+    states.TrimExcess();
+    StateModel.ms_models = new SortedDictionary<int, StateModel>(states.ToDictionary(x => x.Id, x => x));
 
-		List<DemoBarkModel> barks = ParseCategory<DemoBarkModel>( data["Barks"] as Dictionary<string, object> );
-		barks.TrimExcess();
-		DemoBarkModel.ms_models = new SortedDictionary<int, DemoBarkModel>(barks.ToDictionary(x => x.Id, x => x));
+    List<ScenarioModel> scenarios = ParseCategory<ScenarioModel>( data["Scenarios"] as Dictionary<string, object> );
+    scenarios.TrimExcess();
+    ScenarioModel.ms_models = new SortedDictionary<int, ScenarioModel>(scenarios.ToDictionary(x => x.Id, x => x));
+
+    List<InitialLeaningModel> leanings = ParseCategory<InitialLeaningModel>( data["Leanings"] as Dictionary<string, object> );
+    leanings.TrimExcess();
+    InitialLeaningModel.ms_models = new SortedDictionary<int, InitialLeaningModel>(leanings.ToDictionary(x => x.Id, x => x));
   }
 
   static Dictionary<string, object> ReadJsonFile(string fileName) {

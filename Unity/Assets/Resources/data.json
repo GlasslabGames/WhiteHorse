@@ -370,7 +370,7 @@
     "spec": {
       "Name": "text",
       "PresetStates": "checkboxes States",
-      "LeaningVariability": "select Randomness",
+      "Randomness": "number 0 1 0.1",
       "StateLeanings": "foreach States (select Leanings)"
     },
     "nodes": [
@@ -430,7 +430,6 @@
           4,
           2
         ],
-        "LeaningVariability": 1,
         "PresetStates": [
           1,
           2,
@@ -475,42 +474,8 @@
         "Id": 2,
         "Name": "Totally Random",
         "PresetStates": [],
-        "LeaningVariability": 5,
-        "StateLeanings": []
-      }
-    ]
-  },
-  "Randomness": {
-    "hideInEditor": false,
-    "spec": {
-      "Name": "text",
-      "Amount": "number 0 2 0.1"
-    },
-    "nodes": [
-      {
-        "Id": 1,
-        "Name": "None",
-        "Amount": 0
-      },
-      {
-        "Id": 2,
-        "Name": "Small",
-        "Amount": 0.2
-      },
-      {
-        "Id": 3,
-        "Name": "Medium",
-        "Amount": 0.5
-      },
-      {
-        "Id": 4,
-        "Name": "Large",
-        "Amount": 1
-      },
-      {
-        "Id": 5,
-        "Name": "Fully",
-        "Amount": 2
+        "StateLeanings": [],
+        "Randomness": 1
       }
     ]
   },
