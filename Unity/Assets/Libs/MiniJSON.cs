@@ -32,6 +32,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
+using GlassLab.Core.Serialization;
 
 namespace MiniJSON {
     // Example usage:
@@ -541,7 +542,7 @@ namespace MiniJSON {
                     || value is decimal) {
                     builder.Append(Convert.ToDouble(value).ToString("R"));
                 } else {
-                    SerializeObject(SessionManager.Serialize(value)); // HIRO
+                    SerializeObject(SessionSerializer.Serialize(value)); // HIRO
                     //SerializeString(value.ToString());
                 }
             }

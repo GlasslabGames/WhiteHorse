@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GlassLab.Core.Conditional;
 
 public class TestConditionalHolder : MonoBehaviour {
   public Conditional[] c;

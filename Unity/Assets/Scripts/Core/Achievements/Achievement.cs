@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GlassLab.Core.Conditional;
 
 public delegate void AchievementEvent(Achievement a);
 
@@ -51,8 +52,8 @@ public class Achievement {
     {
       for (int i=m_conditionals.Count-1; i>=0; i--)
       {
-        m_conditionals[i].Init();
         m_conditionals[i].OnComplete += onConditionComplete;
+        m_conditionals[i].Refresh();
       }
     }
     else

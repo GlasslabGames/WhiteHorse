@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using PixelCrushers.DialogueSystem;
 using PixelCrushers.DialogueSystem.NGUI;
+using GlassLab.Core.Serialization;
 
 
 public class GLDialogueUI : NGUIDialogueUI
