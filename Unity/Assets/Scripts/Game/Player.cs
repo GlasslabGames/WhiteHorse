@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     get { return m_opponentColor; }
   }
 
+  public bool IsRed { get { return m_leaning == Leaning.Red; } }
+  public bool IsBlue { get { return m_leaning == Leaning.Blue; } }
 
   public void Start()
   {

@@ -17,11 +17,11 @@ public class ShowStateLabels : MonoBehaviour {
 		Transform stateTransform;
 		UILabel label;
 		foreach (State state in GameObjectAccessor.Instance.StatesContainer.transform.GetComponentsInChildren<State>()) {
-			if (ShowOnlyOnActiveStates && !state.m_inPlay) continue;
+			if (ShowOnlyOnActiveStates && !state.InPlay) continue;
 			Debug.Log("showing label over "+state.name);
 			newTransform = Utility.InstantiateAsChild(statePrefab, transform);
 			label = newTransform.GetComponent<UILabel>();
-			if (Content == LabelOptions.VOTES) label.text = state.m_electoralCount.ToString();
+			if (Content == LabelOptions.VOTES) label.text = state.Model.ElectoralCount.ToString();
 			else if (Content == LabelOptions.ABBREVIATION) label.text = state.m_abbreviation;
 
 			newTransform.position = state.UiCenter;

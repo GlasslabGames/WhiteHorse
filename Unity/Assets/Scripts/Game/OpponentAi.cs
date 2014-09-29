@@ -11,7 +11,7 @@ public class OpponentAi : Player {
 
   public void Start() {
     Budget = GetComponent<BudgetController>();
-    states = GameObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>().Where( s => s.m_inPlay ).ToList();
+    states = GameObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>().Where( s => s.InPlay ).ToList();
   }
 
   public void DoTurn() {
@@ -64,9 +64,9 @@ public class OpponentAi : Player {
       int newOppCount = s.OpponentBasisCount + s.OpponentBasisIncrement;
       int newPlayerCount = s.PlayerBasisCount + s.PlayerBasisIncrement;
       if (newOppCount > newPlayerCount) {
-        value += s.StateView.m_electoralCount; // 3-20
+        value += s.StateView.Model.ElectoralCount; // 3-20
       } else if (newOppCount < newPlayerCount) {
-        value -= s.StateView.m_electoralCount;
+        value -= s.StateView.Model.ElectoralCount;
       }
     }
     //Debug.Log ("Value of "+gs.ToString()+": "+value);

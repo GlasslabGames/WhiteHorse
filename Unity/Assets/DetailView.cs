@@ -70,18 +70,18 @@ public class DetailView : MonoBehaviour {
 		if (m_row1 != null)
 			m_row1.SetActive (true);
 		if (m_row2 != null)
-			m_row2.SetActive (state.m_inPlay);
+			m_row2.SetActive (state.InPlay);
 		if (m_row2Inactive != null)
-			m_row2Inactive.SetActive (!state.m_inPlay);
+			m_row2Inactive.SetActive (!state.InPlay);
 
 		if (m_name != null)
-			m_name.text = state.m_name;
+			m_name.text = state.Model.Name;
 		if (m_abbreviation != null)
 			m_abbreviation.text = state.m_abbreviation;
 		if (m_population != null)
-			m_population.text = "Population " + state.m_populationInMillions.ToString () + "M";
+			m_population.text = "Population " + state.Model.Population.ToString () + "M";
 		if (m_votes != null)
-			m_votes.text = "Electoral College Votes " + state.m_electoralCount.ToString ();
+			m_votes.text = "Electoral College Votes " + state.Model.ElectoralCount.ToString ();
 
 		Leaning color = GameObjectAccessor.Instance.Player.m_leaning;
 		if (m_redPoints != null) {
@@ -101,7 +101,7 @@ public class DetailView : MonoBehaviour {
 			m_bluePercent.text = Mathf.Round (bluePercent * 100).ToString () + "%";
 
 		
-		if (state.m_inPlay) {
+		if (state.InPlay) {
 			// assign labels for number of units
 			if (m_unitsCount != null)
 				m_unitsCount.text = state.PlayerCampaignWorkers.ToString () + "/" + state.UnitCap.ToString();

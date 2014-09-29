@@ -14,6 +14,7 @@ public enum TurnState
 
 public class GameStateManager : MonoBehaviour
 {
+  private List< State > m_states = new List< State >();
   private List< State > m_statesInPlay = new List< State >();
   private List< State > m_statesNotInPlay = new List< State >();
 
@@ -29,10 +30,10 @@ public class GameStateManager : MonoBehaviour
 
   public int m_currentAnte;
 
-
   private int m_playerVotes;
   private int m_opponentVotes;
 
+  public int m_defaultScenarioId;
 
   public TurnState CurrentTurnState
   {
@@ -42,27 +43,33 @@ public class GameStateManager : MonoBehaviour
 
   public void Awake()
   {
-    // Get all of the existing states
-    foreach( Transform child in GameObjectAccessor.Instance.StatesContainer.transform )
-    {
-      State nextState = child.gameObject.GetComponent< State >();
-      //Debug.Log( "Found state: " + nextState.m_name + ", in play: " + nextState.m_inPlay );
-			if (nextState != null) {
-      if( nextState.m_inPlay )
-      {
-        m_statesInPlay.Add( nextState );
+    ScenarioModel m_scenario = ScenarioModel.GetModel(m_defaultScenarioId);
+
+    foreach (State state in GameObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>()) {
+      if (m_scenario != null) {
+        state.InPlay = !m_scenario.PresetStates.Contains(state.Model.Id);
+        float value = 0;
+        if (m_scenario.StateLeanings.Count >= state.Model.Id) {
+          int leaningId = m_scenario.StateLeanings[state.Model.Id - 1]; // state IDs go from 1 to 51, so subtract 1 to access 0 - 50 in array
+          InitialLeaningModel initialLeaning = InitialLeaningModel.GetModel( leaningId );
+          value = initialLeaning.Value;
+        }
+        float r = UnityEngine.Random.Range( -m_scenario.Randomness, m_scenario.Randomness );
+        Debug.Log ("Initial leaning value: "+value+" Random: "+r);
+        state.SetInitialPopularVote(value + r);
+      } else {
+        state.InPlay = true;
       }
-      else
-      {
-        m_statesNotInPlay.Add( nextState );
-      }
-			}
+      m_states.Add( state );
+      if ( state.InPlay ) m_statesInPlay.Add( state );
+      else m_statesNotInPlay.Add( state );
     }
 
-    //Debug.Log( "States in play: " + m_statesInPlay.Count );
-    //Debug.Log( "States not in play: " + m_statesNotInPlay.Count );
+    Debug.Log( "States in play: " + m_statesInPlay.Count );
+    Debug.Log( "States not in play: " + m_statesNotInPlay.Count );
 
     m_weeksLeft = m_totalElectionWeeks;
+
   }
 
   public void Start()
@@ -186,36 +193,22 @@ public class GameStateManager : MonoBehaviour
 
     foreach( State state in m_statesInPlay )
     {
-      if( state.m_stateLeaning == Leaning.Red )
+      if( state.IsRed )
       {
-        totalRedVotes += state.m_electoralCount;
+        totalRedVotes += state.Model.ElectoralCount;
       }
-      else if( state.m_stateLeaning == Leaning.Blue )
+      else if( state.IsBlue )
       {
-        totalBlueVotes += state.m_electoralCount;
+        totalBlueVotes += state.Model.ElectoralCount;
       }
-			totalOpinion += state.PopularVote * state.m_populationInMillions;
-			totalPopulation += state.m_populationInMillions;
+			totalOpinion += state.PopularVote * state.Model.Population;
+      totalPopulation += state.Model.Population;
 
       //state.m_dirty = false;
     }
-    foreach( State state in m_statesNotInPlay )
-    {
-      if( state.m_stateLeaning == Leaning.Red )
-      {
-        totalRedVotes += state.m_electoralCount;
-      }
-      else if( state.m_stateLeaning == Leaning.Blue )
-      {
-        totalBlueVotes += state.m_electoralCount;
-      }
-			totalOpinion += state.PopularVote * state.m_populationInMillions;
-			totalPopulation += state.m_populationInMillions;
 
-		}
-
-		m_playerVotes = (GameObjectAccessor.Instance.Player.m_leaning == Leaning.Blue) ? totalBlueVotes : totalRedVotes;
-		m_opponentVotes = (GameObjectAccessor.Instance.Player.m_opponentLeaning == Leaning.Blue) ? totalBlueVotes : totalRedVotes;
+		m_playerVotes = (GameObjectAccessor.Instance.Player.IsBlue) ? totalBlueVotes : totalRedVotes;
+		m_opponentVotes = (GameObjectAccessor.Instance.Player.IsBlue) ? totalRedVotes : totalBlueVotes;
 
     GameObjectAccessor.Instance.PlayerVoteCount.Set(m_playerVotes, !atBeginning);
     GameObjectAccessor.Instance.OpponentVoteCount.Set (m_opponentVotes, !atBeginning);

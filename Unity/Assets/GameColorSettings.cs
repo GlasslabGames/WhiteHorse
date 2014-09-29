@@ -11,7 +11,8 @@ public class GameColorSettings {
 	public Color redStateDark;
 	
 	public Color undiscoveredState;
-	public Color neutralState;
+  public Color neutralState;
+	public Color neutralLockedState;
 
 	public Color outline;
 	public Color neutralOutline;

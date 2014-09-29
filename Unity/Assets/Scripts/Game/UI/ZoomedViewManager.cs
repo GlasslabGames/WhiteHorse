@@ -3,7 +3,8 @@ using System.Collections;
 
 public class ZoomedViewManager : MonoBehaviour {
 	public Camera MainCamera;
-	public float SecsBeforeDisplay; // when they press on a state, don't pop up the zoom view immediately
+  public float SecsBeforeDisplay; // when they press on a state, don't pop up the zoom view immediately
+	public float YOffset;
 	private float m_wait;
 	public bool Active;
 
@@ -34,6 +35,7 @@ public class ZoomedViewManager : MonoBehaviour {
 		if (Active) {
 			Vector3 pos = MainCamera.ScreenToWorldPoint(Input.mousePosition);
 			pos.z = transform.position.z;
+      //pos.y += YOffset; // JK, if I do this then they won't be clicking in the place they think they're clicking
 			transform.position = pos;
 
 			// change the magnification depending on how far east you are

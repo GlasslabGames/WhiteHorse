@@ -268,13 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 0
-  m_electoralCount: 16
-  m_populationInMillions: 9.89999962
-  m_name: Michigan
   m_abbreviation: MI
-  m_hidden: 0
-  m_inPlay: 1
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &19865705
@@ -1878,6 +1872,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 132391996}
   - 114: {fileID: 132391997}
+  - 148: {fileID: 132391998}
   m_Layer: 0
   m_Name: DE
   m_TagString: Untagged
@@ -1911,15 +1906,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 3
-  m_populationInMillions: .899999976
-  m_name: Delaware
   m_abbreviation: DE
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &132391998
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 132391995}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 132391997}
+  m_ViewID:
+    m_ID: 51
+    m_Type: 1
 --- !u!1 &144630198
 GameObject:
   m_ObjectHideFlags: 0
@@ -2307,6 +2308,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 163992669}
   - 114: {fileID: 163992670}
+  - 148: {fileID: 163992671}
   m_Layer: 0
   m_Name: NY
   m_TagString: Untagged
@@ -2340,15 +2342,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 29
-  m_populationInMillions: 19.3999996
-  m_name: New York
   m_abbreviation: NY
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &163992671
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163992668}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 163992670}
+  m_ViewID:
+    m_ID: 53
+    m_Type: 1
 --- !u!1 &168938583
 GameObject:
   m_ObjectHideFlags: 0
@@ -2890,6 +2898,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 212144236}
   - 114: {fileID: 212144237}
+  - 148: {fileID: 212144238}
   m_Layer: 0
   m_Name: WV
   m_TagString: Untagged
@@ -2924,15 +2933,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 5
-  m_populationInMillions: 1.89999998
-  m_name: West Virginia
   m_abbreviation: WV
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &212144238
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 212144235}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 212144237}
+  m_ViewID:
+    m_ID: 66
+    m_Type: 1
 --- !u!1 &214570238
 GameObject:
   m_ObjectHideFlags: 0
@@ -3284,13 +3299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 0
-  m_electoralCount: 5
-  m_populationInMillions: 2.0999999
-  m_name: New Mexico
   m_abbreviation: NM
-  m_hidden: 0
-  m_inPlay: 1
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &248017228
@@ -3348,13 +3357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 0
-  m_electoralCount: 6
-  m_populationInMillions: 3.0999999
-  m_name: Iowa
   m_abbreviation: IA
-  m_hidden: 0
-  m_inPlay: 1
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &258094117
@@ -3557,6 +3560,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 309488149}
   - 114: {fileID: 309488150}
+  - 148: {fileID: 309488151}
   m_Layer: 0
   m_Name: KY
   m_TagString: Untagged
@@ -3590,15 +3594,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 8
-  m_populationInMillions: 4.4000001
-  m_name: Kentucky
   m_abbreviation: KY
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &309488151
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 309488148}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 309488150}
+  m_ViewID:
+    m_ID: 61
+    m_Type: 1
 --- !u!1 &313217471
 GameObject:
   m_ObjectHideFlags: 0
@@ -3982,6 +3992,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 342954045}
   - 114: {fileID: 342954046}
+  - 148: {fileID: 342954047}
   m_Layer: 0
   m_Name: AL
   m_TagString: Untagged
@@ -4015,15 +4026,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 9
-  m_populationInMillions: 4.69999981
-  m_name: Alabama
   m_abbreviation: AL
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &342954047
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 342954044}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 342954046}
+  m_ViewID:
+    m_ID: 43
+    m_Type: 1
 --- !u!1 &357759560
 GameObject:
   m_ObjectHideFlags: 0
@@ -4733,13 +4750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 0
-  m_electoralCount: 9
-  m_populationInMillions: 5
-  m_name: Colorado
   m_abbreviation: CO
-  m_hidden: 0
-  m_inPlay: 1
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!1 &418059116
@@ -5034,6 +5045,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 432566965}
   - 114: {fileID: 432566966}
+  - 148: {fileID: 432566967}
   m_Layer: 0
   m_Name: AR
   m_TagString: Untagged
@@ -5067,15 +5079,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 6
-  m_populationInMillions: 2.9000001
-  m_name: Arkansas
   m_abbreviation: AR
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &432566967
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 432566964}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 432566966}
+  m_ViewID:
+    m_ID: 62
+    m_Type: 1
 --- !u!1 &434392730
 GameObject:
   m_ObjectHideFlags: 0
@@ -5472,6 +5490,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 467918285}
   - 114: {fileID: 467918286}
+  - 148: {fileID: 467918287}
   m_Layer: 0
   m_Name: DC
   m_TagString: Untagged
@@ -5505,15 +5524,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 3
-  m_populationInMillions: .600000024
-  m_name: District of Columbia
   m_abbreviation: DC
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &467918287
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 467918284}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 467918286}
+  m_ViewID:
+    m_ID: 44
+    m_Type: 1
 --- !u!1 &471028957
 GameObject:
   m_ObjectHideFlags: 0
@@ -7267,7 +7292,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 655467804}
   m_LocalRotation: {x: -.707106888, y: 0, z: 0, w: .707106769}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalPosition: {x: 0, y: 1.5, z: -5}
   m_LocalScale: {x: -.660000026, y: .660000026, z: -.660000026}
   m_Children: []
   m_Father: {fileID: 997125581}
@@ -7342,13 +7367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 0
-  m_electoralCount: 18
-  m_populationInMillions: 11.6000004
-  m_name: Ohio
   m_abbreviation: OH
-  m_hidden: 0
-  m_inPlay: 1
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &663125999
@@ -7372,6 +7391,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 672394005}
   - 114: {fileID: 672394006}
+  - 148: {fileID: 672394007}
   m_Layer: 0
   m_Name: OK
   m_TagString: Untagged
@@ -7405,15 +7425,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 7
-  m_populationInMillions: 3.79999995
-  m_name: Oklahoma
   m_abbreviation: OK
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &672394007
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 672394004}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 672394006}
+  m_ViewID:
+    m_ID: 78
+    m_Type: 1
 --- !u!1 &680663581
 GameObject:
   m_ObjectHideFlags: 0
@@ -7548,6 +7574,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 682211466}
   - 114: {fileID: 682211467}
+  - 148: {fileID: 682211468}
   m_Layer: 0
   m_Name: WY
   m_TagString: Untagged
@@ -7581,15 +7608,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 3
-  m_populationInMillions: .600000024
-  m_name: Wyoming
   m_abbreviation: WY
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &682211468
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 682211465}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 682211467}
+  m_ViewID:
+    m_ID: 75
+    m_Type: 1
 --- !u!1 &682730137
 GameObject:
   m_ObjectHideFlags: 0
@@ -7599,6 +7632,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 682730138}
   - 114: {fileID: 682730139}
+  - 148: {fileID: 682730140}
   m_Layer: 0
   m_Name: VA
   m_TagString: Untagged
@@ -7632,15 +7666,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 13
-  m_populationInMillions: 8
-  m_name: Virginia
   m_abbreviation: VA
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &682730140
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 682730137}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 682730139}
+  m_ViewID:
+    m_ID: 56
+    m_Type: 1
 --- !u!1 &683767451
 GameObject:
   m_ObjectHideFlags: 0
@@ -7730,6 +7770,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 697850745}
   - 114: {fileID: 697850746}
+  - 148: {fileID: 697850747}
   m_Layer: 0
   m_Name: IL
   m_TagString: Untagged
@@ -7763,15 +7804,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 20
-  m_populationInMillions: 12.8999996
-  m_name: Illinois
   m_abbreviation: IL
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &697850747
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697850744}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 697850746}
+  m_ViewID:
+    m_ID: 73
+    m_Type: 1
 --- !u!1 &700876995
 GameObject:
   m_ObjectHideFlags: 0
@@ -7878,6 +7925,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 702484571}
   - 114: {fileID: 702484572}
+  - 148: {fileID: 702484573}
   m_Layer: 0
   m_Name: ME
   m_TagString: Untagged
@@ -7911,15 +7959,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 4
-  m_populationInMillions: 1.29999995
-  m_name: Maine
   m_abbreviation: ME
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &702484573
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 702484570}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 702484572}
+  m_ViewID:
+    m_ID: 48
+    m_Type: 1
 --- !u!1 &702932960
 GameObject:
   m_ObjectHideFlags: 0
@@ -8023,6 +8077,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 703327575}
   - 114: {fileID: 703327576}
+  - 148: {fileID: 703327577}
   m_Layer: 0
   m_Name: WA
   m_TagString: Untagged
@@ -8056,15 +8111,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 12
-  m_populationInMillions: 6.80000019
-  m_name: Washington
   m_abbreviation: WA
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &703327577
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 703327574}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 703327576}
+  m_ViewID:
+    m_ID: 67
+    m_Type: 1
 --- !u!1 &709354831
 GameObject:
   m_ObjectHideFlags: 0
@@ -8261,13 +8322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 0
-  m_electoralCount: 20
-  m_populationInMillions: 12.6999998
-  m_name: Pennsylvania
   m_abbreviation: PA
-  m_hidden: 0
-  m_inPlay: 1
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!1 &721991566
@@ -8482,6 +8537,7 @@ MonoBehaviour:
   m_totalElectionWeeks: 12
   m_harvestTimer: {fileID: 733379578}
   m_currentAnte: 20
+  m_defaultScenarioId: 1
 --- !u!4 &733379576
 Transform:
   m_ObjectHideFlags: 0
@@ -8515,6 +8571,7 @@ MonoBehaviour:
     redStateDark: {r: .647058845, g: .168627456, b: .172549024, a: 1}
     undiscoveredState: {r: .309803933, g: .309803933, b: .309803933, a: 1}
     neutralState: {r: 1, g: 1, b: 1, a: 1}
+    neutralLockedState: {r: .925490201, g: .925490201, b: .925490201, a: 1}
     outline: {r: 1, g: 1, b: 1, a: 1}
     neutralOutline: {r: .870588243, g: .870588243, b: .870588243, a: 1}
     highlightOutline: {r: 0, g: 0, b: 0, a: 1}
@@ -8556,8 +8613,8 @@ MonoBehaviour:
   DefeatSound: {fileID: 100000, guid: 55c704952ca504ccfadec1b40f2f0776, type: 2}
   Textures:
     EndTurnButton: {fileID: 2800000, guid: 36c589c75a6a94ef182d4cd93ab59001, type: 3}
-    SubmittedButton: {fileID: 0}
-    ResultsButton: {fileID: 2800000, guid: b809e3c404dea49a29f5ff8863f06011, type: 3}
+    SubmittedButton: {fileID: 2800000, guid: b809e3c404dea49a29f5ff8863f06011, type: 3}
+    ResultsButton: {fileID: 2800000, guid: 9531c6754a4444c7db52246e9333dd9d, type: 3}
   EndTurnButton: {fileID: 2128866685}
   OpponentAi: {fileID: 561919618}
 --- !u!114 &733379578
@@ -8697,6 +8754,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 745708101}
   - 114: {fileID: 745708102}
+  - 148: {fileID: 745708103}
   m_Layer: 0
   m_Name: MA
   m_TagString: Untagged
@@ -8730,15 +8788,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 11
-  m_populationInMillions: 6.5999999
-  m_name: Massachusetts
   m_abbreviation: MA
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &745708103
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745708100}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 745708102}
+  m_ViewID:
+    m_ID: 55
+    m_Type: 1
 --- !u!1 &746625913
 GameObject:
   m_ObjectHideFlags: 0
@@ -8962,7 +9026,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 783858396}
   - 212: {fileID: 783858395}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8998,7 +9062,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 783858394}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 997125581}
@@ -9966,6 +10030,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 910192353}
   - 114: {fileID: 910192354}
+  - 148: {fileID: 910192355}
   m_Layer: 0
   m_Name: OR
   m_TagString: Untagged
@@ -9999,15 +10064,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 7
-  m_populationInMillions: 3.9000001
-  m_name: Oregon
   m_abbreviation: OR
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &910192355
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 910192352}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 910192354}
+  m_ViewID:
+    m_ID: 68
+    m_Type: 1
 --- !u!1 &930477515
 GameObject:
   m_ObjectHideFlags: 0
@@ -10148,6 +10219,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 940833518}
   - 114: {fileID: 940833519}
+  - 148: {fileID: 940833520}
   m_Layer: 0
   m_Name: ID
   m_TagString: Untagged
@@ -10181,15 +10253,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 4
-  m_populationInMillions: 1.60000002
-  m_name: Idaho
   m_abbreviation: ID
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &940833520
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 940833517}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 940833519}
+  m_ViewID:
+    m_ID: 72
+    m_Type: 1
 --- !u!1 &951809411
 GameObject:
   m_ObjectHideFlags: 0
@@ -10300,6 +10378,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 963064440}
   - 114: {fileID: 963064441}
+  - 148: {fileID: 963064442}
   m_Layer: 0
   m_Name: CT
   m_TagString: Untagged
@@ -10333,15 +10412,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 7
-  m_populationInMillions: 3.5999999
-  m_name: Connecticut
   m_abbreviation: CT
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &963064442
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 963064439}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 963064441}
+  m_ViewID:
+    m_ID: 54
+    m_Type: 1
 --- !u!1 &971908931
 GameObject:
   m_ObjectHideFlags: 0
@@ -10680,6 +10765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 190567212}
   SecsBeforeDisplay: .200000003
+  YOffset: -1
   Active: 0
 --- !u!1 &1001145402
 GameObject:
@@ -10740,6 +10826,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1007132800}
   - 114: {fileID: 1007132801}
+  - 148: {fileID: 1007132802}
   m_Layer: 0
   m_Name: VT
   m_TagString: Untagged
@@ -10773,15 +10860,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 3
-  m_populationInMillions: .600000024
-  m_name: Vermont
   m_abbreviation: VT
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1007132802
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1007132799}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1007132801}
+  m_ViewID:
+    m_ID: 49
+    m_Type: 1
 --- !u!1 &1011213497
 GameObject:
   m_ObjectHideFlags: 0
@@ -12904,6 +12997,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1297656493}
   - 114: {fileID: 1297656494}
+  - 148: {fileID: 1297656495}
   m_Layer: 0
   m_Name: NE
   m_TagString: Untagged
@@ -12937,15 +13031,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 5
-  m_populationInMillions: 1.79999995
-  m_name: Nebraska
   m_abbreviation: NE
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1297656495
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1297656492}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1297656494}
+  m_ViewID:
+    m_ID: 76
+    m_Type: 1
 --- !u!1 &1309588396
 GameObject:
   m_ObjectHideFlags: 0
@@ -13001,13 +13101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 0
-  m_electoralCount: 10
-  m_populationInMillions: 5.69999981
-  m_name: Wisconsin
   m_abbreviation: WI
-  m_hidden: 0
-  m_inPlay: 1
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!1 &1327718854
@@ -13019,6 +13113,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1327718855}
   - 114: {fileID: 1327718856}
+  - 148: {fileID: 1327718857}
   m_Layer: 0
   m_Name: AZ
   m_TagString: Untagged
@@ -13052,15 +13147,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 11
-  m_populationInMillions: 6.4000001
-  m_name: Arizona
   m_abbreviation: AZ
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1327718857
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1327718854}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1327718856}
+  m_ViewID:
+    m_ID: 70
+    m_Type: 1
 --- !u!1 &1354458937
 GameObject:
   m_ObjectHideFlags: 0
@@ -13170,6 +13271,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1359208950}
   - 114: {fileID: 1359208951}
+  - 148: {fileID: 1359208952}
   m_Layer: 0
   m_Name: TX
   m_TagString: Untagged
@@ -13203,15 +13305,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 38
-  m_populationInMillions: 25.2999992
-  m_name: Texas
   m_abbreviation: TX
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1359208952
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1359208949}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1359208951}
+  m_ViewID:
+    m_ID: 77
+    m_Type: 1
 --- !u!1 &1367954632
 GameObject:
   m_ObjectHideFlags: 0
@@ -13221,6 +13329,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1367954633}
   - 114: {fileID: 1367954634}
+  - 148: {fileID: 1367954635}
   m_Layer: 0
   m_Name: RI
   m_TagString: Untagged
@@ -13254,15 +13363,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 4
-  m_populationInMillions: 1
-  m_name: Rhode Island
   m_abbreviation: RI
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1367954635
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1367954632}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1367954634}
+  m_ViewID:
+    m_ID: 50
+    m_Type: 1
 --- !u!1 &1371982643
 GameObject:
   m_ObjectHideFlags: 0
@@ -13661,13 +13776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 0
-  m_electoralCount: 11
-  m_populationInMillions: 6.5
-  m_name: Indiana
   m_abbreviation: IN
-  m_hidden: 0
-  m_inPlay: 1
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!1 &1405221142
@@ -13772,13 +13881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 0
-  m_electoralCount: 4
-  m_populationInMillions: 1.29999995
-  m_name: New Hampshire
   m_abbreviation: NH
-  m_hidden: 0
-  m_inPlay: 1
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!1 &1426211758
@@ -14121,6 +14224,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1462267176}
   - 114: {fileID: 1462267177}
+  - 148: {fileID: 1462267178}
   m_Layer: 0
   m_Name: CA
   m_TagString: Untagged
@@ -14154,15 +14258,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 55
-  m_populationInMillions: 37.2999992
-  m_name: California
   m_abbreviation: CA
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1462267178
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1462267175}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1462267177}
+  m_ViewID:
+    m_ID: 59
+    m_Type: 1
 --- !u!1 &1465345263
 GameObject:
   m_ObjectHideFlags: 0
@@ -14462,6 +14572,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1482420139}
   - 114: {fileID: 1482420140}
+  - 148: {fileID: 1482420141}
   m_Layer: 0
   m_Name: AK
   m_TagString: Untagged
@@ -14495,15 +14606,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 3
-  m_populationInMillions: .699999988
-  m_name: Alaska
   m_abbreviation: AK
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1482420141
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1482420138}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1482420140}
+  m_ViewID:
+    m_ID: 47
+    m_Type: 1
 --- !u!1 &1486788903
 GameObject:
   m_ObjectHideFlags: 0
@@ -14969,13 +15086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 0
-  m_electoralCount: 3
-  m_populationInMillions: .800000012
-  m_name: South Dakota
   m_abbreviation: SD
-  m_hidden: 0
-  m_inPlay: 1
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1529232806
@@ -15175,6 +15286,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1538886810}
   - 114: {fileID: 1538886811}
+  - 148: {fileID: 1538886812}
   m_Layer: 0
   m_Name: MN
   m_TagString: Untagged
@@ -15208,15 +15320,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 10
-  m_populationInMillions: 5.30000019
-  m_name: Minnesota
   m_abbreviation: MN
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1538886812
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1538886809}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1538886811}
+  m_ViewID:
+    m_ID: 79
+    m_Type: 1
 --- !u!1 &1544245808
 GameObject:
   m_ObjectHideFlags: 0
@@ -16356,6 +16474,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1588145622}
   - 114: {fileID: 1588145623}
+  - 148: {fileID: 1588145624}
   m_Layer: 0
   m_Name: NJ
   m_TagString: Untagged
@@ -16389,15 +16508,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 14
-  m_populationInMillions: 8.80000019
-  m_name: New Jersey
   m_abbreviation: NJ
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1588145624
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1588145621}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1588145623}
+  m_ViewID:
+    m_ID: 52
+    m_Type: 1
 --- !u!1 &1594641273
 GameObject:
   m_ObjectHideFlags: 0
@@ -16649,6 +16774,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1633468484}
   - 114: {fileID: 1633468485}
+  - 148: {fileID: 1633468486}
   m_Layer: 0
   m_Name: TN
   m_TagString: Untagged
@@ -16682,15 +16808,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 11
-  m_populationInMillions: 6.4000001
-  m_name: Tennessee
   m_abbreviation: TN
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1633468486
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1633468483}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1633468485}
+  m_ViewID:
+    m_ID: 65
+    m_Type: 1
 --- !u!1 &1635361257
 GameObject:
   m_ObjectHideFlags: 0
@@ -18142,6 +18274,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1702398668}
   - 114: {fileID: 1702398669}
+  - 148: {fileID: 1702398670}
   m_Layer: 0
   m_Name: FL
   m_TagString: Untagged
@@ -18175,15 +18308,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 29
-  m_populationInMillions: 18.7999992
-  m_name: Florida
   m_abbreviation: FL
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1702398670
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1702398667}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1702398669}
+  m_ViewID:
+    m_ID: 46
+    m_Type: 1
 --- !u!1 &1704690524
 GameObject:
   m_ObjectHideFlags: 0
@@ -18243,6 +18382,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1709786399}
   - 114: {fileID: 1709786400}
+  - 148: {fileID: 1709786401}
   m_Layer: 0
   m_Name: KS
   m_TagString: Untagged
@@ -18276,15 +18416,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 6
-  m_populationInMillions: 2.9000001
-  m_name: Kansas
   m_abbreviation: KS
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1709786401
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1709786398}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1709786400}
+  m_ViewID:
+    m_ID: 60
+    m_Type: 1
 --- !u!1 &1710559156
 GameObject:
   m_ObjectHideFlags: 0
@@ -18931,6 +19077,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1766101020}
   - 114: {fileID: 1766101021}
+  - 148: {fileID: 1766101022}
   m_Layer: 0
   m_Name: NV
   m_TagString: Untagged
@@ -18964,15 +19111,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 6
-  m_populationInMillions: 2.70000005
-  m_name: Nevada
   m_abbreviation: NV
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1766101022
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1766101019}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1766101021}
+  m_ViewID:
+    m_ID: 69
+    m_Type: 1
 --- !u!1 &1766301366
 GameObject:
   m_ObjectHideFlags: 0
@@ -18982,6 +19135,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1766301367}
   - 114: {fileID: 1766301368}
+  - 148: {fileID: 1766301369}
   m_Layer: 0
   m_Name: MS
   m_TagString: Untagged
@@ -19015,15 +19169,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 6
-  m_populationInMillions: 3
-  m_name: Mississippi
   m_abbreviation: MS
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1766301369
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1766301366}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1766301368}
+  m_ViewID:
+    m_ID: 63
+    m_Type: 1
 --- !u!1 &1770629974
 GameObject:
   m_ObjectHideFlags: 0
@@ -19722,13 +19882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 0
-  m_electoralCount: 3
-  m_populationInMillions: .699999988
-  m_name: North Dakota
   m_abbreviation: ND
-  m_hidden: 0
-  m_inPlay: 1
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1839210466
@@ -19852,6 +20006,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1852992611}
   - 114: {fileID: 1852992612}
+  - 148: {fileID: 1852992613}
   m_Layer: 0
   m_Name: MD
   m_TagString: Untagged
@@ -19885,15 +20040,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 10
-  m_populationInMillions: 5.80000019
-  m_name: Maryland
   m_abbreviation: MD
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1852992613
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1852992610}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1852992612}
+  m_ViewID:
+    m_ID: 74
+    m_Type: 1
 --- !u!1 &1853978504
 GameObject:
   m_ObjectHideFlags: 0
@@ -20274,6 +20435,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1899551334}
   - 114: {fileID: 1899551335}
+  - 148: {fileID: 1899551336}
   m_Layer: 0
   m_Name: UT
   m_TagString: Untagged
@@ -20307,15 +20469,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 6
-  m_populationInMillions: 2.79999995
-  m_name: Utah
   m_abbreviation: UT
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &1899551336
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1899551333}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 1899551335}
+  m_ViewID:
+    m_ID: 71
+    m_Type: 1
 --- !u!1 &1906570253
 GameObject:
   m_ObjectHideFlags: 0
@@ -20359,13 +20527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 0
-  m_electoralCount: 10
-  m_populationInMillions: 6
-  m_name: Missouri
   m_abbreviation: MO
-  m_hidden: 0
-  m_inPlay: 1
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1906570256
@@ -20881,13 +21043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 0
-  m_electoralCount: 15
-  m_populationInMillions: 9.5
-  m_name: North Carolina
   m_abbreviation: NC
-  m_hidden: 0
-  m_inPlay: 1
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!4 &1946492624
@@ -21453,6 +21609,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2013700029}
   - 114: {fileID: 2013700030}
+  - 148: {fileID: 2013700031}
   m_Layer: 0
   m_Name: LA
   m_TagString: Untagged
@@ -21486,15 +21643,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 8
-  m_populationInMillions: 4.5999999
-  m_name: Louisiana
   m_abbreviation: LA
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &2013700031
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2013700028}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 2013700030}
+  m_ViewID:
+    m_ID: 58
+    m_Type: 1
 --- !u!1 &2023673855
 GameObject:
   m_ObjectHideFlags: 0
@@ -21860,6 +22023,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2034370941}
   - 114: {fileID: 2034370942}
+  - 148: {fileID: 2034370943}
   m_Layer: 0
   m_Name: GA
   m_TagString: Untagged
@@ -21893,15 +22057,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 16
-  m_populationInMillions: 9.69999981
-  m_name: Georgia
   m_abbreviation: GA
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &2034370943
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2034370940}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 2034370942}
+  m_ViewID:
+    m_ID: 64
+    m_Type: 1
 --- !u!1 &2045694512
 GameObject:
   m_ObjectHideFlags: 0
@@ -22218,13 +22388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 0
-  m_electoralCount: 3
-  m_populationInMillions: 1
-  m_name: Montana
   m_abbreviation: MT
-  m_hidden: 0
-  m_inPlay: 1
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &2092980522
@@ -22421,6 +22585,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2104858924}
   - 114: {fileID: 2104858925}
+  - 148: {fileID: 2104858926}
   m_Layer: 0
   m_Name: SC
   m_TagString: Untagged
@@ -22454,15 +22619,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 1
-  m_electoralCount: 9
-  m_populationInMillions: 4.5999999
-  m_name: South Carolina
   m_abbreviation: SC
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &2104858926
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2104858923}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 2104858925}
+  m_ViewID:
+    m_ID: 57
+    m_Type: 1
 --- !u!1 &2107821650
 GameObject:
   m_ObjectHideFlags: 0
@@ -22612,6 +22783,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2121160084}
   - 114: {fileID: 2121160085}
+  - 148: {fileID: 2121160086}
   m_Layer: 0
   m_Name: HI
   m_TagString: Untagged
@@ -22645,15 +22817,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c68b75a4eacb45d7b410a119de5c38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stateLeaning: 2
-  m_electoralCount: 4
-  m_populationInMillions: 1.39999998
-  m_name: Hawaii
   m_abbreviation: HI
-  m_hidden: 0
-  m_inPlay: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
+--- !u!148 &2121160086
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2121160083}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 2121160085}
+  m_ViewID:
+    m_ID: 45
+    m_Type: 1
 --- !u!1 &2128866681
 GameObject:
   m_ObjectHideFlags: 0

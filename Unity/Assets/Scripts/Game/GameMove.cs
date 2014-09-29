@@ -37,7 +37,7 @@ public class GameMove {
   }
 
   public override string ToString() {
-    return (System.String.Format("GameMove({0}, {1}, {2})", Player.ToString(), State.StateView.m_name, Action.ToString()));
+    return (System.String.Format("GameMove({0}, {1}, {2})", Player.ToString(), State.StateView.Model.Name, Action.ToString()));
   }
 }
 
@@ -90,7 +90,7 @@ public class GameState {
   // create a new gamestate based on the current one
   public GameState() {
     // only need to track states that are in play
-    List<State> states = GameObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>().Where( s => s.m_inPlay ).ToList();
+    List<State> states = GameObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>().Where( s => s.InPlay ).ToList();
     foreach (State s in states) {
       StateModels.Add(s, new AiStateModel(s));
     }
