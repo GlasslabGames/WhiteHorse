@@ -51,8 +51,14 @@ public class State : MonoBehaviour
   private int m_opponentBasisCountIncrement = 0;
 
 	// NEW
+	public float BlueSupportPercent = 0.5f;
+	public float RedSupportPercent {
+		get { return 1 - BlueSupportPercent; }
+		set { BlueSupportPercent = 1 - value; }
+	}
+	public int PrevOpponentSupporterCount = 0;
 	public int NextOpponentSupporterCount = 0;
-
+	
   private int[] m_playerCampaignWorkerCounts = new int[ 3 ];
   private int[] m_opponentCampaignWorkerCounts = new int[ 3 ];
 
@@ -188,10 +194,12 @@ public class State : MonoBehaviour
 
     //if( m_dirty )
     {
-      networkView.RPC( "OpponentCreateSupporters", RPCMode.Others, new Vector3( PlayerCampaignWorkerCounts[0], PlayerCampaignWorkerCounts[1], PlayerCampaignWorkerCounts[2] ) );
-    }
+      //networkView.RPC( "OpponentCreateSupporters", RPCMode.Others, new Vector3( PlayerCampaignWorkerCounts[0], PlayerCampaignWorkerCounts[1], PlayerCampaignWorkerCounts[2] ) );
+			networkView.RPC( "OpponentCreateSupporters", RPCMode.Others, PlayerCampaignWorkerCounts[0] );
 
-    // TEMP
+		}
+		
+		// TEMP
 
     if( GameObjectAccessor.Instance.UseAI )
     {
@@ -267,7 +275,17 @@ public class State : MonoBehaviour
 		
 		// We've iterated over all the supporters (none are left from last turn or new this turn)
 		if( m_currentOpponentSupporterIteration >= Math.Max( m_opponentSupporterList.Count, NextOpponentSupporterCount ) ) {
-			return UpdatePopularVoteOpponent();
+			// We're done! Remove all the workers we were supposed to remove
+			foreach (GameObject go in m_opponentSupporterList) {
+				CampaignWorker worker = go.GetComponent< CampaignWorker >();
+				if (worker != null && worker.Removed) {
+					// Remove that worker
+					m_opponentBasisCountIncrement -= worker.GetValueForLevel();
+					m_opponentSupporterList.Remove(worker.gameObject);
+					Destroy (worker.gameObject);
+				}
+			}
+				return UpdatePopularVoteOpponent();
 		}
 
 		if (m_opponentSupporterList.Count > 0 || NextOpponentSupporterCount > 0) {
@@ -301,16 +319,11 @@ public class State : MonoBehaviour
       {
 				Debug.Log ("Supporter "+m_currentOpponentSupporterIteration+" was removed.");
 
-				// no change
         CampaignWorker worker = m_opponentSupporterList[ m_currentOpponentSupporterIteration ].GetComponent< CampaignWorker >();
+				worker.Removed = true;
 
         // set the worker
         // workerToChange = worker;
-
-				// Remove that worker
-				m_opponentBasisCountIncrement -= worker.GetValueForLevel();
-				m_opponentSupporterList.Remove(worker.gameObject);
-				Destroy (worker.gameObject);
       }
     }
     // Not within current list, still within next list = it's new
@@ -550,8 +563,8 @@ public class State : MonoBehaviour
 	}
 	
 	
-	[RPC]
-	public void OpponentCreateSupporters( Vector3 nextOpponentsList )
+//	[RPC]
+	public void OpponentCreateSupportersOld( Vector3 nextOpponentsList )
   {
     m_receivedOpponentInfo = true;
 
@@ -584,6 +597,7 @@ public class State : MonoBehaviour
 	{
 		m_receivedOpponentInfo = true;
 
+		PrevOpponentSupporterCount = m_opponentSupporterList.Count;
 		NextOpponentSupporterCount = nextCount;
 		
 		Debug.Log ( "Received opponent info: " + NextOpponentSupporterCount );

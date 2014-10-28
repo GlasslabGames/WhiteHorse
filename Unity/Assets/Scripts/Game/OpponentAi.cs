@@ -16,17 +16,17 @@ public class OpponentAi : Player {
 
   public void DoTurn() {
 		// This tests removing supporters
-		/*
+
 		foreach (State s in states) {
-			if (s.OpponentCampaignWorkers > 0 && UnityEngine.Random.value > 0.5) {
-				s.NextOpponentSupporterCount --;
+			if (s.OpponentCampaignWorkers > 3) {
+				s.NextOpponentSupporterCount -= 2;
 			} else {
-				s.NextOpponentSupporterCount ++;
+				s.NextOpponentSupporterCount += 2;
 			}
 
 		}
 		return;
-		*/
+
 
     GameState nextState = GetBestNextState(null, Budget.m_amount);
     foreach (GameMove m in nextState.Moves) {
