@@ -147,4 +147,9 @@ public class DetailView : MonoBehaviour {
 		CurrentState.PlayerPlaceSupporter (true);
 		SetState (m_currentState, false); // update the current state
 	}
+
+	public void RemoveSupporter() {
+		CurrentState.PlayerRemoveSupporter ();
+		SetState (m_currentState, false); // update the current state
+	}
 }

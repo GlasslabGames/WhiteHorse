@@ -50,6 +50,9 @@ public class State : MonoBehaviour
   private int m_opponentBasisCount = 0;
   private int m_opponentBasisCountIncrement = 0;
 
+	// NEW
+	public int NextOpponentSupporterCount = 0;
+
   private int[] m_playerCampaignWorkerCounts = new int[ 3 ];
   private int[] m_opponentCampaignWorkerCounts = new int[ 3 ];
 
@@ -261,48 +264,65 @@ public class State : MonoBehaviour
     {
       return false;
     }
+		
+		// We've iterated over all the supporters (none are left from last turn or new this turn)
+		if( m_currentOpponentSupporterIteration >= Math.Max( m_opponentSupporterList.Count, NextOpponentSupporterCount ) ) {
+			return UpdatePopularVoteOpponent();
+		}
 
-    if( m_currentOpponentSupporterIteration >= Math.Max( m_opponentSupporterList.Count, m_nextOpponentSupporterList.Count ) ) { return UpdatePopularVoteOpponent(); }
+		if (m_opponentSupporterList.Count > 0 || NextOpponentSupporterCount > 0) {
+			Debug.Log ("Iteration for "+m_abbreviation+": " + m_currentOpponentSupporterIteration + " / " + m_opponentSupporterList.Count + " -> " + NextOpponentSupporterCount);
+		}
 
     CampaignWorker workerToChange = null;
 
-    // Still within current list?
+    // Still iterating within the number of supporters they had last time
     if( m_currentOpponentSupporterIteration < m_opponentSupporterList.Count )
     {
-      // Still within next list?
-      if( m_currentOpponentSupporterIteration < m_nextOpponentSupporterList.Count )
-      {
+      // Still iterating within their new number of supporters?
+			if( m_currentOpponentSupporterIteration < NextOpponentSupporterCount )
+			{
+				Debug.Log ("Supporter "+m_currentOpponentSupporterIteration+" is still here.");
         // compare and update
         CampaignWorker worker = m_opponentSupporterList[ m_currentOpponentSupporterIteration ].GetComponent< CampaignWorker >();
         //CampaignWorker compareWorker = m_nextOpponentSupporterList[ m_currentOpponentSupporterIteration ].GetComponent< CampaignWorker >();
-        while( worker.m_currentLevel < m_nextOpponentSupporterList[ m_currentOpponentSupporterIteration ] )
+        /*while( worker.m_currentLevel < m_nextOpponentSupporterList[ m_currentOpponentSupporterIteration ] )
         {
           m_opponentBasisCountIncrement -= worker.GetValueForLevel();
           worker.Upgrade();
           m_opponentBasisCountIncrement += worker.GetValueForLevel();
-        }
+        }*/
 
         // set the worker
         workerToChange = worker;
       }
-      // Not within next list
+      // Not within the list of new supporters - so delete it :?
       else
       {
-        // no change
+				Debug.Log ("Supporter "+m_currentOpponentSupporterIteration+" was removed.");
+
+				// no change
         CampaignWorker worker = m_opponentSupporterList[ m_currentOpponentSupporterIteration ].GetComponent< CampaignWorker >();
 
         // set the worker
-        workerToChange = worker;
+        // workerToChange = worker;
+
+				// Remove that worker
+				m_opponentBasisCountIncrement -= worker.GetValueForLevel();
+				m_opponentSupporterList.Remove(worker.gameObject);
+				Destroy (worker.gameObject);
       }
     }
-    // Not within current list, still within next list?
-    else if( m_currentOpponentSupporterIteration < m_nextOpponentSupporterList.Count )
+    // Not within current list, still within next list = it's new
+    else if( m_currentOpponentSupporterIteration < NextOpponentSupporterCount )
     {
-      // add and potentially upgrade
+			Debug.Log ("Supporter "+m_currentOpponentSupporterIteration+" is new!");
+
+			// add and potentially upgrade
       CreateSupporterPrefab( false );
       CampaignWorker worker = m_opponentSupporterList[ m_currentOpponentSupporterIteration ].GetComponent< CampaignWorker >();
       //CampaignWorker compareWorker = m_nextOpponentSupporterList[ m_currentOpponentSupporterIteration ].GetComponent< CampaignWorker >();
-      int compareWorker = m_nextOpponentSupporterList[ m_currentOpponentSupporterIteration ];
+      /*int compareWorker = m_nextOpponentSupporterList[ m_currentOpponentSupporterIteration ];
 
       m_opponentBasisCountIncrement -= worker.GetValueForLevel();
       if( compareWorker == 2 )
@@ -314,6 +334,7 @@ public class State : MonoBehaviour
         worker.Upgrade();
         worker.Upgrade();
       }
+      */
       m_opponentBasisCountIncrement += worker.GetValueForLevel();
             
       // set the worker
@@ -493,19 +514,44 @@ public class State : MonoBehaviour
     if( !GameObjectAccessor.Instance.Budget.IsAmountAvailable( GameMove.GetCost(GameActions.NEW_SUPPORTER)) ) return;
     if( !definitely && !GameObjectAccessor.Instance.Player.m_campaignWorkerSelected ) return;
 
-    if( m_playerSupporterList.Count < UnitCap )
-    {
+		// we're not capping the supporters per state anymore
+    //if( m_playerSupporterList.Count < UnitCap ) {
       m_playerSupportersAddedThisTurn++;
       CreateSupporterPrefab( true );
 
       GameObjectAccessor.Instance.Budget.ConsumeAmount( GameMove.GetCost(GameActions.NEW_SUPPORTER) );
 
       m_dirty = true;
-    }
+    //}
   }
 
-  [RPC]
-  public void OpponentCreateSupporters( Vector3 nextOpponentsList )
+	public void PlayerRemoveSupporter()
+	{
+				if (!InPlay)
+						return;
+				if (GameObjectAccessor.Instance.GameStateManager.CurrentTurnState != TurnState.Placement)
+						return;
+		if (m_playerSupporterList.Count < 1)
+						return;
+
+		m_playerSupportersAddedThisTurn--; // TODO: this doesn't seem to be used anywhere anyway
+
+
+		// Remove the last supporter
+		GameObject supporter = m_playerSupporterList [m_playerSupporterList.Count - 1];
+		m_playerSupporterList.Remove(supporter);
+		m_playerBasisCountIncrement -= supporter.GetComponent< CampaignWorker >().GetValueForLevel(); // this is dumb
+		m_playerCampaignWorkerCounts[ 0 ]--;
+		Destroy (supporter);
+		
+		GameObjectAccessor.Instance.Budget.ConsumeAmount( GameMove.GetCost(GameActions.REMOVE_SUPPORTER) ); // this will probably be a negative number (add money)
+		
+		m_dirty = true;
+	}
+	
+	
+	[RPC]
+	public void OpponentCreateSupporters( Vector3 nextOpponentsList )
   {
     m_receivedOpponentInfo = true;
 
@@ -533,7 +579,17 @@ public class State : MonoBehaviour
     //CreateSupporterPrefab( false );
   }
 
-  public void CreateSupporterPrefab( bool isPlayer )
+	[RPC]
+	public void OpponentCreateSupporters( int nextCount )
+	{
+		m_receivedOpponentInfo = true;
+
+		NextOpponentSupporterCount = nextCount;
+		
+		Debug.Log ( "Received opponent info: " + NextOpponentSupporterCount );
+	}
+	
+	public void CreateSupporterPrefab( bool isPlayer )
   {
     Vector3 supporterPosition = Center + m_workerOffsetX + ( isPlayer ? m_workerOffsetY + ( m_playerSupporterList.Count * m_workerAdjacencyOffset ) : -m_workerOffsetY + ( ( m_opponentSupporterList.Count ) * m_workerAdjacencyOffset ) );
 

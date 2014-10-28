@@ -10,6 +10,7 @@ public class CampaignWorker : MonoBehaviour
 
   public Sprite[] m_levelSprites;
 
+	public bool Removed; // mark that it should be removed
 
   public int GetValueForLevel()
   {

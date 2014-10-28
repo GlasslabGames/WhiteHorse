@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 // Globally available enum
-public enum GameActions {NEW_SUPPORTER, UPGRADE1, UPGRADE2 }
+public enum GameActions {NEW_SUPPORTER, UPGRADE1, UPGRADE2, REMOVE_SUPPORTER }
 
 // Represents one action in the game. Used by OpponentAi, could be used for the replay.
 public class GameMove {
@@ -25,6 +25,7 @@ public class GameMove {
     case GameActions.NEW_SUPPORTER: return 10;
     case GameActions.UPGRADE1: return 15;
     case GameActions.UPGRADE2: return 20;
+		case GameActions.REMOVE_SUPPORTER: return -10; // return the full price
 		default: return 0;
 		}
 	}

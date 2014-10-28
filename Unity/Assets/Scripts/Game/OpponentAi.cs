@@ -15,16 +15,34 @@ public class OpponentAi : Player {
   }
 
   public void DoTurn() {
+		// This tests removing supporters
+		/*
+		foreach (State s in states) {
+			if (s.OpponentCampaignWorkers > 0 && UnityEngine.Random.value > 0.5) {
+				s.NextOpponentSupporterCount --;
+			} else {
+				s.NextOpponentSupporterCount ++;
+			}
+
+		}
+		return;
+		*/
+
     GameState nextState = GetBestNextState(null, Budget.m_amount);
     foreach (GameMove m in nextState.Moves) {
       Debug.Log ("Doing "+m.ToString());
       if (m.Action == GameActions.NEW_SUPPORTER) {
-        m.State.StateView.NextOpponentSupporters.Add( 1 );
-      } else if (m.Action == GameActions.UPGRADE1) {
+        //m.State.StateView.NextOpponentSupporters.Add( 1 );
+				m.State.StateView.NextOpponentSupporterCount ++;
+			/*
+			} else if (m.Action == GameActions.UPGRADE1) {
         m.State.StateView.OpponentUpgrade(1);
       } else if (m.Action == GameActions.UPGRADE1) {
         m.State.StateView.OpponentUpgrade(2);
-      }
+        */
+      } else if (m.Action == GameActions.REMOVE_SUPPORTER) {
+				m.State.StateView.NextOpponentSupporterCount --;
+			}
       Budget.ConsumeAmount(m.Cost);
     }
   }
@@ -35,7 +53,7 @@ public class OpponentAi : Player {
     if (gameState == null) gameState = new GameState(); // based on current game
 
     GameState bestState = gameState;
-    float bestValue = -999;
+    float bestValue = 0;
     GameMove bestMove = null;
 
     //float v = Evaluate(gameState);
@@ -46,7 +64,7 @@ public class OpponentAi : Player {
       newState = GetBestNextState (newState, funds - move.Cost, depth + 1);
       float value = Evaluate(newState);
       //Debug.Log (value+" to state "+newState.ToString());
-      if (value > bestValue) {
+      if (bestMove == null || value > bestValue) {
         //Debug.Log ("Best move: "+move.ToString()+" to "+gameState.ToString());
 
         bestState = newState;
@@ -74,11 +92,14 @@ public class OpponentAi : Player {
   }
 
   public GameMove GetMoveForState(AiStateModel s) {
-    GameActions a;
+		GameActions a = GameActions.NEW_SUPPORTER; // TODO: we need an AI that can remove workers
+		// Changed this since we're not capping the number of supporters anymore
+		/*
     // hard coded rules: placing a new worker is best (as long as it's not full), followed by Upgrade 2 (as long as we have someone to upgrade.)
     if (s.OpponentWorkerCounts[0] < s.StateView.UnitCap) a = GameActions.NEW_SUPPORTER;
     else if (s.OpponentWorkerCounts[1] > 0) a = GameActions.UPGRADE2;
     else a = GameActions.UPGRADE1;
+    	*/
     return new GameMove(this, s, a, 0);
   }
 

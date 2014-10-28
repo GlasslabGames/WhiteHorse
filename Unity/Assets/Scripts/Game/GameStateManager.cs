@@ -191,7 +191,7 @@ public class GameStateManager : MonoBehaviour
 		float totalOpinion = 0;
 		float totalPopulation = 0;
 
-    foreach( State state in m_statesInPlay )
+    foreach( State state in m_states )
     {
       if( state.IsRed )
       {
@@ -206,7 +206,7 @@ public class GameStateManager : MonoBehaviour
 
       //state.m_dirty = false;
     }
-
+	
 		m_playerVotes = (GameObjectAccessor.Instance.Player.IsBlue) ? totalBlueVotes : totalRedVotes;
 		m_opponentVotes = (GameObjectAccessor.Instance.Player.IsBlue) ? totalRedVotes : totalBlueVotes;
 
