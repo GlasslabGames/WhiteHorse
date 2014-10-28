@@ -18,7 +18,7 @@ public class ShowStateLabels : MonoBehaviour {
 		UILabel label;
 		foreach (State state in GameObjectAccessor.Instance.StatesContainer.transform.GetComponentsInChildren<State>()) {
 			if (ShowOnlyOnActiveStates && !state.InPlay) continue;
-			Debug.Log("showing label over "+state.name);
+			//Debug.Log("showing label over "+state.name);
 			newTransform = Utility.InstantiateAsChild(statePrefab, transform);
 			label = newTransform.GetComponent<UILabel>();
 			if (Content == LabelOptions.VOTES) label.text = state.Model.ElectoralCount.ToString();

@@ -269,6 +269,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: MI
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &19865705
@@ -1907,6 +1913,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: DE
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &132391998
@@ -2429,6 +2441,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: NY
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &163992671
@@ -3020,6 +3038,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: WV
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &212144238
@@ -3386,6 +3410,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: NM
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &248017228
@@ -3444,6 +3474,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: IA
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &258094117
@@ -3681,6 +3717,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: KY
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &309488151
@@ -4113,6 +4155,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: AL
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &342954047
@@ -4837,6 +4885,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: CO
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!1 &418059116
@@ -5166,6 +5220,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: AR
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &432566967
@@ -5611,6 +5671,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: DC
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &467918287
@@ -7454,6 +7520,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: OH
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &663125999
@@ -7512,6 +7584,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: OK
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &672394007
@@ -7695,6 +7773,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: WY
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &682211468
@@ -7753,6 +7837,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: VA
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &682730140
@@ -7891,6 +7981,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: IL
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &697850747
@@ -8046,6 +8142,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: ME
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &702484573
@@ -8198,6 +8300,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: WA
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &703327577
@@ -8409,6 +8517,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: PA
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!1 &721991566
@@ -8875,6 +8989,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: MA
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &745708103
@@ -10151,6 +10271,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: OR
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &910192355
@@ -10340,6 +10466,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: ID
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &940833520
@@ -10499,6 +10631,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: CT
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &963064442
@@ -10618,7 +10756,7 @@ Transform:
   m_GameObject: {fileID: 971908931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.0600004, y: 0, z: -10}
-  m_LocalScale: {x: .00130293157, y: .00130293157, z: .00130293157}
+  m_LocalScale: {x: .00130123622, y: .00130123622, z: .00130123622}
   m_Children:
   - {fileID: 95394698}
   - {fileID: 1757090852}
@@ -10947,6 +11085,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: VT
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1007132802
@@ -13118,6 +13262,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: NE
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1297656495
@@ -13188,6 +13338,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: WI
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!1 &1327718854
@@ -13234,6 +13390,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: AZ
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1327718857
@@ -13392,6 +13554,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: TX
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1359208952
@@ -13450,6 +13618,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: RI
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1367954635
@@ -13863,6 +14037,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: IN
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!1 &1405221142
@@ -13968,6 +14148,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: NH
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!1 &1426211758
@@ -14345,6 +14531,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: CA
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1462267178
@@ -14693,6 +14885,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: AK
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1482420141
@@ -15173,6 +15371,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: SD
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1529232806
@@ -15407,6 +15611,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: MN
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1538886812
@@ -16656,6 +16866,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: NJ
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1588145624
@@ -16956,6 +17172,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: TN
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1633468486
@@ -18529,6 +18751,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: FL
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1702398670
@@ -18637,6 +18865,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: KS
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1709786401
@@ -19422,6 +19656,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: NV
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1766101022
@@ -19480,6 +19720,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: MS
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1766301369
@@ -20193,6 +20439,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: ND
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1839210466
@@ -20351,6 +20603,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: MD
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1852992613
@@ -20780,6 +21038,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: UT
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1899551336
@@ -20838,6 +21102,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: MO
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &1906570256
@@ -21354,6 +21624,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: NC
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!4 &1946492624
@@ -21954,6 +22230,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: LA
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &2013700031
@@ -22469,6 +22751,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: GA
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &2034370943
@@ -22801,6 +23089,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: MT
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &2092980522
@@ -23032,6 +23326,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: SC
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &2104858926
@@ -23230,6 +23530,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: HI
+  BlueSupportPercent: .5
+  RedSupportPercent: .5
+  IndependentSupportPercent: 0
+  PlayerSupporterCount: 0
+  PrevOpponentSupporterCount: 0
+  NextOpponentSupporterCount: 0
   m_dirty: 0
   m_receivedOpponentInfo: 0
 --- !u!148 &2121160086

@@ -16,8 +16,13 @@ public class OpponentAi : Player {
 
   public void DoTurn() {
 		// This tests removing supporters
-
+		/*
 		foreach (State s in states) {
+
+			if (s.OpponentCampaignWorkers < 2) {
+				s.NextOpponentSupporterCount ++;
+			}
+
 			if (s.OpponentCampaignWorkers > 3) {
 				s.NextOpponentSupporterCount -= 2;
 			} else {
@@ -26,7 +31,8 @@ public class OpponentAi : Player {
 
 		}
 		return;
-
+		*/
+	
 
     GameState nextState = GetBestNextState(null, Budget.m_amount);
     foreach (GameMove m in nextState.Moves) {

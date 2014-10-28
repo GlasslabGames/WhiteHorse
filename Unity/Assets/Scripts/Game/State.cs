@@ -50,14 +50,43 @@ public class State : MonoBehaviour
   private int m_opponentBasisCount = 0;
   private int m_opponentBasisCountIncrement = 0;
 
-	// NEW
+	// NEW, CLEAR, TRUE VALUES
 	public float BlueSupportPercent = 0.5f;
-	public float RedSupportPercent {
-		get { return 1 - BlueSupportPercent; }
-		set { BlueSupportPercent = 1 - value; }
+	public float RedSupportPercent = 0.5f;
+	public float IndependentSupportPercent = 0f;
+
+	public float PlayerSupportPercent {
+		get {
+			if (GameObjectAccessor.Instance.Player.IsRed) return RedSupportPercent;
+			else return BlueSupportPercent;
+		}
+		set {
+			if (GameObjectAccessor.Instance.Player.IsRed) RedSupportPercent = value;
+			else BlueSupportPercent = value;
+		}
 	}
+	public float OpponentSupportPercent {
+		get {
+			if (GameObjectAccessor.Instance.Player.IsBlue) return RedSupportPercent;
+			else return BlueSupportPercent;
+		}
+		set {
+			if (GameObjectAccessor.Instance.Player.IsBlue) RedSupportPercent = value;
+			else BlueSupportPercent = value;
+		}
+	}
+	
+	public int PlayerSupporterCount = 0;
 	public int PrevOpponentSupporterCount = 0;
 	public int NextOpponentSupporterCount = 0;
+
+	private List< GameObject > m_playerSupporters = new List<GameObject>();
+	private List< GameObject > m_opponentSupporters = new List<GameObject>();
+
+	public bool IsRed { get { return RedSupportPercent > BlueSupportPercent && RedSupportPercent > IndependentSupportPercent; } }
+	public bool IsBlue { get { return BlueSupportPercent > RedSupportPercent && BlueSupportPercent > IndependentSupportPercent; } }
+
+	// OK
 	
   private int[] m_playerCampaignWorkerCounts = new int[ 3 ];
   private int[] m_opponentCampaignWorkerCounts = new int[ 3 ];
@@ -128,10 +157,6 @@ public class State : MonoBehaviour
     get { return m_opponentCampaignWorkerCounts; }
   }
 
-  // Note: these could be adjusted to keep a margin of neutrality ( < 0.1 and > 0.1, for example)
-  public bool IsRed { get { return PopularVote < 0; } }
-  public bool IsBlue { get { return PopularVote > 0; } }
-
 	private SpriteRenderer m_stateColor;
 	private SpriteRenderer m_stateOutline;
 	private SpriteRenderer m_stateStripes;
@@ -177,42 +202,41 @@ public class State : MonoBehaviour
     m_opponentFloatingText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( -m_workerOffsetY + m_workerCountOffset + Center ), Quaternion.identity ) as GameObject;
     m_opponentFloatingText.GetComponent< FloatingText >().Display( "" );
 		m_opponentFloatingText.transform.parent = container;
-		
+
+		/*
 		m_popularVoteText = GameObject.Instantiate( GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition( m_popularVoteOffset + Center ), Quaternion.identity ) as GameObject;
     m_popularVoteText.GetComponent< FloatingText >().Display( "" );
 		m_popularVoteText.transform.parent = container;
+		*/
 	}
 
   public void SetInitialPopularVote(float v) {
-    m_popularVote = v;
+		// v is between -1 (red) and 1 (blue)
+    //m_popularVote = v;
+		RedSupportPercent = (v - 1) / -2;
+		BlueSupportPercent = (v + 1) / 2;
     //UpdateColor();
   }
 
-  public bool SendOpponentPlayerSupporters()
+	private void UpdatePercentText(bool forPlayer) {
+		m_playerFloatingText.SendMessage( "Display", Mathf.Round(PlayerSupportPercent * 100)+"%" );
+		m_playerFloatingText.SendMessage( "BounceOut" );
+		
+		m_opponentFloatingText.SendMessage( "Display", Mathf.Round(OpponentSupportPercent * 100)+"%" );
+		m_opponentFloatingText.SendMessage( "BounceOut" );
+		// todo: only bounce the player or the opponent's text. Issue is that the one that's not bounced is in the totally wrong place.
+	}
+	
+	public bool SendOpponentPlayerSupporters()
   {
     if( m_playerSupportersSentToOpponent ) { return PlayerIncrement(); }
 
-    //if( m_dirty )
-    {
-      //networkView.RPC( "OpponentCreateSupporters", RPCMode.Others, new Vector3( PlayerCampaignWorkerCounts[0], PlayerCampaignWorkerCounts[1], PlayerCampaignWorkerCounts[2] ) );
-			networkView.RPC( "OpponentCreateSupporters", RPCMode.Others, PlayerCampaignWorkerCounts[0] );
 
+    if (GameObjectAccessor.Instance.UseAI) {
+			m_receivedOpponentInfo = true;
+		} else {
+			networkView.RPC ("OpponentCreateSupporters", RPCMode.Others, PlayerCampaignWorkerCounts [0]);
 		}
-		
-		// TEMP
-
-    if( GameObjectAccessor.Instance.UseAI )
-    {
-      m_receivedOpponentInfo = true;
-      /*if( m_playerSupporterList.Count > 0 )
-      {
-        m_nextOpponentSupporterList.Add( 1 );
-        m_nextOpponentSupporterList.Add( 1 );
-      }*/
-
-    }
-
-    // TEMP
 
     m_currentPlayerSupporterIteration = 0;
     m_currentOpponentSupporterIteration = 0;
@@ -228,11 +252,20 @@ public class State : MonoBehaviour
     if( m_currentPlayerSupporterIteration >= m_playerSupporterList.Count ) { return UpdatePopularVotePlayer(); }
 
     CampaignWorker worker = m_playerSupporterList[ m_currentPlayerSupporterIteration ].GetComponent< CampaignWorker >();
-    m_playerBasisCount += worker.GetValueForLevel();
+    //m_playerBasisCount += worker.GetValueForLevel();
 
-    worker.gameObject.SendMessage( "BounceOut" );
-    m_playerFloatingText.SendMessage( "Display", "" + m_playerBasisCount );
-    m_playerFloatingText.SendMessage( "BounceOut" );
+		if (GameObjectAccessor.Instance.Player.IsRed) {
+			RedSupportPercent += worker.PercentChange;
+			BlueSupportPercent -= worker.PercentChange;
+		} else {
+			BlueSupportPercent += worker.PercentChange;
+			RedSupportPercent -= worker.PercentChange;
+		}
+		// TODO: Adjust independent percent too, but beware of screwing up the order (like each player gets access to the independents before the other.)
+
+		
+		worker.gameObject.SendMessage( "BounceOut" );
+		UpdatePercentText (true);
 
     m_currentPlayerSupporterIteration++;
 
@@ -240,7 +273,7 @@ public class State : MonoBehaviour
   }
   public bool UpdatePopularVotePlayer()
   {
-    float totalBasis = TotalBasis;
+		/*float totalBasis = TotalBasis;
     
     if( m_popularVoteUpdatedForPlayer || totalBasis == 0 )  return OpponentIncrement();
     
@@ -254,16 +287,19 @@ public class State : MonoBehaviour
     else
     {
       m_popularVote = playerPercentage - opponentPercentage;
-    }
+    }*/
+		if (!m_popularVoteUpdatedForPlayer) {
+			float playerPercentage = (GameObjectAccessor.Instance.Player.IsRed) ? RedSupportPercent : BlueSupportPercent;
+			float opponentPercentage = (GameObjectAccessor.Instance.Player.IsRed) ? BlueSupportPercent : RedSupportPercent;
 
-    playerPercentage *= Model.Population;
-    opponentPercentage *= Model.Population;
-    
-    m_popularVoteText.SendMessage( "Display", playerPercentage.ToString( "0.0" ) + "m | " + opponentPercentage.ToString( "0.0" ) + "m" );
-    m_popularVoteText.SendMessage( "BounceOut" );
-    
-    m_popularVoteUpdatedForPlayer = true;
-    
+			playerPercentage *= Model.Population;
+			opponentPercentage *= Model.Population;
+	    
+			//m_popularVoteText.SendMessage ("Display", playerPercentage.ToString ("0.0") + "m | " + opponentPercentage.ToString ("0.0") + "m");
+			//m_popularVoteText.SendMessage ("BounceOut");
+	    
+			m_popularVoteUpdatedForPlayer = true;
+		}
     return OpponentIncrement();
   }
   public bool OpponentIncrement()
@@ -358,10 +394,18 @@ public class State : MonoBehaviour
     // animate
     if( workerToChange != null )
     {
-      m_opponentBasisCount += workerToChange.GetValueForLevel();
-      workerToChange.gameObject.SendMessage( "BounceOut" );
-      m_opponentFloatingText.SendMessage( "Display", "" + m_opponentBasisCount );
-      m_opponentFloatingText.SendMessage( "BounceOut" );
+      //m_opponentBasisCount += workerToChange.GetValueForLevel();
+			if (GameObjectAccessor.Instance.Player.IsBlue) {
+				RedSupportPercent += workerToChange.PercentChange;
+				BlueSupportPercent -= workerToChange.PercentChange;
+			} else {
+				BlueSupportPercent += workerToChange.PercentChange;
+				RedSupportPercent -= workerToChange.PercentChange;
+			}
+
+			
+			workerToChange.gameObject.SendMessage( "BounceOut" );
+			UpdatePercentText(false);
     }
 
 
@@ -388,10 +432,12 @@ public class State : MonoBehaviour
   }
   public bool UpdatePopularVoteOpponent()
   {
-    float totalBasis = TotalBasis;
+		/*
+		float totalBasis = TotalBasis;
     
-    if( m_popularVoteUpdatedForOpponent || totalBasis == 0 )  return UpdateStateWithPopularVote();
+		if( m_popularVoteUpdatedForOpponent || totalBasis == 0)  return UpdateStateWithPopularVote();
     
+
     float playerPercentage = ( m_playerBasisCount / totalBasis );
     float opponentPercentage = ( m_opponentBasisCount / totalBasis );
 
@@ -403,32 +449,39 @@ public class State : MonoBehaviour
     {
       m_popularVote = playerPercentage - opponentPercentage;
     }
-    
-    playerPercentage *= Model.Population;
-    opponentPercentage *= Model.Population;
-    
-    m_popularVoteText.SendMessage( "Display", playerPercentage.ToString( "0.0" ) + "m | " + opponentPercentage.ToString( "0.0" ) + "m" );
-    m_popularVoteText.SendMessage( "BounceOut" );
-    
-    m_popularVoteUpdatedForOpponent = true;
+    */
+		if (!m_popularVoteUpdatedForOpponent) {
+			float playerPercentage = (GameObjectAccessor.Instance.Player.IsRed) ? RedSupportPercent : BlueSupportPercent;
+			float opponentPercentage = (GameObjectAccessor.Instance.Player.IsRed) ? BlueSupportPercent : RedSupportPercent;
+
+			playerPercentage *= Model.Population;
+			opponentPercentage *= Model.Population;
+	    
+			//m_popularVoteText.SendMessage ("Display", playerPercentage.ToString ("0.0") + "m | " + opponentPercentage.ToString ("0.0") + "m");
+			//m_popularVoteText.SendMessage ("BounceOut");
+	    
+			m_popularVoteUpdatedForOpponent = true;
+		}
     
     return UpdateStateWithPopularVote();
   }
   public bool UpdateStateWithPopularVote()
   {
-    float totalBasis = TotalBasis;
 
-    if( m_stateUpdatedWithPopularVote || totalBasis == 0 ) return true;
+    //float totalBasis = TotalBasis;
+    //if( m_stateUpdatedWithPopularVote || totalBasis == 0 ) return true;
 
-    Leaning newLeaning;
-    if( m_playerBasisCount > m_opponentBasisCount ) newLeaning = GameObjectAccessor.Instance.Player.m_leaning;
-    else if( m_playerBasisCount < m_opponentBasisCount ) newLeaning = GameObjectAccessor.Instance.Player.m_opponentLeaning;
-    else newLeaning = Leaning.Neutral;
+		if (!m_stateUpdatedWithPopularVote) {
+			Leaning newLeaning;
+			if (IsRed) newLeaning = Leaning.Red;
+			else if (IsBlue) newLeaning = Leaning.Blue;
+			else newLeaning = Leaning.Neutral;
 
-    UpdateColor( newLeaning != m_previousLeaning );
-    m_previousLeaning = newLeaning;
+			UpdateColor (newLeaning != m_previousLeaning);
+			m_previousLeaning = newLeaning;
 
-    m_stateUpdatedWithPopularVote = true;
+			m_stateUpdatedWithPopularVote = true;
+		}
 
     return true;
   }
@@ -440,32 +493,12 @@ public class State : MonoBehaviour
     m_popularVoteUpdatedForOpponent = false;
     m_stateUpdatedWithPopularVote = false;
 
-    if( GameObjectAccessor.Instance.UseAI )
-    {
-      //m_nextOpponentSupporterList.Clear();
-    }
   }
 
   // boolean this returns indicates has completed
   public bool UpdateState()
   {
     return SendOpponentPlayerSupporters();
-    /*if( m_playerSupportersAddedThisTurn == 0 )
-    {
-      return false;
-    }
-
-    networkView.RPC ( "OpponentPlaceSupporter", RPCMode.Others );
-    m_playerSupportersAddedThisTurn--;
-
-    if( m_playerSupportersAddedThisTurn == 0 )
-    {
-      // display the floating text
-      GameObject floatingText = GameObject.Instantiate( GameObjectAccessor.Instance.FloatingTextPrefab, Utility.ConvertFromGameToUiPosition( gameObject.transform.position ), Quaternion.identity ) as GameObject;
-      floatingText.GetComponent< FloatingText >().Display( "+1" );
-    }
-
-    return true;*/
   }
 
   public void UpdateColor( bool playParticles = false )
@@ -478,13 +511,15 @@ public class State : MonoBehaviour
       return;
     }
 
-		float t = Mathf.Abs(m_popularVote) * 0.8f + 0.2f; // 0.2 - 1 so that we don't go all the way to purple
-
 		if (IsBlue) {
+			float t = Mathf.InverseLerp(0.5f, 1f, BlueSupportPercent); // 0.5 -> 0, 1 -> 1
+			t = Mathf.Lerp (0.2f, 1f, t); // 0 -> 0.2, 1 -> 1 (Start at 0.2 so we don't go all the way to the neutral color.)
 			m_stateColor.color = Color.Lerp (GameObjectAccessor.Instance.GameColorSettings.neutralState, GameObjectAccessor.Instance.GameColorSettings.blueState, t);
 			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.outline;
 			m_stateOutline.sortingOrder = -7;
     } else if (IsRed) {
+			float t = Mathf.InverseLerp(0.5f, 1f, RedSupportPercent); // 0.5 -> 0, 1 -> 1
+			t = Mathf.Lerp (0.2f, 1f, t); // 0 -> 0.2, 1 -> 1 (Start at 0.2 so we don't go all the way to the neutral color.)
 			m_stateColor.color = Color.Lerp (GameObjectAccessor.Instance.GameColorSettings.neutralState, GameObjectAccessor.Instance.GameColorSettings.redState, t);
 			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.outline;
 			m_stateOutline.sortingOrder = -7;
@@ -549,7 +584,6 @@ public class State : MonoBehaviour
 
 		m_playerSupportersAddedThisTurn--; // TODO: this doesn't seem to be used anywhere anyway
 
-
 		// Remove the last supporter
 		GameObject supporter = m_playerSupporterList [m_playerSupporterList.Count - 1];
 		m_playerSupporterList.Remove(supporter);
@@ -563,35 +597,7 @@ public class State : MonoBehaviour
 	}
 	
 	
-//	[RPC]
-	public void OpponentCreateSupportersOld( Vector3 nextOpponentsList )
-  {
-    m_receivedOpponentInfo = true;
-
-    Debug.Log ( nextOpponentsList );
-    m_nextOpponentSupporterList.Clear();
-    
-    for( int i = 2; i >= 0; i-- )
-    {
-      for( int j = 0; j < nextOpponentsList[ i ]; j++ )
-      {
-        m_nextOpponentSupporterList.Add( i + 1 );
-      }
-    }
-
-
-    //m_opponentSupportersAddedThisTurn = count;
-    //m_nextOpponentCampaignWorkerCounts = counts;
-    //m_nextOpponentSupporterList = nextOpponentsList;
-      Debug.Log ( "Received opponent info: " + m_nextOpponentSupporterList.Count );
-      /*for( int i = 0; i < m_nextOpponentSupporterList.Count; i++ )
-      {
-        Debug.Log ( m_nextOpponentSupporterList[i] );
-      }*/
-    //m_opponentCampaignWorkerCounts = counts;
-    //CreateSupporterPrefab( false );
-  }
-
+	
 	[RPC]
 	public void OpponentCreateSupporters( int nextCount )
 	{

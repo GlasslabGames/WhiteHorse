@@ -55,7 +55,7 @@ public class GameStateManager : MonoBehaviour
           value = initialLeaning.Value;
         }
         float r = UnityEngine.Random.Range( -m_scenario.Randomness, m_scenario.Randomness );
-        Debug.Log ("Initial leaning value: "+value+" Random: "+r);
+        //Debug.Log ("Initial leaning value: "+value+" Random: "+r);
         state.SetInitialPopularVote(value + r);
       } else {
         state.InPlay = true;

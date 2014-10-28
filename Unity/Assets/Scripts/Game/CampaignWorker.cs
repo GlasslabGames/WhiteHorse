@@ -4,6 +4,8 @@ using System.Collections;
 
 public class CampaignWorker : MonoBehaviour
 {
+	public float PercentChange = 0.05f; // 5%
+
   public int m_currentLevel;
 
   public int[] m_levelValues;
