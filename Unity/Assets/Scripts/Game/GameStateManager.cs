@@ -43,27 +43,61 @@ public class GameStateManager : MonoBehaviour
 
   public void Awake()
   {
-    ScenarioModel m_scenario = ScenarioModel.GetModel(m_defaultScenarioId);
+    ScenarioModel2 m_scenario = ScenarioModel2.GetModel(m_defaultScenarioId);
+
+		int numStatesToAdd = 0;
+		int blueStatesAdded = 0;
+		int redStatesAdded = 0;
+		if (m_scenario != null) {
+			numStatesToAdd = Random.Range(m_scenario.MinStatesInPlay, m_scenario.MaxStatesInPlay+1); // since max would be excluded
+		}
+		List<State> maybeBlueStates = new List<State> ();
+		List<State> maybeRedStates = new List<State> ();
 
     foreach (State state in GameObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>()) {
       if (m_scenario != null) {
-        state.InPlay = !m_scenario.PresetStates.Contains(state.Model.Id);
-        float value = 0;
-        if (m_scenario.StateLeanings.Count >= state.Model.Id) {
-          int leaningId = m_scenario.StateLeanings[state.Model.Id - 1]; // state IDs go from 1 to 51, so subtract 1 to access 0 - 50 in array
-          InitialLeaningModel initialLeaning = InitialLeaningModel.GetModel( leaningId );
-          value = initialLeaning.Value;
-        }
-        float r = UnityEngine.Random.Range( -m_scenario.Randomness, m_scenario.Randomness );
-        //Debug.Log ("Initial leaning value: "+value+" Random: "+r);
-        state.SetInitialPopularVote(value + r);
+				int percentBlue = m_scenario.PercentBlue[state.Model.Id - 1];
+				state.BlueSupportPercent = percentBlue / 100f;
+				state.RedSupportPercent = 1 - state.BlueSupportPercent;
+
+				ScenarioModel2.InPlayStatus status = (ScenarioModel2.InPlayStatus) m_scenario.StatesInPlay[state.Model.Id - 1];
+				if (status == ScenarioModel2.InPlayStatus.ALWAYS) {
+					state.InPlay = true;
+					if (state.IsBlue) blueStatesAdded ++;
+					else redStatesAdded ++;
+				} else if (status == ScenarioModel2.InPlayStatus.MAYBE) {
+					if (state.IsBlue) maybeBlueStates.Add (state);
+					else maybeRedStates.Add(state);
+				}
+
       } else {
         state.InPlay = true;
       }
       m_states.Add( state );
-      if ( state.InPlay ) m_statesInPlay.Add( state );
-      else m_statesNotInPlay.Add( state );
     }
+
+		int r; State s; List<State> list;
+		while ((blueStatesAdded + redStatesAdded) < numStatesToAdd || blueStatesAdded != redStatesAdded) {
+			Debug.Log ("Blue states: "+blueStatesAdded+" Red states: "+redStatesAdded+" NumStatesToAdd: "+numStatesToAdd);
+			if (blueStatesAdded < redStatesAdded) {
+				r = Random.Range(0, maybeBlueStates.Count);
+				s = maybeBlueStates[r];
+				maybeBlueStates.Remove(s);
+				s.InPlay = true;
+				blueStatesAdded ++;
+			} else {
+				r = Random.Range(0, maybeRedStates.Count);
+				s = maybeRedStates[r];
+				maybeRedStates.Remove(s);
+				s.InPlay = true;
+				redStatesAdded ++;
+			}
+		}
+
+		foreach (State state in m_states) {
+			if ( state.InPlay ) m_statesInPlay.Add( state );
+			else m_statesNotInPlay.Add( state );
+		}
 
     Debug.Log( "States in play: " + m_statesInPlay.Count );
     Debug.Log( "States not in play: " + m_statesNotInPlay.Count );

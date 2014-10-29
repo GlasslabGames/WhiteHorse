@@ -51,8 +51,16 @@ public class State : MonoBehaviour
   private int m_opponentBasisCountIncrement = 0;
 
 	// NEW, CLEAR, TRUE VALUES
-	public float BlueSupportPercent = 0.5f;
-	public float RedSupportPercent = 0.5f;
+	private float m_redSupportPercent = 0.5f;
+	public float RedSupportPercent {
+		get { return m_redSupportPercent; }
+		set { m_redSupportPercent = Mathf.Clamp01(value); }
+	}
+	private float m_blueSupportPercent = 0.5f;
+	public float BlueSupportPercent {
+		get { return m_blueSupportPercent; }
+		set { m_blueSupportPercent = Mathf.Clamp01(value); }
+	}
 	public float IndependentSupportPercent = 0f;
 
 	public float PlayerSupportPercent {
@@ -213,8 +221,10 @@ public class State : MonoBehaviour
   public void SetInitialPopularVote(float v) {
 		// v is between -1 (red) and 1 (blue)
     //m_popularVote = v;
-		RedSupportPercent = (v - 1) / -2;
-		BlueSupportPercent = (v + 1) / 2;
+		RedSupportPercent = Mathf.InverseLerp (1, -1, v);
+		BlueSupportPercent = Mathf.InverseLerp (-1, 1, v);
+		//RedSupportPercent = (v - 1) / -2;
+		//BlueSupportPercent = (v + 1) / 2;
     //UpdateColor();
   }
 
@@ -511,15 +521,22 @@ public class State : MonoBehaviour
       return;
     }
 
+		float t;
 		if (IsBlue) {
-			float t = Mathf.InverseLerp(0.5f, 1f, BlueSupportPercent); // 0.5 -> 0, 1 -> 1
-			t = Mathf.Lerp (0.2f, 1f, t); // 0 -> 0.2, 1 -> 1 (Start at 0.2 so we don't go all the way to the neutral color.)
+			if (!InPlay) t = 1;
+			else {
+				t = Mathf.InverseLerp(0.5f, 1f, BlueSupportPercent); // 0.5 -> 0, 1 -> 1
+				t = Mathf.Lerp (0.2f, 1f, t); // 0 -> 0.2, 1 -> 1 (Start at 0.2 so we don't go all the way to the neutral color.)
+			}
 			m_stateColor.color = Color.Lerp (GameObjectAccessor.Instance.GameColorSettings.neutralState, GameObjectAccessor.Instance.GameColorSettings.blueState, t);
 			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.outline;
 			m_stateOutline.sortingOrder = -7;
     } else if (IsRed) {
-			float t = Mathf.InverseLerp(0.5f, 1f, RedSupportPercent); // 0.5 -> 0, 1 -> 1
-			t = Mathf.Lerp (0.2f, 1f, t); // 0 -> 0.2, 1 -> 1 (Start at 0.2 so we don't go all the way to the neutral color.)
+			if (!InPlay) t = 1;
+			else {
+				t = Mathf.InverseLerp(0.5f, 1f, RedSupportPercent); // 0.5 -> 0, 1 -> 1
+				t = Mathf.Lerp (0.2f, 1f, t); // 0 -> 0.2, 1 -> 1 (Start at 0.2 so we don't go all the way to the neutral color.)
+			}
 			m_stateColor.color = Color.Lerp (GameObjectAccessor.Instance.GameColorSettings.neutralState, GameObjectAccessor.Instance.GameColorSettings.redState, t);
 			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.outline;
 			m_stateOutline.sortingOrder = -7;

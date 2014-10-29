@@ -83,6 +83,7 @@ public class DetailView : MonoBehaviour {
 		if (m_votes != null)
 			m_votes.text = "Electoral College Votes " + state.Model.ElectoralCount.ToString ();
 
+		/*
 		Leaning color = GameObjectAccessor.Instance.Player.m_leaning;
 		if (m_redPoints != null) {
 			int points = (color == Leaning.Red) ? state.PlayerBasisCountIncrement : state.OpponentBasisCountIncrement;
@@ -92,13 +93,15 @@ public class DetailView : MonoBehaviour {
 			int points = (color == Leaning.Blue) ? state.PlayerBasisCountIncrement : state.OpponentBasisCountIncrement;
 			m_bluePoints.text = points.ToString () + "pts";
 		}
+		*/
 
-		float bluePercent = state.PopularVote / 2f + 0.5f;
-		float redPercent = 1 - bluePercent;
+		if (m_redPoints != null) m_redPoints.text = (state.Model.Population * state.RedSupportPercent).ToString ("F2") + "m";
+		if (m_bluePoints != null) m_bluePoints.text = (state.Model.Population * state.BlueSupportPercent).ToString ("F2") + "m";
+
 		if (m_redPercent != null)
-			m_redPercent.text = Mathf.Round (redPercent * 100).ToString () + "%";
+			m_redPercent.text = Mathf.Round (state.RedSupportPercent * 100).ToString () + "%";
 		if (m_bluePercent != null)
-			m_bluePercent.text = Mathf.Round (bluePercent * 100).ToString () + "%";
+			m_bluePercent.text = Mathf.Round (state.BlueSupportPercent * 100).ToString () + "%";
 
 		
 		if (state.InPlay) {

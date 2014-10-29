@@ -25,7 +25,7 @@ public class GameMove {
     case GameActions.NEW_SUPPORTER: return 10;
     case GameActions.UPGRADE1: return 15;
     case GameActions.UPGRADE2: return 20;
-		case GameActions.REMOVE_SUPPORTER: return -10; // return the full price
+		case GameActions.REMOVE_SUPPORTER: return -5; // return half of the price
 		default: return 0;
 		}
 	}
