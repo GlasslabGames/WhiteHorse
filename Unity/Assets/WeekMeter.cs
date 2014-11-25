@@ -21,6 +21,7 @@ public class WeekMeter : MonoBehaviour {
 		}
 		m_rulerGrid.cellWidth = m_rulerWidth / m_totalTurns;
 		m_rulerGrid.Reposition ();
+		m_rulerGrid.GetChild (0).gameObject.SetActive (false); // hide the first one (on the left edge)
 
 		Refresh (0);
 	}
@@ -35,7 +36,8 @@ public class WeekMeter : MonoBehaviour {
 	void Update() {
 		if (m_time > -1) {
 			m_time += Time.deltaTime;
-			
+
+			m_fill.gameObject.SetActive(m_targetWidth <= 0); // since the min displayable width is 2, we need to hide it when it should be 0
 			m_fill.width = (int) Mathf.Lerp(m_startingWidth, m_targetWidth, m_time / GameObjectAccessor.Instance.VoteUpdateTime);
 			
 			if (m_time >= GameObjectAccessor.Instance.VoteUpdateTime) m_time = -1; // stop lerping

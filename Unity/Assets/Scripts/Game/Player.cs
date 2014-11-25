@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     {
       m_playerColor = Color.red;
       m_opponentColor = Color.blue;
-      GameObjectAccessor.Instance.RedPlayerMarker.SetActive( true );
+      //GameObjectAccessor.Instance.RedPlayerMarker.SetActive( true );
 			GameObjectAccessor.Instance.ToggleWorkerButton.GetComponent< UITexture >().color = GameObjectAccessor.Instance.GameColorSettings.redStateDark;
       GameObjectAccessor.Instance.ToggleWorkerButton.GetComponent< UITexture >().alpha = 0.5f;
     }
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     {
       m_playerColor = Color.blue;
       m_opponentColor = Color.red;
-      GameObjectAccessor.Instance.BluePlayerMarker.SetActive( true );
+      //GameObjectAccessor.Instance.BluePlayerMarker.SetActive( true );
 			GameObjectAccessor.Instance.ToggleWorkerButton.GetComponent< UITexture >().color = GameObjectAccessor.Instance.GameColorSettings.blueStateDark;
 			GameObjectAccessor.Instance.ToggleWorkerButton.GetComponent< UITexture >().alpha = 0.5f;
     }

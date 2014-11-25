@@ -10,15 +10,21 @@ public class DetailView : MonoBehaviour {
 	public UILabel m_name;
 	public UILabel m_population;
 	public UILabel m_votes;
-	public UILabel m_redPercent;
-	public UILabel m_bluePercent;
-	public UILabel m_redPoints;
-	public UILabel m_bluePoints;
+	public UILabel m_playerPercent;
+	public UILabel m_opponentPercent;
 	public UILabel m_unitsCount;
-	public UILabel m_unit1Count;
-	public UILabel m_unit2Count;
-	public UILabel m_unit3Count;
-	public UITexture m_newUnit;
+	public UILabel m_opponentUnitsCount;
+	public UILabel m_playerIncrement;
+	public UILabel m_opponentIncrement;
+
+	public GLButton m_addUnitButton;
+	public GLButton m_removeUnitButton;
+
+	public UITexture m_headerBg;
+	public UITexture m_leftArrow;
+	public UITexture m_rightArrow;
+
+	public OpinionMeter m_voteMeter;
 
 	private State m_currentState;
 
@@ -32,7 +38,7 @@ public class DetailView : MonoBehaviour {
 	void Start() {
 		ClearState ();
 	}
-
+	/*
 	// Update is called once per frame
 	void Update () {
     //Debug.Log ( Input.mousePosition );
@@ -65,8 +71,12 @@ public class DetailView : MonoBehaviour {
 			if (m_currentState == null) ClearState();
 		}
 	}
+	*/
 
 	public void SetState(State state, bool showIndicator) {
+		gameObject.SetActive (true);
+		Debug.Log ("SetState");
+
 		if (m_row1 != null)
 			m_row1.SetActive (true);
 		if (m_row2 != null)
@@ -83,39 +93,73 @@ public class DetailView : MonoBehaviour {
 		if (m_votes != null)
 			m_votes.text = "Electoral College Votes " + state.Model.ElectoralCount.ToString ();
 
-		/*
-		Leaning color = GameObjectAccessor.Instance.Player.m_leaning;
-		if (m_redPoints != null) {
-			int points = (color == Leaning.Red) ? state.PlayerBasisCountIncrement : state.OpponentBasisCountIncrement;
-			m_redPoints.text = points.ToString () + "pts";
+		string redPercent = Mathf.Round (state.RedSupportPercent * 100).ToString () + "%";
+		string bluePercent = Mathf.Round(state.BlueSupportPercent * 100).ToString () + "%";
+		if (m_playerPercent != null) {
+			m_playerPercent.text = (GameObjectAccessor.Instance.Player.IsRed) ? redPercent : bluePercent;
 		}
-		if (m_bluePoints != null) {
-			int points = (color == Leaning.Blue) ? state.PlayerBasisCountIncrement : state.OpponentBasisCountIncrement;
-			m_bluePoints.text = points.ToString () + "pts";
+		if (m_opponentPercent != null) {
+			m_opponentPercent.text = (GameObjectAccessor.Instance.Player.IsBlue) ? redPercent : bluePercent;
 		}
-		*/
 
-		if (m_redPoints != null) m_redPoints.text = (state.Model.Population * state.RedSupportPercent).ToString ("F2") + "m";
-		if (m_bluePoints != null) m_bluePoints.text = (state.Model.Population * state.BlueSupportPercent).ToString ("F2") + "m";
+		if (m_voteMeter != null) {
+			float percent = (GameObjectAccessor.Instance.Player.IsRed)? state.RedSupportPercent : state.BlueSupportPercent;
+			m_voteMeter.Set(percent, false);
+		}
 
-		if (m_redPercent != null)
-			m_redPercent.text = Mathf.Round (state.RedSupportPercent * 100).ToString () + "%";
-		if (m_bluePercent != null)
-			m_bluePercent.text = Mathf.Round (state.BlueSupportPercent * 100).ToString () + "%";
+		if (m_row2 != null) {
+			m_row2.SetActive (state.InPlay);
+		}
+		if (m_row2Inactive != null) {
+			m_row2Inactive.SetActive (!state.InPlay);
+		}
 
-		
 		if (state.InPlay) {
-			// assign labels for number of units
-			if (m_unitsCount != null)
-				m_unitsCount.text = state.PlayerCampaignWorkers.ToString () + "/" + state.UnitCap.ToString();
-			int[] workerCounts = state.PlayerCampaignWorkerCounts;
-			if (m_unit1Count != null)
-				m_unit1Count.text = workerCounts [0].ToString () + "x";
-			if (m_unit2Count != null)
-				m_unit2Count.text = workerCounts [1].ToString () + "x";
-			if (m_unit3Count != null)
-				m_unit3Count.text = workerCounts [2].ToString () + "x";
+			if (m_unitsCount != null) {
+				m_unitsCount.text = state.PlayerCampaignWorkers.ToString () + " x";
+			}
+			if (m_opponentUnitsCount != null) {
+				m_opponentUnitsCount.text = state.OpponentCampaignWorkers.ToString () + " x";
+			}
 		}
+
+		Color color = GameObjectAccessor.Instance.GameColorSettings.undiscoveredState; // gray
+		if (state.IsBlue) {
+			color = GameObjectAccessor.Instance.GameColorSettings.blueDarker;
+		} else if (state.IsRed) {
+			color = GameObjectAccessor.Instance.GameColorSettings.redDarker;
+		}
+
+		if (m_headerBg != null) {
+			m_headerBg.color = color;
+		}
+		if (m_leftArrow != null) {
+			m_leftArrow.color = color;
+		}
+		if (m_rightArrow != null) {
+			m_rightArrow.color = color;
+		}
+
+		// TODO: Percent increment
+		// TODO: Buttons
+
+		// place near state
+		Vector3 pos = transform.position;
+		Vector3 statePos = state.Center;
+		Debug.Log (statePos);
+		pos.y = Mathf.Clamp (statePos.y, -5.5f, 2.8f);
+		Debug.Log (pos.y);
+		// If it's too far on the right, show the popup on the left. Else it's always on the right.
+		if (statePos.x < 4) {
+			pos.x = statePos.x + 1.25f;
+			m_leftArrow.gameObject.SetActive (true);
+			m_rightArrow.gameObject.SetActive (false);
+		} else {
+			pos.x = statePos.x - 5.75f;
+			m_leftArrow.gameObject.SetActive (false);
+			m_rightArrow.gameObject.SetActive (true);
+		}
+		transform.position = Utility.ConvertFromGameToUiPosition(pos);
 
 		if (showIndicator) {
 			// reset the previous scaled state
@@ -126,10 +170,13 @@ public class DetailView : MonoBehaviour {
 		}
 	}
 
+	public void OnClickBackground() {
+		ClearState ();
+	}
+
 	void ClearState() {
-		if (m_row1 != null) m_row1.SetActive (false);
-		if (m_row2 != null) m_row2.SetActive (false);
-		if (m_row2Inactive != null) m_row2Inactive.SetActive (false);
+		Debug.Log ("ClearState");
+		gameObject.SetActive (false);
 
 		if (m_highlightedState != null) {
 			m_highlightedState.Highlight (false);

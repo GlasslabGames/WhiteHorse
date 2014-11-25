@@ -30,6 +30,8 @@ public class GameStateManager : MonoBehaviour
 
   public int m_currentAnte;
 
+	public float WorkerPercentIncrement;
+
   private int m_playerVotes;
   private int m_opponentVotes;
 
@@ -103,7 +105,7 @@ public class GameStateManager : MonoBehaviour
     Debug.Log( "States not in play: " + m_statesNotInPlay.Count );
 
     m_weeksLeft = m_totalElectionWeeks;
-
+		UpdateWeeksRemaining (m_weeksLeft);
   }
 
   public void Start()
@@ -140,10 +142,8 @@ public class GameStateManager : MonoBehaviour
 
     // If we've reached this point, then there are no more harvest actions, we can transition back to Placement
     m_weeksLeft--;
-		int week = (m_totalElectionWeeks - m_weeksLeft);
-		if (GameObjectAccessor.Instance.WeekMeter != null) GameObjectAccessor.Instance.WeekMeter.Refresh(week);
-		if (GameObjectAccessor.Instance.WeekCounter != null) GameObjectAccessor.Instance.WeekCounter.text = ((week+1 > m_totalElectionWeeks)? m_totalElectionWeeks : week+1).ToString();
-    if( m_weeksLeft < 5 )  m_currentAnte = 50;
+		UpdateWeeksRemaining (m_weeksLeft);
+		if( m_weeksLeft < 5 )  m_currentAnte = 50;
     else if( m_weeksLeft < 9 ) m_currentAnte = 30;
 
     GameObjectAccessor.Instance.Budget.GainAmount( m_currentAnte );
@@ -190,6 +190,15 @@ public class GameStateManager : MonoBehaviour
     }
   }
 
+	private void UpdateWeeksRemaining( int weeksRemaining )
+	{
+		int week = (m_totalElectionWeeks - weeksRemaining);
+		if (GameObjectAccessor.Instance.WeekMeter != null) GameObjectAccessor.Instance.WeekMeter.Refresh(week);
+		if (GameObjectAccessor.Instance.WeekCounter != null) {
+			if (weeksRemaining <= 1) GameObjectAccessor.Instance.WeekCounter.text = "FINAL WEEK";
+			else GameObjectAccessor.Instance.WeekCounter.text = weeksRemaining + " WEEKS REMAINING";
+		}
+	}
 
   public void GoToState( TurnState nextState )
   {

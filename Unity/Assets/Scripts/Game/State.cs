@@ -195,6 +195,17 @@ public class State : MonoBehaviour
     
     if (m_stateStripes == null) Debug.LogError ("No stripes on " + this, this);
     if (m_stateOutline == null) Debug.LogError ("No outline on " + this, this);
+
+		// automatically add a button to the child with the collider so that we can get events from it
+		Collider2D c = GetComponentInChildren<Collider2D> ();
+		if (c == null) {
+			Debug.LogError ("Couldn't find collider under " + this, this);
+		} else {
+			GLButton button = c.gameObject.AddComponent<GLButton>() as GLButton;
+			EventDelegate.Add (button.onClick, delegate {
+				GameObjectAccessor.Instance.DetailView.SetState(this, true);
+			});
+		}
   }
 
   public void Start()
@@ -216,6 +227,10 @@ public class State : MonoBehaviour
     m_popularVoteText.GetComponent< FloatingText >().Display( "" );
 		m_popularVoteText.transform.parent = container;
 		*/
+	}
+	
+	void OnClick() {
+		Debug.Log ("Clicked "+this, this);
 	}
 
   public void SetInitialPopularVote(float v) {
