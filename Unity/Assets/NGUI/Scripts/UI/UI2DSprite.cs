@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -22,6 +22,7 @@ public class UI2DSprite : UIBasicSprite
 	[HideInInspector][SerializeField] Shader mShader;
 	[HideInInspector][SerializeField] Vector4 mBorder = Vector4.zero;
 	[HideInInspector][SerializeField] bool mFixedAspect = false;
+	[HideInInspector][SerializeField] float mPixelSize = 1f;
 
 	/// <summary>
 	/// To be used with animations.
@@ -135,6 +136,12 @@ public class UI2DSprite : UIBasicSprite
 	}
 
 	/// <summary>
+	/// Size of the pixel -- used for drawing.
+	/// </summary>
+
+	override public float pixelSize { get { return mPixelSize; } }
+
+	/// <summary>
 	/// Widget's dimensions used for drawing. X = left, Y = bottom, Z = right, W = top.
 	/// This function automatically adds 1 pixel on the edge if the texture's dimensions are not even.
 	/// It's used to achieve pixel-perfect sprites even when an odd dimension widget happens to be centered.
@@ -204,9 +211,9 @@ public class UI2DSprite : UIBasicSprite
 			}
 			else
 			{
-				Vector4 br = border;
-				fw = br.x + br.z;
-				fh = br.y + br.w;
+				Vector4 br = border * pixelSize;
+				fw = (br.x + br.z);
+				fh = (br.y + br.w);
 			}
 
 			float vx = Mathf.Lerp(x0, x1 - fw, mDrawRegion.x);
@@ -342,7 +349,7 @@ public class UI2DSprite : UIBasicSprite
 		Texture tex = mainTexture;
 		if (tex == null) return;
 
-		Rect outer = mSprite.textureRect;
+		Rect outer = (mSprite != null) ? mSprite.textureRect : new Rect(0f, 0f, tex.width, tex.height);
 		Rect inner = outer;
 		Vector4 br = border;
 		inner.xMin += br.x;

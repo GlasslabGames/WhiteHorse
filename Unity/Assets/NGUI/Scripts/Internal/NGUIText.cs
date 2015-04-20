@@ -1,9 +1,9 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
-#if !UNITY_3_5 && !UNITY_FLASH
+#if !UNITY_3_5
 #define DYNAMIC_FONT
 #endif
 
@@ -39,9 +39,10 @@ static public class NGUIText
 		public Vector2 v1;
 		public Vector2 u0;
 		public Vector2 u1;
+		public Vector2 u2;
+		public Vector2 u3;
 		public float advance = 0f;
 		public int channel = 0;
-		public bool rotatedUVs = false;
 	}
 
 	/// <summary>
@@ -106,6 +107,7 @@ static public class NGUIText
 		{
 			dynamicFont.RequestCharactersInTexture(")_-", finalSize, fontStyle);
 
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 			if (!dynamicFont.GetCharacterInfo(')', out mTempChar, finalSize, fontStyle) || mTempChar.vert.height == 0f)
 			{
 				dynamicFont.RequestCharactersInTexture("A", finalSize, fontStyle);
@@ -120,6 +122,22 @@ static public class NGUIText
 
 			float y0 = mTempChar.vert.yMax;
 			float y1 = mTempChar.vert.yMin;
+#else
+			if (!dynamicFont.GetCharacterInfo(')', out mTempChar, finalSize, fontStyle) || mTempChar.maxY == 0f)
+			{
+				dynamicFont.RequestCharactersInTexture("A", finalSize, fontStyle);
+				{
+					if (!dynamicFont.GetCharacterInfo('A', out mTempChar, finalSize, fontStyle))
+					{
+						baseline = 0f;
+						return;
+					}
+				}
+			}
+
+			float y0 = mTempChar.maxY;
+			float y1 = mTempChar.minY;
+#endif
 			baseline = Mathf.Round(y0 + (finalSize - y0 + y1) * 0.5f);
 		}
 #endif
@@ -154,18 +172,32 @@ static public class NGUIText
 	{
 		if (bitmapFont != null)
 		{
+			bool thinSpace = false;
+
+			if (ch == '\u2009')
+			{
+				thinSpace = true;
+				ch = ' ';
+			}
+
 			BMGlyph bmg = bitmapFont.bmFont.GetGlyph(ch);
 
 			if (bmg != null)
 			{
-				return fontScale * ((prev != 0) ? bmg.advance + bmg.GetKerning(prev) : bmg.advance);
+				int adv = bmg.advance;
+				if (thinSpace) adv >>= 1;
+				return fontScale * ((prev != 0) ? adv + bmg.GetKerning(prev) : bmg.advance);
 			}
 		}
 #if DYNAMIC_FONT
 		else if (dynamicFont != null)
 		{
 			if (dynamicFont.GetCharacterInfo((char)ch, out mTempChar, finalSize, fontStyle))
+ #if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 				return mTempChar.width * fontScale * pixelDensity;
+ #else
+				return mTempChar.advance * fontScale * pixelDensity;
+ #endif
 		}
 #endif
 		return 0f;
@@ -179,6 +211,14 @@ static public class NGUIText
 	{
 		if (bitmapFont != null)
 		{
+			bool thinSpace = false;
+
+			if (ch == '\u2009')
+			{
+				thinSpace = true;
+				ch = ' ';
+			}
+
 			BMGlyph bmg = bitmapFont.bmFont.GetGlyph(ch);
 
 			if (bmg != null)
@@ -193,12 +233,19 @@ static public class NGUIText
 				glyph.u0.x = bmg.x;
 				glyph.u0.y = bmg.y + bmg.height;
 
-				glyph.u1.x = bmg.x + bmg.width;
-				glyph.u1.y = bmg.y;
+				glyph.u2.x = bmg.x + bmg.width;
+				glyph.u2.y = bmg.y;
 
-				glyph.advance = bmg.advance + kern;
+				glyph.u1.x = glyph.u0.x;
+				glyph.u1.y = glyph.u2.y;
+
+				glyph.u3.x = glyph.u2.x;
+				glyph.u3.y = glyph.u0.y;
+
+				int adv = bmg.advance;
+				if (thinSpace) adv >>= 1;
+				glyph.advance = adv + kern;
 				glyph.channel = bmg.channel;
-				glyph.rotatedUVs = false;
 
 				if (fontScale != 1f)
 				{
@@ -214,6 +261,7 @@ static public class NGUIText
 		{
 			if (dynamicFont.GetCharacterInfo((char)ch, out mTempChar, finalSize, fontStyle))
 			{
+ #if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 				glyph.v0.x = mTempChar.vert.xMin;
 				glyph.v1.x = glyph.v0.x + mTempChar.vert.width;
 
@@ -223,13 +271,37 @@ static public class NGUIText
 				glyph.u0.x = mTempChar.uv.xMin;
 				glyph.u0.y = mTempChar.uv.yMin;
 
-				glyph.u1.x = mTempChar.uv.xMax;
-				glyph.u1.y = mTempChar.uv.yMax;
+				glyph.u2.x = mTempChar.uv.xMax;
+				glyph.u2.y = mTempChar.uv.yMax;
+
+				if (mTempChar.flipped)
+				{
+					glyph.u1 = new Vector2(glyph.u2.x, glyph.u0.y);
+					glyph.u3 = new Vector2(glyph.u0.x, glyph.u2.y);
+				}
+				else
+				{
+					glyph.u1 = new Vector2(glyph.u0.x, glyph.u2.y);
+					glyph.u3 = new Vector2(glyph.u2.x, glyph.u0.y);
+				}
 
 				glyph.advance = mTempChar.width;
 				glyph.channel = 0;
-				glyph.rotatedUVs = mTempChar.flipped;
+#else
+				glyph.v0.x = mTempChar.minX;
+				glyph.v1.x = mTempChar.maxX;
 
+				glyph.v0.y = mTempChar.maxY - baseline;
+				glyph.v1.y = mTempChar.minY - baseline;
+
+				glyph.u0 = mTempChar.uvTopLeft;
+				glyph.u1 = mTempChar.uvBottomLeft;
+				glyph.u2 = mTempChar.uvBottomRight;
+				glyph.u3 = mTempChar.uvTopRight;
+
+				glyph.advance = mTempChar.advance;
+				glyph.channel = 0;
+ #endif
 				glyph.v0.x = Mathf.Round(glyph.v0.x);
 				glyph.v0.y = Mathf.Round(glyph.v0.y);
 				glyph.v1.x = Mathf.Round(glyph.v1.x);
@@ -317,6 +389,14 @@ static public class NGUIText
 	static public string EncodeColor (Color c) { return EncodeColor24(c); }
 
 	/// <summary>
+	/// Convenience function that wraps the specified text block in a color tag.
+	/// </summary>
+
+	[System.Diagnostics.DebuggerHidden]
+	[System.Diagnostics.DebuggerStepThrough]
+	static public string EncodeColor (string text, Color c) { return "[c][" + EncodeColor24(c) + "]" + text + "[-][/c]"; }
+
+	/// <summary>
 	/// The reverse of ParseAlpha -- encodes a color in Aa format.
 	/// </summary>
 
@@ -365,6 +445,17 @@ static public class NGUIText
 		bool strikethrough = false;
 		bool ignoreColor = false;
 		return ParseSymbol(text, ref index, null, false, ref n, ref bold, ref italic, ref underline, ref strikethrough, ref ignoreColor);
+	}
+
+	/// <summary>
+	/// Whether the specified character falls under the 'hex' character category (0-9, A-F).
+	/// </summary>
+
+	[System.Diagnostics.DebuggerHidden]
+	[System.Diagnostics.DebuggerStepThrough]
+	static public bool IsHex (char ch)
+	{
+		return (ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'f') || (ch >= 'A' && ch <= 'F');
 	}
 
 	/// <summary>
@@ -454,10 +545,19 @@ static public class NGUIText
 				return true;
 
 				default:
-				int a = (NGUIMath.HexToDecimal(text[index + 1]) << 4) | NGUIMath.HexToDecimal(text[index + 2]);
-				mAlpha = a / 255f;
-				index += 4;
-				return true;
+				{
+					char ch0 = text[index + 1];
+					char ch1 = text[index + 2];
+
+					if (IsHex(ch0) && IsHex(ch1))
+					{
+						int a = (NGUIMath.HexToDecimal(ch0) << 4) | NGUIMath.HexToDecimal(ch1);
+						mAlpha = a / 255f;
+						index += 4;
+						return true;
+					}
+				}
+				break;
 			}
 		}
 
@@ -760,7 +860,7 @@ static public class NGUIText
 
 	[DebuggerHidden]
 	[DebuggerStepThrough]
-	static bool IsSpace (int ch) { return (ch == ' ' || ch == 0x200a || ch == 0x200b); }
+	static bool IsSpace (int ch) { return (ch == ' ' || ch == 0x200a || ch == 0x200b || ch == '\u2009'); }
 
 	/// <summary>
 	/// Convenience function that ends the line by either appending a new line character or replacing a space with one.
@@ -1354,27 +1454,23 @@ static public class NGUIText
 					if (bitmapFont != null)
 					{
 						glyph.u0.x = uvRect.xMin + invX * glyph.u0.x;
-						glyph.u1.x = uvRect.xMin + invX * glyph.u1.x;
+						glyph.u2.x = uvRect.xMin + invX * glyph.u2.x;
 						glyph.u0.y = uvRect.yMax - invY * glyph.u0.y;
-						glyph.u1.y = uvRect.yMax - invY * glyph.u1.y;
+						glyph.u2.y = uvRect.yMax - invY * glyph.u2.y;
+
+						glyph.u1.x = glyph.u0.x;
+						glyph.u1.y = glyph.u2.y;
+
+						glyph.u3.x = glyph.u2.x;
+						glyph.u3.y = glyph.u0.y;
 					}
 
 					for (int j = 0, jmax = (bold ? 4 : 1); j < jmax; ++j)
 					{
-						if (glyph.rotatedUVs)
-						{
-							uvs.Add(glyph.u0);
-							uvs.Add(new Vector2(glyph.u1.x, glyph.u0.y));
-							uvs.Add(glyph.u1);
-							uvs.Add(new Vector2(glyph.u0.x, glyph.u1.y));
-						}
-						else
-						{
-							uvs.Add(glyph.u0);
-							uvs.Add(new Vector2(glyph.u0.x, glyph.u1.y));
-							uvs.Add(glyph.u1);
-							uvs.Add(new Vector2(glyph.u1.x, glyph.u0.y));
-						}
+						uvs.Add(glyph.u0);
+						uvs.Add(glyph.u1);
+						uvs.Add(glyph.u2);
+						uvs.Add(glyph.u3);
 					}
 				}
 
@@ -1481,18 +1577,18 @@ static public class NGUIText
 						if (bitmapFont != null)
 						{
 							dash.u0.x = uvRect.xMin + invX * dash.u0.x;
-							dash.u1.x = uvRect.xMin + invX * dash.u1.x;
+							dash.u2.x = uvRect.xMin + invX * dash.u2.x;
 							dash.u0.y = uvRect.yMax - invY * dash.u0.y;
-							dash.u1.y = uvRect.yMax - invY * dash.u1.y;
+							dash.u2.y = uvRect.yMax - invY * dash.u2.y;
 						}
 
-						float cx = (dash.u0.x + dash.u1.x) * 0.5f;
+						float cx = (dash.u0.x + dash.u2.x) * 0.5f;
 
 						for (int j = 0, jmax = (bold ? 4 : 1); j < jmax; ++j)
 						{
 							uvs.Add(new Vector2(cx, dash.u0.y));
-							uvs.Add(new Vector2(cx, dash.u1.y));
-							uvs.Add(new Vector2(cx, dash.u1.y));
+							uvs.Add(new Vector2(cx, dash.u2.y));
+							uvs.Add(new Vector2(cx, dash.u2.y));
 							uvs.Add(new Vector2(cx, dash.u0.y));
 						}
 					}
@@ -1567,8 +1663,8 @@ static public class NGUIText
 
 	static float[] mBoldOffset = new float[]
 	{
-		-0.5f, 0f, 0.5f, 0f,
-		0f, -0.5f, 0f, 0.5f
+		-0.25f, 0f, 0.25f, 0f,
+		0f, -0.25f, 0f, 0.25f
 	};
 
 	/// <summary>

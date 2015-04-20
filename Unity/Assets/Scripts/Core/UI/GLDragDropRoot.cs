@@ -15,14 +15,14 @@ public class GLDragDropRoot : UIDragDropRoot
 	// static public Transform root; // in parent
   private static Stack<Transform> m_previousRoots = new Stack<Transform>();
 
-	override protected void OnEnable () {
+	protected void OnEnable () {
     if (root != null) m_previousRoots.Push(root);
     root = transform;
 
     //Debug.Log ("[GLDragDropRoot] Enabling root "+this, this );
   }
 
-	override protected void OnDisable () {
+	protected void OnDisable () {
     if (root == transform) {
       root = null;
 

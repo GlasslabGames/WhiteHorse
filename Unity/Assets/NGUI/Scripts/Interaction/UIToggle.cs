@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -46,6 +46,12 @@ public class UIToggle : UIWidgetContainer
 	public Animation activeAnimation;
 
 	/// <summary>
+	/// Animation to play on the active sprite, if any.
+	/// </summary>
+
+	public Animator animator;
+
+	/// <summary>
 	/// Whether the toggle starts checked.
 	/// </summary>
 
@@ -68,6 +74,14 @@ public class UIToggle : UIWidgetContainer
 	/// </summary>
 
 	public List<EventDelegate> onChange = new List<EventDelegate>();
+
+	public delegate bool Validate (bool choice);
+
+	/// <summary>
+	/// Want to validate the choice before committing the changes? Set this delegate.
+	/// </summary>
+
+	public Validate validator;
 
 	/// <summary>
 	/// Deprecated functionality. Use the 'group' option instead.
@@ -180,8 +194,10 @@ public class UIToggle : UIWidgetContainer
 	/// Fade out or fade in the active sprite and notify the OnChange event listener.
 	/// </summary>
 
-	void Set (bool state)
+	public void Set (bool state)
 	{
+		if (validator != null && !validator(state)) return;
+
 		if (!mStarted)
 		{
 			mIsActive = state;
@@ -225,6 +241,7 @@ public class UIToggle : UIWidgetContainer
 
 			if (current == null)
 			{
+				UIToggle tog = current;
 				current = this;
 
 				if (EventDelegate.IsValid(onChange))
@@ -236,11 +253,19 @@ public class UIToggle : UIWidgetContainer
 					// Legacy functionality support (for backwards compatibility)
 					eventReceiver.SendMessage(functionName, mIsActive, SendMessageOptions.DontRequireReceiver);
 				}
-				current = null;
+				current = tog;
 			}
 
 			// Play the checkmark animation
-			if (activeAnimation != null)
+			if (animator != null)
+			{
+				ActiveAnimation aa = ActiveAnimation.Play(animator, null,
+					state ? Direction.Forward : Direction.Reverse,
+					EnableCondition.IgnoreDisabledState,
+					DisableCondition.DoNotDisable);
+				if (aa != null && (instantTween || !NGUITools.GetActive(this))) aa.Finish();
+			}
+			else if (activeAnimation != null)
 			{
 				ActiveAnimation aa = ActiveAnimation.Play(activeAnimation, null,
 					state ? Direction.Forward : Direction.Reverse,

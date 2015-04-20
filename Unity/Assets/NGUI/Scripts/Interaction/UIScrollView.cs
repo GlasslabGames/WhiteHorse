@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -88,7 +88,13 @@ public class UIScrollView : MonoBehaviour
 	/// </summary>
 
 	public float momentumAmount = 35f;
-	
+
+	/// <summary>
+	/// Strength of the spring dampening effect.
+	/// </summary>
+
+	public float dampenStrength = 9f;
+
 	/// <summary>
 	/// Horizontal scrollbar used for visualization.
 	/// </summary>
@@ -349,32 +355,36 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	void OnEnable () { list.Add(this); }
-	void OnDisable () { list.Remove(this); }
+	[System.NonSerialized] bool mStarted = false;
 
-	/// <summary>
-	/// Set the initial drag value and register the listener delegates.
-	/// </summary>
-
-	protected virtual void Start ()
+	void OnEnable ()
 	{
-		//UpdatePosition();
+		list.Add(this);
+		if (mStarted && Application.isPlaying) CheckScrollbars();
+	}
 
-		if (Application.isPlaying)
+	void Start ()
+	{
+		mStarted = true;
+		if (Application.isPlaying) CheckScrollbars();
+	}
+
+	void CheckScrollbars ()
+	{
+		if (horizontalScrollBar != null)
 		{
-			if (horizontalScrollBar != null)
-			{
-				EventDelegate.Add(horizontalScrollBar.onChange, OnScrollBar);
-				horizontalScrollBar.alpha = ((showScrollBars == ShowCondition.Always) || shouldMoveHorizontally) ? 1f : 0f;
-			}
+			EventDelegate.Add(horizontalScrollBar.onChange, OnScrollBar);
+			horizontalScrollBar.alpha = ((showScrollBars == ShowCondition.Always) || shouldMoveHorizontally) ? 1f : 0f;
+		}
 
-			if (verticalScrollBar != null)
-			{
-				EventDelegate.Add(verticalScrollBar.onChange, OnScrollBar);
-				verticalScrollBar.alpha = ((showScrollBars == ShowCondition.Always) || shouldMoveVertically) ? 1f : 0f;
-			}
+		if (verticalScrollBar != null)
+		{
+			EventDelegate.Add(verticalScrollBar.onChange, OnScrollBar);
+			verticalScrollBar.alpha = ((showScrollBars == ShowCondition.Always) || shouldMoveVertically) ? 1f : 0f;
 		}
 	}
+
+	void OnDisable () { list.Remove(this); }
 
 	/// <summary>
 	/// Restrict the scroll view's contents to be within the scroll view's bounds.
@@ -388,6 +398,8 @@ public class UIScrollView : MonoBehaviour
 
 	public bool RestrictWithinBounds (bool instant, bool horizontal, bool vertical)
 	{
+		if (mPanel == null) return false;
+
 		Bounds b = bounds;
 		Vector3 constraint = mPanel.CalculateConstrainOffset(b.min, b.max);
 
@@ -756,12 +768,16 @@ public class UIScrollView : MonoBehaviour
 					if (onDragStarted != null) onDragStarted();
 				}
 			}
+			else if (centerOnChild)
+			{
+				centerOnChild.Recenter();
+			}
 			else
 			{
 				if (restrictWithinPanel && mPanel.clipping != UIDrawCall.Clipping.None)
 					RestrictWithinBounds(dragEffect == DragEffect.None, canMoveHorizontally, canMoveVertically);
 
-				if (onDragFinished != null) onDragFinished();
+				if (mDragStarted && onDragFinished != null) onDragFinished();
 				if (!mShouldMove && onStoppedMoving != null)
 					onStoppedMoving();
 			}
@@ -945,7 +961,7 @@ public class UIScrollView : MonoBehaviour
 				mScroll = NGUIMath.SpringLerp(mScroll, 0f, 20f, delta);
 
 				// Move the scroll view
-				Vector3 offset = NGUIMath.SpringDampen(ref mMomentum, 9f, delta);
+				Vector3 offset = NGUIMath.SpringDampen(ref mMomentum, dampenStrength, delta);
 				MoveAbsolute(offset);
 
 				// Restrict the contents to be within the scroll view's bounds
@@ -953,7 +969,12 @@ public class UIScrollView : MonoBehaviour
 				{
 					if (NGUITools.GetActive(centerOnChild))
 					{
-						centerOnChild.Recenter();
+						if (centerOnChild.nextPageThreshold != 0f)
+						{
+							mMomentum = Vector3.zero;
+							mScroll = 0f;
+						}
+						else centerOnChild.Recenter();
 					}
 					else
 					{

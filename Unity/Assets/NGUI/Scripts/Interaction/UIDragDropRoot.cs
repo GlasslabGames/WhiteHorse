@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -16,6 +16,6 @@ public class UIDragDropRoot : MonoBehaviour
 {
 	static public Transform root;
 
-	protected virtual void OnEnable () { root = transform; }
-    protected virtual void OnDisable() { if (root == transform) root = null; }
+	void OnEnable () { root = transform; }
+	void OnDisable () { if (root == transform) root = null; }
 }

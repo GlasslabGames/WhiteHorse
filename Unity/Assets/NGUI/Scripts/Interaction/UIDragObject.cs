@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -26,6 +26,12 @@ public class UIDragObject : MonoBehaviour
 	/// </summary>
 
 	public Transform target;
+
+	/// <summary>
+	/// Panel that will be used for constraining the target.
+	/// </summary>
+
+	public UIPanel panelRegion;
 
 	/// <summary>
 	/// Scale value applied to the drag delta. Set X or Y to 0 to disallow dragging in that direction.
@@ -72,7 +78,6 @@ public class UIDragObject : MonoBehaviour
 	Plane mPlane;
 	Vector3 mTargetPos;
 	Vector3 mLastPos;
-	UIPanel mPanel;
 	Vector3 mMomentum = Vector3.zero;
 	Vector3 mScroll = Vector3.zero;
 	Bounds mBounds;
@@ -97,6 +102,8 @@ public class UIDragObject : MonoBehaviour
 			UIWidget w = target.GetComponent<UIWidget>();
 			if (w != null) contentRect = w;
 		}
+
+		mTargetPos = (target != null) ? target.position : Vector3.zero;
 	}
 
 	void OnDisable () { mStarted = false; }
@@ -107,8 +114,8 @@ public class UIDragObject : MonoBehaviour
 
 	void FindPanel ()
 	{
-		mPanel = (target != null) ? UIPanel.Find(target.transform.parent) : null;
-		if (mPanel == null) restrictWithinPanel = false;
+		panelRegion = (target != null) ? UIPanel.Find(target.transform.parent) : null;
+		if (panelRegion == null) restrictWithinPanel = false;
 	}
 
 	/// <summary>
@@ -119,7 +126,7 @@ public class UIDragObject : MonoBehaviour
 	{
 		if (contentRect)
 		{
-			Transform t = mPanel.cachedTransform;
+			Transform t = panelRegion.cachedTransform;
 			Matrix4x4 toLocal = t.worldToLocalMatrix;
 			Vector3[] corners = contentRect.worldCorners;
 			for (int i = 0; i < 4; ++i) corners[i] = toLocal.MultiplyPoint3x4(corners[i]);
@@ -128,7 +135,7 @@ public class UIDragObject : MonoBehaviour
 		}
 		else
 		{
-			mBounds = NGUIMath.CalculateRelativeWidgetBounds(mPanel.cachedTransform, target);
+			mBounds = NGUIMath.CalculateRelativeWidgetBounds(panelRegion.cachedTransform, target);
 		}
 	}
 
@@ -138,6 +145,10 @@ public class UIDragObject : MonoBehaviour
 
 	void OnPress (bool pressed)
 	{
+		// Unity's physics seems to break when timescale is not quite zero. Raycasts start to fail completely.
+		float ts = Time.timeScale;
+		if (ts < 0.01f && ts != 0f) return;
+
 		if (enabled && NGUITools.GetActive(gameObject) && target != null)
 		{
 			if (pressed)
@@ -150,7 +161,7 @@ public class UIDragObject : MonoBehaviour
 					mStarted = false;
 					CancelMovement();
 
-					if (restrictWithinPanel && mPanel == null) FindPanel();
+					if (restrictWithinPanel && panelRegion == null) FindPanel();
 					if (restrictWithinPanel) UpdateBounds();
 
 					// Disable the spring movement
@@ -158,16 +169,16 @@ public class UIDragObject : MonoBehaviour
 
 					// Create the plane to drag along
 					Transform trans = UICamera.currentCamera.transform;
-					mPlane = new Plane((mPanel != null ? mPanel.cachedTransform.rotation : trans.rotation) * Vector3.back, UICamera.lastWorldPosition);
+					mPlane = new Plane((panelRegion != null ? panelRegion.cachedTransform.rotation : trans.rotation) * Vector3.back, UICamera.lastWorldPosition);
 				}
 			}
 			else if (mPressed && mTouchID == UICamera.currentTouchID)
 			{
 				mPressed = false;
-				
+
 				if (restrictWithinPanel && dragEffect == DragEffect.MomentumAndSpring)
 				{
-					if (mPanel.ConstrainTargetToBounds(target, ref mBounds, false))
+					if (panelRegion.ConstrainTargetToBounds(target, ref mBounds, false))
 						CancelMovement();
 				}
 			}
@@ -220,7 +231,7 @@ public class UIDragObject : MonoBehaviour
 					mBounds.center = mBounds.center + (target.localPosition - before);
 
 					// Constrain the UI to the bounds, and if done so, immediately eliminate the momentum
-					if (dragEffect != DragEffect.MomentumAndSpring && mPanel.ConstrainTargetToBounds(target, ref mBounds, true))
+					if (dragEffect != DragEffect.MomentumAndSpring && panelRegion.ConstrainTargetToBounds(target, ref mBounds, true))
 						CancelMovement();
 				}
 			}
@@ -233,7 +244,7 @@ public class UIDragObject : MonoBehaviour
 
 	void Move (Vector3 worldDelta)
 	{
-		if (mPanel != null)
+		if (panelRegion != null)
 		{
 			mTargetPos += worldDelta;
 			target.position = mTargetPos;
@@ -243,7 +254,7 @@ public class UIDragObject : MonoBehaviour
 			after.y = Mathf.Round(after.y);
 			target.localPosition = after;
 
-			UIScrollView ds = mPanel.GetComponent<UIScrollView>();
+			UIScrollView ds = panelRegion.GetComponent<UIScrollView>();
 			if (ds != null) ds.UpdateScrollbars(true);
 		}
 		else target.position += worldDelta;
@@ -264,31 +275,34 @@ public class UIDragObject : MonoBehaviour
 		mMomentum -= mScroll;
 		mScroll = NGUIMath.SpringLerp(mScroll, Vector3.zero, 20f, delta);
 
+		// No momentum? Exit.
+		if (mMomentum.magnitude < 0.0001f) return;
+
 		if (!mPressed)
 		{
-			// No momentum? Exit.
-			if (mMomentum.magnitude < 0.0001f) return;
-
 			// Apply the momentum
-			if (mPanel == null) FindPanel();
+			if (panelRegion == null) FindPanel();
 
 			Move(NGUIMath.SpringDampen(ref mMomentum, 9f, delta));
 
-			if (restrictWithinPanel && mPanel != null)
+			if (restrictWithinPanel && panelRegion != null)
 			{
 				UpdateBounds();
 
-				if (mPanel.ConstrainTargetToBounds(target, ref mBounds, dragEffect == DragEffect.None))
+				if (panelRegion.ConstrainTargetToBounds(target, ref mBounds, dragEffect == DragEffect.None))
 				{
 					CancelMovement();
 				}
 				else CancelSpring();
 			}
-		}
-		else mTargetPos = (target != null) ? target.position : Vector3.zero;
 
-		// Dampen the momentum
-		NGUIMath.SpringDampen(ref mMomentum, 9f, delta);
+			// Dampen the momentum
+			NGUIMath.SpringDampen(ref mMomentum, 9f, delta);
+
+			// Cancel all movement (and snap to pixels) at the end
+			if (mMomentum.magnitude < 0.0001f) CancelMovement();
+		}
+		else NGUIMath.SpringDampen(ref mMomentum, 9f, delta);
 	}
 
 	/// <summary>
@@ -297,6 +311,14 @@ public class UIDragObject : MonoBehaviour
 
 	public void CancelMovement ()
 	{
+		if (target != null)
+		{
+			Vector3 pos = target.localPosition;
+			pos.x = Mathf.RoundToInt(pos.x);
+			pos.y = Mathf.RoundToInt(pos.y);
+			pos.z = Mathf.RoundToInt(pos.z);
+			target.localPosition = pos;
+		}
 		mTargetPos = (target != null) ? target.position : Vector3.zero;
 		mMomentum = Vector3.zero;
 		mScroll = Vector3.zero;

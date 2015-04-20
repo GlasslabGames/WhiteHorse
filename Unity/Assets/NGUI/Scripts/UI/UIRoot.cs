@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -123,7 +123,7 @@ public class UIRoot : MonoBehaviour
 			Scaling scaling = scalingStyle;
 
 			if (scaling == Scaling.ConstrainedOnMobiles)
-#if UNITY_EDITOR || UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_BLACKBERRY
+#if UNITY_EDITOR || UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_WP_8_1 || UNITY_BLACKBERRY
 				return Scaling.Constrained;
 #else
 				return Scaling.Flexible;
@@ -202,7 +202,14 @@ public class UIRoot : MonoBehaviour
 	/// Pixel size adjustment. Most of the time it's at 1, unless the scaling style is set to FixedSize.
 	/// </summary>
 
-	public float pixelSizeAdjustment { get { return GetPixelSizeAdjustment(Mathf.RoundToInt(NGUITools.screenSize.y)); } }
+	public float pixelSizeAdjustment
+	{
+		get
+		{
+			int height = Mathf.RoundToInt(NGUITools.screenSize.y);
+			return height == -1 ? 1f : GetPixelSizeAdjustment(height);
+		}
+	}
 
 	/// <summary>
 	/// Helper function that figures out the pixel size adjustment for the specified game object.
@@ -247,7 +254,7 @@ public class UIRoot : MonoBehaviour
 			oc.enabled = false;
 			if (cam != null) cam.orthographicSize = 1f;
 		}
-		else Update();
+		else UpdateScale(false);
 	}
 
 	void Update ()
@@ -256,21 +263,31 @@ public class UIRoot : MonoBehaviour
 		if (!Application.isPlaying && gameObject.layer != 0)
 			UnityEditor.EditorPrefs.SetInt("NGUI Layer", gameObject.layer);
 #endif
+		UpdateScale();
+	}
+
+	/// <summary>
+	/// Immediately update the root's scale. Call this function after changing the min/max/manual height values.
+	/// </summary>
+
+	public void UpdateScale (bool updateAnchors = true)
+	{
 		if (mTrans != null)
 		{
 			float calcActiveHeight = activeHeight;
 
-			if (calcActiveHeight > 0f )
+			if (calcActiveHeight > 0f)
 			{
 				float size = 2f / calcActiveHeight;
-				
+
 				Vector3 ls = mTrans.localScale;
-	
+
 				if (!(Mathf.Abs(ls.x - size) <= float.Epsilon) ||
 					!(Mathf.Abs(ls.y - size) <= float.Epsilon) ||
 					!(Mathf.Abs(ls.z - size) <= float.Epsilon))
 				{
 					mTrans.localScale = new Vector3(size, size, size);
+					if (updateAnchors) BroadcastMessage("UpdateAnchors");
 				}
 			}
 		}

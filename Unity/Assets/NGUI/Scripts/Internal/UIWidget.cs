@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -70,10 +70,16 @@ public class UIWidget : UIRect
 		}
 		set
 		{
+#if UNITY_FLASH
+			if (!(mOnRender == value))
+#else
 			if (mOnRender != value)
+#endif
 			{
+#if !UNITY_FLASH
 				if (drawCall != null && drawCall.onRender != null && mOnRender != null)
 					drawCall.onRender -= mOnRender;
+#endif
 				mOnRender = value;
 				if (drawCall != null) drawCall.onRender += value;
 			}
@@ -396,6 +402,14 @@ public class UIWidget : UIRect
 	{
 		get
 		{
+			// Experiment with a transform-based depth, uGUI style
+			//if (mDepth == int.MinValue)
+			//{
+			//    int val = cachedTransform.GetSiblingIndex();
+			//    UIWidget pt = parent as UIWidget;
+			//    if (pt != null) val += pt.depth;
+			//    return val;
+			//}
 			return mDepth;
 		}
 		set
@@ -607,7 +621,11 @@ public class UIWidget : UIRect
 	{
 		get
 		{
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 			BoxCollider box = collider as BoxCollider;
+#else
+			BoxCollider box = GetComponent<Collider>() as BoxCollider;
+#endif
 			if (box != null) return true;
 			return GetComponent<BoxCollider2D>() != null;
 		}
@@ -700,7 +718,7 @@ public class UIWidget : UIRect
 		else
 		{
 			UIRect pt = parent;
-			finalAlpha = (parent != null) ? pt.CalculateFinalAlpha(frameID) * mColor.a : mColor.a;
+			finalAlpha = (pt != null) ? pt.CalculateFinalAlpha(frameID) * mColor.a : mColor.a;
 		}
 	}
 
@@ -1192,6 +1210,9 @@ public class UIWidget : UIRect
 
 		// Calculate the new position, width and height
 		Vector3 newPos = new Vector3(Mathf.Lerp(lt, rt, pvt.x), Mathf.Lerp(bt, tt, pvt.y), pos.z);
+		newPos.x = Mathf.Round(newPos.x);
+		newPos.y = Mathf.Round(newPos.y);
+
 		int w = Mathf.FloorToInt(rt - lt + 0.5f);
 		int h = Mathf.FloorToInt(tt - bt + 0.5f);
 
@@ -1299,11 +1320,15 @@ public class UIWidget : UIRect
 	{
 		get
 		{
+#if UNITY_4_3 || UNITY_4_5
 			if (showHandlesWithMoveTool)
 			{
 				return UnityEditor.Tools.current == UnityEditor.Tool.Move;
 			}
 			return UnityEditor.Tools.current == UnityEditor.Tool.View;
+#else
+			return UnityEditor.Tools.current == UnityEditor.Tool.Rect;
+#endif
 		}
 	}
 
