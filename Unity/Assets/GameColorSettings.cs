@@ -21,6 +21,9 @@ public class GameColorSettings {
 
 	public Color blueDarker;
 	public Color redDarker;
+
+	public Color disabledButton;
+	public Color disabledButtonText;
 }
 
 [System.Serializable]
