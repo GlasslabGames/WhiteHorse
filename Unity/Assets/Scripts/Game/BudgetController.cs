@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class BudgetController : MonoBehaviour
 {
-  public int m_amount;
+  public float m_amount;
   public UILabel m_label;
 
 
@@ -14,7 +14,7 @@ public class BudgetController : MonoBehaviour
     UpdateLabel();
   }
 
-  public bool IsAmountAvailable( int amount, bool consumeIfAvailable = false )
+  public bool IsAmountAvailable( float amount, bool consumeIfAvailable = false )
   {
     if( m_amount >= amount )
     {
@@ -29,13 +29,13 @@ public class BudgetController : MonoBehaviour
     return false;
   }
 
-  public void ConsumeAmount( int amount )
+  public void ConsumeAmount( float amount )
   {
     m_amount -= amount;
     UpdateLabel();
   }
 
-  public void GainAmount( int amount )
+  public void GainAmount( float amount )
   {
     m_amount += amount;
     UpdateLabel();

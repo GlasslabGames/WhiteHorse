@@ -2,85 +2,83 @@
 using System.Collections;
 using System.Collections.Generic;
 
-
-public enum TurnState
-{
-  ConnectPlayers,
-  GameBegin,
-  Placement,
-  Harvest,
-  ElectionDay
+public enum TurnPhase {
+	BeginGame,
+	BeginWeek,
+	Placement,
+	Waiting,
+	Harvest,
+	ElectionDay
 }
 
-public class GameStateManager : MonoBehaviour
-{
-  private List< State > m_states = new List< State >();
-  private List< State > m_statesInPlay = new List< State >();
-  private List< State > m_statesNotInPlay = new List< State >();
+public class GameStateManager : MonoBehaviour {
+	private List< State > m_states = new List< State >();
+	private List< State > m_statesInPlay = new List< State >();
+	private List< State > m_statesNotInPlay = new List< State >();
 
-  private TurnState m_currentTurnState;
+	private TurnPhase m_currentTurnPhase;
+	public TurnPhase CurrentTurnPhase {
+		get { return m_currentTurnPhase; }
+	}
+	private bool m_opponentIsWaiting;
 
-  private bool m_playerTurnCompleted;
-  private bool m_opponentTurnCompleted;
+	private int m_currentWeek;
+	public int TotalWeeks;
+	public float[] m_income;
+	public float WorkerIncrement;
 
-  private int m_weeksLeft;
-  public int m_totalElectionWeeks;
+	public Timer m_harvestTimer;
 
-  public Timer m_harvestTimer;
+	private int m_playerVotes;
+	private int m_opponentVotes;
+	public int m_defaultScenarioId;
+	
+	public void Awake() { }
 
-  public int m_currentAnte;
-
-	public float WorkerPercentIncrement;
-
-  private int m_playerVotes;
-  private int m_opponentVotes;
-
-  public int m_defaultScenarioId;
-
-  public TurnState CurrentTurnState
-  {
-    get { return m_currentTurnState; }
-  }
-
-
-  public void Awake()
-  {
-    ScenarioModel2 m_scenario = ScenarioModel2.GetModel(m_defaultScenarioId);
+	public void InitScenario() {
+		ScenarioModel2 m_scenario = ScenarioModel2.GetModel(m_defaultScenarioId);
 
 		int numStatesToAdd = 0;
 		int blueStatesAdded = 0;
 		int redStatesAdded = 0;
 		if (m_scenario != null) {
-			numStatesToAdd = Random.Range(m_scenario.MinStatesInPlay, m_scenario.MaxStatesInPlay+1); // since max would be excluded
+			numStatesToAdd = Random.Range(m_scenario.MinStatesInPlay, m_scenario.MaxStatesInPlay + 1); // since max would be excluded
 		}
-		List<State> maybeBlueStates = new List<State> ();
-		List<State> maybeRedStates = new List<State> ();
+		List<State> maybeBlueStates = new List<State>();
+		List<State> maybeRedStates = new List<State>();
 
-    foreach (State state in GameObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>()) {
-      if (m_scenario != null) {
+		foreach (State state in GameObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>()) {
+			if (m_scenario != null) {
 				int percentBlue = m_scenario.PercentBlue[state.Model.Id - 1];
-				state.BlueSupportPercent = percentBlue / 100f;
-				state.RedSupportPercent = 1 - state.BlueSupportPercent;
+				state.SetInitialPopularVote(percentBlue / 50f - 1);
 
-				ScenarioModel2.InPlayStatus status = (ScenarioModel2.InPlayStatus) m_scenario.StatesInPlay[state.Model.Id - 1];
+				ScenarioModel2.InPlayStatus status = (ScenarioModel2.InPlayStatus)m_scenario.StatesInPlay[state.Model.Id - 1];
 				if (status == ScenarioModel2.InPlayStatus.ALWAYS) {
 					state.InPlay = true;
-					if (state.IsBlue) blueStatesAdded ++;
-					else redStatesAdded ++;
+					if (state.IsBlue) {
+						blueStatesAdded ++;
+					} else {
+						redStatesAdded ++;
+					}
 				} else if (status == ScenarioModel2.InPlayStatus.MAYBE) {
-					if (state.IsBlue) maybeBlueStates.Add (state);
-					else maybeRedStates.Add(state);
-				}
+						if (state.IsBlue) {
+							maybeBlueStates.Add(state);
+						} else {
+							maybeRedStates.Add(state);
+						}
+					}
 
-      } else {
-        state.InPlay = true;
-      }
-      m_states.Add( state );
-    }
+			} else {
+				state.InPlay = true;
+			}
+			m_states.Add(state);
+		}
 
-		int r; State s; List<State> list;
+		int r;
+		State s;
+		List<State> list;
 		while ((blueStatesAdded + redStatesAdded) < numStatesToAdd || blueStatesAdded != redStatesAdded) {
-			Debug.Log ("Blue states: "+blueStatesAdded+" Red states: "+redStatesAdded+" NumStatesToAdd: "+numStatesToAdd);
+			Debug.Log("Blue states: " + blueStatesAdded + " Red states: " + redStatesAdded + " NumStatesToAdd: " + numStatesToAdd);
 			if (blueStatesAdded < redStatesAdded) {
 				r = Random.Range(0, maybeBlueStates.Count);
 				s = maybeBlueStates[r];
@@ -97,199 +95,196 @@ public class GameStateManager : MonoBehaviour
 		}
 
 		foreach (State state in m_states) {
-			if ( state.InPlay ) m_statesInPlay.Add( state );
-			else m_statesNotInPlay.Add( state );
+			if (state.InPlay) {
+				m_statesInPlay.Add(state);
+			} else {
+				m_statesNotInPlay.Add(state);
+			}
+			state.UpdateColor();
 		}
 
-    Debug.Log( "States in play: " + m_statesInPlay.Count );
-    Debug.Log( "States not in play: " + m_statesNotInPlay.Count );
+		Debug.Log("States in play: " + m_statesInPlay.Count);
+		Debug.Log("States not in play: " + m_statesNotInPlay.Count);
+	}
 
-    m_weeksLeft = m_totalElectionWeeks;
-		UpdateWeeksRemaining (m_weeksLeft);
-  }
+	public void Start() {
+		InitScenario();
 
-  public void Start()
-  {
-    GoToState( TurnState.Placement );
+		GoToState(TurnPhase.BeginGame);
+	}
 
-    UpdateElectoralVotes(true);
-  }
-
-
-  public void NextHarvestAction()
-  {
-    foreach( State state in m_statesInPlay )
-    {
-      bool hasCompleted = true;
-
-      //if( state.m_dirty )
-      {
-        hasCompleted = state.UpdateState();
-      }
-
-      if( !hasCompleted )
-      {
-        return;
-      }
-    }
-
-    Debug.Log( "completed harvest" );
-    m_harvestTimer.StopTimer();
-
-
-    UpdateElectoralVotes();
-
-
-    // If we've reached this point, then there are no more harvest actions, we can transition back to Placement
-    m_weeksLeft--;
-		UpdateWeeksRemaining (m_weeksLeft);
-		if( m_weeksLeft < 5 )  m_currentAnte = 50;
-    else if( m_weeksLeft < 9 ) m_currentAnte = 30;
-
-    GameObjectAccessor.Instance.Budget.GainAmount( m_currentAnte );
-    // also give the AI money
-    GameObjectAccessor.Instance.OpponentAi.Budget.GainAmount( m_currentAnte );
-
-    if( m_weeksLeft == 0 )
-    {
-      GoToState( TurnState.ElectionDay );
-      GameObjectAccessor.Instance.GameOverScreen.SetActive( true );
-
-			// Rather than renaming the GameOverRedVotes, etc, just know that RedVotes is on the left (the player) and BlueVotes is on the right (the opponent)
-      GameObjectAccessor.Instance.GameOverRedVotes.text = GameObjectAccessor.Instance.PlayerVotesLabel.text;
-			GameObjectAccessor.Instance.GameOverRedVotes.color = AutoSetColor.GetColor(true, AutoSetColor.ColorChoice.LIGHT);
-
-			GameObjectAccessor.Instance.GameOverBlueVotes.text = GameObjectAccessor.Instance.OpponentVotesLabel.text;
-			GameObjectAccessor.Instance.GameOverBlueVotes.color = AutoSetColor.GetColor(false, AutoSetColor.ColorChoice.LIGHT);
-
-      if( m_playerVotes > m_opponentVotes )
-      {
-        // victory sound
-        GameObject.Instantiate( GameObjectAccessor.Instance.VictorySound );
-      }
-      else
-      {
-        // defeat sound
-        GameObject.Instantiate( GameObjectAccessor.Instance.DefeatSound );
-      }
+	public void GoToState(TurnPhase nextState) {
+		// Finish the current state
+		switch (m_currentTurnPhase) {
+		case TurnPhase.Placement:
+			FinishPlacement();
+			break;
+		case TurnPhase.Waiting:
+			FinishWaiting();
+			break;
 		}
-		else
-    {
-      m_playerTurnCompleted = false;
-      m_opponentTurnCompleted = false;
-//      GameObjectAccessor.Instance.Player.ToggleCampaignWorker( true );
-      GoToState( TurnState.Placement );
 
-      foreach( State state in m_statesInPlay )
-      {
-        state.m_receivedOpponentInfo = false;
-      }
+		m_currentTurnPhase = nextState;
+		Debug.Log("Enter state " + m_currentTurnPhase.ToString());
 
-			// indicate that we can end the turn
-			GameObjectAccessor.Instance.EndTurnButton.mainTexture = GameObjectAccessor.Instance.Textures.EndTurnButton;
-    }
-  }
-
-	private void UpdateWeeksRemaining( int weeksRemaining )
-	{
-		int week = (m_totalElectionWeeks - weeksRemaining);
-		if (GameObjectAccessor.Instance.WeekMeter != null) GameObjectAccessor.Instance.WeekMeter.Refresh(week);
-		if (GameObjectAccessor.Instance.WeekCounter != null) {
-			if (weeksRemaining <= 1) GameObjectAccessor.Instance.WeekCounter.text = "FINAL WEEK";
-			else GameObjectAccessor.Instance.WeekCounter.text = weeksRemaining + " WEEKS REMAINING";
+		// Begin the new state
+		switch (m_currentTurnPhase) {
+		case TurnPhase.BeginGame:
+			RestartGame();
+			break;
+		case TurnPhase.BeginWeek:
+			BeginWeek();
+			break;
+		case TurnPhase.Placement:
+			BeginPlacement();
+			break;
+		case TurnPhase.Waiting:
+			BeginWaiting();
+			break;
+		case TurnPhase.Harvest:
+			BeginHarvest();
+			break;
+		case TurnPhase.ElectionDay:
+			BeginElectionDay();
+			break;
 		}
 	}
 
-  public void GoToState( TurnState nextState )
-  {
-    m_currentTurnState = nextState;
-    if (nextState == TurnState.Placement) {
-      if (GameObjectAccessor.Instance.UseAI) GameObjectAccessor.Instance.OpponentAi.DoTurn();
-    }
-  }
+	private void RestartGame() {
+		Debug.Log("Reset game!");
+		
+		m_currentWeek = -1;
 
-  public void CheckForHarvest()
-  {
-    if( m_playerTurnCompleted && ( GameObjectAccessor.Instance.UseAI || m_opponentTurnCompleted ) )
-    {
-      // indicate that we're showing the harvest
-      GameObjectAccessor.Instance.EndTurnButton.mainTexture = GameObjectAccessor.Instance.Textures.ResultsButton;
+		GoToState(TurnPhase.BeginWeek);
+	}
 
-      foreach( State state in m_statesInPlay )
-      {
-        state.PrepareToUpdate();
-      }
+	private void BeginWeek() {
+		m_currentWeek ++;
+		UpdateWeeksRemaining(TotalWeeks - m_currentWeek);
+		UpdateElectoralVotes();
 
-      GoToState( TurnState.Harvest );
-      m_harvestTimer.StartTimer( NextHarvestAction );
-    }
-  }
+		if (m_currentWeek > TotalWeeks) {
+			GoToState(TurnPhase.ElectionDay);
+		} else {
+			float income = m_income[Mathf.Min(m_currentWeek, m_income.Length - 1)];
+			
+			GameObjectAccessor.Instance.Budget.GainAmount(income);
+			GameObjectAccessor.Instance.OpponentAi.Budget.GainAmount(income);
 
+			GoToState(TurnPhase.Placement);
+		}
+	}
 
-  public void UpdateElectoralVotes(bool atBeginning = false)
-  {
-    int totalRedVotes = 0;
-    int totalBlueVotes = 0;
+	private void BeginPlacement() {
+		/*if (GameObjectAccessor.Instance.UseAI) {
+				GameObjectAccessor.Instance.OpponentAi.DoTurn();
+			}*/
+		// Show the reset and finish week buttons
+	}
 
-		float totalOpinion = 0;
-		float totalPopulation = 0;
+	private void FinishPlacement() {
+		// Hide reset and finish week buttons
+	}
 
-    foreach( State state in m_states )
-    {
-      if( state.IsRed )
-      {
-        totalRedVotes += state.Model.ElectoralCount;
-      }
-      else if( state.IsBlue )
-      {
-        totalBlueVotes += state.Model.ElectoralCount;
-      }
-			totalOpinion += state.PopularVote * state.Model.Population;
-      totalPopulation += state.Model.Population;
+	private void BeginWaiting() {
+		if (GameObjectAccessor.Instance.UseAI || m_opponentIsWaiting) {
+			GoToState(TurnPhase.Harvest);
+			return;
+		}
 
-      //state.m_dirty = false;
-    }
+		// Show the Waiting for opponent text
+	}
+
+	private void FinishWaiting() {
+		// Hide the Waiting for opponent text
+	}
+
+	private void BeginHarvest() {
+		foreach (State state in m_statesInPlay) {
+			state.PrepareToHarvest();
+		}
+
+		m_harvestTimer.StartTimer(NextHarvestAction);
+	}
+
+	private void BeginElectionDay() {
+		GameObjectAccessor.Instance.GameOverScreen.SetActive(true);
+		
+		// Rather than renaming the GameOverRedVotes, etc, just know that RedVotes is on the left (the player) and BlueVotes is on the right (the opponent)
+		GameObjectAccessor.Instance.GameOverRedVotes.text = GameObjectAccessor.Instance.PlayerVotesLabel.text;
+		GameObjectAccessor.Instance.GameOverRedVotes.color = AutoSetColor.GetColor(true, AutoSetColor.ColorChoice.LIGHT);
+		
+		GameObjectAccessor.Instance.GameOverBlueVotes.text = GameObjectAccessor.Instance.OpponentVotesLabel.text;
+		GameObjectAccessor.Instance.GameOverBlueVotes.color = AutoSetColor.GetColor(false, AutoSetColor.ColorChoice.LIGHT);
+		
+		if (m_playerVotes > m_opponentVotes) {
+			// victory sound
+			GameObject.Instantiate(GameObjectAccessor.Instance.VictorySound);
+		} else {
+			// defeat sound
+			GameObject.Instantiate(GameObjectAccessor.Instance.DefeatSound);
+		}
+	}
+
+	public void NextHarvestAction() {
+		foreach (State state in m_statesInPlay) {
+			if (!state.HarvestComplete) {
+				state.NextHarvestAction();
+				return;
+			}
+		}
+
+		Debug.Log("completed harvest");
+		m_harvestTimer.StopTimer();
+		GoToState(TurnPhase.BeginWeek);
+	}
+
+	private void UpdateWeeksRemaining(int week) {
+		if (GameObjectAccessor.Instance.WeekCounter != null) {
+			if (week <= 1) {
+				GameObjectAccessor.Instance.WeekCounter.text = "FINAL WEEK";
+			} else {
+				GameObjectAccessor.Instance.WeekCounter.text = week + " WEEKS REMAINING";
+			}
+		}
+	}
+
+	public void UpdateElectoralVotes(bool atBeginning = false) {
+		int totalRedVotes = 0;
+		int totalBlueVotes = 0;
+
+		foreach (State state in m_states) {
+			if (state.IsRed) {
+				totalRedVotes += state.Model.ElectoralCount;
+			} else if (state.IsBlue) {
+				totalBlueVotes += state.Model.ElectoralCount;
+			}
+		}
 	
-		m_playerVotes = (GameObjectAccessor.Instance.Player.IsBlue) ? totalBlueVotes : totalRedVotes;
-		m_opponentVotes = (GameObjectAccessor.Instance.Player.IsBlue) ? totalRedVotes : totalBlueVotes;
+		m_playerVotes = (GameObjectAccessor.Instance.Player.IsBlue)? totalBlueVotes : totalRedVotes;
+		m_opponentVotes = (GameObjectAccessor.Instance.Player.IsBlue)? totalRedVotes : totalBlueVotes;
 
-    GameObjectAccessor.Instance.PlayerVoteCount.Set(m_playerVotes, !atBeginning);
-    GameObjectAccessor.Instance.OpponentVoteCount.Set (m_opponentVotes, !atBeginning);
+		GameObjectAccessor.Instance.PlayerVoteCount.Set(m_playerVotes, !atBeginning);
+		GameObjectAccessor.Instance.OpponentVoteCount.Set(m_opponentVotes, !atBeginning);
+	}
 
-		if (GameObjectAccessor.Instance.ElectoralVoteMeter != null)
-      GameObjectAccessor.Instance.ElectoralVoteMeter.Refresh(m_playerVotes, m_opponentVotes);
+	public void FinishWeek() {
+		if (m_currentTurnPhase == TurnPhase.Placement) {
+			GoToState(TurnPhase.Waiting);
 
-		Debug.Log("Average opinion: "+totalOpinion / totalPopulation);
+			if (!GameObjectAccessor.Instance.UseAI) {
+				networkView.RPC("OpponentFinishWeek", RPCMode.Others);
+			}
+		}
+	}
 
-		if (GameObjectAccessor.Instance.PopularVoteMeter != null)
-			GameObjectAccessor.Instance.PopularVoteMeter.Refresh( totalOpinion / totalPopulation );
+	[RPC]
+	public void OpponentFinishWeek() {
+		Debug.Log("opponent turn completed!");
 
-  }
-
-
-  public void CompletePlayerTurn()
-  {
-    if( m_currentTurnState == TurnState.Placement )
-    {
-      Debug.Log( "player turn completed!" );
-
-      m_playerTurnCompleted = true;
-
-			// indicate that we're waiting for the opponent
-			GameObjectAccessor.Instance.EndTurnButton.mainTexture = GameObjectAccessor.Instance.Textures.SubmittedButton;
-
-      CheckForHarvest();
-
-      networkView.RPC( "CompleteOpponentTurn", RPCMode.Others );
-    }
-  }
-
-  [RPC]
-  public void CompleteOpponentTurn()
-  {
-    Debug.Log( "opponent turn completed!" );
-
-    m_opponentTurnCompleted = true;
-    CheckForHarvest();
-  }
+		m_opponentIsWaiting = true;
+		if (m_currentTurnPhase == TurnPhase.Waiting) {
+			GoToState(TurnPhase.Harvest);
+		}
+	}
 }

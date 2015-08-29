@@ -26,4 +26,6 @@ MonoBehaviour:
   - OpponentPlaceSupporter
   - CompleteOpponentTurn
   - OpponentCreateSupporters
+  - OpponentFinishWeek
+  - RecieveInfoFromOpponent
   DisableAutoOpenWizard: 0

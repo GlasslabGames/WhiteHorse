@@ -14,7 +14,7 @@ public class WeekMeter : MonoBehaviour {
 	private float m_targetWidth;
 
 	void Awake () {
-		m_totalTurns = GameObjectAccessor.Instance.GameStateManager.m_totalElectionWeeks;
+		m_totalTurns = GameObjectAccessor.Instance.GameStateManager.TotalWeeks;
 		GameObject copy = m_rulerGrid.transform.GetChild (0).gameObject;
 		while (m_rulerGrid.transform.childCount < m_totalTurns) {
 			Utility.InstantiateAsChild(copy, m_rulerGrid.transform);

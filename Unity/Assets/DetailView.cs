@@ -69,7 +69,7 @@ public class DetailView : MonoBehaviour {
 			m_voteMeter.Set(percent, false);
 		}
 
-		RefreshSupporterInfo();
+		RefreshWorkerInfo();
 
 		// Set the color
 		Color color = GameObjectAccessor.Instance.GameColorSettings.undiscoveredState; // gray
@@ -132,7 +132,7 @@ public class DetailView : MonoBehaviour {
 		}
 	}
 
-	void RefreshSupporterInfo() {
+	void RefreshWorkerInfo() {
 		if (!CurrentState) {
 			return;
 		}
@@ -140,10 +140,10 @@ public class DetailView : MonoBehaviour {
 		// Show the current number of units
 		if (CurrentState.InPlay) {
 			if (m_unitsCount != null) {
-				m_unitsCount.text = CurrentState.PlayerCampaignWorkers.ToString() + " x";
+				m_unitsCount.text = CurrentState.PlayerWorkerCount.ToString() + " x";
 			}
 			if (m_opponentUnitsCount != null) {
-				m_opponentUnitsCount.text = CurrentState.OpponentCampaignWorkers.ToString() + " x";
+				m_opponentUnitsCount.text = CurrentState.OpponentWorkerCount.ToString() + " x";
 			}
 		}
 
@@ -161,28 +161,28 @@ public class DetailView : MonoBehaviour {
 		}
 		
 		if (m_addUnitButton != null) {
-			bool enable = CurrentState.PlayerCanPlaceSupporter();
+			bool enable = CurrentState.PlayerCanPlaceWorker();
 			m_addUnitButton.SetEnabled(enable, !enable); // if they can't place supporters, it's probably because of money
-			m_addUnitButton.SetPrice(GameMove.GetCost(GameActions.NEW_SUPPORTER));
+			m_addUnitButton.SetPrice(GameMove.GetCost(GameActions.PLACE_WORKER));
 		}
 
 		if (m_removeUnitButton != null) {
-			m_removeUnitButton.SetEnabled(CurrentState.PlayerCanRemoveSupporter());
-			m_removeUnitButton.SetPrice(GameMove.GetCost(GameActions.REMOVE_SUPPORTER));
+			m_removeUnitButton.SetEnabled(CurrentState.PlayerCanRemoveWorker());
+			m_removeUnitButton.SetPrice(GameMove.GetCost(GameActions.REMOVE_WORKER));
 		}
 	}
 
-	public void PlaceSupporter() {
+	public void PlaceWorker() {
 		if (CurrentState) {
-			CurrentState.PlayerPlaceSupporter();
-			RefreshSupporterInfo();
+			CurrentState.PlayerPlaceWorker();
+			RefreshWorkerInfo();
 		}
 	}
 
-	public void RemoveSupporter() {
+	public void RemoveWorker() {
 		if (CurrentState) {
-			CurrentState.PlayerRemoveSupporter();
-			RefreshSupporterInfo();
+			CurrentState.PlayerRemoveWorker();
+			RefreshWorkerInfo();
 		}
 	}
 }

@@ -170,12 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: MI
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &19865705
 NetworkView:
   m_ObjectHideFlags: 0
@@ -1241,12 +1236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: DE
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &132391998
 NetworkView:
   m_ObjectHideFlags: 0
@@ -1491,12 +1481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: NY
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &163992671
 NetworkView:
   m_ObjectHideFlags: 0
@@ -2118,12 +2103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: WV
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &212144238
 NetworkView:
   m_ObjectHideFlags: 0
@@ -2310,12 +2290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: NM
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &248017228
 NetworkView:
   m_ObjectHideFlags: 0
@@ -2372,12 +2347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: IA
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &258094117
 NetworkView:
   m_ObjectHideFlags: 0
@@ -2685,12 +2655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: KY
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &309488151
 NetworkView:
   m_ObjectHideFlags: 0
@@ -2974,12 +2939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: AL
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &342954047
 NetworkView:
   m_ObjectHideFlags: 0
@@ -3121,6 +3081,99 @@ MonoBehaviour:
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
   mOverflow: 1
+  mMaterial: {fileID: 0}
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: .699999988, g: .699999988, b: .699999988, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  mUseFloatSpacing: 0
+  mFloatSpacingX: 0
+  mFloatSpacingY: 0
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!1 &370766448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 370766449}
+  - 114: {fileID: 370766450}
+  m_Layer: 9
+  m_Name: Waiting text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &370766449
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 370766448}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 982, y: 350, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1636547241}
+  m_RootOrder: 3
+--- !u!114 &370766450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 370766448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: .309803933, g: .309803933, b: .309803933, a: 1}
+  mPivot: 5
+  mWidth: 874
+  mHeight: 114
+  mDepth: 0
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 7.66666651
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 12800000, guid: 4e5846f028338401090599565d74f595, type: 3}
+  mFont: {fileID: 0}
+  mText: WAITING FOR OPPONENT...
+  mFontSize: 60
+  mFontStyle: 0
+  mAlignment: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 0
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1, y: 1}
+  mOverflow: 0
   mMaterial: {fileID: 0}
   mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
@@ -3607,12 +3660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: CO
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!1 &421324341
 GameObject:
   m_ObjectHideFlags: 0
@@ -3966,12 +4014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: AR
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &432566967
 NetworkView:
   m_ObjectHideFlags: 0
@@ -4422,12 +4465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: DC
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &467918287
 NetworkView:
   m_ObjectHideFlags: 0
@@ -6265,12 +6303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: OH
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &663125999
 NetworkView:
   m_ObjectHideFlags: 0
@@ -6327,12 +6360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: OK
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &672394007
 NetworkView:
   m_ObjectHideFlags: 0
@@ -6493,12 +6521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: WY
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &682211468
 NetworkView:
   m_ObjectHideFlags: 0
@@ -6555,12 +6578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: VA
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &682730140
 NetworkView:
   m_ObjectHideFlags: 0
@@ -6697,12 +6715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: IL
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &697850747
 NetworkView:
   m_ObjectHideFlags: 0
@@ -6856,12 +6869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: ME
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &702484573
 NetworkView:
   m_ObjectHideFlags: 0
@@ -7011,12 +7019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: WA
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &703327577
 NetworkView:
   m_ObjectHideFlags: 0
@@ -7255,12 +7258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: PA
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!1 &721991566
 GameObject:
   m_ObjectHideFlags: 0
@@ -7534,10 +7532,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd146471220464f7ca99b3cd5c93ab7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_totalElectionWeeks: 3
+  TotalWeeks: 10
+  m_income:
+  - 20
+  - 20
+  - 30
+  - 30
+  - 30
+  - 30
+  - 50
+  - 50
+  - 50
+  - 50
+  WorkerIncrement: .00999999978
   m_harvestTimer: {fileID: 733379578}
-  m_currentAnte: 20
-  WorkerPercentIncrement: 0
   m_defaultScenarioId: 1
 --- !u!4 &733379576
 Transform:
@@ -7892,12 +7900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: MA
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &745708103
 NetworkView:
   m_ObjectHideFlags: 0
@@ -9137,12 +9140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: OR
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &910192355
 NetworkView:
   m_ObjectHideFlags: 0
@@ -9502,12 +9500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: ID
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &940833520
 NetworkView:
   m_ObjectHideFlags: 0
@@ -9564,12 +9557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: CT
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &963064442
 NetworkView:
   m_ObjectHideFlags: 0
@@ -9688,7 +9676,7 @@ Transform:
   m_GameObject: {fileID: 971908931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.0600004, y: 0, z: -10}
-  m_LocalScale: {x: .00130208337, y: .00130208337, z: .00130208337}
+  m_LocalScale: {x: .00130123622, y: .00130123622, z: .00130123622}
   m_Children:
   - {fileID: 95394698}
   - {fileID: 313217472}
@@ -9837,12 +9825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: VT
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1007132802
 NetworkView:
   m_ObjectHideFlags: 0
@@ -12173,12 +12156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: NE
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1297656495
 NetworkView:
   m_ObjectHideFlags: 0
@@ -12247,12 +12225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: WI
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!1 &1327718854
 GameObject:
   m_ObjectHideFlags: 0
@@ -12297,12 +12270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: AZ
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1327718857
 NetworkView:
   m_ObjectHideFlags: 0
@@ -12488,12 +12456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: TX
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1359208952
 NetworkView:
   m_ObjectHideFlags: 0
@@ -12550,12 +12513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: RI
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1367954635
 NetworkView:
   m_ObjectHideFlags: 0
@@ -12625,7 +12583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClick:
   - mTarget: {fileID: 1010348904}
-    mMethodName: PlaceSupporter
+    mMethodName: PlaceWorker
     mParameters: []
     oneShot: 0
   debug: 1
@@ -13022,12 +12980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: IN
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!1 &1408028704
 GameObject:
   m_ObjectHideFlags: 0
@@ -13085,12 +13038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: NH
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!1 &1412028823
 GameObject:
   m_ObjectHideFlags: 0
@@ -13159,7 +13107,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 4e5846f028338401090599565d74f595, type: 3}
   mFont: {fileID: 0}
-  mText: 10 WEEKS REMAINING
+  mText: 99 WEEKS REMAINING
   mFontSize: 60
   mFontStyle: 0
   mAlignment: 0
@@ -13473,12 +13421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: CA
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1462267178
 NetworkView:
   m_ObjectHideFlags: 0
@@ -13736,12 +13679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: AK
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1482420141
 NetworkView:
   m_ObjectHideFlags: 0
@@ -14234,12 +14172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: SD
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1529232806
 NetworkView:
   m_ObjectHideFlags: 0
@@ -14296,12 +14229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: MN
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1538886812
 NetworkView:
   m_ObjectHideFlags: 0
@@ -14958,12 +14886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: NJ
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1588145624
 NetworkView:
   m_ObjectHideFlags: 0
@@ -15175,12 +15098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: TN
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1633468486
 NetworkView:
   m_ObjectHideFlags: 0
@@ -15249,6 +15167,7 @@ Transform:
   - {fileID: 930477516}
   - {fileID: 1010348903}
   - {fileID: 1412028824}
+  - {fileID: 370766449}
   m_Father: {fileID: 971908935}
   m_RootOrder: 2
 --- !u!114 &1636547242
@@ -16543,12 +16462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: FL
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1702398670
 NetworkView:
   m_ObjectHideFlags: 0
@@ -16748,12 +16662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: KS
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1709786401
 NetworkView:
   m_ObjectHideFlags: 0
@@ -17271,12 +17180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: NV
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1766101022
 NetworkView:
   m_ObjectHideFlags: 0
@@ -17333,12 +17237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: MS
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1766301369
 NetworkView:
   m_ObjectHideFlags: 0
@@ -17469,7 +17368,7 @@ MonoBehaviour:
     mMethodName: OnClickBackground
     mParameters: []
     oneShot: 0
-  debug: 0
+  debug: 1
   UseDragProof: 0
 --- !u!61 &1780585370
 BoxCollider2D:
@@ -17727,12 +17626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: ND
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1839210466
 NetworkView:
   m_ObjectHideFlags: 0
@@ -17889,12 +17783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: MD
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1852992613
 NetworkView:
   m_ObjectHideFlags: 0
@@ -18117,12 +18006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: UT
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1899551336
 NetworkView:
   m_ObjectHideFlags: 0
@@ -18179,12 +18063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: MO
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &1906570256
 NetworkView:
   m_ObjectHideFlags: 0
@@ -18678,12 +18557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: NC
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!4 &1946492624
 Transform:
   m_ObjectHideFlags: 0
@@ -19247,12 +19121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: LA
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &2013700031
 NetworkView:
   m_ObjectHideFlags: 0
@@ -19565,12 +19434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: GA
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &2034370943
 NetworkView:
   m_ObjectHideFlags: 0
@@ -19761,7 +19625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClick:
   - mTarget: {fileID: 1010348904}
-    mMethodName: RemoveSupporter
+    mMethodName: RemoveWorker
     mParameters: []
     oneShot: 0
   debug: 1
@@ -19910,12 +19774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: MT
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &2092980522
 NetworkView:
   m_ObjectHideFlags: 0
@@ -20124,12 +19983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: SC
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &2104858926
 NetworkView:
   m_ObjectHideFlags: 0
@@ -20358,12 +20212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abbreviation: HI
-  IndependentSupportPercent: 0
-  PlayerSupporterCount: 0
-  PrevOpponentSupporterCount: 0
-  NextOpponentSupporterCount: 0
-  m_dirty: 0
-  m_receivedOpponentInfo: 0
+  HarvestComplete: 0
 --- !u!148 &2121160086
 NetworkView:
   m_ObjectHideFlags: 0
@@ -20434,7 +20283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClick:
   - mTarget: {fileID: 733379575}
-    mMethodName: CompletePlayerTurn
+    mMethodName: FinishWeek
     mParameters: []
     oneShot: 0
   - mTarget: {fileID: 2128866686}

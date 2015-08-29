@@ -13,7 +13,7 @@ public class ZoomedViewManager : MonoBehaviour {
 	}
 
 	void Update () {
-    if( GameObjectAccessor.Instance.GameStateManager.CurrentTurnState == TurnState.ConnectPlayers )  return;
+    	//if( GameObjectAccessor.Instance.GameStateManager.CurrentTurnPhase == TurnPhase.ConnectPlayers )  return;
 
 		// if they released the button, hide the zoom
 		if (Input.GetMouseButtonUp(0)) Show(false);
@@ -45,7 +45,7 @@ public class ZoomedViewManager : MonoBehaviour {
 	}
 	
 	void Show(bool visible) {
-    if( GameObjectAccessor.Instance.GameStateManager.CurrentTurnState == TurnState.ConnectPlayers && visible )  return;
+    	//if( GameObjectAccessor.Instance.GameStateManager.CurrentTurnPhase == TurnPhase.ConnectPlayers && visible )  return;
 
 		Active = visible;
 		foreach (Renderer r in GetComponentsInChildren<Renderer> (true)) {
