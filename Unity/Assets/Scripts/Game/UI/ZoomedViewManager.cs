@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ZoomedViewManager : MonoBehaviour {
@@ -56,7 +56,7 @@ public class ZoomedViewManager : MonoBehaviour {
 		foreach (Transform t in GameObjectAccessor.Instance.FloatingTextContainer.transform) {
 			t.gameObject.SetActive( !visible );
 		}
-		foreach (Transform t in GameObjectAccessor.Instance.StateLabelContainer.transform) {
+		foreach (Transform t in GameObjectAccessor.Instance.StateLabelShower.transform) {
 			t.gameObject.SetActive( !visible );
 		}
 	}

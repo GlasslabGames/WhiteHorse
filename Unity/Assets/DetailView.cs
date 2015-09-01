@@ -20,7 +20,6 @@ public class DetailView : MonoBehaviour {
 	public UITexture m_rightArrow;
 	public OpinionMeter m_voteMeter;
 	private State m_currentState;
-	private State m_highlightedState;
 
 	public State CurrentState {
 		get { return m_currentState; }
@@ -106,15 +105,7 @@ public class DetailView : MonoBehaviour {
 		}
 		transform.position = Utility.ConvertFromGameToUiPosition(pos);
 
-		if (showIndicator) {
-			// reset the previous scaled state
-			if (m_highlightedState != null) {
-				m_highlightedState.Highlight(false);
-			}
-
-			state.Highlight(true);
-			m_highlightedState = state;
-		}
+		if (showIndicator) state.Highlight();
 	}
 
 	public void OnClickBackground() {
@@ -122,13 +113,12 @@ public class DetailView : MonoBehaviour {
 		ClearState();
 	}
 
-	void ClearState() {
+	public void ClearState() {
 		Debug.Log("ClearState");
 		gameObject.SetActive(false);
 
-		if (m_highlightedState != null) {
-			m_highlightedState.Highlight(false);
-			m_highlightedState = null;
+		if (State.highlightedState != null) {
+			State.highlightedState.UnHighlight();
 		}
 	}
 

@@ -3110,7 +3110,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &370766449
 Transform:
   m_ObjectHideFlags: 0
@@ -7544,7 +7544,7 @@ MonoBehaviour:
   - 50
   - 50
   - 50
-  WorkerIncrement: .00999999978
+  WorkerIncrement: .0500000007
   m_harvestTimer: {fileID: 733379578}
   m_defaultScenarioId: 1
 --- !u!4 &733379576
@@ -7590,10 +7590,8 @@ MonoBehaviour:
     disabledButtonText: {r: .588235319, g: .588235319, b: .588235319, a: 1}
   StatesContainer: {fileID: 1688608041}
   FloatingTextContainer: {fileID: 436297463}
-  StateLabelContainer: {fileID: 313217471}
+  StateLabelShower: {fileID: 313217473}
   SupporterPrefab: {fileID: 100000, guid: e90e124610cf945e393dbadcb041f064, type: 2}
-  RedPlayerMarker: {fileID: 0}
-  BluePlayerMarker: {fileID: 0}
   FloatingTextPrefab: {fileID: 100000, guid: 5696f393549dd44d8b216644e408e38c, type: 2}
   PulseTextPrefab: {fileID: 100000, guid: 3b0c10f1722ac4901b6ddfb04732e1ba, type: 2}
   MainCamera: {fileID: 190567212}
@@ -7601,14 +7599,10 @@ MonoBehaviour:
   PlayerVotesLabel: {fileID: 866550215}
   OpponentVotesLabel: {fileID: 1638443905}
   WeekCounter: {fileID: 1412028825}
-  ToggleWorkerButton: {fileID: 0}
   GameOverScreen: {fileID: 930477515}
   GameOverRedVotes: {fileID: 52761863}
   GameOverBlueVotes: {fileID: 1242568881}
   DetailView: {fileID: 1010348904}
-  WeekMeter: {fileID: 0}
-  ElectoralVoteMeter: {fileID: 0}
-  PopularVoteMeter: {fileID: 0}
   TitleScreen: {fileID: 0}
   FlipStateParticleSystemRed: {fileID: 100014, guid: 80d3b2a064b5f48c18f0e501cd210621,
     type: 2}
@@ -7622,11 +7616,8 @@ MonoBehaviour:
   VoteUpdateTime: 1
   VictorySound: {fileID: 100000, guid: f88edff21dd924997b203ab4336c22f4, type: 2}
   DefeatSound: {fileID: 100000, guid: 55c704952ca504ccfadec1b40f2f0776, type: 2}
-  Textures:
-    EndTurnButton: {fileID: 2800000, guid: 36c589c75a6a94ef182d4cd93ab59001, type: 3}
-    SubmittedButton: {fileID: 2800000, guid: b809e3c404dea49a29f5ff8863f06011, type: 3}
-    ResultsButton: {fileID: 2800000, guid: 9531c6754a4444c7db52246e9333dd9d, type: 3}
   EndTurnButton: {fileID: 2128866685}
+  WaitingText: {fileID: 370766450}
   OpponentAi: {fileID: 561919618}
 --- !u!114 &733379578
 MonoBehaviour:
@@ -7639,7 +7630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56963f85bd0624a06823e706723b2e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_duration: .300000012
+  m_duration: 1
   m_type: 1
 --- !u!148 &733379579
 NetworkView:
@@ -9676,7 +9667,7 @@ Transform:
   m_GameObject: {fileID: 971908931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.0600004, y: 0, z: -10}
-  m_LocalScale: {x: .00130123622, y: .00130123622, z: .00130123622}
+  m_LocalScale: {x: .00130208337, y: .00130208337, z: .00130208337}
   m_Children:
   - {fileID: 95394698}
   - {fileID: 313217472}

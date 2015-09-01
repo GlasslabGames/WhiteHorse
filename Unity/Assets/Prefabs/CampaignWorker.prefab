@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_bounceTimerOut: {fileID: 11400002}
   m_bounceTimerIn: {fileID: 11400004}
-  m_scaleEnd: {x: 3, y: 3, z: 3}
+  m_scaleEnd: {x: 2, y: 2, z: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

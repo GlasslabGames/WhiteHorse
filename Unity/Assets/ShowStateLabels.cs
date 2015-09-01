@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 // This will automatically add a label with each state's abbreviation.
 // You can set the label position for a state by adding a "stateLabel" object as its child. Else it's automatic.
@@ -9,22 +10,36 @@ public class ShowStateLabels : MonoBehaviour {
 	public LabelOptions Content = LabelOptions.VOTES;
 	public bool ShowOnlyOnActiveStates = true;
 
-	void Start () {
-		if (!enabled) return;
+	private Object m_stateLabelPrefab;
+	private Dictionary<State, UILabel> m_stateLabels;
 
-		Object statePrefab = Resources.Load("StateLabel");
+	void Awake() {
+		m_stateLabels = new Dictionary<State, UILabel>();
+		m_stateLabelPrefab = Resources.Load("StateLabel");
+	}
+
+	void Start() {
+		Refresh();
+	}
+
+	public void Refresh () {
 		Transform newTransform;
-		Transform stateTransform;
 		UILabel label;
+		bool show;
 		foreach (State state in GameObjectAccessor.Instance.StatesContainer.transform.GetComponentsInChildren<State>()) {
-			if (ShowOnlyOnActiveStates && !state.InPlay) continue;
-			//Debug.Log("showing label over "+state.name);
-			newTransform = Utility.InstantiateAsChild(statePrefab, transform);
-			label = newTransform.GetComponent<UILabel>();
-			if (Content == LabelOptions.VOTES) label.text = state.Model.ElectoralCount.ToString();
-			else if (Content == LabelOptions.ABBREVIATION) label.text = state.m_abbreviation;
+			show = !ShowOnlyOnActiveStates || state.InPlay;
+			if (m_stateLabels.ContainsKey(state)) {
+				m_stateLabels[state].gameObject.SetActive(show);
+			} else if (show) {
+				newTransform = Utility.InstantiateAsChild(m_stateLabelPrefab, transform);
+				newTransform.position = state.UiCenter;
+				label = newTransform.GetComponent<UILabel>();
+				
+				if (Content == LabelOptions.VOTES) label.text = state.Model.ElectoralCount.ToString();
+				else if (Content == LabelOptions.ABBREVIATION) label.text = state.Model.Abbreviation;
 
-			newTransform.position = state.UiCenter;
+				m_stateLabels[state] = label;
+			}
 		}
 	}
 }

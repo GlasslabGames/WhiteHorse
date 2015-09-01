@@ -6,7 +6,6 @@ using System.Linq;
 
 public class OpponentAi : Player {
 	List<State> states;
-	Dictionary<State, int> m_predictedBasisCounts = new Dictionary<State, int>();
 	public BudgetController Budget;
 
 	public void Start() {
@@ -40,17 +39,13 @@ public class OpponentAi : Player {
 		float bestValue = 0;
 		GameMove bestMove = null;
 
-		//float v = Evaluate(gameState);
-		//Debug.Log("> "+v+" starting from state "+gameState.ToString()+" with "+funds+" left.");
 		foreach (AiStateModel state in gameState.StateModels.Values) {
 			GameMove move = GetMoveForState(state);
 			GameState newState = gameState.ApplyOpponentMove(move);
 			newState = GetBestNextState(newState, funds - move.Cost, depth + 1);
 			float value = Evaluate(newState);
-			//Debug.Log (value+" to state "+newState.ToString());
-			if (bestMove == null || value > bestValue) {
-				//Debug.Log ("Best move: "+move.ToString()+" to "+gameState.ToString());
 
+			if (bestMove == null || value > bestValue) {
 				bestState = newState;
 				bestValue = value;
 				bestMove = move;
@@ -63,9 +58,11 @@ public class OpponentAi : Player {
 	float Evaluate(GameState gs) {
 		float value = 0;
 		foreach (AiStateModel s in gs.StateModels.Values) {
-			// FIXME: This doesn't represent the real conditions since it doesn't take the past into account
-			if (s.OpponentHasMajority()) {
-				value += s.StateView.Model.ElectoralCount; // 3-20
+			Leaning leaning = s.GetLeaning();
+			if (leaning == Leaning.Neutral) {
+				// no change in value
+			} else if (leaning == Leaning.Red ^ GameObjectAccessor.Instance.Player.IsRed) {
+				value += s.StateView.Model.ElectoralCount;
 			} else {
 				value -= s.StateView.Model.ElectoralCount;
 			}

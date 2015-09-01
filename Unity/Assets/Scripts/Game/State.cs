@@ -30,6 +30,9 @@ public class State : MonoBehaviour {
 	// VOTE
 	
 	private float m_popularVote;  // between -1 (red) and 1 (blue)
+	public float PopularVote {
+		get { return m_popularVote; }
+	}
 
 	public float RedSupportPercent {
 		get { return (m_popularVote - 1) / -2; }
@@ -133,6 +136,9 @@ public class State : MonoBehaviour {
 			return Utility.ConvertFromGameToUiPosition(Center);
 		}
 	}
+
+	private bool m_highlighted = false;
+	public static State highlightedState = null;
     
 	void Awake() {
 		// automatically figure out which of the child textures are which
@@ -170,6 +176,8 @@ public class State : MonoBehaviour {
 
 	public void Start() {
 		UpdateColor();
+
+		/* // We don't want this text anymore
     
 		Transform container = GameObjectAccessor.Instance.FloatingTextContainer.transform;
 
@@ -180,6 +188,7 @@ public class State : MonoBehaviour {
 		m_opponentFloatingText = GameObject.Instantiate(GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition(-m_workerOffsetY + m_workerCountOffset + Center), Quaternion.identity) as GameObject;
 		m_opponentFloatingText.GetComponent< FloatingText >().Display("");
 		m_opponentFloatingText.transform.parent = container;
+		*/
 	}
     
 	void OnClick() {
@@ -208,34 +217,49 @@ public class State : MonoBehaviour {
 		HarvestComplete = false;
 	}
 
-	public void NextHarvestAction() {
+	// Does the next step in the harvest sequence; returns true if we had a step to do or false if we're done
+	public bool NextHarvestAction() {
 		if (!m_sentInfoToOpponent) {
 			SendInfoToOpponent();
 		}
 
 		if (!m_receivedInfoFromOpponent) {
 			if (GameObjectAccessor.Instance.UseAI) m_receivedInfoFromOpponent = true;
-			else return; // wait until we get the info
+			else return true; // wait until we get the info
 		}
 
-		// TODO: Highlight state (and unhighlight previous)
+		if (m_playerWorkerCount == 0 && m_opponentWorkerCount == 0 && m_targetOpponentWorkerCount == 0) {
+			// Nothing to do
+			return false;
+		}
 
 		if (!m_countedExistingWorkers) {
-			// TODO: animate existing workers
 			m_countedExistingWorkers = true;
-			UpdateVote();
-			return;
+			this.Highlight();
+			
+			if (m_playerWorkerCount > 0 || m_opponentWorkerCount > 0) {
+				foreach (GameObject worker in m_playerWorkers) {
+					worker.SendMessage("BounceOut");
+				}
+				foreach (GameObject worker in m_opponentWorkers) {
+					worker.SendMessage("BounceOut");
+				}
+				UpdateVote();
+				return true;
+			}
 		}
 
-		if (m_targetOpponentWorkerCount < m_opponentWorkerCount) {
+		if (m_targetOpponentWorkerCount > m_opponentWorkerCount) {
+			this.Highlight();
+
 			// Add a new opponent worker
 			GameObject worker = CreateWorkerPrefab(false);
 			worker.SendMessage("BounceOut");
 			UpdateVote();
-			return;
+			return true;
 		}
 
-		HarvestComplete = true;
+		return false;
 	}
 
 	public void UpdateVote() {
@@ -261,6 +285,7 @@ public class State : MonoBehaviour {
 	// Called by the AI
 	public void IncrementOpponentWorkerCount(int amount = 1) {
 		m_targetOpponentWorkerCount += amount;
+		Debug.Log(m_abbreviation + " added worker from AI. New count: " + m_targetOpponentWorkerCount);
 	}
 		
 	public float GetPlayerPercentChange() {
@@ -278,8 +303,6 @@ public class State : MonoBehaviour {
 			m_stateStripes.enabled = true;
 			return;
 		}
-
-		Debug.Log("UpdateColor " + this.name + ": " + InPlay);
 
 		float t;
 		if (IsBlue) {
@@ -317,17 +340,28 @@ public class State : MonoBehaviour {
 			GameObject.Instantiate(GameObjectAccessor.Instance.FlipStateParticleSystemBlue, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -0.5f), Quaternion.identity);
 		}
 
+		// show a different outline if we're highlighted
+		if (m_highlighted) {
+			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.highlightOutline;
+			m_stateOutline.sortingOrder = -5;
+		}
+			
 		m_stateStripes.enabled = !InPlay;
 	}
     
-	public void Highlight(bool active) {
-		if (active) {
-			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.highlightOutline;
-			m_stateOutline.sortingOrder = -5;
-			//transform.localScale = new Vector3(1.1f, 1.1f, 1f);
-		} else {
-			UpdateColor(); // reset
-			//transform.localScale = Vector3.one;
+	public void Highlight() {
+		if (State.highlightedState != null) State.highlightedState.UnHighlight();
+
+		m_highlighted = true;
+		UpdateColor();
+		State.highlightedState = this;
+	}
+
+	public void UnHighlight() {
+		m_highlighted = false;
+		UpdateColor();
+		if (State.highlightedState == this) {
+			State.highlightedState = null;
 		}
 	}
 

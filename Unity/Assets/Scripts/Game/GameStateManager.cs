@@ -103,12 +103,12 @@ public class GameStateManager : MonoBehaviour {
 			state.UpdateColor();
 		}
 
-		Debug.Log("States in play: " + m_statesInPlay.Count);
-		Debug.Log("States not in play: " + m_statesNotInPlay.Count);
+		GameObjectAccessor.Instance.StateLabelShower.Refresh();
 	}
 
 	public void Start() {
 		InitScenario();
+		UpdateElectoralVotes(true);
 
 		GoToState(TurnPhase.BeginGame);
 	}
@@ -121,6 +121,9 @@ public class GameStateManager : MonoBehaviour {
 			break;
 		case TurnPhase.Waiting:
 			FinishWaiting();
+			break;
+		case TurnPhase.Harvest:
+			FinishHarvest();
 			break;
 		}
 
@@ -176,27 +179,30 @@ public class GameStateManager : MonoBehaviour {
 	}
 
 	private void BeginPlacement() {
-		/*if (GameObjectAccessor.Instance.UseAI) {
-				GameObjectAccessor.Instance.OpponentAi.DoTurn();
-			}*/
-		// Show the reset and finish week buttons
+		if (GameObjectAccessor.Instance.UseAI) {
+			GameObjectAccessor.Instance.OpponentAi.DoTurn();
+			m_opponentIsWaiting = true;
+		}
+
+		GameObjectAccessor.Instance.EndTurnButton.gameObject.SetActive(true);
+		// TODO: Show the reset button
 	}
 
 	private void FinishPlacement() {
-		// Hide reset and finish week buttons
+		GameObjectAccessor.Instance.EndTurnButton.gameObject.SetActive(false);
+		// TODO: Hide reset button
 	}
 
 	private void BeginWaiting() {
-		if (GameObjectAccessor.Instance.UseAI || m_opponentIsWaiting) {
+		if (m_opponentIsWaiting) {
 			GoToState(TurnPhase.Harvest);
-			return;
+		} else {
+			GameObjectAccessor.Instance.WaitingText.gameObject.SetActive(true);
 		}
-
-		// Show the Waiting for opponent text
 	}
 
 	private void FinishWaiting() {
-		// Hide the Waiting for opponent text
+		GameObjectAccessor.Instance.WaitingText.gameObject.SetActive(false);
 	}
 
 	private void BeginHarvest() {
@@ -204,7 +210,15 @@ public class GameStateManager : MonoBehaviour {
 			state.PrepareToHarvest();
 		}
 
+		GameObjectAccessor.Instance.DetailView.ClearState();
+
 		m_harvestTimer.StartTimer(NextHarvestAction);
+	}
+
+	private void FinishHarvest() {
+		GameObjectAccessor.Instance.DetailView.ClearState(); // deselect whatever state was selected
+
+		m_harvestTimer.StopTimer();
 	}
 
 	private void BeginElectionDay() {
@@ -228,14 +242,11 @@ public class GameStateManager : MonoBehaviour {
 
 	public void NextHarvestAction() {
 		foreach (State state in m_statesInPlay) {
-			if (!state.HarvestComplete) {
-				state.NextHarvestAction();
-				return;
-			}
+			if (state.NextHarvestAction()) return;
+			// If that state had something to do, wait for the next cycle. Else keep looking for something to do.
 		}
 
 		Debug.Log("completed harvest");
-		m_harvestTimer.StopTimer();
 		GoToState(TurnPhase.BeginWeek);
 	}
 

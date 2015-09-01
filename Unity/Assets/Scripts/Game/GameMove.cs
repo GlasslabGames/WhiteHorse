@@ -49,6 +49,7 @@ public class GameMove {
 // TODO: refactor to have each State have a StateModel instead of this
 public class AiStateModel {
 	public State StateView;
+	public float Vote;
 	public int PlayerWorkerCount;
 	public int OpponentWorkerCount;
 
@@ -56,16 +57,35 @@ public class AiStateModel {
 		StateView = s;
 		PlayerWorkerCount = s.PlayerWorkerCount;
 		OpponentWorkerCount = s.PlayerWorkerCount;
+		Vote = s.PopularVote;
 	}
 
 	public AiStateModel(AiStateModel s) {
 		StateView = s.StateView;
 		PlayerWorkerCount = s.PlayerWorkerCount;
 		OpponentWorkerCount = s.PlayerWorkerCount;
+		Vote = s.Vote;
 	}
 
-	public bool OpponentHasMajority() {
-		return OpponentWorkerCount > PlayerWorkerCount;
+	public Leaning GetLeaning() {
+		float redWorkerCount;
+		float blueWorkerCount;
+		if (GameObjectAccessor.Instance.Player.IsRed) {
+			redWorkerCount = PlayerWorkerCount;
+			blueWorkerCount = OpponentWorkerCount;
+		} else {
+			blueWorkerCount = PlayerWorkerCount;
+			redWorkerCount = OpponentWorkerCount;
+		}
+		var newVote = Vote + (blueWorkerCount - redWorkerCount) * GameObjectAccessor.Instance.GameStateManager.WorkerIncrement;
+
+		if (newVote < 0.5) {
+			return Leaning.Red;
+		} else if (newVote > 0.5) {
+			return Leaning.Blue;
+		} else {
+			return Leaning.Neutral;
+		}
 	}
 }
 
