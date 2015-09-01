@@ -31,28 +31,68 @@ public class GameStateManager : MonoBehaviour {
 
 	private int m_playerVotes;
 	private int m_opponentVotes;
+
 	public int m_defaultScenarioId;
-	
+	public bool m_defaultToScenarioType2;
+
 	public void Awake() { }
 
 	public void InitScenario() {
-		ScenarioModel2 m_scenario = ScenarioModel2.GetModel(m_defaultScenarioId);
+		m_states.Clear();
+		m_statesInPlay.Clear();
+		m_statesNotInPlay.Clear();
+
+		if (m_defaultToScenarioType2) {
+			InitScenario2();
+		} else {
+			InitScenario1();
+		}
+
+		GameObjectAccessor.Instance.StateLabelShower.Refresh();
+	}
+
+	public void InitScenario1() {
+		ScenarioModel scenario = ScenarioModel.GetModel(m_defaultScenarioId);
+
+		foreach (State state in GameObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>()) {
+			state.InPlay = (scenario == null || !scenario.PresetStates.Contains(state.Model.Id));
+
+			m_states.Add(state);
+			if (state.InPlay) m_statesInPlay.Add(state);
+			else m_statesNotInPlay.Add(state);
+
+			if (scenario != null) {
+				int stateIndex = StateModel.Models.IndexOf(state.Model);
+				int leaning = scenario.StateLeanings[stateIndex];
+				float vote = InitialLeaningModel.GetModel(leaning).Value;
+				vote += scenario.Randomness * (Random.value * 2 - 1);
+				state.SetInitialPopularVote(vote);
+			} else {
+				state.SetInitialPopularVote( Random.value * 2 - 1 );
+			}
+
+			state.UpdateColor();
+		}
+	}
+
+	public void InitScenario2() {
+		ScenarioModel2 scenario = ScenarioModel2.GetModel(m_defaultScenarioId);
 
 		int numStatesToAdd = 0;
 		int blueStatesAdded = 0;
 		int redStatesAdded = 0;
-		if (m_scenario != null) {
-			numStatesToAdd = Random.Range(m_scenario.MinStatesInPlay, m_scenario.MaxStatesInPlay + 1); // since max would be excluded
+		if (scenario != null) {
+			numStatesToAdd = Random.Range(scenario.MinStatesInPlay, scenario.MaxStatesInPlay + 1); // since max would be excluded
 		}
 		List<State> maybeBlueStates = new List<State>();
 		List<State> maybeRedStates = new List<State>();
 
 		foreach (State state in GameObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>()) {
-			if (m_scenario != null) {
-				int percentBlue = m_scenario.PercentBlue[state.Model.Id - 1];
+			if (scenario != null) {
+				int percentBlue = scenario.PercentBlue[state.Model.Id - 1];
 				state.SetInitialPopularVote(percentBlue / 50f - 1);
 
-				ScenarioModel2.InPlayStatus status = (ScenarioModel2.InPlayStatus)m_scenario.StatesInPlay[state.Model.Id - 1];
+				ScenarioModel2.InPlayStatus status = (ScenarioModel2.InPlayStatus)scenario.StatesInPlay[state.Model.Id - 1];
 				if (status == ScenarioModel2.InPlayStatus.ALWAYS) {
 					state.InPlay = true;
 					if (state.IsBlue) {
@@ -102,8 +142,6 @@ public class GameStateManager : MonoBehaviour {
 			}
 			state.UpdateColor();
 		}
-
-		GameObjectAccessor.Instance.StateLabelShower.Refresh();
 	}
 
 	public void Start() {

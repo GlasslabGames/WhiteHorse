@@ -7547,6 +7547,7 @@ MonoBehaviour:
   WorkerIncrement: .0500000007
   m_harvestTimer: {fileID: 733379578}
   m_defaultScenarioId: 1
+  m_defaultToScenarioType2: 0
 --- !u!4 &733379576
 Transform:
   m_ObjectHideFlags: 0
