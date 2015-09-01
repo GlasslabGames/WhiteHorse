@@ -29,16 +29,17 @@ public class State : MonoBehaviour {
 
 	// VOTE
 	
-	private float m_popularVote;  // between -1 (red) and 1 (blue)
+	private float m_currentVote;  // between -1 (red) and 1 (blue)
+	private float m_previousVote;
 	public float PopularVote {
-		get { return m_popularVote; }
+		get { return m_currentVote; }
 	}
 
 	public float RedSupportPercent {
-		get { return (m_popularVote - 1) / -2; }
+		get { return Mathf.Clamp01((m_currentVote - 1) / -2); }
 	}
 	public float BlueSupportPercent {
-		get { return (m_popularVote + 1) / 2; }
+		get { return Mathf.Clamp01((m_currentVote + 1) / 2); }
 	}
 
 	public float PlayerSupportPercent {
@@ -56,8 +57,8 @@ public class State : MonoBehaviour {
 
 	public Leaning CurrentLeaning {
 		get {
-			if (m_popularVote < 0) return Leaning.Red;
-			else if (m_popularVote > 0) return Leaning.Blue;
+			if (m_currentVote < 0) return Leaning.Red;
+			else if (m_currentVote > 0) return Leaning.Blue;
 			else return Leaning.Neutral;
 		}
 	}
@@ -75,7 +76,7 @@ public class State : MonoBehaviour {
 	}
 	private int m_opponentWorkerCount = 0;
 	public int OpponentWorkerCount {
-		get { return m_playerWorkerCount; }
+		get { return m_opponentWorkerCount; }
 	}
 	private int m_targetOpponentWorkerCount = 0;
 
@@ -168,9 +169,7 @@ public class State : MonoBehaviour {
 			Debug.LogError("Couldn't find collider under " + this, this);
 		} else {
 			GLButton button = c.gameObject.AddComponent<GLButton>() as GLButton;
-			EventDelegate.Add(button.onClick, delegate {
-				GameObjectAccessor.Instance.DetailView.SetState(this, true);
-			});
+			EventDelegate.Add(button.onClick, OnClick);
 		}
 	}
 
@@ -192,12 +191,17 @@ public class State : MonoBehaviour {
 	}
     
 	void OnClick() {
-		Debug.Log("!Clicked " + this, this);
+		// Check the current phase
+		TurnPhase phase = GameObjectAccessor.Instance.GameStateManager.CurrentTurnPhase;
+		if (phase == TurnPhase.Placement || phase == TurnPhase.Waiting) {
+			GameObjectAccessor.Instance.DetailView.SetState(this, true);
+		}
 	}
 
 	public void SetInitialPopularVote(float v) {
 		// v is between -1 (red) and 1 (blue)
-		m_popularVote = v;
+		m_currentVote = v;
+		m_previousVote = v;
 		UpdateColor();
 	}
 
@@ -259,13 +263,21 @@ public class State : MonoBehaviour {
 			return true;
 		}
 
+		SetVote();
 		return false;
 	}
 
 	public void UpdateVote() {
 		Leaning prevLeaning = CurrentLeaning;
-		m_popularVote += (m_blueWorkerCount - m_redWorkerCount) * GameObjectAccessor.Instance.GameStateManager.WorkerIncrement;
+		float change = (m_blueWorkerCount - m_redWorkerCount) * GameObjectAccessor.Instance.GameStateManager.WorkerIncrement * 2;
+		// we multiply by 2 so 1% change => 0.02 difference (since the vote goes from -1 to 1)
+		m_currentVote = m_previousVote + change;
 		UpdateColor(CurrentLeaning != prevLeaning);
+	}
+
+	private void SetVote() {
+		m_currentVote = Mathf.Clamp(m_currentVote, -1, 1);
+		m_previousVote = m_currentVote;
 	}
 
 	public void SendInfoToOpponent() {
