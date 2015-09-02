@@ -204,7 +204,7 @@ public class GameStateManager : MonoBehaviour {
 		UpdateWeeksRemaining(TotalWeeks - m_currentWeek);
 		UpdateElectoralVotes();
 
-		if (m_currentWeek > TotalWeeks) {
+		if (m_currentWeek >= TotalWeeks) {
 			GoToState(TurnPhase.ElectionDay);
 		} else {
 			float income = m_income[Mathf.Min(m_currentWeek, m_income.Length - 1)];

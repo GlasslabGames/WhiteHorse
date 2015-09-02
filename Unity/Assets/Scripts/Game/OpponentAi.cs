@@ -16,7 +16,6 @@ public class OpponentAi : Player {
 	public void DoTurn() {
 		GameState nextState = GetBestNextState(null, Budget.m_amount);
 		foreach (GameMove m in nextState.Moves) {
-			Debug.Log("Doing " + m.ToString());
 			if (m.Action == GameActions.PLACE_WORKER) {
 				m.State.StateView.IncrementOpponentWorkerCount();
 			} else if (m.Action == GameActions.REMOVE_WORKER) {
@@ -39,11 +38,13 @@ public class OpponentAi : Player {
 		float bestValue = 0;
 		GameMove bestMove = null;
 
+		// For every state, consider making a move there
 		foreach (AiStateModel state in gameState.StateModels.Values) {
 			GameMove move = GetMoveForState(state);
 			GameState newState = gameState.ApplyOpponentMove(move);
-			newState = GetBestNextState(newState, funds - move.Cost, depth + 1);
-			float value = Evaluate(newState);
+
+			newState = GetBestNextState(newState, funds - move.Cost, depth + 1); // recursively choose the best moves after this one
+			float value = Evaluate(newState); // evaluate the value of this move (plus the best moves after it)
 
 			if (bestMove == null || value > bestValue) {
 				bestState = newState;
@@ -67,7 +68,7 @@ public class OpponentAi : Player {
 				value -= s.StateView.Model.ElectoralCount;
 			}
 		}
-		//Debug.Log ("Value of "+gs.ToString()+": "+value);
+//		Debug.Log ("Value of "+gs.ToString()+": "+value);
 		return value + UnityEngine.Random.value; // some randomness to choose between ties
 	}
 

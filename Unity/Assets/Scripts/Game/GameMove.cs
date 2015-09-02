@@ -42,7 +42,7 @@ public class GameMove {
 	}
 
 	public override string ToString() {
-		return (System.String.Format("GameMove({0}, {1}, {2})", Player.ToString(), State.StateView.Model.Name, Action.ToString()));
+		return (System.String.Format("GameMove({0}, {1})", State.StateView.Model.Abbreviation, Action.ToString()));
 	}
 }
 
@@ -56,14 +56,14 @@ public class AiStateModel {
 	public AiStateModel(State s) {
 		StateView = s;
 		PlayerWorkerCount = s.PlayerWorkerCount;
-		OpponentWorkerCount = s.PlayerWorkerCount;
+		OpponentWorkerCount = s.OpponentWorkerCount;
 		Vote = s.PopularVote;
 	}
 
 	public AiStateModel(AiStateModel s) {
 		StateView = s.StateView;
 		PlayerWorkerCount = s.PlayerWorkerCount;
-		OpponentWorkerCount = s.PlayerWorkerCount;
+		OpponentWorkerCount = s.OpponentWorkerCount;
 		Vote = s.Vote;
 	}
 
@@ -77,11 +77,11 @@ public class AiStateModel {
 			blueWorkerCount = PlayerWorkerCount;
 			redWorkerCount = OpponentWorkerCount;
 		}
-		var newVote = Vote + (blueWorkerCount - redWorkerCount) * GameObjectAccessor.Instance.GameStateManager.WorkerIncrement;
+		var newVote = Vote + (blueWorkerCount - redWorkerCount) * GameObjectAccessor.Instance.GameStateManager.WorkerIncrement * 2;
 
-		if (newVote < 0.5) {
+		if (newVote < 0) {
 			return Leaning.Red;
-		} else if (newVote > 0.5) {
+		} else if (newVote > 0) {
 			return Leaning.Blue;
 		} else {
 			return Leaning.Neutral;
