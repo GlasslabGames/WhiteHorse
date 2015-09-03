@@ -199,10 +199,23 @@ public class GameStateManager : MonoBehaviour {
 		}
 	}
 
-	private void RestartGame() {
+	public void RestartGame() {
 		Debug.Log("Reset game!");
 		
 		m_currentWeek = -1;
+
+		// Reset budget
+		GameObjectAccessor.Instance.Budget.ResetPool();
+		GameObjectAccessor.Instance.OpponentAi.Budget.ResetPool();
+
+		// Reset scenario
+		InitScenario();
+		UpdateElectoralVotes(true);
+
+		// Reset states
+		foreach (State state in m_states) {
+			state.ResetWorkers();
+		}
 
 		GoToState(TurnPhase.BeginWeek);
 	}

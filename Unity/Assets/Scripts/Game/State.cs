@@ -198,6 +198,17 @@ public class State : MonoBehaviour {
 		}
 	}
 
+	public void ResetWorkers() {
+		foreach (GameObject worker in m_playerWorkers) {
+			GameObject.Destroy(worker);
+		}
+		foreach (GameObject worker in m_opponentWorkers) {
+			GameObject.Destroy(worker);
+		}
+
+		m_playerWorkerCount = m_opponentWorkerCount = m_targetOpponentWorkerCount = 0;
+	}
+
 	public void SetInitialPopularVote(float v) {
 		// v is between -1 (red) and 1 (blue)
 		m_currentVote = v;

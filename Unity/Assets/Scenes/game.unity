@@ -410,7 +410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClick:
   - mTarget: {fileID: 733379575}
-    mMethodName: FinishWeek
+    mMethodName: RestartGame
     mParameters: []
     oneShot: 0
   - mTarget: {fileID: 71773558}
@@ -7761,7 +7761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd146471220464f7ca99b3cd5c93ab7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalWeeks: 1
+  TotalWeeks: 10
   m_income:
   - 20
   - 20
