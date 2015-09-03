@@ -12,8 +12,13 @@ public class AutoSetColor : MonoBehaviour {
 	public ColorChoice color;
 
 	void Start () {
+		Color c = GetColor(IsPlayer, color);
+
 		UITexture t = GetComponent<UITexture> ();
-		t.color = GetColor (IsPlayer, color);
+		if (t != null) t.color = c;
+
+		UILabel l = GetComponent<UILabel>();
+		if (l != null) l.color = c;
 	}
 
 	public static Color GetColor(bool isPlayer, ColorChoice choice) {

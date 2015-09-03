@@ -19,21 +19,18 @@ public class GameNetworkManager : MonoBehaviour
 
     if( PlayerPrefs.GetString( "NetworkType" ) == "Client" )
     {
-      GameObjectAccessor.Instance.Player.m_leaning = Leaning.Blue;
-      GameObjectAccessor.Instance.Player.m_opponentLeaning = Leaning.Red;
-      GameObjectAccessor.Instance.UseAI = false;
+      GameObjectAccessor.Instance.Player.leaning = Leaning.Blue;
+      GameObjectAccessor.Instance.GameStateManager.UseAi = false;
     }
     else if( PlayerPrefs.GetString( "NetworkType" ) == "Server" )
     {
-      GameObjectAccessor.Instance.Player.m_leaning = Leaning.Red;
-      GameObjectAccessor.Instance.Player.m_opponentLeaning = Leaning.Blue;
-      GameObjectAccessor.Instance.UseAI = false;
+      GameObjectAccessor.Instance.Player.leaning = Leaning.Red;
+	  GameObjectAccessor.Instance.GameStateManager.UseAi = false;
     }
-    else if( PlayerPrefs.GetString( "NetworkType" ) == "Offline" )
+    else // if( PlayerPrefs.GetString( "NetworkType" ) == "Offline" ) // Default to using AI if player prefs aren't set
     {
-      GameObjectAccessor.Instance.Player.m_leaning = Leaning.Red;
-      GameObjectAccessor.Instance.Player.m_opponentLeaning = Leaning.Blue;
-      GameObjectAccessor.Instance.UseAI = true;
+      GameObjectAccessor.Instance.Player.leaning = Leaning.Red;
+	  GameObjectAccessor.Instance.GameStateManager.UseAi = true;
     }
 
     PlayerPrefs.SetString( "NetworkType", "NONE" );

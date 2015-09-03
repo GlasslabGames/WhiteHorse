@@ -6,6 +6,7 @@ public class GameObjectAccessor : SingletonBehavior<GameObjectAccessor> {
 	public BudgetController Budget;
 	public GameStateManager GameStateManager;
 	public GameColorSettings GameColorSettings;
+	public SpriteRenderer Background;
 	public GameObject StatesContainer;
 	public GameObject FloatingTextContainer;
 	public ShowStateLabels StateLabelShower;
@@ -17,21 +18,21 @@ public class GameObjectAccessor : SingletonBehavior<GameObjectAccessor> {
 	public UILabel PlayerVotesLabel;
 	public UILabel OpponentVotesLabel;
 	public UILabel WeekCounter;
-	public GameObject GameOverScreen;
-	public UILabel GameOverRedVotes;
-	public UILabel GameOverBlueVotes;
 	public DetailView DetailView;
-	public GameObject TitleScreen;
 	public GameObject FlipStateParticleSystemRed;
 	public GameObject FlipStateParticleSystemBlue;
 	public GameObject FlipStateParticleSystemNeutral;
 	public VoteCount PlayerVoteCount;
 	public VoteCount OpponentVoteCount;
-	public bool UseAI;
-	public float VoteUpdateTime;
+	public float VoteUpdateTime; // Note, this is only used for the deprecated OpinionMeter, VoteMeter, and WeekMeter
 	public GameObject VictorySound;
 	public GameObject DefeatSound;
-	public UITexture EndTurnButton;
+	public GLButton EndTurnButton;
+	public GLButton RestartButton;
+	public GameObject WaitingIndicator;
+	public UITexture HeaderInset;
 	public UILabel WaitingText;
+	public UILabel ResultText;
+	public HeaderBackground HeaderBg;
 	public OpponentAi OpponentAi;
 }

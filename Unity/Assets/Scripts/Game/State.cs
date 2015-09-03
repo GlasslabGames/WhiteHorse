@@ -222,13 +222,14 @@ public class State : MonoBehaviour {
 	}
 
 	// Does the next step in the harvest sequence; returns true if we had a step to do or false if we're done
-	public bool NextHarvestAction() {
+	public bool NextHarvestAction(bool usingAi) {
 		if (!m_sentInfoToOpponent) {
-			SendInfoToOpponent();
+			if (usingAi) m_sentInfoToOpponent = true;
+			else SendInfoToOpponent();
 		}
 
 		if (!m_receivedInfoFromOpponent) {
-			if (GameObjectAccessor.Instance.UseAI) m_receivedInfoFromOpponent = true;
+			if (usingAi) m_receivedInfoFromOpponent = true;
 			else return true; // wait until we get the info
 		}
 
@@ -281,9 +282,7 @@ public class State : MonoBehaviour {
 	}
 
 	public void SendInfoToOpponent() {
-		if (!GameObjectAccessor.Instance.UseAI) {
-			networkView.RPC("RecieveInfoFromOpponent", RPCMode.Others, m_playerWorkerCount);
-		}
+		networkView.RPC("RecieveInfoFromOpponent", RPCMode.Others, m_playerWorkerCount);
 
 		m_sentInfoToOpponent = true;
 	}
@@ -416,16 +415,16 @@ public class State : MonoBehaviour {
 
 		GameObject newSupporter = GameObject.Instantiate(GameObjectAccessor.Instance.SupporterPrefab, supporterPosition, Quaternion.identity) as GameObject;
 
-		if (isPlayer) {
-			newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.Player.m_leaning == Leaning.Red?
-                GameObjectAccessor.Instance.GameColorSettings.redStateDark : GameObjectAccessor.Instance.GameColorSettings.blueStateDark;
+		if (isPlayer ^ GameObjectAccessor.Instance.Player.IsRed) {
+			newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.GameColorSettings.blueStateDark;
+		} else {
+			newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.GameColorSettings.redStateDark;
+		}
 
+		if (isPlayer) {
 			m_playerWorkers.Add(newSupporter);
 			m_playerWorkerCount ++;
 		} else {
-			newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.Player.m_opponentLeaning == Leaning.Red?
-                GameObjectAccessor.Instance.GameColorSettings.redStateDark : GameObjectAccessor.Instance.GameColorSettings.blueStateDark;
-
 			m_opponentWorkers.Add(newSupporter);
 			m_opponentWorkerCount ++;
 		}

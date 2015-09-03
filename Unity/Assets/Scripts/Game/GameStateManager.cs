@@ -31,9 +31,14 @@ public class GameStateManager : MonoBehaviour {
 
 	private int m_playerVotes;
 	private int m_opponentVotes;
+	private bool playerIsWinning {
+		get { return m_playerVotes > m_opponentVotes; }
+	}
 
 	public int m_defaultScenarioId;
 	public bool m_defaultToScenarioType2;
+
+	public bool UseAi;
 
 	public void Awake() { }
 
@@ -163,6 +168,9 @@ public class GameStateManager : MonoBehaviour {
 		case TurnPhase.Harvest:
 			FinishHarvest();
 			break;
+		case TurnPhase.ElectionDay:
+			FinishElectionDay();
+			break;
 		}
 
 		m_currentTurnPhase = nextState;
@@ -217,18 +225,16 @@ public class GameStateManager : MonoBehaviour {
 	}
 
 	private void BeginPlacement() {
-		if (GameObjectAccessor.Instance.UseAI) {
+		if (UseAi) {
 			GameObjectAccessor.Instance.OpponentAi.DoTurn();
 			m_opponentIsWaiting = true;
 		}
 
 		GameObjectAccessor.Instance.EndTurnButton.gameObject.SetActive(true);
-		// TODO: Show the reset button
 	}
 
 	private void FinishPlacement() {
 		GameObjectAccessor.Instance.EndTurnButton.gameObject.SetActive(false);
-		// TODO: Hide reset button
 	}
 
 	private void BeginWaiting() {
@@ -236,11 +242,13 @@ public class GameStateManager : MonoBehaviour {
 			GoToState(TurnPhase.Harvest);
 		} else {
 			GameObjectAccessor.Instance.WaitingText.gameObject.SetActive(true);
+			GameObjectAccessor.Instance.WaitingIndicator.gameObject.SetActive(true);
 		}
 	}
 
 	private void FinishWaiting() {
 		GameObjectAccessor.Instance.WaitingText.gameObject.SetActive(false);
+		GameObjectAccessor.Instance.WaitingIndicator.gameObject.SetActive(false);
 	}
 
 	private void BeginHarvest() {
@@ -260,27 +268,42 @@ public class GameStateManager : MonoBehaviour {
 	}
 
 	private void BeginElectionDay() {
-		GameObjectAccessor.Instance.GameOverScreen.SetActive(true);
-		
-		// Rather than renaming the GameOverRedVotes, etc, just know that RedVotes is on the left (the player) and BlueVotes is on the right (the opponent)
-		GameObjectAccessor.Instance.GameOverRedVotes.text = GameObjectAccessor.Instance.PlayerVotesLabel.text;
-		GameObjectAccessor.Instance.GameOverRedVotes.color = AutoSetColor.GetColor(true, AutoSetColor.ColorChoice.LIGHT);
-		
-		GameObjectAccessor.Instance.GameOverBlueVotes.text = GameObjectAccessor.Instance.OpponentVotesLabel.text;
-		GameObjectAccessor.Instance.GameOverBlueVotes.color = AutoSetColor.GetColor(false, AutoSetColor.ColorChoice.LIGHT);
-		
-		if (m_playerVotes > m_opponentVotes) {
-			// victory sound
-			GameObject.Instantiate(GameObjectAccessor.Instance.VictorySound);
-		} else {
-			// defeat sound
-			GameObject.Instantiate(GameObjectAccessor.Instance.DefeatSound);
-		}
+		GameObjectAccessor.Instance.WeekCounter.text = "THE RESULTS ARE IN...";
+		GameObjectAccessor.Instance.HeaderBg.TweenImage(playerIsWinning, new EventDelegate(ShowElectionResults));
+	}
+
+	private void ShowElectionResults() {
+		UILabel resultText = GameObjectAccessor.Instance.ResultText;
+		resultText.gameObject.SetActive(true);
+		resultText.text = playerIsWinning? "YOU WIN!" : "YOU LOSE!";
+
+		resultText.transform.localScale = new Vector3(1.25f, 1.25f, 1f);
+		TweenScale t = TweenScale.Begin(resultText.gameObject, 1f, Vector3.one);
+		t.method = UITweener.Method.BounceIn;
+
+		GameObjectAccessor.Instance.HeaderInset.gameObject.SetActive(true);
+		GameObjectAccessor.Instance.RestartButton.gameObject.SetActive(true);
+
+		Color c = (playerIsWinning ^ GameObjectAccessor.Instance.Player.IsRed)?
+			GameObjectAccessor.Instance.GameColorSettings.blueLight :
+			GameObjectAccessor.Instance.GameColorSettings.redLight;
+
+		GameObjectAccessor.Instance.Background.color = c;
+
+		GameObject.Instantiate(playerIsWinning? GameObjectAccessor.Instance.VictorySound : GameObjectAccessor.Instance.DefeatSound);
+	}
+
+	private void FinishElectionDay() {
+		GameObjectAccessor.Instance.HeaderBg.Reset();
+		GameObjectAccessor.Instance.ResultText.gameObject.SetActive(false);
+		GameObjectAccessor.Instance.RestartButton.gameObject.SetActive(false);
+		GameObjectAccessor.Instance.HeaderInset.gameObject.SetActive(false);
+		GameObjectAccessor.Instance.Background.color = Color.white;
 	}
 
 	public void NextHarvestAction() {
 		foreach (State state in m_statesInPlay) {
-			if (state.NextHarvestAction()) return;
+			if (state.NextHarvestAction(UseAi)) return;
 			// If that state had something to do, wait for the next cycle. Else keep looking for something to do.
 		}
 
@@ -321,7 +344,7 @@ public class GameStateManager : MonoBehaviour {
 		if (m_currentTurnPhase == TurnPhase.Placement) {
 			GoToState(TurnPhase.Waiting);
 
-			if (!GameObjectAccessor.Instance.UseAI) {
+			if (!UseAi) {
 				networkView.RPC("OpponentFinishWeek", RPCMode.Others);
 			}
 		}

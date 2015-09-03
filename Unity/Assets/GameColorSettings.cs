@@ -21,14 +21,10 @@ public class GameColorSettings {
 
 	public Color blueDarker;
 	public Color redDarker;
+	
+	public Color blueLight;
+	public Color redLight;
 
 	public Color disabledButton;
 	public Color disabledButtonText;
-}
-
-[System.Serializable]
-public class GameTextures {
-	public Texture EndTurnButton;
-	public Texture SubmittedButton;
-	public Texture ResultsButton;
 }
