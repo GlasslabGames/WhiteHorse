@@ -108,6 +108,6 @@ public class NetworkManager : MonoBehaviour
     //GameObjectAccessor.Instance.TitleScreen.SetActive( false );
     //GameObjectAccessor.Instance.GameStateManager.GoToState( TurnState.Placement );
 
-    Application.LoadLevel( "ben_scene" );
+    Application.LoadLevel( "game" );
   }
 }
