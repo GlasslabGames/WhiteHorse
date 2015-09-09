@@ -256,12 +256,7 @@ public class Utility : SingletonBehavior<Utility>
 		if (gameObj == null)
 			return null;
 		Transform child = gameObj.transform;
-		Vector3 pos = child.localPosition;
-		Vector3 scale = child.localScale;
-
-		child.parent = parent;
-		child.localPosition = pos;
-		child.localScale = scale;
+		child.SetParent (parent, false);
 
 		return child;
 	}

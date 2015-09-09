@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class UIManager : SingletonBehavior<UIManager> {
 
-	//TODO public StatePopup statePopup;
+	public StatePopup statePopup;
 	//TODO public Header header;
 
 	public GameObject endTurnButton;
@@ -18,6 +18,7 @@ public class UIManager : SingletonBehavior<UIManager> {
 	void Start () {
 		SignalManager.EnterTurnPhase += OnEnterTurnPhase;
 		SignalManager.ExitTurnPhase += OnEnterTurnPhase;
+		SignalManager.BeginWeek += OnBeginWeek;
 	}
 
 	void OnEnterTurnPhase(TurnPhase phase) {
@@ -55,6 +56,17 @@ public class UIManager : SingletonBehavior<UIManager> {
 		case TurnPhase.ElectionDay:
 			HideElectionResults();
 			break;
+		}
+	}
+
+	void OnBeginWeek(int week) {
+		if (weekText) {
+			int remainingWeeks = GameSettings.Instance.TotalWeeks - week;
+			if (remainingWeeks <= 1) {
+				weekText.text = "FINAL WEEK";
+			} else {
+				weekText.text = remainingWeeks + " WEEKS REMAINING";
+			}
 		}
 	}
 

@@ -68,6 +68,9 @@ public class State : MonoBehaviour {
 	public bool IsRed {
 		get { return CurrentLeaning == Leaning.Red; }
 	}
+	public bool IsNeutral {
+		get { return CurrentLeaning == Leaning.Neutral; }
+	}
 	
 	// WORKERS
 	private int m_playerWorkerCount = 0;
@@ -131,14 +134,8 @@ public class State : MonoBehaviour {
 		}
 	}
 
-	public Vector3 UiCenter {
-		get {
-			return Vector3.zero; //TODOUtility.ConvertFromGameToUiPosition(Center);
-		}
-	}
-
 	private bool m_highlighted = false;
-	public static State highlightedState = null;
+	public static State HighlightedState = null;
     
 	void Awake() {
 		// automatically figure out which of the child textures are which
@@ -317,72 +314,62 @@ public class State : MonoBehaviour {
 	}
 
 	public void UpdateColor(bool playParticles = false) {
-		/*TODO if (Hidden) {
-			m_stateColor.color = GameObjectAccessor.Instance.GameColorSettings.undiscoveredState;
-			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.outline;
+		if (Hidden) {
+			m_stateColor.color = GameSettings.Instance.Colors.undiscoveredState;
+			m_stateOutline.color = GameSettings.Instance.Colors.outline;
 			m_stateStripes.enabled = true;
 			return;
 		}
 
-		float t;
-		if (IsBlue) {
-			if (!InPlay) {
-				t = 1;
-			} else {
-				t = Mathf.InverseLerp(0.5f, 1f, BlueSupportPercent); // 0.5 -> 0, 1 -> 1
+		// State color
+		if (!IsNeutral) {
+			float t = 1;
+			if (InPlay) {
+				t = Mathf.InverseLerp(0.5f, 1f, (IsBlue) ? BlueSupportPercent : RedSupportPercent); // 0.5 -> 0, 1 -> 1
 				t = Mathf.Lerp(0.2f, 1f, t); // 0 -> 0.2, 1 -> 1 (Start at 0.2 so we don't go all the way to the neutral color.)
 			}
-			m_stateColor.color = Color.Lerp(GameObjectAccessor.Instance.GameColorSettings.neutralState, GameObjectAccessor.Instance.GameColorSettings.blueState, t);
-			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.outline;
-			m_stateOutline.sortingOrder = -7;
-		} else if (IsRed) {
-				if (!InPlay) {
-					t = 1;
-				} else {
-					t = Mathf.InverseLerp(0.5f, 1f, RedSupportPercent); // 0.5 -> 0, 1 -> 1
-					t = Mathf.Lerp(0.2f, 1f, t); // 0 -> 0.2, 1 -> 1 (Start at 0.2 so we don't go all the way to the neutral color.)
-				}
-				m_stateColor.color = Color.Lerp(GameObjectAccessor.Instance.GameColorSettings.neutralState, GameObjectAccessor.Instance.GameColorSettings.redState, t);
-				m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.outline;
-				m_stateOutline.sortingOrder = -7;
+			Color c = (IsBlue)? GameSettings.Instance.Colors.medBlue : GameSettings.Instance.Colors.medRed;
+			m_stateColor.color = Color.Lerp(GameSettings.Instance.Colors.neutralState, c, t);
 		} else {
-				if (InPlay) {
-					m_stateColor.color = GameObjectAccessor.Instance.GameColorSettings.neutralState;
-				} else {
-					m_stateColor.color = GameObjectAccessor.Instance.GameColorSettings.neutralLockedState;
-				}
+			m_stateColor.color = (InPlay)? GameSettings.Instance.Colors.neutralState : GameSettings.Instance.Colors.neutralLockedState;
+		}
 
-				m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.neutralOutline;
-				m_stateOutline.sortingOrder = -6;
-			}
+		// Outline color
+		if (InPlay && !IsNeutral) {
+			m_stateOutline.color = GameSettings.Instance.Colors.outline;
+			m_stateOutline.sortingOrder = -6;
+		} else {
+			m_stateOutline.color = GameSettings.Instance.Colors.neutralOutline;
+			m_stateOutline.sortingOrder = -7;
+		}
+
+		// Stripes
+		m_stateStripes.enabled = !InPlay;
 
 		if (playParticles) {
-			GameObject.Instantiate(GameObjectAccessor.Instance.FlipStateParticleSystemBlue, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -0.5f), Quaternion.identity);
+			//TODO GameObject.Instantiate(GameObjectAccessor.Instance.FlipStateParticleSystemBlue, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -0.5f), Quaternion.identity);
 		}
 
 		// show a different outline if we're highlighted
 		if (m_highlighted) {
-			m_stateOutline.color = GameObjectAccessor.Instance.GameColorSettings.highlightOutline;
+			m_stateOutline.color = GameSettings.Instance.Colors.highlightOutline;
 			m_stateOutline.sortingOrder = -5;
 		}
-			
-		m_stateStripes.enabled = !InPlay;
-		*/
 	}
     
 	public void Highlight() {
-		if (State.highlightedState != null) State.highlightedState.UnHighlight();
+		if (State.HighlightedState != null) State.HighlightedState.UnHighlight();
 
 		m_highlighted = true;
 		UpdateColor();
-		State.highlightedState = this;
+		State.HighlightedState = this;
 	}
 
 	public void UnHighlight() {
 		m_highlighted = false;
 		UpdateColor();
-		if (State.highlightedState == this) {
-			State.highlightedState = null;
+		if (State.HighlightedState == this) {
+			State.HighlightedState = null;
 		}
 	}
 

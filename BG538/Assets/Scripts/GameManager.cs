@@ -29,6 +29,11 @@ public class GameManager : SingletonBehavior<GameManager> {
 
 	public bool UsingAI { get; set; }
 	public bool PlayerIsBlue { get; set; }
+
+	public BudgetController PlayerBudget = new BudgetController();
+	public BudgetController OpponentBudget = new BudgetController();
+
+	public Timer HarvestTimer;
 	
 	public void InitScenario() {
 		states.Clear();
@@ -41,11 +46,12 @@ public class GameManager : SingletonBehavior<GameManager> {
 			InitScenarioA();
 		}
 		
-		//TODO UIManager.Instance.StateLabelShower.Refresh();
+		StateLabelManager.Instance.Refresh();
 	}
 	
 	public void InitScenarioA() {
 		ScenarioModel scenario = ScenarioModel.GetModel(GameSettings.Instance.DefaultScenarioId);
+		Debug.Log(GameSettings.Instance.DefaultScenarioId + ": " + scenario);
 		
 		foreach (State state in ObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>()) {
 			state.InPlay = (scenario == null || !scenario.PresetStates.Contains(state.Model.Id));
@@ -63,6 +69,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 			} else {
 				state.SetInitialPopularVote( Random.value * 2 - 1 );
 			}
+
+			Debug.Log(state.Model.Abbreviation + ": " + state.PopularVote);
 			
 			state.UpdateColor();
 		}
@@ -150,9 +158,6 @@ public class GameManager : SingletonBehavior<GameManager> {
 		case TurnPhase.Harvest:
 			FinishHarvest();
 			break;
-		case TurnPhase.ElectionDay:
-			FinishElectionDay();
-			break;
 		}
 		SignalManager.ExitTurnPhase (CurrentTurnPhase);
 		
@@ -183,10 +188,9 @@ public class GameManager : SingletonBehavior<GameManager> {
 		CurrentWeek = -1;
 		
 		// Reset budget
-		// TODO
-		//GameObjectAccessor.Instance.Budget.ResetPool();
-		//GameObjectAccessor.Instance.OpponentAi.Budget.ResetPool();
-		
+		PlayerBudget.Reset();
+		OpponentBudget.Reset();
+
 		// Reset scenario
 		InitScenario();
 		UpdateElectoralVotes(true);
@@ -201,8 +205,9 @@ public class GameManager : SingletonBehavior<GameManager> {
 	
 	private void BeginWeek() {
 		CurrentWeek ++;
-		UpdateWeeksRemaining(GameSettings.Instance.TotalWeeks - CurrentWeek);
 		UpdateElectoralVotes();
+
+		SignalManager.BeginWeek(CurrentWeek);
 		
 		if (CurrentWeek >= GameSettings.Instance.TotalWeeks) {
 			GoToState(TurnPhase.ElectionDay);
@@ -210,9 +215,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 			int index = Mathf.Min(CurrentWeek, GameSettings.Instance.Income.Length - 1);
 			float income = GameSettings.Instance.Income[index];
 
-			// TODO
-			//GameObjectAccessor.Instance.Budget.GainAmount(income);
-			//GameObjectAccessor.Instance.OpponentAi.Budget.GainAmount(income);
+			PlayerBudget.GainAmount(income);
+			OpponentBudget.GainAmount(income);
 			
 			GoToState(TurnPhase.Placement);
 		}
@@ -237,16 +241,6 @@ public class GameManager : SingletonBehavior<GameManager> {
 		//TODO m_harvestTimer.StopTimer();
 	}
 	
-	private void FinishElectionDay() {
-		/* TODO
-		GameObjectAccessor.Instance.HeaderBg.Reset();
-		GameObjectAccessor.Instance.ResultText.gameObject.SetActive(false);
-		GameObjectAccessor.Instance.RestartButton.gameObject.SetActive(false);
-		GameObjectAccessor.Instance.HeaderInset.gameObject.SetActive(false);
-		GameObjectAccessor.Instance.Background.color = Color.white;
-		*/
-	}
-	
 	public void NextHarvestAction() {
 		foreach (State state in statesInPlay) {
 			if (state.NextHarvestAction(UsingAI)) return;
@@ -255,18 +249,6 @@ public class GameManager : SingletonBehavior<GameManager> {
 		
 		Debug.Log("completed harvest");
 		GoToState(TurnPhase.BeginWeek);
-	}
-	
-	private void UpdateWeeksRemaining(int week) {
-		/* TODO
-		if (GameObjectAccessor.Instance.WeekCounter != null) {
-			if (week <= 1) {
-				GameObjectAccessor.Instance.WeekCounter.text = "FINAL WEEK";
-			} else {
-				GameObjectAccessor.Instance.WeekCounter.text = week + " WEEKS REMAINING";
-			}
-		}
-		*/
 	}
 	
 	public void UpdateElectoralVotes(bool atBeginning = false) {
