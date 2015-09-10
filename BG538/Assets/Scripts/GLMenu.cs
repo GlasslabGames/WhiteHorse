@@ -40,20 +40,6 @@ public class GLMenu : MonoBehaviour {
 		}
 	}
 
-	[MenuItem("GLMenu/Add ColliderButtons to States")]
-	static void AddColliderButtonsToStates(MenuCommand command)
-	{
-		foreach (Object o in Selection.objects) {
-			if (o is GameObject) {
-				GameObject go = o as GameObject;
-				State s = go.GetComponent<State>();
-				Collider c = go.GetComponentInChildren<Collider>();
-				ColliderButton b = c.gameObject.AddComponent<ColliderButton>() as ColliderButton;
-				b.OnClick.AddListener(new UnityEngine.Events.UnityAction(s.HandleClick));
-			}
-		}
-	}
-
 	[MenuItem("GLMenu/Anchors to Corners %[")]
 	static void AnchorsToCorners(){
 		RectTransform t = Selection.activeTransform as RectTransform;

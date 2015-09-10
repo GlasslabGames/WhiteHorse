@@ -69,9 +69,9 @@ public class StatePopup : MonoBehaviour {
 		if (leftArrow) leftArrow.color = color;
 		if (rightArrow) rightArrow.color = color;
 
-		/* TODO
 		// place near state
-		Vector3 pos = transform.position;
+		//TODO
+		Vector3 pos = transform.position; // keeps the same Z
 		Vector3 statePos = state.Center;
 		pos.y = Mathf.Clamp(statePos.y, -5.5f, 2.8f);
 		
@@ -85,8 +85,7 @@ public class StatePopup : MonoBehaviour {
 			leftArrow.gameObject.SetActive(false);
 			rightArrow.gameObject.SetActive(true);
 		}
-		transform.position = Utility.ConvertFromGameToUiPosition(pos);
-		*/
+		transform.position = pos;
 	}
 	
 	public void Close() {

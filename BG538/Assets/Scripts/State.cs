@@ -164,8 +164,8 @@ public class State : MonoBehaviour {
 		if (c == null) {
 			Debug.LogError("Couldn't find collider under " + this, this);
 		} else {
-			/*GLButton button = c.gameObject.AddComponent<GLButton>() as GLButton;
-			EventDelegate.Add(button.onClick, OnClick); TODO*/
+			ColliderButton button = c.gameObject.AddComponent<ColliderButton>();
+			button.OnClick += HandleClick;
 		}
 	}
 
