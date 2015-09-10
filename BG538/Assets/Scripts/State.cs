@@ -171,27 +171,16 @@ public class State : MonoBehaviour {
 
 	public void Start() {
 		UpdateColor();
-
-		/* // We don't want this text anymore
-    
-		Transform container = GameObjectAccessor.Instance.FloatingTextContainer.transform;
-
-		m_playerFloatingText = GameObject.Instantiate(GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition(m_workerOffsetY + m_workerCountOffset + Center), Quaternion.identity) as GameObject;
-		m_playerFloatingText.GetComponent< FloatingText >().Display("");
-		m_playerFloatingText.transform.parent = container;
-    
-		m_opponentFloatingText = GameObject.Instantiate(GameObjectAccessor.Instance.PulseTextPrefab, Utility.ConvertFromGameToUiPosition(-m_workerOffsetY + m_workerCountOffset + Center), Quaternion.identity) as GameObject;
-		m_opponentFloatingText.GetComponent< FloatingText >().Display("");
-		m_opponentFloatingText.transform.parent = container;
-		*/
 	}
     
-	void OnClick() {
+	public void HandleClick () {
+		Debug.Log ("Click "+Model.Name);
+
 		// Check the current phase
-		/*TODO TurnPhase phase = GameObjectAccessor.Instance.GameStateManager.CurrentTurnPhase;
+		TurnPhase phase = GameManager.Instance.CurrentTurnPhase;
 		if (phase == TurnPhase.Placement || phase == TurnPhase.Waiting) {
-			GameObjectAccessor.Instance.DetailView.SetState(this, true);
-		}*/
+			UIManager.Instance.statePopup.Show(this);
+		}
 	}
 
 	public void ResetWorkers() {

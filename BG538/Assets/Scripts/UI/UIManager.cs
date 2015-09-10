@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class UIManager : SingletonBehavior<UIManager> {
 
 	public StatePopup statePopup;
+	public StateLabelManager StateLabels;
 	//TODO public Header header;
 
 	public GameObject endTurnButton;
@@ -15,7 +16,9 @@ public class UIManager : SingletonBehavior<UIManager> {
 	public Text weekText;
 	public Text resultText;
 
-	void Start () {
+	protected override void Start () {
+		base.Start();
+
 		SignalManager.EnterTurnPhase += OnEnterTurnPhase;
 		SignalManager.ExitTurnPhase += OnEnterTurnPhase;
 		SignalManager.BeginWeek += OnBeginWeek;

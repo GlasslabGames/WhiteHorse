@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 // This will automatically add a label with each state's abbreviation or number of votes.
 // You can set the label position for a state by adding a "stateLabel" object as its child. Else it's automatic.
-public class StateLabelManager : SingletonBehavior<StateLabelManager> {
+public class StateLabelManager : MonoBehaviour {
 	public enum LabelOptions { ABBREVIATION, VOTES };
 	public LabelOptions content = LabelOptions.VOTES;
 	public bool showOnlyOnActiveStates = true;

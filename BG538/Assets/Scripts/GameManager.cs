@@ -46,7 +46,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 			InitScenarioA();
 		}
 		
-		StateLabelManager.Instance.Refresh();
+		UIManager.Instance.StateLabels.Refresh();
 	}
 	
 	public void InitScenarioA() {
@@ -145,7 +145,9 @@ public class GameManager : SingletonBehavior<GameManager> {
 		}
 	}
 	
-	public void Start() {
+	protected override void Start() {
+		base.Start();
+
 		InitScenario();
 		UpdateElectoralVotes(true);
 		
