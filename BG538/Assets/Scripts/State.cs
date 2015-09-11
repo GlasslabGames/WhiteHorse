@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System;
 using System.Collections.Generic;
 
@@ -44,14 +45,12 @@ public class State : MonoBehaviour {
 
 	public float PlayerSupportPercent {
 		get {
-			/*if (GameObjectAccessor.Instance.Player.IsRed) return RedSupportPercent;
-			else TODO*/ return BlueSupportPercent;
+			return (GameManager.Instance.PlayerIsBlue)? BlueSupportPercent : RedSupportPercent;
 		}
 	}
 	public float OpponentSupportPercent {
 		get {
-			/*if (GameObjectAccessor.Instance.Player.IsBlue) return RedSupportPercent;
-			else TODO*/ return BlueSupportPercent;
+			return (GameManager.Instance.PlayerIsBlue)? RedSupportPercent : BlueSupportPercent;
 		}
 	}
 
@@ -164,7 +163,7 @@ public class State : MonoBehaviour {
 		if (c == null) {
 			Debug.LogError("Couldn't find collider under " + this, this);
 		} else {
-			ColliderButton button = c.gameObject.AddComponent<ColliderButton>();
+			ClickableButton button = c.gameObject.AddComponent<ClickableButton>();
 			button.OnClick += HandleClick;
 		}
 	}
@@ -363,24 +362,24 @@ public class State : MonoBehaviour {
 	}
 
 	public bool PlayerCanPlaceWorker() {
-		return true;/*TODO (InPlay &&
-			GameObjectAccessor.Instance.GameStateManager.CurrentTurnPhase == TurnPhase.Placement &&
-			GameObjectAccessor.Instance.Budget.IsAmountAvailable(GameMove.GetCost(GameActions.PLACE_WORKER)));*/
-		// && m_playerSupporterList.Count < UnitCap); // for now we're not capping supporters per state
+		return (InPlay &&
+			GameManager.Instance.CurrentTurnPhase == TurnPhase.Placement &&
+		    GameManager.Instance.PlayerBudget.IsAmountAvailable(GameSettings.Instance.GetGameActionCost(GameAction.PlaceWorker)));
 	}
         
 	public void PlayerPlaceWorker() {    
 		if (PlayerCanPlaceWorker()) {
 			CreateWorkerPrefab(true);
 
-			//TODO GameObjectAccessor.Instance.Budget.ConsumeAmount(GameMove.GetCost(GameActions.PLACE_WORKER));
+			GameManager.Instance.PlayerBudget.ConsumeAmount(GameSettings.Instance.GetGameActionCost(GameAction.PlaceWorker));
 		}
 	}
 
 	public bool PlayerCanRemoveWorker() {
 		return (InPlay &&
-			//TODO GameObjectAccessor.Instance.GameStateManager.CurrentTurnPhase == TurnPhase.Placement &&
-			m_playerWorkers.Count > 0);
+		        GameManager.Instance.CurrentTurnPhase == TurnPhase.Placement &&
+		        GameManager.Instance.PlayerBudget.IsAmountAvailable(GameSettings.Instance.GetGameActionCost(GameAction.RemoveWorker)) &&
+		        m_playerWorkers.Count > 0);
 	}
 
 	public void PlayerRemoveWorker() {
@@ -392,7 +391,7 @@ public class State : MonoBehaviour {
 			Destroy(supporter);
 			m_playerWorkerCount --;
         
-			//TODO GameObjectAccessor.Instance.Budget.ConsumeAmount(GameMove.GetCost(GameActions.REMOVE_WORKER)); // this will probably be a negative number (add money)
+			GameManager.Instance.PlayerBudget.ConsumeAmount(GameSettings.Instance.GetGameActionCost(GameAction.RemoveWorker));
      	}
 	}
     

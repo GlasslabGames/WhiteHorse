@@ -51,7 +51,7 @@ public class StatePopup : MonoBehaviour {
 		if (opponentPercentLabel) opponentPercentLabel.text = (GameManager.Instance.PlayerIsBlue)? redPercent : bluePercent;
 		
 		if (voteMeter) {
-			float percent = (GameManager.Instance.PlayerIsBlue)? state.RedSupportPercent : state.BlueSupportPercent;
+			float percent = state.PlayerSupportPercent;
 			voteMeter.Set(percent, false);
 		}
 		
@@ -70,18 +70,17 @@ public class StatePopup : MonoBehaviour {
 		if (rightArrow) rightArrow.color = color;
 
 		// place near state
-		//TODO
 		Vector3 pos = transform.position; // keeps the same Z
 		Vector3 statePos = state.Center;
-		pos.y = Mathf.Clamp(statePos.y, -5.5f, 2.8f);
-		
+		pos.y = Mathf.Max(statePos.y, -5f); // sorry I hardcoded this stuff
+
 		// If it's too far on the right, show the popup on the left. Else it's always on the right.
-		if (statePos.x < 4) {
-			pos.x = statePos.x + 1.25f;
+		if (statePos.x < 3.5f) {
+			pos.x = statePos.x + 4.2f;
 			leftArrow.gameObject.SetActive(true);
 			rightArrow.gameObject.SetActive(false);
 		} else {
-			pos.x = statePos.x - 5.75f;
+			pos.x = statePos.x - 4.2f;
 			leftArrow.gameObject.SetActive(false);
 			rightArrow.gameObject.SetActive(true);
 		}
@@ -92,8 +91,8 @@ public class StatePopup : MonoBehaviour {
 		gameObject.SetActive(false);
 		
 		if (currentState) {
-			currentState = null;
 			currentState.UnHighlight();
+			currentState = null;
 		}
 	}
 	
@@ -132,6 +131,7 @@ public class StatePopup : MonoBehaviour {
 	}
 	
 	public void PlaceWorker() {
+		Debug.Log ("PlaceWorker");
 		if (currentState) {
 			currentState.PlayerPlaceWorker();
 			RefreshWorkerInfo();
@@ -139,6 +139,7 @@ public class StatePopup : MonoBehaviour {
 	}
 	
 	public void RemoveWorker() {
+		Debug.Log ("RemoveWorker");
 		if (currentState) {
 			currentState.PlayerRemoveWorker();
 			RefreshWorkerInfo();

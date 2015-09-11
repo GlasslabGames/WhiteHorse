@@ -70,8 +70,6 @@ public class GameManager : SingletonBehavior<GameManager> {
 				state.SetInitialPopularVote( Random.value * 2 - 1 );
 			}
 
-			Debug.Log(state.Model.Abbreviation + ": " + state.PopularVote);
-			
 			state.UpdateColor();
 		}
 	}
@@ -117,7 +115,6 @@ public class GameManager : SingletonBehavior<GameManager> {
 		
 		int r;
 		State s;
-		List<State> list;
 		while ((blueStatesAdded + redStatesAdded) < numStatesToAdd || blueStatesAdded != redStatesAdded) {
 			Debug.Log("Blue states: " + blueStatesAdded + " Red states: " + redStatesAdded + " NumStatesToAdd: " + numStatesToAdd);
 			if (blueStatesAdded < redStatesAdded) {

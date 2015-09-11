@@ -8,19 +8,14 @@ public class StatePopupButton : MonoBehaviour {
 	public Text priceLabel;
 	private Button button;
 
-	void Init () {
-		button = GetComponent<Button> ();
+	void Start () {
+		button = GetComponent<Button>();
 	}
 	
 	public void SetEnabled(bool enable = true, bool noMoney = false) {
-		if (button) button.enabled = enable;
+		if (button) button.interactable = enable;
 
-		if (background != null) {
-			/* TODO if (!enable) {
-				if (enabled) m_originalColor = background.color; // store the active background color, which was set based on the player's color
-				background.color = GameObjectAccessor.Instance.GameColorSettings.disabledButton;
-			} else if (m_originalColor != Color.clear) background.color = m_originalColor;*/
-		}
+		background.color = (enable) ? AutoSetColor.GetColor (true, AutoSetColor.ColorChoice.darker) : GameSettings.Instance.Colors.disabledButton;
 		
 		Color textColor = (enable)? Color.white : GameSettings.Instance.Colors.disabledButtonText;
 		
@@ -30,8 +25,6 @@ public class StatePopupButton : MonoBehaviour {
 			if (noMoney) priceLabel.color = GameSettings.Instance.Colors.darkRed;
 			else priceLabel.color = textColor;
 		}
-
-		enabled = enable;
 	}
 	
 	public void SetPrice(float price) {
