@@ -6,7 +6,7 @@ public class UIManager : SingletonBehavior<UIManager> {
 
 	public StatePopup statePopup;
 	public StateLabelManager StateLabels;
-	//TODO public Header header;
+	public Header header;
 
 	public GameObject endTurnButton;
 	public GameObject restartButton;
@@ -14,7 +14,6 @@ public class UIManager : SingletonBehavior<UIManager> {
 	public GameObject waitingIndicator;
 
 	public Text weekText;
-	public Text resultText;
 
 	protected override void Start () {
 		base.Start();
@@ -34,12 +33,11 @@ public class UIManager : SingletonBehavior<UIManager> {
 			if (waitingIndicator) waitingIndicator.SetActive(true);
 			break;
 		case TurnPhase.Harvest:
-			//TODO if (statePopup) statePopup.Close();
+			statePopup.Close();
 			break;
 		case TurnPhase.ElectionDay:
 			if (weekText) weekText.text = "THE RESULTS ARE IN...";
-			//TODO if (header) header.TweenImage(playerIsWinning, new EventDelegate(ShowElectionResults));
-			ShowElectionResults(); // FIXME
+			if (header) header.ShowGameOver(GameManager.Instance.PlayerIsWinning, AfterResults);
 			break;
 		}
 	}
@@ -54,7 +52,7 @@ public class UIManager : SingletonBehavior<UIManager> {
 			if (waitingIndicator) waitingIndicator.SetActive(false);
 			break;
 		case TurnPhase.Harvest:
-			//TODO if (statePopup) statePopup.Close();
+			if (statePopup) statePopup.Close();
 			break;
 		case TurnPhase.ElectionDay:
 			HideElectionResults();
@@ -73,36 +71,16 @@ public class UIManager : SingletonBehavior<UIManager> {
 		}
 	}
 
-	void ShowElectionResults() {
-		bool playerIsWinning = GameManager.Instance.PlayerIsWinning;
-
-		if (resultText) {
-			resultText.gameObject.SetActive (true);
-			resultText.text = playerIsWinning ? "YOU WIN!" : "YOU LOSE!";
-
-			/* TODO
-			resultText.transform.localScale = new Vector3(1.25f, 1.25f, 1f);
-			TweenScale t = TweenScale.Begin(resultText.gameObject, 1f, Vector3.one);
-			t.method = UITweener.Method.BounceIn;
-			*/
-		}
-
-		//TODO if (header) header.toggleInset(true);
+	void AfterResults() {
 		if (restartButton) restartButton.SetActive(true);
 
-		Color c = (playerIsWinning ^ GameManager.Instance.PlayerIsBlue)? GameSettings.Instance.Colors.lightRed : GameSettings.Instance.Colors.lightBlue;
-		if (ObjectAccessor.Instance.Background) ObjectAccessor.Instance.Background.color = c;
-		
-		//TODO GameObject.Instantiate(playerIsWinning? GameObjectAccessor.Instance.VictorySound : GameObjectAccessor.Instance.DefeatSound);
+		//GameObject.Instantiate(GameManager.Instance.PlayerIsWinning? GameObjectAccessor.Instance.VictorySound : GameObjectAccessor.Instance.DefeatSound);
 	}
 
 	void HideElectionResults() {
-		/*TODO if (header) {
+		if (header) {
 			header.Reset();
-			header.toggleInset(false);
 		}
-		*/
-		if (resultText) resultText.gameObject.SetActive(false);
 		if (restartButton) restartButton.gameObject.SetActive(false);
 		if (ObjectAccessor.Instance.Background) ObjectAccessor.Instance.Background.color = Color.white;
 	}

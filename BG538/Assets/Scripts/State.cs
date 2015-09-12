@@ -10,18 +10,18 @@ public enum Leaning {
 }
 
 public class State : MonoBehaviour {
-	public string m_abbreviation;
+	public string abbreviation;
 
-	private StateModel m_model;
+	private StateModel model;
 	public StateModel Model {
 		get {
-			if (m_model == null) {
-				m_model = StateModel.GetModelByAbbreviation(m_abbreviation);
-				if (m_model == null) {
-					Debug.LogError("Couldn't find a model for " + m_abbreviation, this);
+			if (model == null) {
+				model = StateModel.GetModelByAbbreviation(abbreviation);
+				if (model == null) {
+					Debug.LogError("Couldn't find a model for " + abbreviation, this);
 				}
 			}
-			return m_model;
+			return model;
 		}
 	}
 
@@ -30,17 +30,17 @@ public class State : MonoBehaviour {
 
 	// VOTE
 	
-	private float m_currentVote;  // between -1 (red) and 1 (blue)
-	private float m_previousVote;
+	private float currentVote;  // between -1 (red) and 1 (blue)
+	private float previousVote;
 	public float PopularVote {
-		get { return m_currentVote; }
+		get { return currentVote; }
 	}
 
 	public float RedSupportPercent {
-		get { return Mathf.Clamp01((m_currentVote - 1) / -2); }
+		get { return Mathf.Clamp01((currentVote - 1) / -2); }
 	}
 	public float BlueSupportPercent {
-		get { return Mathf.Clamp01((m_currentVote + 1) / 2); }
+		get { return Mathf.Clamp01((currentVote + 1) / 2); }
 	}
 
 	public float PlayerSupportPercent {
@@ -56,8 +56,8 @@ public class State : MonoBehaviour {
 
 	public Leaning CurrentLeaning {
 		get {
-			if (m_currentVote < 0) return Leaning.Red;
-			else if (m_currentVote > 0) return Leaning.Blue;
+			if (currentVote < 0) return Leaning.Red;
+			else if (currentVote > 0) return Leaning.Blue;
 			else return Leaning.Neutral;
 		}
 	}
@@ -72,89 +72,83 @@ public class State : MonoBehaviour {
 	}
 	
 	// WORKERS
-	private int m_playerWorkerCount = 0;
+	private int playerWorkerCount = 0;
 	public int PlayerWorkerCount {
-		get { return m_playerWorkerCount; }
+		get { return playerWorkerCount; }
 	}
-	private int m_opponentWorkerCount = 0;
+	private int opponentWorkerCount = 0;
 	public int OpponentWorkerCount {
-		get { return m_opponentWorkerCount; }
+		get { return opponentWorkerCount; }
 	}
-	private int m_targetOpponentWorkerCount = 0;
+	private int targetOpponentWorkerCount = 0;
 
-	private int m_redWorkerCount {
+	private int redWorkerCount {
 		get {
-			return /*(GameObjectAccessor.Instance.Player.IsRed)? m_playerWorkerCount : TODO*/ m_opponentWorkerCount;
+			return /*(GameObjectAccessor.Instance.Player.IsRed)? playerWorkerCount : TODO*/ opponentWorkerCount;
 		}
 	}
-	private int m_blueWorkerCount {
+	private int blueWorkerCount {
 		get {
-			return /*(GameObjectAccessor.Instance.Player.IsBlue)? m_playerWorkerCount : TODO*/ m_opponentWorkerCount;
+			return /*(GameObjectAccessor.Instance.Player.IsBlue)? playerWorkerCount : TODO*/ opponentWorkerCount;
 		}
 	}
 
 	// HARVEST
-	private bool m_sentInfoToOpponent;
-	private bool m_receivedInfoFromOpponent;
-	private bool m_countedExistingWorkers;
+	private bool sentInfoToOpponent;
+	private bool receivedInfoFromOpponent;
+	private bool countedExistingWorkers;
 	
 	// DISPLAY
-//	public static float populationPerWorker = 1.2f;
-	private static Vector3 m_workerOffsetX = new Vector3(-0.4f, 0, 0);
-	private static Vector3 m_workerOffsetY = new Vector3(0, 0.25f, 0);
-	private static Vector3 m_workerAdjacencyOffset = new Vector3(0.15f, 0, 0);
-	private static Vector3 m_workerCountOffset = new Vector3(-0.5f, 0, 0);
-	private static Vector3 m_popularVoteOffset = new Vector3(0, 0.6f, 0);
+	private static Vector3 workerOffsetX = new Vector3(-0.4f, 0, 0);
+	private static Vector3 workerOffsetY = new Vector3(0, 0.25f, 0);
+	private static Vector3 workerAdjacencyOffset = new Vector3(0.15f, 0, 0);
 	  
-	private List< GameObject > m_playerWorkers = new List<GameObject>();
-	private List< GameObject > m_opponentWorkers = new List<GameObject>();
-	
-	private GameObject m_playerFloatingText;
-	private GameObject m_opponentFloatingText;
+	private List< GameObject > playerWorkers = new List<GameObject>();
+	private List< GameObject > opponentWorkers = new List<GameObject>();
 
 	public int RoundedPopulation {
 		get { return Mathf.CeilToInt(Model.Population); }
 	}
 
-	private SpriteRenderer m_stateColor;
-	private SpriteRenderer m_stateOutline;
-	private SpriteRenderer m_stateStripes;
-	private Transform m_center;
+	private SpriteRenderer stateColor;
+	private SpriteRenderer stateOutline;
+	private SpriteRenderer stateStripes;
+	private Transform center;
 
 	public Vector3 Center {
 		get {
-			if (m_center == null) {
-				m_center = transform.Find("uiAnchor");
-				if (m_center == null) {
-					m_center = transform;
+			if (center == null) {
+				center = transform.Find("uiAnchor");
+				if (center == null) {
+					center = transform;
 				}
 			}
-			return m_center.position;
+			return center.position;
 		}
 	}
 
-	private bool m_highlighted = false;
+	private bool highlighted = false;
 	public static State HighlightedState = null;
     
 	void Awake() {
 		// automatically figure out which of the child textures are which
 		foreach (SpriteRenderer t in GetComponentsInChildren<SpriteRenderer>(true)) {
 			if (t.name.Contains("dashed")) {
-				m_stateStripes = t;
+				stateStripes = t;
 			} else if (t.name.Contains("oline")) {
-				m_stateOutline = t;
+				stateOutline = t;
 			} else {
-				m_stateColor = t;
+				stateColor = t;
 			}
 		}
     
-		if (m_stateStripes == null) {
+		if (stateStripes == null) {
 			Debug.LogError("No stripes on " + this.name, this);
 		}
-		if (m_stateOutline == null) {
+		if (stateOutline == null) {
 			Debug.LogError("No outline on " + this.name, this);
 		}
-		if (m_stateColor == null) {
+		if (stateColor == null) {
 			Debug.LogError("No color on " + this.name, this);
 		}
 
@@ -183,64 +177,55 @@ public class State : MonoBehaviour {
 	}
 
 	public void ResetWorkers() {
-		foreach (GameObject worker in m_playerWorkers) {
+		foreach (GameObject worker in playerWorkers) {
 			GameObject.Destroy(worker);
 		}
-		foreach (GameObject worker in m_opponentWorkers) {
+		foreach (GameObject worker in opponentWorkers) {
 			GameObject.Destroy(worker);
 		}
 
-		m_playerWorkerCount = m_opponentWorkerCount = m_targetOpponentWorkerCount = 0;
+		playerWorkerCount = opponentWorkerCount = targetOpponentWorkerCount = 0;
 	}
 
 	public void SetInitialPopularVote(float v) {
 		// v is between -1 (red) and 1 (blue)
-		m_currentVote = v;
-		m_previousVote = v;
+		currentVote = v;
+		previousVote = v;
 		UpdateColor();
-	}
-
-	private void UpdatePercentText(bool forPlayer) {
-		m_playerFloatingText.SendMessage("Display", Mathf.Round(PlayerSupportPercent * 100) + "%");
-		m_playerFloatingText.SendMessage("BounceOut");
-        
-		m_opponentFloatingText.SendMessage("Display", Mathf.Round(OpponentSupportPercent * 100) + "%");
-		m_opponentFloatingText.SendMessage("BounceOut");
-		// todo: only bounce the player or the opponent's text. Issue is that the one that's not bounced is in the totally wrong place.
 	}
 	
 	public void PrepareToHarvest() {
-		m_sentInfoToOpponent = false;
-		m_receivedInfoFromOpponent = false;
-		m_countedExistingWorkers = false;
+		sentInfoToOpponent = false;
+		receivedInfoFromOpponent = false;
+		countedExistingWorkers = false;
 	}
 
 	// Does the next step in the harvest sequence; returns true if we had a step to do or false if we're done
 	public bool NextHarvestAction(bool usingAi) {
-		if (!m_sentInfoToOpponent) {
-			if (usingAi) m_sentInfoToOpponent = true;
+		if (!sentInfoToOpponent) {
+			if (usingAi) sentInfoToOpponent = true;
 			else SendInfoToOpponent();
 		}
 
-		if (!m_receivedInfoFromOpponent) {
-			if (usingAi) m_receivedInfoFromOpponent = true;
+		if (!receivedInfoFromOpponent) {
+			if (usingAi) receivedInfoFromOpponent = true;
 			else return true; // wait until we get the info
 		}
 
-		if (m_playerWorkerCount == 0 && m_opponentWorkerCount == 0 && m_targetOpponentWorkerCount == 0) {
+		if (playerWorkerCount == 0 && opponentWorkerCount == 0 && targetOpponentWorkerCount == 0) {
 			// Nothing to do
 			return false;
 		}
 
-		if (!m_countedExistingWorkers) {
-			m_countedExistingWorkers = true;
+		if (!countedExistingWorkers) {
+			countedExistingWorkers = true;
 			this.Highlight();
 			
-			if (m_playerWorkerCount > 0 || m_opponentWorkerCount > 0) {
-				foreach (GameObject worker in m_playerWorkers) {
+			if (playerWorkerCount > 0 || opponentWorkerCount > 0) {
+				foreach (GameObject worker in playerWorkers) {
 					worker.SendMessage("BounceOut");
 				}
-				foreach (GameObject worker in m_opponentWorkers) {
+				foreach (GameObject worker in opponentWorkers) {
 					worker.SendMessage("BounceOut");
 				}
 				UpdateVote();
@@ -248,7 +233,7 @@ public class State : MonoBehaviour {
 			}
 		}
 
-		if (m_targetOpponentWorkerCount > m_opponentWorkerCount) {
+		if (targetOpponentWorkerCount > opponentWorkerCount) {
 			this.Highlight();
 
 			// Add a new opponent worker
@@ -264,48 +249,48 @@ public class State : MonoBehaviour {
 
 	public void UpdateVote() {
 		Leaning prevLeaning = CurrentLeaning;
-		float change = (m_blueWorkerCount - m_redWorkerCount);//TODO * GameObjectAccessor.Instance.GameStateManager.WorkerIncrement * 2;
+		float change = (blueWorkerCount - redWorkerCount) * GameSettings.Instance.WorkerIncrement * 2;
 		// we multiply by 2 so 1% change => 0.02 difference (since the vote goes from -1 to 1)
-		m_currentVote = m_previousVote + change;
+		currentVote = previousVote + change;
 		UpdateColor(CurrentLeaning != prevLeaning);
 	}
 
 	private void SetVote() {
-		m_currentVote = Mathf.Clamp(m_currentVote, -1, 1);
-		m_previousVote = m_currentVote;
+		currentVote = Mathf.Clamp(currentVote, -1, 1);
+		previousVote = currentVote;
 	}
 
 	public void SendInfoToOpponent() {
-		GetComponent<NetworkView>().RPC("RecieveInfoFromOpponent", RPCMode.Others, m_playerWorkerCount);
+		GetComponent<NetworkView>().RPC("RecieveInfoFromOpponent", RPCMode.Others, playerWorkerCount);
 
-		m_sentInfoToOpponent = true;
+		sentInfoToOpponent = true;
 	}
 
 	[RPC]
 	public void RecieveInfoFromOpponent(int workerCount) {
-		m_targetOpponentWorkerCount = workerCount;
-		m_receivedInfoFromOpponent = true;
+		targetOpponentWorkerCount = workerCount;
+		receivedInfoFromOpponent = true;
 	}
 
 	// Called by the AI
 	public void IncrementOpponentWorkerCount(int amount = 1) {
-		m_targetOpponentWorkerCount += amount;
-		Debug.Log(m_abbreviation + " added worker from AI. New count: " + m_targetOpponentWorkerCount);
+		targetOpponentWorkerCount += amount;
+		Debug.Log(abbreviation + " added worker from AI. New count: " + targetOpponentWorkerCount);
 	}
 		
 	public float GetPlayerPercentChange() {
-		return m_playerWorkerCount;//TODO * GameObjectAccessor.Instance.GameStateManager.WorkerIncrement;
+		return playerWorkerCount * GameSettings.Instance.WorkerIncrement;
 	}
 
 	public float GetOpponentPercentChange() {
-		return m_opponentWorkerCount;//TODO * GameObjectAccessor.Instance.GameStateManager.WorkerIncrement;
+		return opponentWorkerCount * GameSettings.Instance.WorkerIncrement;
 	}
 
 	public void UpdateColor(bool playParticles = false) {
 		if (Hidden) {
-			m_stateColor.color = GameSettings.Instance.Colors.undiscoveredState;
-			m_stateOutline.color = GameSettings.Instance.Colors.outline;
-			m_stateStripes.enabled = true;
+			stateColor.color = GameSettings.Instance.Colors.undiscoveredState;
+			stateOutline.color = GameSettings.Instance.Colors.outline;
+			stateStripes.enabled = true;
 			return;
 		}
 
@@ -317,44 +302,44 @@ public class State : MonoBehaviour {
 				t = Mathf.Lerp(0.2f, 1f, t); // 0 -> 0.2, 1 -> 1 (Start at 0.2 so we don't go all the way to the neutral color.)
 			}
 			Color c = (IsBlue)? GameSettings.Instance.Colors.medBlue : GameSettings.Instance.Colors.medRed;
-			m_stateColor.color = Color.Lerp(GameSettings.Instance.Colors.neutralState, c, t);
+			stateColor.color = Color.Lerp(GameSettings.Instance.Colors.neutralState, c, t);
 		} else {
-			m_stateColor.color = (InPlay)? GameSettings.Instance.Colors.neutralState : GameSettings.Instance.Colors.neutralLockedState;
+			stateColor.color = (InPlay)? GameSettings.Instance.Colors.neutralState : GameSettings.Instance.Colors.neutralLockedState;
 		}
 
 		// Outline color
 		if (InPlay && !IsNeutral) {
-			m_stateOutline.color = GameSettings.Instance.Colors.outline;
-			m_stateOutline.sortingOrder = -6;
+			stateOutline.color = GameSettings.Instance.Colors.outline;
+			stateOutline.sortingOrder = -6;
 		} else {
-			m_stateOutline.color = GameSettings.Instance.Colors.neutralOutline;
-			m_stateOutline.sortingOrder = -7;
+			stateOutline.color = GameSettings.Instance.Colors.neutralOutline;
+			stateOutline.sortingOrder = -7;
 		}
 
 		// Stripes
-		m_stateStripes.enabled = !InPlay;
+		stateStripes.enabled = !InPlay;
 
 		if (playParticles) {
 			//TODO GameObject.Instantiate(GameObjectAccessor.Instance.FlipStateParticleSystemBlue, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -0.5f), Quaternion.identity);
 		}
 
 		// show a different outline if we're highlighted
-		if (m_highlighted) {
-			m_stateOutline.color = GameSettings.Instance.Colors.highlightOutline;
-			m_stateOutline.sortingOrder = -5;
+		if (highlighted) {
+			stateOutline.color = GameSettings.Instance.Colors.highlightOutline;
+			stateOutline.sortingOrder = -5;
 		}
 	}
     
 	public void Highlight() {
 		if (State.HighlightedState != null) State.HighlightedState.UnHighlight();
 
-		m_highlighted = true;
+		highlighted = true;
 		UpdateColor();
 		State.HighlightedState = this;
 	}
 
 	public void UnHighlight() {
-		m_highlighted = false;
+		highlighted = false;
 		UpdateColor();
 		if (State.HighlightedState == this) {
 			State.HighlightedState = null;
@@ -379,44 +364,42 @@ public class State : MonoBehaviour {
 		return (InPlay &&
 		        GameManager.Instance.CurrentTurnPhase == TurnPhase.Placement &&
 		        GameManager.Instance.PlayerBudget.IsAmountAvailable(GameSettings.Instance.GetGameActionCost(GameAction.RemoveWorker)) &&
-		        m_playerWorkers.Count > 0);
+		        playerWorkers.Count > 0);
 	}
 
 	public void PlayerRemoveWorker() {
 		if (PlayerCanRemoveWorker()) {
 
 			// Remove the last supporter
-			GameObject supporter = m_playerWorkers[m_playerWorkers.Count - 1];
-			m_playerWorkers.Remove(supporter);
+			GameObject supporter = playerWorkers[playerWorkers.Count - 1];
+			playerWorkers.Remove(supporter);
 			Destroy(supporter);
-			m_playerWorkerCount --;
+			playerWorkerCount --;
         
 			GameManager.Instance.PlayerBudget.ConsumeAmount(GameSettings.Instance.GetGameActionCost(GameAction.RemoveWorker));
      	}
 	}
     
 	public GameObject CreateWorkerPrefab(bool isPlayer) {
-		Vector3 supporterPosition = Center + m_workerOffsetX + (isPlayer? m_workerOffsetY + (m_playerWorkers.Count * m_workerAdjacencyOffset) : -m_workerOffsetY + ((m_opponentWorkers.Count) * m_workerAdjacencyOffset));
+		Vector3 supporterPosition = Center + workerOffsetX + (isPlayer? workerOffsetY + (playerWorkers.Count * workerAdjacencyOffset) : -workerOffsetY + ((opponentWorkers.Count) * workerAdjacencyOffset));
 
-		/*TODO 
-		GameObject newSupporter = GameObject.Instantiate(GameObjectAccessor.Instance.SupporterPrefab, supporterPosition, Quaternion.identity) as GameObject;
+		GameObject newSupporter = GameObject.Instantiate(ObjectAccessor.Instance.WorkerPrefab, supporterPosition, Quaternion.identity) as GameObject;
 
-		if (isPlayer ^ GameObjectAccessor.Instance.Player.IsRed) {
-			newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.GameColorSettings.blueStateDark;
+		if (isPlayer ^ GameManager.Instance.PlayerIsBlue) {
+			newSupporter.GetComponent<SpriteRenderer>().color = GameSettings.Instance.Colors.darkRed;
 		} else {
-			newSupporter.GetComponent<SpriteRenderer>().color = GameObjectAccessor.Instance.GameColorSettings.redStateDark;
+			newSupporter.GetComponent<SpriteRenderer>().color = GameSettings.Instance.Colors.darkBlue;
 		}
 
 		if (isPlayer) {
-			m_playerWorkers.Add(newSupporter);
-			m_playerWorkerCount ++;
+			playerWorkers.Add(newSupporter);
+			playerWorkerCount ++;
 		} else {
-			m_opponentWorkers.Add(newSupporter);
-			m_opponentWorkerCount ++;
+			opponentWorkers.Add(newSupporter);
+			opponentWorkerCount ++;
 		}
 
-		return newSupporter;*/
-		return null;
+		return newSupporter;
 	}
 
 }

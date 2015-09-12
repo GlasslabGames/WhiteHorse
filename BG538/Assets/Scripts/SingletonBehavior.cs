@@ -22,8 +22,8 @@ public class SingletonBehavior<T> : MonoBehaviour where T : MonoBehaviour
 {
   private static T _instance;
   
-  protected bool m_awakeInit = false;
-  protected bool m_startInit = false;
+  protected bool awakeInit = false;
+  protected bool startInit = false;
   
   private static object _lock = new object(); // Lock prevents conflicts in multi-threaded environments
 
@@ -158,12 +158,12 @@ public class SingletonBehavior<T> : MonoBehaviour where T : MonoBehaviour
 
     _instance = this as T;
 
-    m_awakeInit = true;
+    awakeInit = true;
   }
 
   protected virtual void Start()
   {
-    m_startInit = true;
+    startInit = true;
   }
 
 

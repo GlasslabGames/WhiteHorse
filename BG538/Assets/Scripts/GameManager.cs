@@ -47,6 +47,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 		}
 		
 		UIManager.Instance.StateLabels.Refresh();
+		UpdateElectoralVotes(true);
 	}
 	
 	public void InitScenarioA() {
@@ -146,8 +147,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 		base.Start();
 
 		InitScenario();
-		UpdateElectoralVotes(true);
-		
+
 		GoToState(TurnPhase.BeginGame);
 	}
 	
@@ -192,8 +192,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 
 		// Reset scenario
 		InitScenario();
-		UpdateElectoralVotes(true);
-		
+
 		// Reset states
 		foreach (State state in states) {
 			state.ResetWorkers();
@@ -233,11 +232,11 @@ public class GameManager : SingletonBehavior<GameManager> {
 			state.PrepareToHarvest();
 		}
 		
-		//TODO m_harvestTimer.StartTimer(NextHarvestAction);
+		//TODO harvestTimer.StartTimer(NextHarvestAction);
 	}
 	
 	private void FinishHarvest() {
-		//TODO m_harvestTimer.StopTimer();
+		//TODO harvestTimer.StopTimer();
 	}
 	
 	public void NextHarvestAction() {
@@ -265,8 +264,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 		playerVotes = (PlayerIsBlue)? totalBlueVotes : totalRedVotes;
 		opponentVotes = (PlayerIsBlue)? totalRedVotes : totalBlueVotes;
 
-		//TODO GameObjectAccessor.Instance.PlayerVoteCount.Set(m_playerVotes, !atBeginning);
-		//TODO GameObjectAccessor.Instance.OpponentVoteCount.Set(m_opponentVotes, !atBeginning);
+		if (SignalManager.PlayerVotesChanged != null) SignalManager.PlayerVotesChanged(playerVotes, !atBeginning);
+		if (SignalManager.OpponentVotesChanged != null) SignalManager.OpponentVotesChanged(opponentVotes, !atBeginning);
 	}
 	
 	public void FinishWeek() {

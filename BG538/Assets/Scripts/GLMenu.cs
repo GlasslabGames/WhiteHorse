@@ -28,14 +28,14 @@ public class GLMenu : MonoBehaviour {
 		Selection.objects = selection.ToArray();
 	}
 
-	[MenuItem("GLMenu/AddStateComponent")]
+	[MenuItem("GLMenu/FixStateComponent")]
 	static void AddStateComponent(MenuCommand command)
 	{
 		foreach (Object o in Selection.objects) {
 			if (o is GameObject) {
 				GameObject go = o as GameObject;
-				State s = go.AddComponent<State>() as State;
-				s.m_abbreviation = go.name;
+				State s = go.GetComponent<State>();
+				if (s != null) s.abbreviation = go.name;
 			}
 		}
 	}

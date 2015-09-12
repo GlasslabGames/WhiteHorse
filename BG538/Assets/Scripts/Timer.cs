@@ -28,11 +28,11 @@ public class Timer : MonoBehaviour
 
 	public void TimerCompleteCallback() {}
 
-	public void StartTimer(Action callback = null) {
+	public void StartTimer(Action c = null) {
 		CurrentTime = 0.0f;
 		Active = true;
 
-		callback = (callback == null)? TimerCompleteCallback : callback;
+		callback = (c == null)? TimerCompleteCallback : c;
 	}
 
 	public void StopTimer(bool triggerCallback = false) {
