@@ -3,6 +3,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System.Linq;
 
 public class GLMenu : MonoBehaviour {
 
@@ -36,6 +37,21 @@ public class GLMenu : MonoBehaviour {
 				GameObject go = o as GameObject;
 				State s = go.GetComponent<State>();
 				if (s != null) s.abbreviation = go.name;
+			}
+		}
+	}
+
+	[MenuItem("GLMenu/ReorderStateComponent")]
+	static void ReorderStateComponent(MenuCommand command)
+	{
+		foreach (Object o in Selection.objects) {
+			if (o is GameObject) {
+				GameObject go = o as GameObject;
+				List<Transform> children = go.transform.Cast<Transform>().OrderBy( t => t.position.x ).ToList();
+				foreach (Transform child in children) {
+					child.parent = go.transform.parent;
+					child.parent = go.transform;
+				}
 			}
 		}
 	}
