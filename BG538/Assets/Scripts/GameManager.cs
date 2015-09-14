@@ -27,11 +27,15 @@ public class GameManager : SingletonBehavior<GameManager> {
 		get { return playerVotes >= opponentVotes; }
 	}
 
-	public bool UsingAI { get; set; }
-	public bool PlayerIsBlue { get; set; }
+	private bool _usingAI = true; // default to true unless we establish a connection
+	public bool UsingAI {
+		get { return _usingAI; }
+		set { _usingAI = value; }
+	}
+	public AI OpponentAI = new AI();
 
+	public bool PlayerIsBlue { get; set; }
 	public BudgetController PlayerBudget = new BudgetController();
-	public BudgetController OpponentBudget = new BudgetController();
 
 	public Timer HarvestTimer;
 	
@@ -188,7 +192,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 		
 		// Reset budget
 		PlayerBudget.Reset();
-		OpponentBudget.Reset();
+
+		OpponentAI.Reset();
 
 		// Reset scenario
 		InitScenario();
@@ -214,15 +219,16 @@ public class GameManager : SingletonBehavior<GameManager> {
 			float income = GameSettings.Instance.Income[index];
 
 			PlayerBudget.GainAmount(income);
-			OpponentBudget.GainAmount(income);
-			
+			OpponentAI.Budget.GainAmount(income);
+
 			GoToState(TurnPhase.Placement);
 		}
 	}
 	
 	private void BeginPlacement() {
+		Debug.Log ("BeginPlacement. UsingAI: " + UsingAI);
 		if (UsingAI) {
-			//TODO GameObjectAccessor.Instance.OpponentAi.DoTurn();
+			OpponentAI.DoTurn();
 			opponentIsWaiting = true;
 		}
 	}
@@ -232,11 +238,11 @@ public class GameManager : SingletonBehavior<GameManager> {
 			state.PrepareToHarvest();
 		}
 		
-		//TODO harvestTimer.StartTimer(NextHarvestAction);
+		HarvestTimer.StartTimer(NextHarvestAction);
 	}
 	
 	private void FinishHarvest() {
-		//TODO harvestTimer.StopTimer();
+		HarvestTimer.StopTimer();
 	}
 	
 	public void NextHarvestAction() {

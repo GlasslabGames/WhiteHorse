@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public enum Leaning {
 	Neutral,
@@ -84,12 +85,12 @@ public class State : MonoBehaviour {
 
 	private int redWorkerCount {
 		get {
-			return /*(GameObjectAccessor.Instance.Player.IsRed)? playerWorkerCount : TODO*/ opponentWorkerCount;
+			return (GameManager.Instance.PlayerIsBlue)? opponentWorkerCount : playerWorkerCount;
 		}
 	}
 	private int blueWorkerCount {
 		get {
-			return /*(GameObjectAccessor.Instance.Player.IsBlue)? playerWorkerCount : TODO*/ opponentWorkerCount;
+			return (GameManager.Instance.PlayerIsBlue)? playerWorkerCount : opponentWorkerCount;
 		}
 	}
 
@@ -202,6 +203,7 @@ public class State : MonoBehaviour {
 
 	// Does the next step in the harvest sequence; returns true if we had a step to do or false if we're done
 	public bool NextHarvestAction(bool usingAi) {
+		// First, make sure we send and get info from the opponent
 		if (!sentInfoToOpponent) {
 			if (usingAi) sentInfoToOpponent = true;
 			else SendInfoToOpponent();
@@ -213,21 +215,22 @@ public class State : MonoBehaviour {
 		}
 
 		if (playerWorkerCount == 0 && opponentWorkerCount == 0 && targetOpponentWorkerCount == 0) {
-			// Nothing to do
+			// Nothing to do here
 			return false;
 		}
 
+		// Next highlight existing workers and count their contribution
 		if (!countedExistingWorkers) {
 			countedExistingWorkers = true;
 			this.Highlight();
 			
 			if (playerWorkerCount > 0 || opponentWorkerCount > 0) {
-				foreach (GameObject worker in playerWorkers) {
-					worker.SendMessage("BounceOut");
+				int playerWorkersLength = playerWorkers.Count; // should be the same as playerWorkerCount just in case
+				for (var i = 0; i < playerWorkersLength + opponentWorkers.Count; i++) {
+					GameObject worker = (i < playerWorkersLength)? playerWorkers[i] : opponentWorkers[i - playerWorkersLength];
+					worker.transform.DOPunchScale(new Vector3(0.25f, 0.25f, 0f), 0.5f, 2);
 				}
-				foreach (GameObject worker in opponentWorkers) {
-					worker.SendMessage("BounceOut");
-				}
+
 				UpdateVote();
 				return true;
 			}
@@ -238,7 +241,7 @@ public class State : MonoBehaviour {
 
 			// Add a new opponent worker
 			GameObject worker = CreateWorkerPrefab(false);
-			worker.SendMessage("BounceOut");
+			worker.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0f), 0.5f, 2);
 			UpdateVote();
 			return true;
 		}
@@ -252,6 +255,7 @@ public class State : MonoBehaviour {
 		float change = (blueWorkerCount - redWorkerCount) * GameSettings.Instance.WorkerIncrement * 2;
 		// we multiply by 2 so 1% change => 0.02 difference (since the vote goes from -1 to 1)
 		currentVote = previousVote + change;
+		Debug.Log (Model.Abbreviation + " vote: " + currentVote + ", previously: " + previousVote);
 		UpdateColor(CurrentLeaning != prevLeaning);
 	}
 
@@ -275,7 +279,7 @@ public class State : MonoBehaviour {
 	// Called by the AI
 	public void IncrementOpponentWorkerCount(int amount = 1) {
 		targetOpponentWorkerCount += amount;
-		Debug.Log(abbreviation + " added worker from AI. New count: " + targetOpponentWorkerCount);
+//		Debug.Log(abbreviation + " added worker from AI. New count: " + targetOpponentWorkerCount);
 	}
 		
 	public float GetPlayerPercentChange() {

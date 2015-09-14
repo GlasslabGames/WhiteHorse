@@ -31,7 +31,6 @@ public class Timer : MonoBehaviour
 	public void StartTimer(Action c = null) {
 		CurrentTime = 0.0f;
 		Active = true;
-
 		callback = (c == null)? TimerCompleteCallback : c;
 	}
 
@@ -42,8 +41,8 @@ public class Timer : MonoBehaviour
 
 	public void Restart (bool triggerCallback = false)
 	{
-		StopTimer(triggerCallback);
-		StartTimer(callback);
+		CurrentTime = 0.0f;
+		if (triggerCallback) callback ();
 	}
 
 	public void Update ()

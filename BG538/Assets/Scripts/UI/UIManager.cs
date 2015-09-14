@@ -19,7 +19,7 @@ public class UIManager : SingletonBehavior<UIManager> {
 		base.Start();
 
 		SignalManager.EnterTurnPhase += OnEnterTurnPhase;
-		SignalManager.ExitTurnPhase += OnEnterTurnPhase;
+		SignalManager.ExitTurnPhase += OnExitTurnPhase;
 		SignalManager.BeginWeek += OnBeginWeek;
 	}
 
@@ -73,6 +73,9 @@ public class UIManager : SingletonBehavior<UIManager> {
 
 	void AfterResults() {
 		if (restartButton) restartButton.SetActive(true);
+
+		Color c = (GameManager.Instance.PlayerIsWinning ^ GameManager.Instance.PlayerIsBlue)? GameSettings.Instance.Colors.lightRed : GameSettings.Instance.Colors.lightBlue;
+		if (ObjectAccessor.Instance.Background) ObjectAccessor.Instance.Background.color = c;
 
 		//GameObject.Instantiate(GameManager.Instance.PlayerIsWinning? GameObjectAccessor.Instance.VictorySound : GameObjectAccessor.Instance.DefeatSound);
 	}

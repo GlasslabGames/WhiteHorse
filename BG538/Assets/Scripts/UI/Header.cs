@@ -68,11 +68,10 @@ public class Header : MonoBehaviour {
 		if (resultLabel) {
 			resultLabel.gameObject.SetActive (true);
 			resultLabel.text = win ? "YOU WIN!" : "YOU LOSE!";
-			resultLabel.transform.DOPunchScale(new Vector3(1.25f, 1.25f, 1f), 1f, 2);
+			resultLabel.transform.DOPunchScale(new Vector3(0.25f, 0.25f, 0f), 1f, 3);
 		}
-		
-		Color c = (win ^ GameManager.Instance.PlayerIsBlue)? GameSettings.Instance.Colors.lightRed : GameSettings.Instance.Colors.lightBlue;
-		if (ObjectAccessor.Instance.Background) ObjectAccessor.Instance.Background.color = c;
+
+		if (insetBackground) insetBackground.gameObject.SetActive (true);
 
 		if (callback != null) callback();
 	}
@@ -80,5 +79,7 @@ public class Header : MonoBehaviour {
 	public void Reset() {
 		opponentBackground.fillAmount = 0.195f;
 		divider.gameObject.SetActive(true);
+		if (insetBackground) insetBackground.gameObject.SetActive (false);
+		if (resultLabel) resultLabel.gameObject.SetActive(false);
 	}
 }
