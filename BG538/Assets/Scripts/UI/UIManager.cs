@@ -53,6 +53,7 @@ public class UIManager : SingletonBehavior<UIManager> {
 			break;
 		case TurnPhase.Harvest:
 			if (statePopup) statePopup.Close();
+			if (State.HighlightedState) State.HighlightedState.UnHighlight();
 			break;
 		case TurnPhase.ElectionDay:
 			HideElectionResults();

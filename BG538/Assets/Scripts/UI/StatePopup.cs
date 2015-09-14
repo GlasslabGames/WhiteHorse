@@ -74,8 +74,8 @@ public class StatePopup : MonoBehaviour {
 		Vector3 statePos = state.Center;
 		pos.y = Mathf.Max(statePos.y, -5f); // sorry I hardcoded this stuff
 
-		// If it's too far on the right, show the popup on the left. Else it's always on the right.
-		if (statePos.x < 3.5f) {
+		// Show popups on the left side facing to the right, and vice-versa
+		if (statePos.x < 0) {
 			pos.x = statePos.x + 4.2f;
 			leftArrow.gameObject.SetActive(true);
 			rightArrow.gameObject.SetActive(false);

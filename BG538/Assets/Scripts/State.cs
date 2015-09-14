@@ -102,7 +102,7 @@ public class State : MonoBehaviour {
 	// DISPLAY
 	private static Vector3 workerOffsetX = new Vector3(-0.4f, 0, 0);
 	private static Vector3 workerOffsetY = new Vector3(0, 0.25f, 0);
-	private static Vector3 workerAdjacencyOffset = new Vector3(0.15f, 0, 0);
+	private static Vector3 workerAdjacencyOffset = new Vector3(0.2f, 0, 0);
 	  
 	private List< GameObject > playerWorkers = new List<GameObject>();
 	private List< GameObject > opponentWorkers = new List<GameObject>();
@@ -172,7 +172,7 @@ public class State : MonoBehaviour {
 
 		// Check the current phase
 		TurnPhase phase = GameManager.Instance.CurrentTurnPhase;
-		if (phase == TurnPhase.Placement || phase == TurnPhase.Waiting) {
+		if (phase == TurnPhase.Placement || phase == TurnPhase.Waiting || phase == TurnPhase.ElectionDay) {
 			UIManager.Instance.statePopup.Show(this);
 		}
 	}
@@ -386,6 +386,7 @@ public class State : MonoBehaviour {
     
 	public GameObject CreateWorkerPrefab(bool isPlayer) {
 		Vector3 supporterPosition = Center + workerOffsetX + (isPlayer? workerOffsetY + (playerWorkers.Count * workerAdjacencyOffset) : -workerOffsetY + ((opponentWorkers.Count) * workerAdjacencyOffset));
+		if (!isPlayer) supporterPosition.x += workerAdjacencyOffset.x / 2f;
 
 		GameObject newSupporter = GameObject.Instantiate(ObjectAccessor.Instance.WorkerPrefab, supporterPosition, Quaternion.identity) as GameObject;
 
