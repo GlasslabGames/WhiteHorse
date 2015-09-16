@@ -73,6 +73,7 @@ public class State : MonoBehaviour {
 	}
 	
 	// WORKERS
+	/*
 	private int playerWorkerCount = 0;
 	public int PlayerWorkerCount {
 		get { return playerWorkerCount; }
@@ -81,16 +82,20 @@ public class State : MonoBehaviour {
 	public int OpponentWorkerCount {
 		get { return opponentWorkerCount; }
 	}
-	private int targetOpponentWorkerCount = 0;
+	private int targetOpponentWorkerCount = 0; // TODO
+	*/
 
-	private int redWorkerCount {
+	public int RedWorkerCount { get; private set; }
+	public int BlueWorkerCount { get; private set; }
+
+	public int PlayerWorkerCount {
 		get {
-			return (GameManager.Instance.PlayerIsBlue)? opponentWorkerCount : playerWorkerCount;
+			return (GameManager.Instance.PlayerIsBlue)? BlueWorkerCount : RedWorkerCount;
 		}
 	}
-	private int blueWorkerCount {
+	public int OpponentWorkerCount {
 		get {
-			return (GameManager.Instance.PlayerIsBlue)? playerWorkerCount : opponentWorkerCount;
+			return (GameManager.Instance.PlayerIsBlue)? RedWorkerCount : BlueWorkerCount;
 		}
 	}
 
@@ -185,7 +190,9 @@ public class State : MonoBehaviour {
 			GameObject.Destroy(worker);
 		}
 
-		playerWorkerCount = opponentWorkerCount = targetOpponentWorkerCount = 0;
+		playerWorkers.Clear();
+		opponentWorkers.Clear();
+		RedWorkerCount = BlueWorkerCount = 0;
 	}
 
 	public void SetInitialPopularVote(float v) {
@@ -203,31 +210,22 @@ public class State : MonoBehaviour {
 
 	// Does the next step in the harvest sequence; returns true if we had a step to do or false if we're done
 	public bool NextHarvestAction(bool usingAi) {
-		// First, make sure we send and get info from the opponent
-		if (!sentInfoToOpponent) {
-			if (usingAi) sentInfoToOpponent = true;
-			else SendInfoToOpponent();
-		}
 
-		if (!receivedInfoFromOpponent) {
-			if (usingAi) receivedInfoFromOpponent = true;
-			else return true; // wait until we get the info
-		}
-
-		if (playerWorkerCount == 0 && opponentWorkerCount == 0 && targetOpponentWorkerCount == 0) {
-			// Nothing to do here
+		if (RedWorkerCount == 0 && BlueWorkerCount == 0) {
+			// Empty state, nothing to do here
 			return false;
 		}
 
-		// Next highlight existing workers and count their contribution
+		// Highlight existing workers and count their contribution
 		if (!countedExistingWorkers) {
 			countedExistingWorkers = true;
 			this.Highlight();
-			
-			if (playerWorkerCount > 0 || opponentWorkerCount > 0) {
-				int playerWorkersLength = playerWorkers.Count; // should be the same as playerWorkerCount just in case
-				for (var i = 0; i < playerWorkersLength + opponentWorkers.Count; i++) {
-					GameObject worker = (i < playerWorkersLength)? playerWorkers[i] : opponentWorkers[i - playerWorkersLength];
+
+			// Bounce existing worker sprites
+			if (playerWorkers.Count > 0 || opponentWorkers.Count > 0) {
+				for (var i = 0; i < playerWorkers.Count + opponentWorkers.Count; i++) {
+					GameObject worker = (i < playerWorkers.Count)? playerWorkers[i] : opponentWorkers[i - playerWorkers.Count];
+					if (!worker) continue; // not sure why this is happening though
 					worker.transform.DOPunchScale(new Vector3(0.25f, 0.25f, 0f), 0.5f, 2);
 				}
 
@@ -236,12 +234,19 @@ public class State : MonoBehaviour {
 			}
 		}
 
-		if (targetOpponentWorkerCount > opponentWorkerCount) {
+		// Add or remove opponent workers to match the target count
+		while (opponentWorkers.Count < OpponentWorkerCount) {
 			this.Highlight();
-
+			
 			// Add a new opponent worker
-			GameObject worker = CreateWorkerPrefab(false);
+			GameObject worker = AddWorker(false);
 			worker.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0f), 0.5f, 2);
+			UpdateVote();
+			return true;
+		}
+
+		while (opponentWorkers.Count > OpponentWorkerCount) {
+			RemoveWorker(false);
 			UpdateVote();
 			return true;
 		}
@@ -250,12 +255,17 @@ public class State : MonoBehaviour {
 		return false;
 	}
 
+	// Updates the vote based on the number of workers in the state, which changes throughout the harvest process.
 	public void UpdateVote() {
 		Leaning prevLeaning = CurrentLeaning;
-		float change = (blueWorkerCount - redWorkerCount) * GameSettings.Instance.WorkerIncrement * 2;
+		int currentBlueWorkerCount = (GameManager.Instance.PlayerIsBlue) ? playerWorkers.Count : opponentWorkers.Count;
+		int currentRedWorkerCount = (GameManager.Instance.PlayerIsBlue) ? opponentWorkers.Count : playerWorkers.Count;
+
+		float change = (currentBlueWorkerCount - currentRedWorkerCount) * GameSettings.Instance.WorkerIncrement * 2;
 		// we multiply by 2 so 1% change => 0.02 difference (since the vote goes from -1 to 1)
+
 		currentVote = previousVote + change;
-		Debug.Log (Model.Abbreviation + " vote: " + currentVote + ", previously: " + previousVote);
+		Debug.Log (name + " vote: " + currentVote + ", previously: " + previousVote);
 		UpdateColor(CurrentLeaning != prevLeaning);
 	}
 
@@ -263,35 +273,25 @@ public class State : MonoBehaviour {
 		currentVote = Mathf.Clamp(currentVote, -1, 1);
 		previousVote = currentVote;
 	}
-
-	public void SendInfoToOpponent() {
-		GetComponent<NetworkView>().RPC("RecieveInfoFromOpponent", RPCMode.Others, playerWorkerCount);
-
-		sentInfoToOpponent = true;
-	}
-
-	[RPC]
-	public void RecieveInfoFromOpponent(int workerCount) {
-		targetOpponentWorkerCount = workerCount;
-		receivedInfoFromOpponent = true;
-	}
+	
 
 	// Called by the AI
 	public void IncrementOpponentWorkerCount(int amount = 1) {
-		targetOpponentWorkerCount += amount;
-//		Debug.Log(abbreviation + " added worker from AI. New count: " + targetOpponentWorkerCount);
+		SetWorkerCount(OpponentWorkerCount + amount, !GameManager.Instance.PlayerIsBlue);
 	}
 
 	public void SetWorkerCount(int workerCount, bool isBlue) {
 		Debug.Log ("Setting worker count on " + name + " to " + workerCount + " for blue? " + isBlue);
+		if (isBlue) BlueWorkerCount = workerCount;
+		else RedWorkerCount = workerCount;
 	}
 
 	public float GetPlayerPercentChange() {
-		return playerWorkerCount * GameSettings.Instance.WorkerIncrement;
+		return playerWorkers.Count * GameSettings.Instance.WorkerIncrement;
 	}
 
 	public float GetOpponentPercentChange() {
-		return opponentWorkerCount * GameSettings.Instance.WorkerIncrement;
+		return opponentWorkers.Count * GameSettings.Instance.WorkerIncrement;
 	}
 
 	public void UpdateColor(bool playParticles = false) {
@@ -359,14 +359,6 @@ public class State : MonoBehaviour {
 			GameManager.Instance.CurrentTurnPhase == TurnPhase.Placement &&
 		    GameManager.Instance.PlayerBudget.IsAmountAvailable(GameSettings.Instance.GetGameActionCost(GameAction.PlaceWorker)));
 	}
-        
-	public void PlayerPlaceWorker() {    
-		if (PlayerCanPlaceWorker()) {
-			CreateWorkerPrefab(true);
-
-			GameManager.Instance.PlayerBudget.ConsumeAmount(GameSettings.Instance.GetGameActionCost(GameAction.PlaceWorker));
-		}
-	}
 
 	public bool PlayerCanRemoveWorker() {
 		return (InPlay &&
@@ -374,41 +366,35 @@ public class State : MonoBehaviour {
 		        GameManager.Instance.PlayerBudget.IsAmountAvailable(GameSettings.Instance.GetGameActionCost(GameAction.RemoveWorker)) &&
 		        playerWorkers.Count > 0);
 	}
-
-	public void PlayerRemoveWorker() {
-		if (PlayerCanRemoveWorker()) {
-
-			// Remove the last supporter
-			GameObject supporter = playerWorkers[playerWorkers.Count - 1];
-			playerWorkers.Remove(supporter);
-			Destroy(supporter);
-			playerWorkerCount --;
-        
-			GameManager.Instance.PlayerBudget.ConsumeAmount(GameSettings.Instance.GetGameActionCost(GameAction.RemoveWorker));
-     	}
-	}
     
-	public GameObject CreateWorkerPrefab(bool isPlayer) {
+	public GameObject AddWorker(bool isPlayer) {
 		Vector3 supporterPosition = Center + workerOffsetX + (isPlayer? workerOffsetY + (playerWorkers.Count * workerAdjacencyOffset) : -workerOffsetY + ((opponentWorkers.Count) * workerAdjacencyOffset));
 		if (!isPlayer) supporterPosition.x += workerAdjacencyOffset.x / 2f;
 
-		GameObject newSupporter = GameObject.Instantiate(ObjectAccessor.Instance.WorkerPrefab, supporterPosition, Quaternion.identity) as GameObject;
+		GameObject newWorker = GameObject.Instantiate(ObjectAccessor.Instance.WorkerPrefab, supporterPosition, Quaternion.identity) as GameObject;
 
 		if (isPlayer ^ GameManager.Instance.PlayerIsBlue) {
-			newSupporter.GetComponent<SpriteRenderer>().color = GameSettings.Instance.Colors.darkRed;
+			newWorker.GetComponent<SpriteRenderer>().color = GameSettings.Instance.Colors.darkRed;
 		} else {
-			newSupporter.GetComponent<SpriteRenderer>().color = GameSettings.Instance.Colors.darkBlue;
+			newWorker.GetComponent<SpriteRenderer>().color = GameSettings.Instance.Colors.darkBlue;
 		}
 
-		if (isPlayer) {
-			playerWorkers.Add(newSupporter);
-			playerWorkerCount ++;
-		} else {
-			opponentWorkers.Add(newSupporter);
-			opponentWorkerCount ++;
+		if (isPlayer) playerWorkers.Add(newWorker);
+		else opponentWorkers.Add(newWorker);
+
+		return newWorker;
+	}
+
+	public void RemoveWorker(bool isPlayer) {
+		// Remove the last worker
+		List<GameObject> workerList = (isPlayer) ? playerWorkers : opponentWorkers;
+		if (workerList.Count == 0) {
+			Debug.LogError(this.name + " tried to remove a worker from an empty list!", this);
+			return;
 		}
 
-		return newSupporter;
+		GameObject worker = workerList[workerList.Count - 1];
+		if (workerList.Remove(worker)) Destroy(worker);
 	}
 
 }

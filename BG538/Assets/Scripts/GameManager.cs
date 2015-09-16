@@ -32,7 +32,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 
 	public TurnPhase CurrentTurnPhase { get; private set; }
 
-	private bool opponentIsWaiting;
+	private bool opponentIsReady;
 	public int CurrentWeek { get; private set; }
 	
 	private int playerVotes;
@@ -254,6 +254,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 	private void BeginWeek() {
 		CurrentWeek ++;
 		UpdateElectoralVotes();
+		opponentIsReady = false;
 
 		SignalManager.BeginWeek(CurrentWeek);
 		
@@ -274,7 +275,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 		Debug.Log ("BeginPlacement. UsingAI: " + UsingAI);
 		if (UsingAI) {
 			OpponentAI.DoTurn();
-			opponentIsWaiting = true;
+			opponentIsReady = true;
 		}
 	}
 	
@@ -321,26 +322,20 @@ public class GameManager : SingletonBehavior<GameManager> {
 	
 	public void FinishWeek() {
 		if (CurrentTurnPhase == TurnPhase.Placement) {
-
-			if (opponentIsWaiting) {
-				GoToState(TurnPhase.Harvest);
-			} else {
-				GoToState(TurnPhase.Waiting);
-			}
-			
-			if (!UsingAI) {
-				//TODO networkView.RPC("OpponentFinishWeek", RPCMode.Others);
-			}
+			LocalPlayer.FinishTurn();
 		}
 	}
+	
+	public void SetReady(bool isBlue) {
+		Debug.Log("SetReady for blue? "+isBlue);
 
-	// TODO
-	public void OpponentFinishWeek() {
-		Debug.Log("opponent turn completed!");
-		
-		opponentIsWaiting = true;
-		if (CurrentTurnPhase == TurnPhase.Waiting) {
-			GoToState(TurnPhase.Harvest);
+		if (isBlue ^ PlayerIsBlue) {
+			opponentIsReady = true;
+		} else {
+			GoToState(TurnPhase.Waiting);
 		}
+
+		// Once both are ready, proceed to the harvest
+		if (opponentIsReady && CurrentTurnPhase == TurnPhase.Waiting) GoToState (TurnPhase.Harvest);
 	}
 }
