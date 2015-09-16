@@ -5,4 +5,5 @@ public class ObjectAccessor : SingletonBehavior<ObjectAccessor> {
 	public GameObject StatesContainer;
 	public SpriteRenderer Background;
 	public GameObject WorkerPrefab;
+	public GameObject PlayerPrefab;
 }

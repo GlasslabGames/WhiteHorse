@@ -12,11 +12,17 @@ public class UIManager : SingletonBehavior<UIManager> {
 	public GameObject restartButton;
 	public GameObject waitingText;
 	public GameObject waitingIndicator;
+	public GameObject connectingIndicator;
 
 	public Text weekText;
 
 	protected override void Start () {
 		base.Start();
+
+		if (connectingIndicator) connectingIndicator.SetActive(false);
+		if (endTurnButton) endTurnButton.gameObject.SetActive(false);
+		if (waitingText) waitingText.SetActive(false);
+		if (waitingIndicator) waitingIndicator.SetActive(false);
 
 		SignalManager.EnterTurnPhase += OnEnterTurnPhase;
 		SignalManager.ExitTurnPhase += OnExitTurnPhase;
@@ -25,6 +31,10 @@ public class UIManager : SingletonBehavior<UIManager> {
 
 	void OnEnterTurnPhase(TurnPhase phase) {
 		switch (phase) {
+		case TurnPhase.Connecting:
+			if (header) header.Reset();
+			if (connectingIndicator) connectingIndicator.SetActive(true);
+			break;
 		case TurnPhase.Placement:
 			if (endTurnButton) endTurnButton.SetActive (true);
 			break;
@@ -44,6 +54,9 @@ public class UIManager : SingletonBehavior<UIManager> {
 
 	void OnExitTurnPhase(TurnPhase phase) {
 		switch (phase) {
+		case TurnPhase.Connecting:
+			if (connectingIndicator) connectingIndicator.SetActive(false);
+			break;
 		case TurnPhase.Placement:
 			if (endTurnButton) endTurnButton.gameObject.SetActive(false);
 			break;
@@ -82,9 +95,7 @@ public class UIManager : SingletonBehavior<UIManager> {
 	}
 
 	void HideElectionResults() {
-		if (header) {
-			header.Reset();
-		}
+		if (header) header.Reset();
 		if (restartButton) restartButton.gameObject.SetActive(false);
 		if (ObjectAccessor.Instance.Background) ObjectAccessor.Instance.Background.color = Color.white;
 	}

@@ -14,14 +14,24 @@ public class AutoSetColor : MonoBehaviour {
 	public ColorChoice color;
 	
 	void Start () {
+		RefreshColor();
+
+		SignalManager.PlayerColorSet += RefreshColor;
+	}
+
+	void OnDestroy() {
+		SignalManager.PlayerColorSet -= RefreshColor;
+	}
+
+	void RefreshColor() {
 		Color c = GetColor(IsPlayer, color);
-		
+
 		Image i = GetComponent<Image> ();
 		if (i != null) i.color = c;
 		
 		Text t = GetComponent<Text>();
 		if (t != null) t.color = c;
-
+		
 		SpriteRenderer s = GetComponent<SpriteRenderer>();
 		if (s != null) s.color = c;
 	}

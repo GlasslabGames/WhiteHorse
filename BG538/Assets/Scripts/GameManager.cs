@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
 public enum TurnPhase {
+	Connecting,
 	BeginGame,
 	BeginWeek,
 	Placement,
@@ -16,6 +18,18 @@ public class GameManager : SingletonBehavior<GameManager> {
 	private List<State> statesInPlay = new List< State >();
 	private List<State> statesNotInPlay = new List< State >();
 
+	private Dictionary<string, State> _statesByAbbreviation = new Dictionary<string, State>();
+	public Dictionary<string, State> StatesByAbbreviation {
+		get {
+			if (_statesByAbbreviation.Count == 0) {
+				foreach (State s in states) {
+					_statesByAbbreviation.Add(s.Model.Abbreviation, s);
+				}
+			}
+			return _statesByAbbreviation;
+		}
+	}
+
 	public TurnPhase CurrentTurnPhase { get; private set; }
 
 	private bool opponentIsWaiting;
@@ -27,18 +41,57 @@ public class GameManager : SingletonBehavior<GameManager> {
 		get { return playerVotes >= opponentVotes; }
 	}
 
-	private bool _usingAI = true; // default to true unless we establish a connection
+	public AI OpponentAI;
 	public bool UsingAI {
-		get { return _usingAI; }
-		set { _usingAI = value; }
+		get { return OpponentAI != null; }
 	}
-	public AI OpponentAI = new AI();
+	
+	[HideInInspector]
+	public Player LocalPlayer;
 
-	public bool PlayerIsBlue { get; set; }
+	public bool PlayerIsBlue {
+		get {
+			return LocalPlayer != null && LocalPlayer.color == Leaning.Blue;
+		}
+	}
 	public BudgetController PlayerBudget = new BudgetController();
 
 	public Timer HarvestTimer;
-	
+
+
+	protected override void Start() {
+		base.Start ();
+
+		GoToState (TurnPhase.Connecting);
+
+		if (Object.FindObjectOfType<NetworkManager>() == null) {
+			Debug.Log ("No network connection. Creating localPlayer now...");
+			OpponentAI = new AI();
+			GameObject go = GameObject.Instantiate(ObjectAccessor.Instance.PlayerPrefab);
+			SetPlayer(go.GetComponent<Player>());
+		}
+	}
+
+	public void SetPlayer(Player p) {
+		Debug.Log ("Setting local player!");
+		LocalPlayer = p;
+		if (SignalManager.PlayerColorSet != null) SignalManager.PlayerColorSet();
+		CheckPlayerCount();
+	}
+
+	public void CheckPlayerCount() {
+		Debug.Log ("CheckPlayerCount: "+Object.FindObjectsOfType<Player>().Length);
+		if (LocalPlayer != null && (UsingAI || Object.FindObjectsOfType<Player> ().Length >= 2)) {
+			if (CurrentTurnPhase == TurnPhase.Connecting) { // we were waiting to connect, so now begin game
+				GoToState (TurnPhase.BeginGame);
+			}
+		} else if (CurrentTurnPhase != TurnPhase.Connecting) { // we lost a player in the middle of the game
+			NetworkManager nm = Object.FindObjectOfType<NetworkManager>();
+			if (nm != null) nm.StopHost(); // quit the connection
+		}
+
+	}
+
 	public void InitScenario() {
 		states.Clear();
 		statesInPlay.Clear();
@@ -147,14 +200,6 @@ public class GameManager : SingletonBehavior<GameManager> {
 		}
 	}
 	
-	protected override void Start() {
-		base.Start();
-
-		InitScenario();
-
-		GoToState(TurnPhase.BeginGame);
-	}
-	
 	public void GoToState(TurnPhase nextState) {
 		// Finish the current state
 		switch (CurrentTurnPhase) {
@@ -193,7 +238,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 		// Reset budget
 		PlayerBudget.Reset();
 
-		OpponentAI.Reset();
+		if (UsingAI) OpponentAI.Reset();
 
 		// Reset scenario
 		InitScenario();
@@ -219,7 +264,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 			float income = GameSettings.Instance.Income[index];
 
 			PlayerBudget.GainAmount(income);
-			OpponentAI.Budget.GainAmount(income);
+			if (UsingAI) OpponentAI.Budget.GainAmount(income);
 
 			GoToState(TurnPhase.Placement);
 		}
@@ -288,8 +333,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 			}
 		}
 	}
-	
-	[RPC]
+
+	// TODO
 	public void OpponentFinishWeek() {
 		Debug.Log("opponent turn completed!");
 		

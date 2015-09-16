@@ -27,6 +27,12 @@ public class Header : MonoBehaviour {
 
 	void Start() {}
 
+	void OnDestroy() {
+		SignalManager.PlayerVotesChanged -= OnPlayerVotesChanged;
+		SignalManager.OpponentVotesChanged -= OnOpponentVotesChanged;
+		SignalManager.BudgetChanged -= OnBudgetChanged;
+	}
+
 	void OnBudgetChanged(BudgetController budget, float amount) {
 		if (budget == GameManager.Instance.PlayerBudget) { // we only care about changes to the player's budget
 			int n = 0;
@@ -81,5 +87,9 @@ public class Header : MonoBehaviour {
 		divider.gameObject.SetActive(true);
 		if (insetBackground) insetBackground.gameObject.SetActive (false);
 		if (resultLabel) resultLabel.gameObject.SetActive(false);
+
+		if (playerVotesLabel) playerVotesLabel.text = "000";
+		if (opponentVotesLabel) opponentVotesLabel.text = "000";
+		if (playerMoneyLabel) playerMoneyLabel.text = "$00";
 	}
 }

@@ -134,6 +134,7 @@ public class StatePopup : MonoBehaviour {
 		Debug.Log ("PlaceWorker");
 		if (currentState) {
 			currentState.PlayerPlaceWorker();
+			GameManager.Instance.LocalPlayer.PlaceWorker(currentState);
 			RefreshWorkerInfo();
 		}
 	}
@@ -142,6 +143,7 @@ public class StatePopup : MonoBehaviour {
 		Debug.Log ("RemoveWorker");
 		if (currentState) {
 			currentState.PlayerRemoveWorker();
+			GameManager.Instance.LocalPlayer.RemoveWorker(currentState);
 			RefreshWorkerInfo();
 		}
 	}

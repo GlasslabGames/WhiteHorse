@@ -281,7 +281,11 @@ public class State : MonoBehaviour {
 		targetOpponentWorkerCount += amount;
 //		Debug.Log(abbreviation + " added worker from AI. New count: " + targetOpponentWorkerCount);
 	}
-		
+
+	public void SetWorkerCount(int workerCount, bool isBlue) {
+		Debug.Log ("Setting worker count on " + name + " to " + workerCount + " for blue? " + isBlue);
+	}
+
 	public float GetPlayerPercentChange() {
 		return playerWorkerCount * GameSettings.Instance.WorkerIncrement;
 	}
