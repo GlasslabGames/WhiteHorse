@@ -100,8 +100,6 @@ public class State : MonoBehaviour {
 	}
 
 	// HARVEST
-	private bool sentInfoToOpponent;
-	private bool receivedInfoFromOpponent;
 	private bool countedExistingWorkers;
 	
 	// DISPLAY
@@ -203,8 +201,6 @@ public class State : MonoBehaviour {
 	}
 	
 	public void PrepareToHarvest() {
-		sentInfoToOpponent = false;
-		receivedInfoFromOpponent = false;
 		countedExistingWorkers = false;
 	}
 

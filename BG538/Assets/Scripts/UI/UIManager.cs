@@ -29,7 +29,9 @@ public class UIManager : SingletonBehavior<UIManager> {
 		SignalManager.BeginWeek += OnBeginWeek;
 	}
 
-	void OnDestroy() {
+	protected override void OnDestroy() {
+		base.OnDestroy ();
+
 		SignalManager.EnterTurnPhase -= OnEnterTurnPhase;
 		SignalManager.ExitTurnPhase -= OnExitTurnPhase;
 		SignalManager.BeginWeek -= OnBeginWeek;

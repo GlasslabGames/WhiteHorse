@@ -32,7 +32,6 @@ public class GameManager : SingletonBehavior<GameManager> {
 
 	public TurnPhase CurrentTurnPhase { get; private set; }
 
-	private bool opponentIsReady;
 	public int CurrentWeek { get; private set; }
 	
 	private int playerVotes;
@@ -45,9 +44,9 @@ public class GameManager : SingletonBehavior<GameManager> {
 	public bool UsingAI {
 		get { return OpponentAI != null; }
 	}
-	
-	[HideInInspector]
-	public Player LocalPlayer;
+
+	public Player LocalPlayer { get; private set; }
+	public Player OpposingPlayer { get; private set; }
 
 	public bool PlayerIsBlue {
 		get {
@@ -68,20 +67,30 @@ public class GameManager : SingletonBehavior<GameManager> {
 			Debug.Log ("No network connection. Creating localPlayer now...");
 			OpponentAI = new AI();
 			GameObject go = GameObject.Instantiate(ObjectAccessor.Instance.PlayerPrefab);
-			SetPlayer(go.GetComponent<Player>());
+			SetPlayer(go.GetComponent<Player>(), true);
 		}
+
+		SignalManager.PlayerFinished += OnPlayerFinished;
+	}
+	
+	protected override void OnDestroy() {
+		base.OnDestroy ();
+
+		SignalManager.PlayerFinished -= OnPlayerFinished;
 	}
 
-	public void SetPlayer(Player p) {
-		Debug.Log ("Setting local player!");
-		LocalPlayer = p;
-		if (SignalManager.PlayerColorSet != null) SignalManager.PlayerColorSet();
+	public void SetPlayer(Player p, bool isLocalPlayer) {
+		if (isLocalPlayer) {
+			LocalPlayer = p;
+			if (SignalManager.PlayerColorSet != null) SignalManager.PlayerColorSet();
+		} else {
+			OpposingPlayer = p;
+		}
 		CheckPlayerCount();
 	}
 
 	public void CheckPlayerCount() {
-		Debug.Log ("CheckPlayerCount: "+Object.FindObjectsOfType<Player>().Length);
-		if (LocalPlayer != null && (UsingAI || Object.FindObjectsOfType<Player> ().Length >= 2)) {
+		if (LocalPlayer != null && (UsingAI || OpposingPlayer != null)) {
 			if (CurrentTurnPhase == TurnPhase.Connecting) { // we were waiting to connect, so now begin game
 				GoToState (TurnPhase.BeginGame);
 			}
@@ -254,7 +263,10 @@ public class GameManager : SingletonBehavior<GameManager> {
 	private void BeginWeek() {
 		CurrentWeek ++;
 		UpdateElectoralVotes();
-		opponentIsReady = false;
+
+		Debug.Log ("BeginWeek, setting Ready to false");
+		LocalPlayer.SetFinished(false);
+		if (OpposingPlayer) OpposingPlayer.SetFinished(false);
 
 		SignalManager.BeginWeek(CurrentWeek);
 		
@@ -273,10 +285,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 	
 	private void BeginPlacement() {
 		Debug.Log ("BeginPlacement. UsingAI: " + UsingAI);
-		if (UsingAI) {
-			OpponentAI.DoTurn();
-			opponentIsReady = true;
-		}
+		if (UsingAI) OpponentAI.DoTurn();
 	}
 	
 	private void BeginHarvest() {
@@ -322,20 +331,15 @@ public class GameManager : SingletonBehavior<GameManager> {
 	
 	public void FinishWeek() {
 		if (CurrentTurnPhase == TurnPhase.Placement) {
-			LocalPlayer.FinishTurn();
+			LocalPlayer.SetFinished(true);
 		}
 	}
-	
-	public void SetReady(bool isBlue) {
-		Debug.Log("SetReady for blue? "+isBlue);
 
-		if (isBlue ^ PlayerIsBlue) {
-			opponentIsReady = true;
-		} else {
+	public void OnPlayerFinished(Leaning playerColor) {
+		if (LocalPlayer.Finished && (UsingAI || OpposingPlayer.Finished)) {
+			GoToState (TurnPhase.Harvest); // Ready!
+		} else if (LocalPlayer.Finished) {
 			GoToState(TurnPhase.Waiting);
 		}
-
-		// Once both are ready, proceed to the harvest
-		if (opponentIsReady && CurrentTurnPhase == TurnPhase.Waiting) GoToState (TurnPhase.Harvest);
 	}
 }

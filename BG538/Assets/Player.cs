@@ -6,19 +6,41 @@ using UnityEngine.Networking;
 public class Player : NetworkBehaviour {
  	public Leaning color;
 
+	[SyncVar(hook = "OnFinishedChange")]
+	private bool _finished;
+	public bool Finished {
+		get { return _finished; }
+		set { SetFinished (value); }
+	}
+
 	public Dictionary<State, int> WorkerCounts = new Dictionary<State, int>();
 
 	void Start () {
 		Debug.Log ("Start! " + isLocalPlayer);
 		color = (isServer ^ isLocalPlayer)? Leaning.Blue : Leaning.Red;
 
-		if (isLocalPlayer) GameManager.Instance.SetPlayer(this);
-		GameManager.Instance.CheckPlayerCount();
+		GameManager.Instance.SetPlayer(this, isLocalPlayer);
 	}
 
 	void OnDestroy() {
 		Debug.Log ("Destroy!", this);
 		if (GameManager.Instance) GameManager.Instance.CheckPlayerCount();
+	}
+
+	public void SetFinished(bool b) {	
+		if (isServer) _finished = b;
+		else if (isClient) CmdSetFinished(b);
+		else OnFinishedChange(b);
+	}
+		
+	[Command]
+	public void CmdSetFinished(bool b) {
+		_finished = b;
+	}
+
+	void OnFinishedChange(bool b) {
+		_finished = b;
+		if (b && SignalManager.PlayerFinished != null) SignalManager.PlayerFinished(color);
 	}
 
 	public void PlaceWorker(State state) {
@@ -72,28 +94,5 @@ public class Player : NetworkBehaviour {
 	void DoSetWorkers(string stateAbbreviation, int workerCount, bool isBluePlayer) {
 		State state = GameManager.Instance.StatesByAbbreviation[stateAbbreviation];
 		if (state) state.SetWorkerCount(workerCount, isBluePlayer);
-	}
-
-	// Called when the player ends the turn to communicate that fact to the other player
-	// There might be better way to do this with messages, but I think they still have to go through the server.
-	public void FinishTurn() {
-		bool isBlue = (color == Leaning.Blue);
-		if (isServer) RpcFinishTurn(isBlue);
-		else if (isClient) CmdFinishTurn(isBlue);
-		else DoFinishTurn(isBlue);
-	}
-
-	[Command]
-	public void CmdFinishTurn(bool isBluePlayer) {
-		RpcFinishTurn(isBluePlayer);
-	}
-
-	[ClientRpc]
-	public void RpcFinishTurn(bool isBluePlayer) {
-		DoFinishTurn (isBluePlayer);
-	}
-
-	void DoFinishTurn(bool isBluePlayer) {
-		GameManager.Instance.SetReady(isBluePlayer);
 	}
 }

@@ -19,5 +19,6 @@ public static class SignalManager {
 	public static VoteEvent PlayerVotesChanged;
 	public static VoteEvent OpponentVotesChanged;
 	public static Action PlayerColorSet;
+	public static LeaningEvent PlayerFinished;
 	// public static Action foo;
 }
