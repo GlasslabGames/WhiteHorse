@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -15,7 +15,7 @@ public class StatePopupButton : MonoBehaviour {
 	public void SetEnabled(bool enable = true, bool noMoney = false) {
 		if (button) button.interactable = enable;
 
-		background.color = (enable) ? AutoSetColor.GetColor (true, AutoSetColor.ColorChoice.darker) : GameSettings.Instance.Colors.disabledButton;
+		background.color = (enable) ? AutoSetColor.GetColorForPlayer (true, AutoSetColor.ColorChoice.darker) : GameSettings.Instance.Colors.disabledButton;
 		
 		Color textColor = (enable)? Color.white : GameSettings.Instance.Colors.disabledButtonText;
 		

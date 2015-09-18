@@ -24,7 +24,7 @@ public class AutoSetColor : MonoBehaviour {
 	}
 
 	void RefreshColor() {
-		Color c = GetColor(IsPlayer, color);
+		Color c = GetColorForPlayer(IsPlayer, color);
 
 		Image i = GetComponent<Image> ();
 		if (i != null) i.color = c;
@@ -36,15 +36,19 @@ public class AutoSetColor : MonoBehaviour {
 		if (s != null) s.color = c;
 	}
 	
-	public static Color GetColor(bool isPlayer, ColorChoice choice) {
+	public static Color GetColorForPlayer(bool isPlayer, ColorChoice choice) {
+		bool isBlue = (isPlayer ^ !GameManager.Instance.PlayerIsBlue); // if player and player's blue or not player and player's not blue
+		return AutoSetColor.GetColor (isBlue, choice);
+	}
+
+	public static Color GetColor(bool isBlue, ColorChoice choice) {
 		GameColorSettings colors = GameSettings.Instance.Colors;
-		bool isRed = (isPlayer ^ GameManager.Instance.PlayerIsBlue); // if player and player's not blue or not player and player's blue
 
 		switch (choice) {
-		case ColorChoice.light: return (isRed)? colors.lightRed : colors.lightBlue;
-		case ColorChoice.med: return (isRed)? colors.medRed : colors.medBlue;
-		case ColorChoice.dark: return (isRed)? colors.darkRed : colors.darkBlue;
-		case ColorChoice.darker: return (isRed)? colors.darkerRed : colors.darkerBlue;
+		case ColorChoice.light: return (isBlue)? colors.lightBlue : colors.lightRed;
+		case ColorChoice.med: return (isBlue)? colors.medBlue : colors.medRed;
+		case ColorChoice.dark: return (isBlue)? colors.darkBlue : colors.darkRed; 
+		case ColorChoice.darker: return (isBlue)? colors.darkerBlue : colors.darkerRed; 
 		}
 		return Color.white;
 	}
