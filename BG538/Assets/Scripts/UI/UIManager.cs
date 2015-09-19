@@ -84,7 +84,7 @@ public class UIManager : SingletonBehavior<UIManager> {
 
 	void OnBeginWeek(int week) {
 		if (weekText) {
-			int remainingWeeks = GameSettings.Instance.TotalWeeks - week;
+			int remainingWeeks = GameSettings.InstanceOrCreate.TotalWeeks - week;
 			if (remainingWeeks <= 1) {
 				weekText.text = "FINAL WEEK";
 			} else {
@@ -96,7 +96,7 @@ public class UIManager : SingletonBehavior<UIManager> {
 	void AfterResults() {
 		if (restartButton) restartButton.SetActive(true);
 
-		Color c = (GameManager.Instance.PlayerIsWinning ^ GameManager.Instance.PlayerIsBlue)? GameSettings.Instance.Colors.lightRed : GameSettings.Instance.Colors.lightBlue;
+		Color c = (GameManager.Instance.PlayerIsWinning ^ GameManager.Instance.PlayerIsBlue)? GameSettings.InstanceOrCreate.Colors.lightRed : GameSettings.InstanceOrCreate.Colors.lightBlue;
 		if (ObjectAccessor.Instance.Background) ObjectAccessor.Instance.Background.color = c;
 
 		//GameObject.Instantiate(GameManager.Instance.PlayerIsWinning? GameObjectAccessor.Instance.VictorySound : GameObjectAccessor.Instance.DefeatSound);

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
@@ -53,6 +53,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 			return LocalPlayer != null && LocalPlayer.color == Leaning.Blue;
 		}
 	}
+
 	public BudgetController PlayerBudget = new BudgetController();
 
 	public Timer HarvestTimer;
@@ -106,7 +107,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 		statesInPlay.Clear();
 		statesNotInPlay.Clear();
 		
-		if (GameSettings.Instance.DefaultScenarioType == GameSettings.ScenarioType.B) {
+		if (GameSettings.InstanceOrCreate.DefaultScenarioType == GameSettings.ScenarioType.B) {
 			InitScenarioB();
 		} else {
 			InitScenarioA();
@@ -117,8 +118,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 	}
 	
 	public void InitScenarioA() {
-		ScenarioModel scenario = ScenarioModel.GetModel(GameSettings.Instance.DefaultScenarioId);
-		Debug.Log(GameSettings.Instance.DefaultScenarioId + ": " + scenario);
+		ScenarioModel1 scenario = ScenarioModel1.GetModel(GameSettings.InstanceOrCreate.DefaultScenarioId);
+		Debug.Log(GameSettings.InstanceOrCreate.DefaultScenarioId + ": " + scenario);
 		
 		foreach (State state in ObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>()) {
 			state.InPlay = (scenario == null || !scenario.PresetStates.Contains(state.Model.Id));
@@ -142,7 +143,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 	}
 	
 	public void InitScenarioB() {
-		ScenarioModel2 scenario = ScenarioModel2.GetModel(GameSettings.Instance.DefaultScenarioId);
+		ScenarioModel2 scenario = ScenarioModel2.GetModel(GameSettings.InstanceOrCreate.DefaultScenarioId);
 		
 		int numStatesToAdd = 0;
 		int blueStatesAdded = 0;
@@ -270,11 +271,11 @@ public class GameManager : SingletonBehavior<GameManager> {
 
 		SignalManager.BeginWeek(CurrentWeek);
 		
-		if (CurrentWeek >= GameSettings.Instance.TotalWeeks) {
+		if (CurrentWeek >= GameSettings.InstanceOrCreate.TotalWeeks) {
 			GoToState(TurnPhase.ElectionDay);
 		} else {
-			int index = Mathf.Min(CurrentWeek, GameSettings.Instance.Income.Length - 1);
-			float income = GameSettings.Instance.Income[index];
+			int index = Mathf.Min(CurrentWeek, GameSettings.InstanceOrCreate.Income.Length - 1);
+			float income = GameSettings.InstanceOrCreate.Income[index];
 
 			PlayerBudget.GainAmount(income);
 			if (UsingAI) OpponentAI.Budget.GainAmount(income);

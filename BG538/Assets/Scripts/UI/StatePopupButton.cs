@@ -15,14 +15,14 @@ public class StatePopupButton : MonoBehaviour {
 	public void SetEnabled(bool enable = true, bool noMoney = false) {
 		if (button) button.interactable = enable;
 
-		background.color = (enable) ? AutoSetColor.GetColorForPlayer (true, AutoSetColor.ColorChoice.darker) : GameSettings.Instance.Colors.disabledButton;
+		background.color = (enable) ? ColorSwapper.GetColor(GameManager.Instance.PlayerIsBlue, ColorSwapper.ColorChoice.darker) : GameSettings.InstanceOrCreate.Colors.disabledButton;
 		
-		Color textColor = (enable)? Color.white : GameSettings.Instance.Colors.disabledButtonText;
+		Color textColor = (enable)? Color.white : GameSettings.InstanceOrCreate.Colors.disabledButtonText;
 		
 		if (functionLabel) functionLabel.color = textColor;
 		
 		if (priceLabel) {
-			if (noMoney) priceLabel.color = GameSettings.Instance.Colors.darkRed;
+			if (noMoney) priceLabel.color = GameSettings.InstanceOrCreate.Colors.darkRed;
 			else priceLabel.color = textColor;
 		}
 	}

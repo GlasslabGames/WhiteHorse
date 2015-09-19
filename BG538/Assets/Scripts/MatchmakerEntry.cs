@@ -12,6 +12,6 @@ public class MatchmakerEntry : PrefabEntry {
 
 		PlayerLabel.text = playerName;
 		ScenarioLabel.text = scenarioName;
-		ColorIndicator.color = AutoSetColor.GetColor(color == Leaning.Blue, AutoSetColor.ColorChoice.med);
+		ColorIndicator.color = ColorSwapper.GetColor(color == Leaning.Blue, ColorSwapper.ColorChoice.med);
 	}
 }

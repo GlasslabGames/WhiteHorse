@@ -58,11 +58,11 @@ public class StatePopup : MonoBehaviour {
 		RefreshWorkerInfo();
 		
 		// Set the color
-		Color color = GameSettings.Instance.Colors.undiscoveredState; // gray
+		Color color = GameSettings.InstanceOrCreate.Colors.undiscoveredState; // gray
 		if (state.IsBlue) {
-			color = GameSettings.Instance.Colors.darkerBlue;
+			color = GameSettings.InstanceOrCreate.Colors.darkerBlue;
 		} else if (state.IsRed) {
-			color = GameSettings.Instance.Colors.darkerRed;
+			color = GameSettings.InstanceOrCreate.Colors.darkerRed;
 		}
 		
 		if (headerBg) headerBg.color = color;
@@ -121,12 +121,12 @@ public class StatePopup : MonoBehaviour {
 		if (addUnitButton != null) {
 			bool enable = currentState.PlayerCanPlaceWorker();
 			addUnitButton.SetEnabled(enable, !enable); // if they can't place supporters, it's probably because of money
-			addUnitButton.SetPrice(GameSettings.Instance.GetGameActionCost(GameAction.PlaceWorker));
+			addUnitButton.SetPrice(GameSettings.InstanceOrCreate.GetGameActionCost(GameAction.PlaceWorker));
 		}
 		
 		if (removeUnitButton != null) {
 			removeUnitButton.SetEnabled(currentState.PlayerCanRemoveWorker());
-			removeUnitButton.SetPrice(GameSettings.Instance.GetGameActionCost(GameAction.RemoveWorker));
+			removeUnitButton.SetPrice(GameSettings.InstanceOrCreate.GetGameActionCost(GameAction.RemoveWorker));
 		}
 	}
 	

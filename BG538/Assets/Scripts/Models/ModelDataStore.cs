@@ -31,9 +31,9 @@ public static class ModelDataStore {
 		states.TrimExcess();
 		StateModel.ms_models = new SortedDictionary<int, StateModel>(states.ToDictionary(x => x.Id, x => x));
 		
-		List<ScenarioModel> scenarios = ParseCategory<ScenarioModel>(data["Scenarios"] as Dictionary<string, object>);
+		List<ScenarioModel1> scenarios = ParseCategory<ScenarioModel1>(data["Scenarios"] as Dictionary<string, object>);
 		scenarios.TrimExcess();
-		ScenarioModel.ms_models = new SortedDictionary<int, ScenarioModel>(scenarios.ToDictionary(x => x.Id, x => x));
+		ScenarioModel1.ms_models = new SortedDictionary<int, ScenarioModel1>(scenarios.ToDictionary(x => x.Id, x => x));
 
 		List<ScenarioModel2> scenarios2 = ParseCategory<ScenarioModel2>(data["Scenarios2"] as Dictionary<string, object>);
 		scenarios2.TrimExcess();

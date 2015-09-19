@@ -38,7 +38,7 @@ public class Header : MonoBehaviour {
 			int n = 0;
 			string t = Regex.Replace(playerMoneyLabel.text, "\\D", "");
 			if (System.Int32.TryParse(t, out n)) {
-				DOTween.To (x => playerMoneyLabel.text = "$"+Mathf.Round(x).ToString(), n, amount, GameSettings.Instance.VoteUpdateTime / 2);
+				DOTween.To (x => playerMoneyLabel.text = "$"+Mathf.Round(x).ToString(), n, amount, GameSettings.InstanceOrCreate.VoteUpdateTime / 2);
 			}
 		}
 	}
@@ -57,7 +57,7 @@ public class Header : MonoBehaviour {
 		} else {
 			int n = 0;
 			if (System.Int32.TryParse(label.text, out n)) {
-				DOTween.To (x => label.text = Mathf.Round(x).ToString(), n, votes, GameSettings.Instance.VoteUpdateTime);
+				DOTween.To (x => label.text = Mathf.Round(x).ToString(), n, votes, GameSettings.InstanceOrCreate.VoteUpdateTime);
 			}
 		}
 	}
@@ -67,7 +67,7 @@ public class Header : MonoBehaviour {
 
 	public void ShowGameOver(bool win, Action callback = null) {
 		divider.gameObject.SetActive (false);
-		opponentBackground.DOFillAmount((win) ? 0 : 1, GameSettings.Instance.VoteUpdateTime).OnComplete (() => CompleteGameOver(win, callback));
+		opponentBackground.DOFillAmount((win) ? 0 : 1, GameSettings.InstanceOrCreate.VoteUpdateTime).OnComplete (() => CompleteGameOver(win, callback));
 	}
 
 	void CompleteGameOver(bool win, Action callback = null) {

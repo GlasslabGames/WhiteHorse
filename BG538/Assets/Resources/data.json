@@ -369,6 +369,8 @@
   "Scenarios": {
     "spec": {
       "Name": "text",
+      "Description": "text",
+      "Image": "text",
       "PresetStates": "checkboxes States",
       "Randomness": "number 0 1 0.1",
       "StateLeanings": "foreach States (select Leanings)"
@@ -376,7 +378,7 @@
     "nodes": [
       {
         "Id": 1,
-        "Name": "Swing States (WH Game Jam)",
+        "Name": "Swing States",
         "StateLeanings": [
           2,
           2,
@@ -468,14 +470,16 @@
           48,
           49,
           51
-        ]
+        ],
+        "Description": "A simple and balanced scenario in which you fight to control a few set swing states."
       },
       {
         "Id": 2,
         "Name": "Totally Random",
         "PresetStates": [],
         "StateLeanings": [],
-        "Randomness": 1
+        "Randomness": 1,
+        "Description": "A completely random scenario - anything goes!"
       }
     ]
   },
@@ -536,6 +540,8 @@
   "Scenarios2": {
     "spec": {
       "Name": "text",
+      "Description": "text",
+      "Image": "text",
       "MinStatesInPlay": "number 0 50 1",
       "MaxStatesInPlay": "number 0 50 1",
       "StatesInPlay": "foreach States (select InPlayStatus)",
@@ -652,7 +658,8 @@
           28
         ],
         "MinStatesInPlay": 11,
-        "MaxStatesInPlay": 17
+        "MaxStatesInPlay": 17,
+        "Description": "A scenario based on specific data, but with the active states randomly chosen."
       }
     ]
   }

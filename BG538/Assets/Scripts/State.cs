@@ -257,7 +257,7 @@ public class State : MonoBehaviour {
 		int currentBlueWorkerCount = (GameManager.Instance.PlayerIsBlue) ? playerWorkers.Count : opponentWorkers.Count;
 		int currentRedWorkerCount = (GameManager.Instance.PlayerIsBlue) ? opponentWorkers.Count : playerWorkers.Count;
 
-		float change = (currentBlueWorkerCount - currentRedWorkerCount) * GameSettings.Instance.WorkerIncrement * 2;
+		float change = (currentBlueWorkerCount - currentRedWorkerCount) * GameSettings.InstanceOrCreate.WorkerIncrement * 2;
 		// we multiply by 2 so 1% change => 0.02 difference (since the vote goes from -1 to 1)
 
 		currentVote = previousVote + change;
@@ -283,17 +283,17 @@ public class State : MonoBehaviour {
 	}
 
 	public float GetPlayerPercentChange() {
-		return playerWorkers.Count * GameSettings.Instance.WorkerIncrement;
+		return playerWorkers.Count * GameSettings.InstanceOrCreate.WorkerIncrement;
 	}
 
 	public float GetOpponentPercentChange() {
-		return opponentWorkers.Count * GameSettings.Instance.WorkerIncrement;
+		return opponentWorkers.Count * GameSettings.InstanceOrCreate.WorkerIncrement;
 	}
 
 	public void UpdateColor(bool playParticles = false) {
 		if (Hidden) {
-			stateColor.color = GameSettings.Instance.Colors.undiscoveredState;
-			stateOutline.color = GameSettings.Instance.Colors.outline;
+			stateColor.color = GameSettings.InstanceOrCreate.Colors.undiscoveredState;
+			stateOutline.color = GameSettings.InstanceOrCreate.Colors.outline;
 			stateStripes.enabled = true;
 			return;
 		}
@@ -305,18 +305,18 @@ public class State : MonoBehaviour {
 				t = Mathf.InverseLerp(0.5f, 1f, (IsBlue) ? BlueSupportPercent : RedSupportPercent); // 0.5 -> 0, 1 -> 1
 				t = Mathf.Lerp(0.2f, 1f, t); // 0 -> 0.2, 1 -> 1 (Start at 0.2 so we don't go all the way to the neutral color.)
 			}
-			Color c = (IsBlue)? GameSettings.Instance.Colors.medBlue : GameSettings.Instance.Colors.medRed;
-			stateColor.color = Color.Lerp(GameSettings.Instance.Colors.neutralState, c, t);
+			Color c = (IsBlue)? GameSettings.InstanceOrCreate.Colors.medBlue : GameSettings.InstanceOrCreate.Colors.medRed;
+			stateColor.color = Color.Lerp(GameSettings.InstanceOrCreate.Colors.neutralState, c, t);
 		} else {
-			stateColor.color = (InPlay)? GameSettings.Instance.Colors.neutralState : GameSettings.Instance.Colors.neutralLockedState;
+			stateColor.color = (InPlay)? GameSettings.InstanceOrCreate.Colors.neutralState : GameSettings.InstanceOrCreate.Colors.neutralLockedState;
 		}
 
 		// Outline color
 		if (InPlay && !IsNeutral) {
-			stateOutline.color = GameSettings.Instance.Colors.outline;
+			stateOutline.color = GameSettings.InstanceOrCreate.Colors.outline;
 			stateOutline.sortingOrder = -6;
 		} else {
-			stateOutline.color = GameSettings.Instance.Colors.neutralOutline;
+			stateOutline.color = GameSettings.InstanceOrCreate.Colors.neutralOutline;
 			stateOutline.sortingOrder = -7;
 		}
 
@@ -329,7 +329,7 @@ public class State : MonoBehaviour {
 
 		// show a different outline if we're highlighted
 		if (highlighted) {
-			stateOutline.color = GameSettings.Instance.Colors.highlightOutline;
+			stateOutline.color = GameSettings.InstanceOrCreate.Colors.highlightOutline;
 			stateOutline.sortingOrder = -5;
 		}
 	}
@@ -353,13 +353,13 @@ public class State : MonoBehaviour {
 	public bool PlayerCanPlaceWorker() {
 		return (InPlay &&
 			GameManager.Instance.CurrentTurnPhase == TurnPhase.Placement &&
-		    GameManager.Instance.PlayerBudget.IsAmountAvailable(GameSettings.Instance.GetGameActionCost(GameAction.PlaceWorker)));
+		    GameManager.Instance.PlayerBudget.IsAmountAvailable(GameSettings.InstanceOrCreate.GetGameActionCost(GameAction.PlaceWorker)));
 	}
 
 	public bool PlayerCanRemoveWorker() {
 		return (InPlay &&
 		        GameManager.Instance.CurrentTurnPhase == TurnPhase.Placement &&
-		        GameManager.Instance.PlayerBudget.IsAmountAvailable(GameSettings.Instance.GetGameActionCost(GameAction.RemoveWorker)) &&
+		        GameManager.Instance.PlayerBudget.IsAmountAvailable(GameSettings.InstanceOrCreate.GetGameActionCost(GameAction.RemoveWorker)) &&
 		        playerWorkers.Count > 0);
 	}
     
@@ -370,9 +370,9 @@ public class State : MonoBehaviour {
 		GameObject newWorker = GameObject.Instantiate(ObjectAccessor.Instance.WorkerPrefab, supporterPosition, Quaternion.identity) as GameObject;
 
 		if (isPlayer ^ GameManager.Instance.PlayerIsBlue) {
-			newWorker.GetComponent<SpriteRenderer>().color = GameSettings.Instance.Colors.darkRed;
+			newWorker.GetComponent<SpriteRenderer>().color = GameSettings.InstanceOrCreate.Colors.darkRed;
 		} else {
-			newWorker.GetComponent<SpriteRenderer>().color = GameSettings.Instance.Colors.darkBlue;
+			newWorker.GetComponent<SpriteRenderer>().color = GameSettings.InstanceOrCreate.Colors.darkBlue;
 		}
 
 		if (isPlayer) playerWorkers.Add(newWorker);

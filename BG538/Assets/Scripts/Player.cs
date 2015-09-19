@@ -49,7 +49,7 @@ public class Player : NetworkBehaviour {
 			else WorkerCounts[state] ++;
 
 			state.AddWorker(true);
-			GameManager.Instance.PlayerBudget.ConsumeAmount(GameSettings.Instance.GetGameActionCost(GameAction.PlaceWorker));
+			GameManager.Instance.PlayerBudget.ConsumeAmount(GameSettings.InstanceOrCreate.GetGameActionCost(GameAction.PlaceWorker));
 
 			SetWorkers(state.Model.Abbreviation, WorkerCounts[state], color == Leaning.Blue);
 		}
@@ -61,7 +61,7 @@ public class Player : NetworkBehaviour {
 			else WorkerCounts [state] --;
 
 			state.RemoveWorker(true);
-			GameManager.Instance.PlayerBudget.ConsumeAmount(GameSettings.Instance.GetGameActionCost(GameAction.RemoveWorker));
+			GameManager.Instance.PlayerBudget.ConsumeAmount(GameSettings.InstanceOrCreate.GetGameActionCost(GameAction.RemoveWorker));
 
 			SetWorkers(state.Model.Abbreviation, WorkerCounts[state], color == Leaning.Blue);
 		}

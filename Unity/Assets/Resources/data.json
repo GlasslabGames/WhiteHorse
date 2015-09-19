@@ -369,6 +369,8 @@
   "Scenarios": {
     "spec": {
       "Name": "text",
+      "Description": "text",
+      "Image": "text",
       "PresetStates": "checkboxes States",
       "Randomness": "number 0 1 0.1",
       "StateLeanings": "foreach States (select Leanings)"
@@ -536,6 +538,8 @@
   "Scenarios2": {
     "spec": {
       "Name": "text",
+      "Description": "text",
+      "Image": "text",
       "MinStatesInPlay": "number 0 50 1",
       "MaxStatesInPlay": "number 0 50 1",
       "StatesInPlay": "foreach States (select InPlayStatus)",

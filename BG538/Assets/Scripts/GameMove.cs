@@ -75,7 +75,7 @@ public class AiStateModel {
 			blueWorkerCount = PlayerWorkerCount;
 			redWorkerCount = OpponentWorkerCount;
 		}
-		var newVote = Vote + (blueWorkerCount - redWorkerCount) * GameSettings.Instance.WorkerIncrement * 2;
+		var newVote = Vote + (blueWorkerCount - redWorkerCount) * GameSettings.InstanceOrCreate.WorkerIncrement * 2;
 
 		if (newVote < 0) {
 			return Leaning.Red;

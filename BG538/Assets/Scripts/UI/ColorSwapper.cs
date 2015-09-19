@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using DG.Tweening;
 
-public class AutoSetColor : MonoBehaviour {
-	public bool IsPlayer;
+public class ColorSwapper : ColorSwapperBase {
 	public enum ColorChoice
 	{
 		light,
@@ -12,37 +12,35 @@ public class AutoSetColor : MonoBehaviour {
 		darker
 	}
 	public ColorChoice color;
-	
-	void Start () {
-		RefreshColor();
+	public float TweenDuration;
 
-		SignalManager.PlayerColorSet += RefreshColor;
+	public override void SetColor(Leaning l) {
+		Color c = GetColor(l == Leaning.Blue, color);
+		SetColor(c);
 	}
 
-	void OnDestroy() {
-		SignalManager.PlayerColorSet -= RefreshColor;
-	}
-
-	void RefreshColor() {
-		Color c = GetColorForPlayer(IsPlayer, color);
-
+	void SetColor(Color c) {
 		Image i = GetComponent<Image> ();
-		if (i != null) i.color = c;
+		if (i != null) {
+			if (TweenDuration > 0) i.DOColor(c, TweenDuration);
+			else i.color = c;
+		}
 		
 		Text t = GetComponent<Text>();
-		if (t != null) t.color = c;
+		if (t != null) {
+			if (TweenDuration > 0) t.DOColor(c, TweenDuration);
+			else t.color = c;
+		}
 		
 		SpriteRenderer s = GetComponent<SpriteRenderer>();
-		if (s != null) s.color = c;
-	}
-	
-	public static Color GetColorForPlayer(bool isPlayer, ColorChoice choice) {
-		bool isBlue = (isPlayer ^ !GameManager.Instance.PlayerIsBlue); // if player and player's blue or not player and player's not blue
-		return AutoSetColor.GetColor (isBlue, choice);
+		if (s != null) {
+			if (TweenDuration > 0) s.DOColor(c, TweenDuration);
+			else s.color = c;
+		}
 	}
 
 	public static Color GetColor(bool isBlue, ColorChoice choice) {
-		GameColorSettings colors = GameSettings.Instance.Colors;
+		GameColorSettings colors = GameSettings.InstanceOrCreate.Colors;
 
 		switch (choice) {
 		case ColorChoice.light: return (isBlue)? colors.lightBlue : colors.lightRed;
