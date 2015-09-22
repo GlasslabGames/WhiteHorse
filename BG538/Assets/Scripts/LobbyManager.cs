@@ -6,7 +6,12 @@ using DG.Tweening;
 public class LobbyManager : MonoBehaviour {
 	public GameObject GamePanel;
 	public GameObject ScenarioPanel;
+	
+	public Text ScenarioDescription;
+	public Image ScenarioImage;
+
 	public Leaning CurrentColor;
+	public ScenarioModel CurrentScenarioModel;
 	public GameObject ScenarioEntryPrefab;
 
 	// Transition
@@ -31,19 +36,31 @@ public class LobbyManager : MonoBehaviour {
 
 	void FillInScenarios() {
 		ToggleGroup parent = ScenarioPanel.GetComponentInChildren<ToggleGroup>();
-		foreach (ScenarioModel1 model1 in ScenarioModel1.Models) {
-			CreateScenarioEntry(parent.transform, model1.Name, model1.Description, model1.Image);
+		GameObject go;
+		ScenarioEntry entry;
+		bool defaultSet = false;
+		foreach (ScenarioModel model in ScenarioModel.Models) {
+			go = Object.Instantiate(ScenarioEntryPrefab) as GameObject;
+			go.transform.SetParent(parent.transform, false);
+
+			entry = go.GetComponent<ScenarioEntry>();
+			entry.Set(model);
+			entry.OnSelected += OnScenarioEntrySelected;
+
+			if (!defaultSet) {
+				entry.GetComponent<Toggle>().isOn = true; // if it was already on (thanks to PrefabEntry), this doesn't call OnSelected..
+				OnScenarioEntrySelected(model); // so call it directly
+				defaultSet = true;
+			}
 		}
-		foreach (ScenarioModel2 model2 in ScenarioModel2.Models) {
-			CreateScenarioEntry(parent.transform, model2.Name, model2.Description, model2.Image);
-		}
+
 		LayoutRebuilder.MarkLayoutForRebuild(parent.transform as RectTransform);
 	}
 
-	void CreateScenarioEntry(Transform parent, string name, string description, string image) {
-		GameObject entry = Object.Instantiate(ScenarioEntryPrefab) as GameObject;
-		entry.transform.SetParent(parent, false);
-		entry.GetComponent<ScenarioEntry>().Set(name);
+	public void OnScenarioEntrySelected(ScenarioModel scenario) {
+		CurrentScenarioModel = scenario;
+		ScenarioDescription.text = scenario.Description;
+		ScenarioImage.sprite = Resources.Load<Sprite>(scenario.Image);
 	}
 
 	public void ScrollToGamePanel() {
@@ -64,5 +81,11 @@ public class LobbyManager : MonoBehaviour {
 		foreach (ColorSwapperBase colorSwapper in colorSwappers) {
 			colorSwapper.SetColor(CurrentColor);
 		}
+	}
+
+	public void Play() {
+		GameManager.ChosenScenario = CurrentScenarioModel;
+		GameManager.ChosenLeaning = CurrentColor;
+		Application.LoadLevel("game"); 
 	}
 }

@@ -14,6 +14,10 @@ public enum TurnPhase {
 }
 
 public class GameManager : SingletonBehavior<GameManager> {
+	// For AI games
+	public static ScenarioModel ChosenScenario = null;
+	public static Leaning ChosenLeaning = Leaning.Neutral;
+
 	private List<State> states = new List< State >();
 	private List<State> statesInPlay = new List< State >();
 	private List<State> statesNotInPlay = new List< State >();
@@ -55,9 +59,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 	}
 
 	public BudgetController PlayerBudget = new BudgetController();
-
-	public Timer HarvestTimer;
-
+	
 
 	protected override void Start() {
 		base.Start ();
@@ -106,21 +108,19 @@ public class GameManager : SingletonBehavior<GameManager> {
 		states.Clear();
 		statesInPlay.Clear();
 		statesNotInPlay.Clear();
-		
-		if (GameSettings.InstanceOrCreate.DefaultScenarioType == GameSettings.ScenarioType.B) {
-			InitScenarioB();
-		} else {
-			InitScenarioA();
-		}
+
+		ScenarioModel scenario = GameManager.ChosenScenario;
+		if (scenario == null) scenario = ScenarioModel.GetModel(GameSettings.InstanceOrCreate.DefaultScenarioId);
+		Debug.Log ("Scenario: " + scenario);
+		if (scenario is ScenarioModel1) InitScenarioA(scenario as ScenarioModel1);
+		else if (scenario is ScenarioModel2) InitScenarioB(scenario as ScenarioModel2);
+		else Debug.LogError("Bad scenario!");
 		
 		UIManager.Instance.StateLabels.Refresh();
 		UpdateElectoralVotes(true);
 	}
 	
-	public void InitScenarioA() {
-		ScenarioModel1 scenario = ScenarioModel1.GetModel(GameSettings.InstanceOrCreate.DefaultScenarioId);
-		Debug.Log(GameSettings.InstanceOrCreate.DefaultScenarioId + ": " + scenario);
-		
+	public void InitScenarioA(ScenarioModel1 scenario) {
 		foreach (State state in ObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>()) {
 			state.InPlay = (scenario == null || !scenario.PresetStates.Contains(state.Model.Id));
 			
@@ -130,8 +130,11 @@ public class GameManager : SingletonBehavior<GameManager> {
 			
 			if (scenario != null) {
 				int stateIndex = StateModel.Models.IndexOf(state.Model);
-				int leaning = scenario.StateLeanings[stateIndex];
-				float vote = InitialLeaningModel.GetModel(leaning).Value;
+				float vote = 0;
+				if (scenario.StateLeanings.Count > stateIndex) {
+					int leaning = scenario.StateLeanings[stateIndex];
+					vote = InitialLeaningModel.GetModel(leaning).Value;
+				}
 				vote += scenario.Randomness * (Random.value * 2 - 1);
 				state.SetInitialPopularVote(vote);
 			} else {
@@ -142,9 +145,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 		}
 	}
 	
-	public void InitScenarioB() {
-		ScenarioModel2 scenario = ScenarioModel2.GetModel(GameSettings.InstanceOrCreate.DefaultScenarioId);
-		
+	public void InitScenarioB(ScenarioModel2 scenario) {
 		int numStatesToAdd = 0;
 		int blueStatesAdded = 0;
 		int redStatesAdded = 0;
@@ -293,12 +294,12 @@ public class GameManager : SingletonBehavior<GameManager> {
 		foreach (State state in statesInPlay) {
 			state.PrepareToHarvest();
 		}
-		
-		HarvestTimer.StartTimer(NextHarvestAction);
+
+		ObjectAccessor.Instance.HarvestTimer.StartTimer(NextHarvestAction);
 	}
 	
 	private void FinishHarvest() {
-		HarvestTimer.StopTimer();
+		ObjectAccessor.Instance.HarvestTimer.StopTimer();
 	}
 	
 	public void NextHarvestAction() {

@@ -377,7 +377,7 @@
     },
     "nodes": [
       {
-        "Id": 1,
+        "Id": 101,
         "Name": "Swing States",
         "StateLeanings": [
           2,
@@ -471,15 +471,17 @@
           49,
           51
         ],
-        "Description": "A simple and balanced scenario in which you fight to control a few set swing states."
+        "Description": "A simple and balanced scenario in which you fight to control a few set swing states.",
+        "Image": "game_jam"
       },
       {
-        "Id": 2,
+        "Id": 102,
         "Name": "Totally Random",
         "PresetStates": [],
         "StateLeanings": [],
         "Randomness": 1,
-        "Description": "A completely random scenario - anything goes!"
+        "Description": "A completely random scenario - anything goes!",
+        "Image": "random"
       }
     ]
   },
@@ -549,7 +551,7 @@
     },
     "nodes": [
       {
-        "Id": 1,
+        "Id": 201,
         "Name": "Hack Day scenario",
         "StatesInPlay": [
           2,
@@ -659,7 +661,8 @@
         ],
         "MinStatesInPlay": 11,
         "MaxStatesInPlay": 17,
-        "Description": "A scenario based on specific data, but with the active states randomly chosen."
+        "Description": "A scenario based on specific data, but with the active states randomly chosen.",
+        "Image": "hackday"
       }
     ]
   }

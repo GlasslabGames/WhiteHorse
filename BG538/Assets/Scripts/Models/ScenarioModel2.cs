@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ScenarioModel2 : ScenarioModel<ScenarioModel2> {
+public class ScenarioModel2 : ScenarioModel {
 	public int MinStatesInPlay;
 	public int MaxStatesInPlay;
   public List<int> StatesInPlay;

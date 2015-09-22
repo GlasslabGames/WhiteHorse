@@ -21,8 +21,6 @@ public class GameSettings : SingletonBehavior<GameSettings> {
 	public float HarvestInterval;
 	public float VoteUpdateTime;
 
-	public enum ScenarioType { A, B }
-	public ScenarioType DefaultScenarioType;
 	public int DefaultScenarioId;
 
 	public GameActionCost[] GameActionCosts;

@@ -6,4 +6,5 @@ public class ObjectAccessor : SingletonBehavior<ObjectAccessor> {
 	public SpriteRenderer Background;
 	public GameObject WorkerPrefab;
 	public GameObject PlayerPrefab;
+	public Timer HarvestTimer;
 }

@@ -30,14 +30,16 @@ public static class ModelDataStore {
 		List<StateModel> states = ParseCategory<StateModel>(data["States"] as Dictionary<string, object>);
 		states.TrimExcess();
 		StateModel.ms_models = new SortedDictionary<int, StateModel>(states.ToDictionary(x => x.Id, x => x));
-		
+
+		// Scenarios are a special case where we're adding models from two subclasses
 		List<ScenarioModel1> scenarios = ParseCategory<ScenarioModel1>(data["Scenarios"] as Dictionary<string, object>);
 		scenarios.TrimExcess();
-		ScenarioModel1.ms_models = new SortedDictionary<int, ScenarioModel1>(scenarios.ToDictionary(x => x.Id, x => x));
+		ScenarioModel.ms_models = new SortedDictionary<int, ScenarioModel>(scenarios.ToDictionary(x => x.Id, x => (x as ScenarioModel)));
 
 		List<ScenarioModel2> scenarios2 = ParseCategory<ScenarioModel2>(data["Scenarios2"] as Dictionary<string, object>);
 		scenarios2.TrimExcess();
-		ScenarioModel2.ms_models = new SortedDictionary<int, ScenarioModel2>(scenarios2.ToDictionary(x => x.Id, x => x));
+		scenarios2.ForEach(x => ScenarioModel.ms_models.Add(x.Id, x));
+//		ScenarioModel2.ms_models = new SortedDictionary<int, ScenarioModel2>(scenarios2.ToDictionary(x => x.Id, x => x));
 
 		List<InitialLeaningModel> leanings = ParseCategory<InitialLeaningModel>(data["Leanings"] as Dictionary<string, object>);
 		leanings.TrimExcess();

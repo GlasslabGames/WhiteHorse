@@ -4,10 +4,19 @@ using System.Collections;
 
 public class ScenarioEntry : PrefabEntry {
 	public Text nameLabel;
+	private ScenarioModel model;
 
-	public void Set(string name) {
+	public delegate void ScenarioEvent(ScenarioModel scenario);
+	public ScenarioEvent OnSelected;
+
+	public void Set(ScenarioModel scenario) {
 		base.CheckToggleGroup();
 
-		nameLabel.text = name;
+		model = scenario;
+		nameLabel.text = scenario.Name;
+	}
+
+	public void OnToggle(bool value) {
+		if (value && OnSelected != null) OnSelected(model);
 	}
 }
