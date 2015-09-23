@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
+using UnityEngine.Networking.Match;
 using System.Collections;
 using DG.Tweening;
 
@@ -13,6 +15,20 @@ public class LobbyManager : MonoBehaviour {
 	public Leaning CurrentColor;
 	public ScenarioModel CurrentScenarioModel;
 	public GameObject ScenarioEntryPrefab;
+
+	private NetworkLobbyManager _networkManager;
+	public NetworkLobbyManager NetworkManager {
+		get {
+			if (!_networkManager) _networkManager = GetComponent<NetworkLobbyManager>();
+			return _networkManager;
+		}
+	}
+	public NetworkMatch MatchMaker {
+		get {
+			if (!NetworkManager.matchMaker) NetworkManager.StartMatchMaker();
+			return NetworkManager.matchMaker;
+		}
+	}
 
 	// Transition
 	private float panelStartY;
