@@ -15,6 +15,7 @@ public enum TurnPhase {
 
 public class GameManager : SingletonBehavior<GameManager> {
 	// For AI games
+	public static bool StartAIGame = false;
 	public static ScenarioModel ChosenScenario = null;
 	public static Leaning ChosenLeaning = Leaning.Neutral;
 
@@ -66,8 +67,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 
 		GoToState (TurnPhase.Connecting);
 
-		if (Object.FindObjectOfType<NetworkManager>() == null) {
-			Debug.Log ("No network connection. Creating localPlayer now...");
+		if (Object.FindObjectOfType<NetworkManager>() == null || GameManager.StartAIGame) {
 			OpponentAI = new AI();
 			GameObject go = GameObject.Instantiate(ObjectAccessor.Instance.PlayerPrefab);
 			SetPlayer(go.GetComponent<Player>(), true);
@@ -85,6 +85,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 	public void SetPlayer(Player p, bool isLocalPlayer) {
 		if (isLocalPlayer) {
 			LocalPlayer = p;
+			if (GameManager.ChosenLeaning != Leaning.Neutral) LocalPlayer.color = GameManager.ChosenLeaning; // get the color we chose in the menu 
 			if (SignalManager.PlayerColorSet != null) SignalManager.PlayerColorSet();
 		} else {
 			OpposingPlayer = p;

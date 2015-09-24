@@ -2,12 +2,15 @@
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
-using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 
 public class LobbyManager : MonoBehaviour {
 	public GameObject GamePanel;
 	public GameObject ScenarioPanel;
+	public GameObject WaitingModal;
+	public GameObject Overlay;
+	private MatchList matchList;
 	
 	public Text ScenarioDescription;
 	public Image ScenarioImage;
@@ -19,7 +22,7 @@ public class LobbyManager : MonoBehaviour {
 	private NetworkLobbyManager _networkManager;
 	public NetworkLobbyManager NetworkManager {
 		get {
-			if (!_networkManager) _networkManager = GetComponent<NetworkLobbyManager>();
+			if (!_networkManager) _networkManager = FindObjectOfType<NetworkLobbyManager>();
 			return _networkManager;
 		}
 	}
@@ -30,11 +33,15 @@ public class LobbyManager : MonoBehaviour {
 		}
 	}
 
+	private uint hostedMatchId; // UnityEngine.Networking.Types.NetworkID
+
 	// Transition
 	private float panelStartY;
 	private float panelOffsetY;
 	private float transitionDuration = 0.5f;
 	private Ease transitionEase = Ease.InOutCubic;
+
+	public static char MatchInfoDivider = '|';
 
 	public void Start() {
 		FillInScenarios();
@@ -48,6 +55,11 @@ public class LobbyManager : MonoBehaviour {
 		Vector3 pos = ScenarioPanel.transform.position;
 		pos.y = panelStartY - panelOffsetY;
 		ScenarioPanel.transform.position = pos;
+
+		WaitingModal.SetActive(false);
+		Overlay.SetActive(false);
+
+		matchList = GamePanel.GetComponentInChildren<MatchList>();
 	}
 
 	void FillInScenarios() {
@@ -100,8 +112,52 @@ public class LobbyManager : MonoBehaviour {
 	}
 
 	public void Play() {
+		string playerName = "Jerry F."; // TODO: get player name
+		/*
+		// This is how we would pass additional info if matchAttributes worked, but they don't.
+		// Maybe we can revisit with a later version of Unity
+		CreateMatchRequest request = new CreateMatchRequest();
+		request.advertise = true;
+		request.name = "Jerry F.";
+		request.size = 2;
+		request.password = "";
+
+		Dictionary<string, long> attributes = new Dictionary<string, long>();
+		attributes.Add("scenarioId", CurrentScenarioModel.Id);
+		attributes.Add("color", (long) CurrentColor);
+		request.matchAttributes = attributes;
+
+		MatchMaker.CreateMatch(request, OnCreateMatch);
+		*/
+		string info = playerName + MatchInfoDivider + CurrentScenarioModel.Id + MatchInfoDivider + ((int) CurrentColor);
+		MatchMaker.CreateMatch(info, 2, true, "", OnCreateMatch);
+
+		ScrollToGamePanel();
+		WaitingModal.SetActive(true);
+	}
+
+	void OnCreateMatch(CreateMatchResponse response) {
+		hostedMatchId = (uint) response.networkId;
+		if (matchList != null) matchList.Refresh();
+	}
+
+	public void CancelMatch() {
+		Debug.Log (hostedMatchId);
+		MatchMaker.DestroyMatch((UnityEngine.Networking.Types.NetworkID) hostedMatchId, OnMatchDestroyed);
+		WaitingModal.SetActive(false);
+	}
+
+	void OnMatchDestroyed(BasicResponse response) {
+		Debug.Log ("** Match destroyed: "+response.extendedInfo);
+		if (matchList != null) matchList.Refresh();
+	}
+
+	public void StartAIGame() {
+		CancelMatch();
+		GameManager.StartAIGame = true;
 		GameManager.ChosenScenario = CurrentScenarioModel;
 		GameManager.ChosenLeaning = CurrentColor;
-		Application.LoadLevel("game"); 
+		Overlay.SetActive(true);
+		Application.LoadLevel("game");
 	}
 }
