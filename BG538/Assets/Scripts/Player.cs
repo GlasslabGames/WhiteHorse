@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Networking;
 
-public class Player : NetworkBehaviour {
+public class Player : Photon.PunBehaviour {
  	public Leaning color;
 
-	[SyncVar(hook = "OnFinishedChange")]
 	private bool _finished;
 	public bool Finished {
 		get { return _finished; }
@@ -16,10 +14,10 @@ public class Player : NetworkBehaviour {
 	public Dictionary<State, int> WorkerCounts = new Dictionary<State, int>();
 
 	void Start () {
-		Debug.Log ("Start! " + isLocalPlayer);
+		/*Debug.Log ("Start! " + isLocalPlayer);
 		color = (isServer ^ isLocalPlayer)? Leaning.Blue : Leaning.Red;
 
-		GameManager.Instance.SetPlayer(this, isLocalPlayer);
+		GameManager.Instance.SetPlayer(this, isLocalPlayer);*/
 	}
 
 	void OnDestroy() {
@@ -28,12 +26,11 @@ public class Player : NetworkBehaviour {
 	}
 
 	public void SetFinished(bool b) {	
-		if (isServer) _finished = b;
+		/*if (isServer) _finished = b;
 		else if (isClient) CmdSetFinished(b);
-		else OnFinishedChange(b);
+		else OnFinishedChange(b);*/
 	}
 		
-	[Command]
 	public void CmdSetFinished(bool b) {
 		_finished = b;
 	}
@@ -74,19 +71,18 @@ public class Player : NetworkBehaviour {
 	 * Else, if we're offline, we just set the workers directly.
 	 ***/
 	void SetWorkers(string stateAbbreviation, int workerCount, bool isBluePlayer) {
-		if (isServer) RpcSetWorkers(stateAbbreviation, workerCount, isBluePlayer);
+		/*if (isServer) RpcSetWorkers(stateAbbreviation, workerCount, isBluePlayer);
 		else if (isClient) CmdSetWorkers(stateAbbreviation, workerCount, isBluePlayer);
 		else DoSetWorkers(stateAbbreviation, workerCount, isBluePlayer); // offline mode
+		*/
 	}
 
 	// Called by any Player (acting as a client) on the single server, which sends it on to all clients
-	[Command]
 	public void CmdSetWorkers(string stateAbbreviation, int workerCount, bool isBluePlayer) {
 		RpcSetWorkers (stateAbbreviation, workerCount, isBluePlayer);
 	}
 
 	// Called by the server on every client to set the state workers
-	[ClientRpc]
 	public void RpcSetWorkers(string stateAbbreviation, int workerCount, bool isBluePlayer) {
 		DoSetWorkers (stateAbbreviation, workerCount, isBluePlayer);
 	}

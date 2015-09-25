@@ -14,7 +14,7 @@ public struct GameActionCost {
 }
 
 public class GameSettings : SingletonBehavior<GameSettings> {
-	
+	public string Version;
 	public int TotalWeeks;
 	public float[] Income;
 	public float WorkerIncrement;

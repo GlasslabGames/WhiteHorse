@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Networking;
-using UnityEngine.Networking.Match;
 using System.Collections.Generic;
 using DG.Tweening;
 
 public class LobbyManager : MonoBehaviour {
 	public GameObject GamePanel;
+	private CanvasGroup gameCanvasGroup;
 	public GameObject ScenarioPanel;
+	private CanvasGroup scenarioCanvasGroup;
+
 	public GameObject WaitingModal;
 	public GameObject Overlay;
-	private MatchList matchList;
 	
 	public Text ScenarioDescription;
 	public Image ScenarioImage;
@@ -19,19 +19,14 @@ public class LobbyManager : MonoBehaviour {
 	public ScenarioModel CurrentScenarioModel;
 	public GameObject ScenarioEntryPrefab;
 
-	private NetworkLobbyManager _networkManager;
-	public NetworkLobbyManager NetworkManager {
+	/*
+	private NetworkManager _networkManager;
+	public NetworkManager NetworkManager {
 		get {
-			if (!_networkManager) _networkManager = FindObjectOfType<NetworkLobbyManager>();
+			if (!_networkManager) _networkManager = FindObjectOfType<NetworkManager>();
 			return _networkManager;
 		}
-	}
-	public NetworkMatch MatchMaker {
-		get {
-			if (!NetworkManager.matchMaker) NetworkManager.StartMatchMaker();
-			return NetworkManager.matchMaker;
-		}
-	}
+	}*/
 
 	private uint hostedMatchId; // UnityEngine.Networking.Types.NetworkID
 
@@ -48,9 +43,13 @@ public class LobbyManager : MonoBehaviour {
 
 		panelStartY = GamePanel.transform.position.y;
 		panelOffsetY = Screen.height * 1.25f;
-
+		
 		GamePanel.SetActive(true);
-		ScenarioPanel.SetActive(false);
+		gameCanvasGroup = GamePanel.GetComponent<CanvasGroup>();
+
+		ScenarioPanel.SetActive(true);
+		scenarioCanvasGroup = ScenarioPanel.GetComponent<CanvasGroup>();
+		scenarioCanvasGroup.alpha = 0;
 
 		Vector3 pos = ScenarioPanel.transform.position;
 		pos.y = panelStartY - panelOffsetY;
@@ -58,8 +57,6 @@ public class LobbyManager : MonoBehaviour {
 
 		WaitingModal.SetActive(false);
 		Overlay.SetActive(false);
-
-		matchList = GamePanel.GetComponentInChildren<MatchList>();
 	}
 
 	void FillInScenarios() {
@@ -92,15 +89,19 @@ public class LobbyManager : MonoBehaviour {
 	}
 
 	public void ScrollToGamePanel() {
-		GamePanel.SetActive(true);
+		gameCanvasGroup.alpha = 1;
 		GamePanel.transform.DOMoveY(panelStartY, transitionDuration).SetEase(transitionEase);
-		ScenarioPanel.transform.DOMoveY(panelStartY - panelOffsetY, transitionDuration).SetEase(transitionEase).OnComplete(() => ScenarioPanel.SetActive(false));
+		ScenarioPanel.transform.DOMoveY(panelStartY - panelOffsetY, transitionDuration)
+			.SetEase(transitionEase)
+				.OnComplete(() => scenarioCanvasGroup.alpha = 0);
 	}
 
 	public void ScrollToScenarioPanel() {
-		ScenarioPanel.SetActive(true);
+		scenarioCanvasGroup.alpha = 1;
 		ScenarioPanel.transform.DOMoveY(panelStartY, transitionDuration).SetEase(transitionEase);
-		GamePanel.transform.DOMoveY(panelStartY + panelOffsetY, transitionDuration).SetEase(transitionEase).OnComplete(() => GamePanel.SetActive(false));
+		GamePanel.transform.DOMoveY(panelStartY + panelOffsetY, transitionDuration)
+			.SetEase(transitionEase)
+				.OnComplete(() => gameCanvasGroup.alpha = 0);
 	}
 
 	public void ToggleColor() {
@@ -111,45 +112,30 @@ public class LobbyManager : MonoBehaviour {
 		}
 	}
 
-	public void Play() {
+	public void Host() {
 		string playerName = "Jerry F."; // TODO: get player name
-		/*
-		// This is how we would pass additional info if matchAttributes worked, but they don't.
-		// Maybe we can revisit with a later version of Unity
-		CreateMatchRequest request = new CreateMatchRequest();
-		request.advertise = true;
-		request.name = "Jerry F.";
-		request.size = 2;
-		request.password = "";
 
-		Dictionary<string, long> attributes = new Dictionary<string, long>();
-		attributes.Add("scenarioId", CurrentScenarioModel.Id);
-		attributes.Add("color", (long) CurrentColor);
-		request.matchAttributes = attributes;
+		NetworkManager.CreateRoom(playerName, CurrentScenarioModel.Id, (int) CurrentColor);
+		// Photon will automatically join the room once it's created, and then we'll start the game
 
-		MatchMaker.CreateMatch(request, OnCreateMatch);
-		*/
-		string info = playerName + MatchInfoDivider + CurrentScenarioModel.Id + MatchInfoDivider + ((int) CurrentColor);
-		MatchMaker.CreateMatch(info, 2, true, "", OnCreateMatch);
-
-		ScrollToGamePanel();
-		WaitingModal.SetActive(true);
+		Overlay.SetActive(true); // TODO: make sure we have a way to get out of this state if there's an error
 	}
 
-	void OnCreateMatch(CreateMatchResponse response) {
-		hostedMatchId = (uint) response.networkId;
-		if (matchList != null) matchList.Refresh();
+	public void Join() {
+		ToggleGroup group = GamePanel.GetComponentInChildren<ToggleGroup>();
+		foreach (Toggle toggle in group.ActiveToggles()) { // I couldn't find a better way to access the single toggled
+			MatchmakerEntry entry = toggle.GetComponent<MatchmakerEntry>();
+			if (entry) {
+				NetworkManager.JoinRoom(entry.RoomName);
+				return;
+			}
+		}
 	}
 
 	public void CancelMatch() {
 		Debug.Log (hostedMatchId);
-		MatchMaker.DestroyMatch((UnityEngine.Networking.Types.NetworkID) hostedMatchId, OnMatchDestroyed);
+		//TODO MatchMaker.DestroyMatch((UnityEngine.Networking.Types.NetworkID) hostedMatchId, OnMatchDestroyed);
 		WaitingModal.SetActive(false);
-	}
-
-	void OnMatchDestroyed(BasicResponse response) {
-		Debug.Log ("** Match destroyed: "+response.extendedInfo);
-		if (matchList != null) matchList.Refresh();
 	}
 
 	public void StartAIGame() {

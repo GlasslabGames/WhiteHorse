@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
+using ExitGames.Client.Photon;
 
 public enum TurnPhase {
 	Connecting,
@@ -14,7 +15,7 @@ public enum TurnPhase {
 }
 
 public class GameManager : SingletonBehavior<GameManager> {
-	// For AI games
+	// For AI games - currently not used but we might want for offline mode
 	public static bool StartAIGame = false;
 	public static ScenarioModel ChosenScenario = null;
 	public static Leaning ChosenLeaning = Leaning.Neutral;
@@ -60,17 +61,20 @@ public class GameManager : SingletonBehavior<GameManager> {
 	}
 
 	public BudgetController PlayerBudget = new BudgetController();
-	
 
 	protected override void Start() {
 		base.Start ();
 
+		if (PhotonNetwork.room != null) {
+			ExitGames.Client.Photon.Hashtable roomSettings = PhotonNetwork.room.customProperties;
+			GameManager.ChosenScenario = ScenarioModel.GetModel((int) roomSettings["s"]);
+			GameManager.ChosenLeaning = (Leaning) roomSettings["c"];
+		}
+
 		GoToState (TurnPhase.Connecting);
 
 		if (Object.FindObjectOfType<NetworkManager>() == null || GameManager.StartAIGame) {
-			OpponentAI = new AI();
-			GameObject go = GameObject.Instantiate(ObjectAccessor.Instance.PlayerPrefab);
-			SetPlayer(go.GetComponent<Player>(), true);
+			StartGameWithAI();
 		}
 
 		SignalManager.PlayerFinished += OnPlayerFinished;
@@ -80,6 +84,24 @@ public class GameManager : SingletonBehavior<GameManager> {
 		base.OnDestroy ();
 
 		SignalManager.PlayerFinished -= OnPlayerFinished;
+	}
+
+	public void QuitGame() {
+		PhotonNetwork.LeaveRoom();
+	}
+
+	public void StartGameWithAI() {
+		if (PhotonNetwork.room != null) {
+			if (PhotonNetwork.room.playerCount >= PhotonNetwork.room.maxPlayers) {
+				Debug.LogError("Can't start AI when there's another player in the room!");
+				return;
+				// TODO
+			}
+			PhotonNetwork.room.open = false;
+		}
+		OpponentAI = new AI();
+		GameObject go = GameObject.Instantiate(ObjectAccessor.Instance.PlayerPrefab);
+		SetPlayer(go.GetComponent<Player>(), true);
 	}
 
 	public void SetPlayer(Player p, bool isLocalPlayer) {
@@ -100,9 +122,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 			}
 		} else if (CurrentTurnPhase != TurnPhase.Connecting) { // we lost a player in the middle of the game
 			NetworkManager nm = Object.FindObjectOfType<NetworkManager>();
-			if (nm != null) nm.StopHost(); // quit the connection
+			//TODO if (nm != null) nm.StopHost(); // quit the connection
 		}
-
 	}
 
 	public void InitScenario() {

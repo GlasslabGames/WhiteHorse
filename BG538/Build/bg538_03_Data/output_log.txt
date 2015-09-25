@@ -1,0 +1,623 @@
+Mono path[0] = 'C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_03_Data/Managed'
+Mono path[1] = 'C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_03_Data/Mono'
+Mono config path = 'C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_03_Data/Mono/etc'
+PlayerConnection initialized from C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_03_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55467
+Multi-casting "[IP] 10.14.13.65 [Port] 55467 [Flags] 3 [Guid] 3563687883 [EditorId] 1697105972 [Version] 1048832 [Id] WindowsPlayer(Noname-PC) [Debug] 1" to [225.0.0.222:54997]...
+Waiting for connection from host on [10.14.13.65:55467]...
+PlayerConnection accepted from [10.14.13.65] handle:0x204
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56883
+PlayerConnection already initialized - listening to [10.14.13.65:55467]
+Initialize engine version: 5.2.0f3 (e7947df39b5c)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 670 (ID=0x1189)
+    Vendor:   NVIDIA
+    VRAM:     1990 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\DOTween.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\DOTween.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\DOTween43.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\DOTween43.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\DOTween46.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\DOTween46.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\DOTween50.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\DOTween50.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\Photon3Unity3D.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.235 seconds
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+<RI> Input initialized.
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\System.dll (this message is harmless)
+Setting up 3 worker threads for Enlighten.
+  Thread -> id: 3ddb4 -> priority: 1 
+  Thread -> id: 3d4a8 -> priority: 1 
+  Thread -> id: 3ee1c -> priority: 1 
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 7.016413 ms
+System memory in use before: 20.4 MB.
+System memory in use after: 20.4 MB.
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 626.
+Total: 0.836509 ms (FindLiveObjects: 0.037976 ms CreateObjectMapping: 0.106231 ms MarkObjects: 0.680497 ms  DeleteObjects: 0.007697 ms)
+
+Loading ModelDataStore
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+ModelDataStore:Load() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Models\ModelDataStore.cs:26)
+ModelDataStore:.cctor() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Models\ModelDataStore.cs:19)
+Model`1:.cctor() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Models\Model.cs:26)
+Model`1:.cctor() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Models\Model.cs:26)
+LobbyManager:FillInScenarios() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\LobbyManager.cs:85)
+LobbyManager:FillInScenarios() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\LobbyManager.cs:69)
+LobbyManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\LobbyManager.cs:44)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/Models/ModelDataStore.cs Line: 26)
+
+New room list: 
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:54)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1837)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 54)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:58)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1837)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
+
+New room list: 
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:54)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 54)
+
+01753ac2-6df2-41cb-af8d-78c4932a7b89 1/2
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:57)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 57)
+
+Room: '01753ac2-6df2-41cb-af8d-78c4932a7b89' visible,open 1/2 players.
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:36)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 36)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:58)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
+
+New room list: 
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:54)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 54)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:58)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
+
+New room list: 
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:54)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 54)
+
+a2dfd9af-f980-4f55-841c-ba83abf39984 1/2
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:57)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 57)
+
+Room: 'a2dfd9af-f980-4f55-841c-ba83abf39984' visible,open 1/2 players.
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:36)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 36)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:58)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
+
+New room list: 
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:54)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 54)
+
+a2dfd9af-f980-4f55-841c-ba83abf39984 1/2
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:57)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 57)
+
+Room: 'a2dfd9af-f980-4f55-841c-ba83abf39984' visible,closed 1/2 players.
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:36)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 36)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:58)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
+
+New room list: 
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:54)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 54)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:58)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
+
+New room list: 
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:54)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 54)
+
+5b0f7bf6-80da-419a-9150-b5b9b75e613d 1/2
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:57)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 57)
+
+Room: '5b0f7bf6-80da-419a-9150-b5b9b75e613d' visible,open 1/2 players.
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:36)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 36)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:58)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
+
+New room list: 
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:54)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 54)
+
+5b0f7bf6-80da-419a-9150-b5b9b75e613d 1/2
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:57)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 57)
+
+Room: '5b0f7bf6-80da-419a-9150-b5b9b75e613d' visible,closed 1/2 players.
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:36)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 36)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:58)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
+
+New room list: 
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:54)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 54)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:58)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
+
+New room list: 
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:54)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 54)
+
+3d726aa3-92bf-499b-a6e2-3023439c533a 1/2
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:57)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 57)
+
+Room: '3d726aa3-92bf-499b-a6e2-3023439c533a' visible,open 1/2 players.
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:36)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 36)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:58)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
+
+New room list: 
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:54)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 54)
+
+3d726aa3-92bf-499b-a6e2-3023439c533a 1/2
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:57)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 57)
+
+Room: '3d726aa3-92bf-499b-a6e2-3023439c533a' visible,closed 1/2 players.
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:36)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 36)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:58)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
+
+New room list: 
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:54)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 54)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:58)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
+
+Waiting for finish
