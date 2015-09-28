@@ -11,7 +11,8 @@ public enum TurnPhase {
 	Placement,
 	Waiting,
 	Harvest,
-	ElectionDay
+	ElectionDay,
+	Disconnected
 }
 
 public class GameManager : SingletonBehavior<GameManager> {
@@ -71,10 +72,10 @@ public class GameManager : SingletonBehavior<GameManager> {
 			GameManager.ChosenLeaning = (Leaning) roomSettings["c"];
 		}
 
-		GoToState (TurnPhase.Connecting);
-
-		if (Object.FindObjectOfType<NetworkManager>() == null || GameManager.StartAIGame) {
-			StartGameWithAI();
+		if (PhotonNetwork.room != null && PhotonNetwork.room.playerCount >= PhotonNetwork.room.maxPlayers) {
+			GoToState(TurnPhase.BeginGame);
+		} else {
+			GoToState (TurnPhase.Connecting);
 		}
 
 		SignalManager.PlayerFinished += OnPlayerFinished;
@@ -86,7 +87,14 @@ public class GameManager : SingletonBehavior<GameManager> {
 		SignalManager.PlayerFinished -= OnPlayerFinished;
 	}
 
+	[PunRPC]
+	void TestRPC(string a) {
+		Debug.Log ("RPC: "+a);
+		if (UIManager.Instance) UIManager.Instance.weekLabel.text = "RPC: "+a;
+	}
+
 	public void QuitGame() {
+		Application.LoadLevel("lobby");
 		PhotonNetwork.LeaveRoom();
 	}
 
@@ -289,7 +297,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 		UpdateElectoralVotes();
 
 		Debug.Log ("BeginWeek, setting Ready to false");
-		LocalPlayer.SetFinished(false);
+		if (LocalPlayer) LocalPlayer.SetFinished(false);
 		if (OpposingPlayer) OpposingPlayer.SetFinished(false);
 
 		SignalManager.BeginWeek(CurrentWeek);
@@ -354,6 +362,10 @@ public class GameManager : SingletonBehavior<GameManager> {
 	}
 	
 	public void FinishWeek() {
+		//FIXME
+		PhotonView photonView = PhotonView.Get(this);
+		photonView.RPC("TestRPC", PhotonTargets.All, "beep");
+
 		if (CurrentTurnPhase == TurnPhase.Placement) {
 			LocalPlayer.SetFinished(true);
 		}

@@ -6,12 +6,18 @@ public class NetworkManager : Photon.PunBehaviour {
 	public bool ShowDebugInfo;
 	public Text DebugLabel;
 
+	public enum DisconnectionReason {
+		opponent,
+		other
+	}
+	public static DisconnectionReason DisconnectionInfo;
+
 	void Start () {
 		DontDestroyOnLoad(gameObject);
 		PhotonNetwork.ConnectUsingSettings(GameSettings.InstanceOrCreate.Version);
 	}
 
-	public static void CreateRoom(string name, int scenarioId, int color) {
+	public static void CreateRoom(string name, int scenarioId, int color) { 
 		RoomOptions options = new RoomOptions();
 		options.maxPlayers = 2;
 		options.customRoomProperties = new Hashtable() { { "s", scenarioId }, { "n", name }, { "c", color } };
@@ -40,6 +46,32 @@ public class NetworkManager : Photon.PunBehaviour {
 		Application.LoadLevel("game");
 	}
 	
+	public override void OnLeftRoom() {
+		// Show the disconnected popup, which has a button to return to the menu
+		DisconnectionInfo = DisconnectionReason.other;
+		OnDisconnected();
+  }
+
+	public override void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer) {
+		if (PhotonNetwork.room != null && PhotonNetwork.room.playerCount < PhotonNetwork.room.maxPlayers) {
+			PhotonNetwork.LeaveRoom();
+			DisconnectionInfo = DisconnectionReason.opponent; // TODO
+		}
+	}
+
+	public override void OnPhotonPlayerConnected(PhotonPlayer otherPlayer) {
+		if (PhotonNetwork.room != null && PhotonNetwork.room.playerCount >= PhotonNetwork.room.maxPlayers
+		    && GameManager.Instance) {
+			GameManager.Instance.GoToState(TurnPhase.BeginGame);
+		}
+	}
+
+	void OnDisconnected() {
+		if (GameManager.Instance) {
+			GameManager.Instance.GoToState(TurnPhase.Disconnected);
+    	}
+	}
+    
 	public override void OnPhotonCreateRoomFailed(object[] codeAndMsg)
 	{
 		Debug.Log ("Failed to create room. "+codeAndMsg[1].ToString());

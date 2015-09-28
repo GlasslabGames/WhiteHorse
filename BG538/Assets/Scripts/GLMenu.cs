@@ -41,6 +41,21 @@ public class GLMenu : MonoBehaviour {
 		}
 	}
 
+	[MenuItem("GLMenu/AddPhotonViews")]
+	static void AddPhotonViews(MenuCommand command)
+	{
+		foreach (Object o in Selection.objects) {
+			if (o is GameObject) {
+				GameObject go = o as GameObject;
+				State s = go.GetComponent<State>();
+				if (s != null) {
+					PhotonView photon = go.AddComponent<PhotonView>() as PhotonView;
+					photon.viewID = 100 + s.Model.Id;
+				}
+			}
+		}
+	}
+
 	[MenuItem("GLMenu/ReorderStateComponent")]
 	static void ReorderStateComponent(MenuCommand command)
 	{

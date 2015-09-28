@@ -10,19 +10,21 @@ public class UIManager : SingletonBehavior<UIManager> {
 
 	public GameObject endTurnButton;
 	public GameObject restartButton;
-	public GameObject waitingText;
+	public GameObject waitingLabel;
 	public GameObject waitingIndicator;
 	public GameObject connectingIndicator;
-
-	public Text weekText;
+	public GameObject disconnectedIndicator;
+	public Text disconnectedLabel;
+	public Text weekLabel;
 
 	protected override void Start () {
 		base.Start();
 
 		if (connectingIndicator) connectingIndicator.SetActive(false);
 		if (endTurnButton) endTurnButton.gameObject.SetActive(false);
-		if (waitingText) waitingText.SetActive(false);
+		if (waitingLabel) waitingLabel.SetActive(false);
 		if (waitingIndicator) waitingIndicator.SetActive(false);
+		if (disconnectedIndicator) disconnectedIndicator.SetActive(false);
 
 		SignalManager.EnterTurnPhase += OnEnterTurnPhase;
 		SignalManager.ExitTurnPhase += OnExitTurnPhase;
@@ -47,15 +49,25 @@ public class UIManager : SingletonBehavior<UIManager> {
 			if (endTurnButton) endTurnButton.SetActive (true);
 			break;
 		case TurnPhase.Waiting:
-			if (waitingText) waitingText.SetActive(true);
+			if (waitingLabel) waitingLabel.SetActive(true);
 			if (waitingIndicator) waitingIndicator.SetActive(true);
 			break;
 		case TurnPhase.Harvest:
 			statePopup.Close();
 			break;
 		case TurnPhase.ElectionDay:
-			if (weekText) weekText.text = "THE RESULTS ARE IN...";
+			if (weekLabel) weekLabel.text = "THE RESULTS ARE IN...";
 			if (header) header.ShowGameOver(GameManager.Instance.PlayerIsWinning, AfterResults);
+			break;
+		case TurnPhase.Disconnected:
+			if (disconnectedIndicator) disconnectedIndicator.SetActive(true);
+			if (disconnectedLabel) {
+				if (NetworkManager.DisconnectionInfo == NetworkManager.DisconnectionReason.opponent) {
+					disconnectedLabel.text = "Your opponent disconnected.";
+				} else {
+					disconnectedLabel.text = "You were disconnected.";
+				}
+			}
 			break;
 		}
 	}
@@ -69,7 +81,7 @@ public class UIManager : SingletonBehavior<UIManager> {
 			if (endTurnButton) endTurnButton.gameObject.SetActive(false);
 			break;
 		case TurnPhase.Waiting:
-			if (waitingText) waitingText.SetActive(false);
+			if (waitingLabel) waitingLabel.SetActive(false);
 			if (waitingIndicator) waitingIndicator.SetActive(false);
 			break;
 		case TurnPhase.Harvest:
@@ -79,16 +91,19 @@ public class UIManager : SingletonBehavior<UIManager> {
 		case TurnPhase.ElectionDay:
 			HideElectionResults();
 			break;
+		case TurnPhase.Disconnected:
+			if (disconnectedIndicator) disconnectedIndicator.SetActive(false);
+			break;
 		}
 	}
 
 	void OnBeginWeek(int week) {
-		if (weekText) {
+		if (weekLabel) {
 			int remainingWeeks = GameSettings.InstanceOrCreate.TotalWeeks - week;
 			if (remainingWeeks <= 1) {
-				weekText.text = "FINAL WEEK";
+				weekLabel.text = "FINAL WEEK";
 			} else {
-				weekText.text = remainingWeeks + " WEEKS REMAINING";
+				weekLabel.text = remainingWeeks + " WEEKS REMAINING";
 			}
 		}
 	}
