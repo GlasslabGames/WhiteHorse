@@ -188,14 +188,17 @@ public class State : MonoBehaviour {
 		RedWorkerCount = BlueWorkerCount = 0;
 	}
 
-	public void SetInPlay(bool inPlay) {
-		InPlay = inPlay; // set this immediately for use in initialization
-		NetworkView.RPC("RpcSetInitialSettings", PhotonTargets.All, currentVote, InPlay);
+	public void SetUp(bool inPlay, float vote) {
+		InPlay = inPlay;
+		currentVote = vote;
+		previousVote = vote;
+		UpdateColor();
 	}
-
-	public void SetInitialPopularVote(float v) {
+	/*
+	void SetInitialPopularVote(float v) {
 		currentVote = v; // set this immediately for use in initialization
-		NetworkView.RPC("RpcSetInitialSettings", PhotonTargets.All, currentVote, InPlay);
+		previousVote = v;
+		//NetworkView.RPC("RpcSetInitialSettings", PhotonTargets.All, currentVote, InPlay);
 	}
 
 	[PunRPC]
@@ -206,6 +209,7 @@ public class State : MonoBehaviour {
 		InPlay = inPlay;
 		UpdateColor();
 	}
+	*/
 	
 	public void PrepareToHarvest() {
 		countedExistingWorkers = false;

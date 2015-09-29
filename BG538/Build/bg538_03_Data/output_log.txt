@@ -2,12 +2,12 @@ Mono path[0] = 'C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_03_Data/Manage
 Mono path[1] = 'C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_03_Data/Mono'
 Mono config path = 'C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_03_Data/Mono/etc'
 PlayerConnection initialized from C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_03_Data (debug = 0)
-PlayerConnection initialized network socket : 0.0.0.0 55261
-Multi-casting "[IP] 10.14.13.65 [Port] 55261 [Flags] 3 [Guid] 78747849 [EditorId] 2149762904 [Version] 1048832 [Id] WindowsPlayer(Noname-PC) [Debug] 1" to [225.0.0.222:54997]...
-Waiting for connection from host on [10.14.13.65:55261]...
+PlayerConnection initialized network socket : 0.0.0.0 55206
+Multi-casting "[IP] 10.14.13.65 [Port] 55206 [Flags] 3 [Guid] 1364319815 [EditorId] 2149762904 [Version] 1048832 [Id] WindowsPlayer(Noname-PC) [Debug] 1" to [225.0.0.222:54997]...
+Waiting for connection from host on [10.14.13.65:55206]...
 PlayerConnection accepted from [10.14.13.65] handle:0x204
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56849
-PlayerConnection already initialized - listening to [10.14.13.65:55261]
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56815
+PlayerConnection already initialized - listening to [10.14.13.65:55206]
 Initialize engine version: 5.2.0f3 (e7947df39b5c)
 GfxDevice: creating device client; threaded=1
 Direct3D:
@@ -37,7 +37,7 @@ Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\DOTwee
 Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\DOTween50.dll (this message is harmless)
 Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\DOTween50.dll into Unity Child Domain
 Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.246 seconds
+- Completed reload, in  0.254 seconds
 <RI> Initializing input.
 XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.
@@ -45,16 +45,16 @@ desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
 <RI> Initialized touch support.
 Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\System.dll (this message is harmless)
 Setting up 3 worker threads for Enlighten.
-  Thread -> id: 4b04c -> priority: 1 
-  Thread -> id: 4b024 -> priority: 1 
-  Thread -> id: 4b254 -> priority: 1 
+  Thread -> id: 4ae90 -> priority: 1 
+  Thread -> id: 4b3fc -> priority: 1 
+  Thread -> id: 3d764 -> priority: 1 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 18.083994 ms
-System memory in use before: 32.5 MB.
-System memory in use after: 32.5 MB.
+UnloadTime: 6.934814 ms
+System memory in use before: 35.2 MB.
+System memory in use after: 35.3 MB.
 
 Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 626.
-Total: 0.572726 ms (FindLiveObjects: 0.031818 ms CreateObjectMapping: 0.043108 ms MarkObjects: 0.489588 ms  DeleteObjects: 0.006671 ms)
+Total: 7.648670 ms (FindLiveObjects: 0.037976 ms CreateObjectMapping: 0.057991 ms MarkObjects: 7.541925 ms  DeleteObjects: 0.008724 ms)
 
 Loading ModelDataStore
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
@@ -98,7 +98,65 @@ PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon U
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
 
-Joined room! Room: '4007dd02-05a8-45da-a84d-df9e0d45c753' visible,open 1/2 players.
+New room list: 
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:86)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 86)
+
+4c873d63-6f0a-4d32-a7cc-c290b1077c2a 1/2
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:89)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 89)
+
+Room: '4c873d63-6f0a-4d32-a7cc-c290b1077c2a' visible,open 1/2 players.
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:36)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 36)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:58)
+RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
+
+Joined room! Room: '4c873d63-6f0a-4d32-a7cc-c290b1077c2a' visible,open 2/2 players.
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
 NetworkManager:OnJoinedRoom() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:45)
@@ -112,7 +170,7 @@ PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon U
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 45)
 
-Room: '4007dd02-05a8-45da-a84d-df9e0d45c753' visible,open 1/2 players.
+Room: '4c873d63-6f0a-4d32-a7cc-c290b1077c2a' visible,open 2/2 players.
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
 RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:36)
@@ -142,6 +200,18 @@ PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon U
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
 
+Received RPC "SetUpScenario" for viewID 1 but this PhotonView does not exist! Was remote PV. Remote called. By: 1 Maybe GO was destroyed but RPC not cleaned up.
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:LogWarning(Object)
+NetworkingPeer:ExecuteRpc(Hashtable, PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2167)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1932)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Photon Unity Networking/Plugins/PhotonNetwork/NetworkingPeer.cs Line: 2167)
+
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
 [SingletonBehavior] GameSettings destroyed.
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
@@ -150,129 +220,69 @@ SingletonBehavior`1:OnDestroy() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/SingletonBehavior.cs Line: 174)
 
-UnloadTime: 11.611054 ms
-System memory in use before: 37.5 MB.
-System memory in use after: 36.9 MB.
+UnloadTime: 22.798723 ms
+System memory in use before: 46.0 MB.
+System memory in use after: 46.1 MB.
 
-Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 1830.
-Total: 2.380202 ms (FindLiveObjects: 0.079545 ms CreateObjectMapping: 0.935042 ms MarkObjects: 1.319939 ms  DeleteObjects: 0.044648 ms)
-
-Enter state Connecting
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:205)
-GameManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:75)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 205)
+Unloading 56 unused Assets to reduce memory usage. Loaded Objects now: 1827.
+Total: 5.680564 ms (FindLiveObjects: 0.107771 ms CreateObjectMapping: 3.457913 ms MarkObjects: 2.046624 ms  DeleteObjects: 0.067228 ms)
 
 Enter state BeginGame
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:205)
-NetworkManager:OnPhotonPlayerConnected(PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:65)
-UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
-NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1905)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:227)
+GameManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:73)
  
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 205)
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 227)
 
 Reset game!
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:226)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:210)
-NetworkManager:OnPhotonPlayerConnected(PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:65)
-UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
-NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1905)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:248)
+GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:232)
+GameManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:73)
  
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 226)
-
-Scenario: ScenarioModel1
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-GameManager:InitScenario() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:111)
-GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:236)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:210)
-NetworkManager:OnPhotonPlayerConnected(PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:65)
-UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
-NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1905)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 111)
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 248)
 
 Enter state BeginWeek
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:205)
-GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:243)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:210)
-NetworkManager:OnPhotonPlayerConnected(PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:65)
-UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
-NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1905)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:227)
+GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:265)
+GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:232)
+GameManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:73)
  
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 205)
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 227)
 
 Enter state Placement
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:205)
-GameManager:BeginWeek() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:264)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:213)
-GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:243)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:210)
-NetworkManager:OnPhotonPlayerConnected(PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:65)
-UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
-NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1905)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:227)
+GameManager:BeginWeek() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:286)
+GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:235)
+GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:265)
+GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:232)
+GameManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:73)
  
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 205)
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 227)
 
 BeginPlacement. UsingAI: False
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-GameManager:BeginPlacement() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:269)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:216)
-GameManager:BeginWeek() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:264)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:213)
-GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:243)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:210)
-NetworkManager:OnPhotonPlayerConnected(PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:65)
-UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
-NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1905)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+GameManager:BeginPlacement() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:291)
+GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:238)
+GameManager:BeginWeek() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:286)
+GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:235)
+GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:265)
+GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:232)
+GameManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:73)
  
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 269)
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 291)
 
 Enter state Disconnected
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:205)
+GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:227)
 NetworkManager:OnDisconnected() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:71)
 NetworkManager:OnLeftRoom() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:52)
 UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
@@ -288,7 +298,7 @@ ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
 ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
 PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
  
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 205)
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 227)
 
 New room list: 
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
@@ -303,51 +313,5 @@ ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
 PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 86)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-[SingletonBehavior] GameSettings destroyed.
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:LogWarning(Object, Object)
-SingletonBehavior`1:OnDestroy() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\SingletonBehavior.cs:174)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/SingletonBehavior.cs Line: 174)
-
-[SingletonBehavior] GameManager destroyed.
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:LogWarning(Object, Object)
-SingletonBehavior`1:OnDestroy() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\SingletonBehavior.cs:174)
-GameManager:OnDestroy() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:82)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/SingletonBehavior.cs Line: 174)
-
-[SingletonBehavior] UIManager destroyed.
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:LogWarning(Object, Object)
-SingletonBehavior`1:OnDestroy() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\SingletonBehavior.cs:174)
-UIManager:OnDestroy() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\UI\UIManager.cs:35)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/SingletonBehavior.cs Line: 174)
-
-[SingletonBehavior] ObjectAccessor destroyed.
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:LogWarning(Object, Object)
-SingletonBehavior`1:OnDestroy() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\SingletonBehavior.cs:174)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/SingletonBehavior.cs Line: 174)
-
-UnloadTime: 26.741093 ms
-System memory in use before: 24.9 MB.
-System memory in use after: 24.8 MB.
-
-Unloading 345 unused Assets to reduce memory usage. Loaded Objects now: 641.
-Total: 1.112095 ms (FindLiveObjects: 0.048753 ms CreateObjectMapping: 0.052345 ms MarkObjects: 0.814441 ms  DeleteObjects: 0.195014 ms)
-
-ConnectUsingSettings() failed. Can only connect while in state 'Disconnected'. Current state: Connected
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:LogWarning(Object)
-PhotonNetwork:ConnectUsingSettings(String) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:1165)
-NetworkManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:17)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Photon Unity Networking/Plugins/PhotonNetwork/PhotonNetwork.cs Line: 1165)
 
 Waiting for finish
