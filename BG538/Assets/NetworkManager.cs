@@ -62,13 +62,13 @@ public class NetworkManager : Photon.PunBehaviour {
 	public override void OnPhotonPlayerConnected(PhotonPlayer otherPlayer) {
 		if (PhotonNetwork.room != null && PhotonNetwork.room.playerCount >= PhotonNetwork.room.maxPlayers
 		    && GameManager.Instance) {
-			GameManager.Instance.GoToState(TurnPhase.BeginGame);
+			GameManager.Instance.GoToPhase(TurnPhase.BeginGame);
 		}
 	}
 
 	void OnDisconnected() {
 		if (GameManager.Instance) {
-			GameManager.Instance.GoToState(TurnPhase.Disconnected);
+			GameManager.Instance.GoToPhase(TurnPhase.Disconnected);
     	}
 	}
     

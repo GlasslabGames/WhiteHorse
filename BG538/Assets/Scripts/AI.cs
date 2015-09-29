@@ -16,9 +16,9 @@ public class AI {
 		GameState nextState = GetBestNextState(null, Budget.Amount);
 		foreach (GameMove m in nextState.Moves) {
 			if (m.Action == GameActions.PLACE_WORKER) {
-				m.State.StateView.IncrementOpponentWorkerCount();
+				m.State.StateView.AddWorker(false);
 			} else if (m.Action == GameActions.REMOVE_WORKER) {
-				m.State.StateView.IncrementOpponentWorkerCount(-1);
+				m.State.StateView.RemoveWorker(false);
 			}
 			Budget.ConsumeAmount(m.Cost);
 		}

@@ -137,13 +137,4 @@ public class LobbyManager : MonoBehaviour {
 		//TODO MatchMaker.DestroyMatch((UnityEngine.Networking.Types.NetworkID) hostedMatchId, OnMatchDestroyed);
 		WaitingModal.SetActive(false);
 	}
-
-	public void StartAIGame() {
-		CancelMatch();
-		GameManager.StartAIGame = true;
-		GameManager.ChosenScenario = CurrentScenarioModel;
-		GameManager.ChosenLeaning = CurrentColor;
-		Overlay.SetActive(true);
-		Application.LoadLevel("game");
-	}
 }

@@ -13,16 +13,24 @@ public enum Leaning {
 public class State : MonoBehaviour {
 	public string abbreviation;
 
-	private StateModel model;
+	private StateModel _model;
 	public StateModel Model {
 		get {
-			if (model == null) {
-				model = StateModel.GetModelByAbbreviation(abbreviation);
-				if (model == null) {
+			if (_model == null) {
+				_model = StateModel.GetModelByAbbreviation(abbreviation);
+				if (_model == null) {
 					Debug.LogError("Couldn't find a model for " + abbreviation, this);
 				}
 			}
-			return model;
+			return _model;
+		}
+	}
+
+	private PhotonView _networkView;
+	public PhotonView NetworkView {
+		get {
+			if (_networkView == null) _networkView = GetComponent<PhotonView>();
+			return _networkView;
 		}
 	}
 
@@ -71,19 +79,6 @@ public class State : MonoBehaviour {
 	public bool IsNeutral {
 		get { return CurrentLeaning == Leaning.Neutral; }
 	}
-	
-	// WORKERS
-	/*
-	private int playerWorkerCount = 0;
-	public int PlayerWorkerCount {
-		get { return playerWorkerCount; }
-	}
-	private int opponentWorkerCount = 0;
-	public int OpponentWorkerCount {
-		get { return opponentWorkerCount; }
-	}
-	private int targetOpponentWorkerCount = 0; // TODO
-	*/
 
 	public int RedWorkerCount { get; private set; }
 	public int BlueWorkerCount { get; private set; }
@@ -193,10 +188,22 @@ public class State : MonoBehaviour {
 		RedWorkerCount = BlueWorkerCount = 0;
 	}
 
+	public void SetInPlay(bool inPlay) {
+		InPlay = inPlay; // set this immediately for use in initialization
+		NetworkView.RPC("RpcSetInitialSettings", PhotonTargets.All, currentVote, InPlay);
+	}
+
 	public void SetInitialPopularVote(float v) {
+		currentVote = v; // set this immediately for use in initialization
+		NetworkView.RPC("RpcSetInitialSettings", PhotonTargets.All, currentVote, InPlay);
+	}
+
+	[PunRPC]
+	void RpcSetInitialSettings(float v, bool inPlay) {
 		// v is between -1 (red) and 1 (blue)
 		currentVote = v;
 		previousVote = v;
+		InPlay = inPlay;
 		UpdateColor();
 	}
 	
@@ -207,7 +214,7 @@ public class State : MonoBehaviour {
 	// Does the next step in the harvest sequence; returns true if we had a step to do or false if we're done
 	public bool NextHarvestAction(bool usingAi) {
 
-		if (RedWorkerCount == 0 && BlueWorkerCount == 0) {
+		if (RedWorkerCount == 0 && BlueWorkerCount == 0 && playerWorkers.Count == 0 && opponentWorkers.Count == 0) {
 			// Empty state, nothing to do here
 			return false;
 		}
@@ -235,14 +242,14 @@ public class State : MonoBehaviour {
 			this.Highlight();
 			
 			// Add a new opponent worker
-			GameObject worker = AddWorker(false);
+			GameObject worker = CreateWorker(false);
 			worker.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0f), 0.5f, 2);
 			UpdateVote();
 			return true;
 		}
 
 		while (opponentWorkers.Count > OpponentWorkerCount) {
-			RemoveWorker(false);
+			DestroyWorker(false);
 			UpdateVote();
 			return true;
 		}
@@ -261,25 +268,12 @@ public class State : MonoBehaviour {
 		// we multiply by 2 so 1% change => 0.02 difference (since the vote goes from -1 to 1)
 
 		currentVote = previousVote + change;
-		Debug.Log (name + " vote: " + currentVote + ", previously: " + previousVote);
 		UpdateColor(CurrentLeaning != prevLeaning);
 	}
 
 	private void SetVote() {
 		currentVote = Mathf.Clamp(currentVote, -1, 1);
 		previousVote = currentVote;
-	}
-	
-
-	// Called by the AI
-	public void IncrementOpponentWorkerCount(int amount = 1) {
-		SetWorkerCount(OpponentWorkerCount + amount, !GameManager.Instance.PlayerIsBlue);
-	}
-
-	public void SetWorkerCount(int workerCount, bool isBlue) {
-		Debug.Log ("Setting worker count on " + name + " to " + workerCount + " for blue? " + isBlue);
-		if (isBlue) BlueWorkerCount = workerCount;
-		else RedWorkerCount = workerCount;
 	}
 
 	public float GetPlayerPercentChange() {
@@ -362,8 +356,30 @@ public class State : MonoBehaviour {
 		        GameManager.Instance.PlayerBudget.IsAmountAvailable(GameSettings.InstanceOrCreate.GetGameActionCost(GameAction.RemoveWorker)) &&
 		        playerWorkers.Count > 0);
 	}
+
+	public void AddWorker(bool isPlayer) {
+		SetWorkerCount( (isPlayer? PlayerWorkerCount : OpponentWorkerCount) + 1, isPlayer);
+		if (isPlayer) CreateWorker(true);
+	}
+
+	public void RemoveWorker(bool isPlayer) {
+		SetWorkerCount( (isPlayer? PlayerWorkerCount : OpponentWorkerCount) - 1, isPlayer);
+		if (isPlayer) DestroyWorker(true);
+	}
+	
+	private void SetWorkerCount(int workerCount, bool isPlayer) {
+		bool isBlue = isPlayer ^ !GameManager.Instance.PlayerIsBlue;
+		NetworkView.RPC("RpcSetWorkerCount", PhotonTargets.All, workerCount, isBlue);
+	}
+	
+	[PunRPC]
+	private void RpcSetWorkerCount(int workerCount, bool isBlue) {
+		Debug.Log ("Setting worker count on " + name + " to " + workerCount + " for blue? " + isBlue);
+		if (isBlue) BlueWorkerCount = workerCount;
+		else RedWorkerCount = workerCount;
+	}
     
-	public GameObject AddWorker(bool isPlayer) {
+	private GameObject CreateWorker(bool isPlayer) {
 		Vector3 supporterPosition = Center + workerOffsetX + (isPlayer? workerOffsetY + (playerWorkers.Count * workerAdjacencyOffset) : -workerOffsetY + ((opponentWorkers.Count) * workerAdjacencyOffset));
 		if (!isPlayer) supporterPosition.x += workerAdjacencyOffset.x / 2f;
 
@@ -381,7 +397,7 @@ public class State : MonoBehaviour {
 		return newWorker;
 	}
 
-	public void RemoveWorker(bool isPlayer) {
+	private void DestroyWorker(bool isPlayer) {
 		// Remove the last worker
 		List<GameObject> workerList = (isPlayer) ? playerWorkers : opponentWorkers;
 		if (workerList.Count == 0) {

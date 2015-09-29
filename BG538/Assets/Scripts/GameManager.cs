@@ -16,14 +16,7 @@ public enum TurnPhase {
 }
 
 public class GameManager : SingletonBehavior<GameManager> {
-	// For AI games - currently not used but we might want for offline mode
-	public static bool StartAIGame = false;
-	public static ScenarioModel ChosenScenario = null;
-	public static Leaning ChosenLeaning = Leaning.Neutral;
-
 	private List<State> states = new List< State >();
-	private List<State> statesInPlay = new List< State >();
-	private List<State> statesNotInPlay = new List< State >();
 
 	private Dictionary<string, State> _statesByAbbreviation = new Dictionary<string, State>();
 	public Dictionary<string, State> StatesByAbbreviation {
@@ -52,45 +45,43 @@ public class GameManager : SingletonBehavior<GameManager> {
 		get { return OpponentAI != null; }
 	}
 
-	public Player LocalPlayer { get; private set; }
-	public Player OpposingPlayer { get; private set; }
+	/*public Player LocalPlayer { get; private set; }
+	public Player OpposingPlayer { get; private set; }*/
 
-	public bool PlayerIsBlue {
-		get {
-			return LocalPlayer != null && LocalPlayer.color == Leaning.Blue;
-		}
-	}
+	public bool PlayerIsBlue;
+	private bool playerIsFinished;
+	private bool opponentIsFinished;
 
 	public BudgetController PlayerBudget = new BudgetController();
+
+	private ExitGames.Client.Photon.Hashtable roomSettings;
 
 	protected override void Start() {
 		base.Start ();
 
+		foreach (State state in ObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>()) {
+			states.Add(state);
+		}
+
 		if (PhotonNetwork.room != null) {
-			ExitGames.Client.Photon.Hashtable roomSettings = PhotonNetwork.room.customProperties;
-			GameManager.ChosenScenario = ScenarioModel.GetModel((int) roomSettings["s"]);
-			GameManager.ChosenLeaning = (Leaning) roomSettings["c"];
+			roomSettings = PhotonNetwork.room.customProperties; // save for later
+			Leaning color = (Leaning) roomSettings["c"];
+			PlayerIsBlue = (color == Leaning.Blue) ^ PhotonNetwork.isMasterClient;
 		}
 
 		if (PhotonNetwork.room != null && PhotonNetwork.room.playerCount >= PhotonNetwork.room.maxPlayers) {
-			GoToState(TurnPhase.BeginGame);
+			GoToPhase(TurnPhase.BeginGame);
 		} else {
-			GoToState (TurnPhase.Connecting);
+			GoToPhase (TurnPhase.Connecting);
 		}
 
-		SignalManager.PlayerFinished += OnPlayerFinished;
+		//SignalManager.PlayerFinished += OnPlayerFinished;
 	}
 	
 	protected override void OnDestroy() {
 		base.OnDestroy ();
 
-		SignalManager.PlayerFinished -= OnPlayerFinished;
-	}
-
-	[PunRPC]
-	void TestRPC(string a) {
-		Debug.Log ("RPC: "+a);
-		if (UIManager.Instance) UIManager.Instance.weekLabel.text = "RPC: "+a;
+		//SignalManager.PlayerFinished -= OnPlayerFinished;
 	}
 
 	public void QuitGame() {
@@ -108,39 +99,15 @@ public class GameManager : SingletonBehavior<GameManager> {
 			PhotonNetwork.room.open = false;
 		}
 		OpponentAI = new AI();
-		GameObject go = GameObject.Instantiate(ObjectAccessor.Instance.PlayerPrefab);
-		SetPlayer(go.GetComponent<Player>(), true);
-	}
-
-	public void SetPlayer(Player p, bool isLocalPlayer) {
-		if (isLocalPlayer) {
-			LocalPlayer = p;
-			if (GameManager.ChosenLeaning != Leaning.Neutral) LocalPlayer.color = GameManager.ChosenLeaning; // get the color we chose in the menu 
-			if (SignalManager.PlayerColorSet != null) SignalManager.PlayerColorSet();
-		} else {
-			OpposingPlayer = p;
-		}
-		CheckPlayerCount();
-	}
-
-	public void CheckPlayerCount() {
-		if (LocalPlayer != null && (UsingAI || OpposingPlayer != null)) {
-			if (CurrentTurnPhase == TurnPhase.Connecting) { // we were waiting to connect, so now begin game
-				GoToState (TurnPhase.BeginGame);
-			}
-		} else if (CurrentTurnPhase != TurnPhase.Connecting) { // we lost a player in the middle of the game
-			NetworkManager nm = Object.FindObjectOfType<NetworkManager>();
-			//TODO if (nm != null) nm.StopHost(); // quit the connection
-		}
+		GoToPhase (TurnPhase.BeginGame);
 	}
 
 	public void InitScenario() {
-		states.Clear();
-		statesInPlay.Clear();
-		statesNotInPlay.Clear();
+		int scenarioId = -1;
+		if (roomSettings != null) scenarioId = (int) roomSettings["s"];
+		else scenarioId = GameSettings.InstanceOrCreate.DefaultScenarioId;
 
-		ScenarioModel scenario = GameManager.ChosenScenario;
-		if (scenario == null) scenario = ScenarioModel.GetModel(GameSettings.InstanceOrCreate.DefaultScenarioId);
+		ScenarioModel scenario = ScenarioModel.GetModel(scenarioId);
 		Debug.Log ("Scenario: " + scenario);
 		if (scenario is ScenarioModel1) InitScenarioA(scenario as ScenarioModel1);
 		else if (scenario is ScenarioModel2) InitScenarioB(scenario as ScenarioModel2);
@@ -151,12 +118,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 	}
 	
 	public void InitScenarioA(ScenarioModel1 scenario) {
-		foreach (State state in ObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>()) {
-			state.InPlay = (scenario == null || !scenario.PresetStates.Contains(state.Model.Id));
-			
-			states.Add(state);
-			if (state.InPlay) statesInPlay.Add(state);
-			else statesNotInPlay.Add(state);
+		foreach (State state in states) {
+			state.SetInPlay(scenario == null || !scenario.PresetStates.Contains(state.Model.Id));
 			
 			if (scenario != null) {
 				int stateIndex = StateModel.Models.IndexOf(state.Model);
@@ -170,8 +133,6 @@ public class GameManager : SingletonBehavior<GameManager> {
 			} else {
 				state.SetInitialPopularVote( Random.value * 2 - 1 );
 			}
-
-			state.UpdateColor();
 		}
 	}
 	
@@ -192,7 +153,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 				
 				ScenarioModel2.InPlayStatus status = (ScenarioModel2.InPlayStatus)scenario.StatesInPlay[state.Model.Id - 1];
 				if (status == ScenarioModel2.InPlayStatus.ALWAYS) {
-					state.InPlay = true;
+					state.SetInPlay(true);
 					if (state.IsBlue) {
 						blueStatesAdded ++;
 					} else {
@@ -207,9 +168,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 				}
 				
 			} else {
-				state.InPlay = true;
+				state.SetInPlay(true);
 			}
-			states.Add(state);
 		}
 		
 		int r;
@@ -220,28 +180,19 @@ public class GameManager : SingletonBehavior<GameManager> {
 				r = Random.Range(0, maybeBlueStates.Count);
 				s = maybeBlueStates[r];
 				maybeBlueStates.Remove(s);
-				s.InPlay = true;
+				s.SetInPlay(true);
 				blueStatesAdded ++;
 			} else {
 				r = Random.Range(0, maybeRedStates.Count);
 				s = maybeRedStates[r];
 				maybeRedStates.Remove(s);
-				s.InPlay = true;
+				s.SetInPlay(true);
 				redStatesAdded ++;
 			}
 		}
-		
-		foreach (State state in states) {
-			if (state.InPlay) {
-				statesInPlay.Add(state);
-			} else {
-				statesNotInPlay.Add(state);
-			}
-			state.UpdateColor();
-		}
 	}
 	
-	public void GoToState(TurnPhase nextState) {
+	public void GoToPhase(TurnPhase nextState) {
 		// Finish the current state
 		switch (CurrentTurnPhase) {
 		case TurnPhase.Harvest:
@@ -281,29 +232,28 @@ public class GameManager : SingletonBehavior<GameManager> {
 
 		if (UsingAI) OpponentAI.Reset();
 
-		// Reset scenario
-		InitScenario();
+		// Reset scenario - only one client does this to ensure the results of random choices match
+		if (PhotonNetwork.isMasterClient) InitScenario();
 
 		// Reset states
 		foreach (State state in states) {
 			state.ResetWorkers();
 		}
 		
-		GoToState(TurnPhase.BeginWeek);
+		GoToPhase(TurnPhase.BeginWeek);
 	}
 	
 	private void BeginWeek() {
 		CurrentWeek ++;
 		UpdateElectoralVotes();
 
-		Debug.Log ("BeginWeek, setting Ready to false");
-		if (LocalPlayer) LocalPlayer.SetFinished(false);
-		if (OpposingPlayer) OpposingPlayer.SetFinished(false);
+		opponentIsFinished = false;
+		playerIsFinished = false;
 
 		SignalManager.BeginWeek(CurrentWeek);
 		
 		if (CurrentWeek >= GameSettings.InstanceOrCreate.TotalWeeks) {
-			GoToState(TurnPhase.ElectionDay);
+			GoToPhase(TurnPhase.ElectionDay);
 		} else {
 			int index = Mathf.Min(CurrentWeek, GameSettings.InstanceOrCreate.Income.Length - 1);
 			float income = GameSettings.InstanceOrCreate.Income[index];
@@ -311,18 +261,21 @@ public class GameManager : SingletonBehavior<GameManager> {
 			PlayerBudget.GainAmount(income);
 			if (UsingAI) OpponentAI.Budget.GainAmount(income);
 
-			GoToState(TurnPhase.Placement);
+			GoToPhase(TurnPhase.Placement);
 		}
 	}
 	
 	private void BeginPlacement() {
 		Debug.Log ("BeginPlacement. UsingAI: " + UsingAI);
-		if (UsingAI) OpponentAI.DoTurn();
+		if (UsingAI) {
+			OpponentAI.DoTurn();
+			opponentIsFinished = true;
+		}
 	}
 	
 	private void BeginHarvest() {
-		foreach (State state in statesInPlay) {
-			state.PrepareToHarvest();
+		foreach (State state in states) {
+			if (state.InPlay) state.PrepareToHarvest();
 		}
 
 		ObjectAccessor.Instance.HarvestTimer.StartTimer(NextHarvestAction);
@@ -333,13 +286,14 @@ public class GameManager : SingletonBehavior<GameManager> {
 	}
 	
 	public void NextHarvestAction() {
-		foreach (State state in statesInPlay) {
+		foreach (State state in states) {
+			if (!state.InPlay) continue;
 			if (state.NextHarvestAction(UsingAI)) return;
 			// If that state had something to do, wait for the next cycle. Else keep looking for something to do.
 		}
 		
 		Debug.Log("completed harvest");
-		GoToState(TurnPhase.BeginWeek);
+		GoToPhase(TurnPhase.BeginWeek);
 	}
 	
 	public void UpdateElectoralVotes(bool atBeginning = false) {
@@ -362,20 +316,34 @@ public class GameManager : SingletonBehavior<GameManager> {
 	}
 	
 	public void FinishWeek() {
-		//FIXME
-		PhotonView photonView = PhotonView.Get(this);
-		photonView.RPC("TestRPC", PhotonTargets.All, "beep");
+		GetComponent<PhotonView>().RPC("RpcSetPlayerFinished", PhotonTargets.All, PlayerIsBlue);
+	}
 
-		if (CurrentTurnPhase == TurnPhase.Placement) {
-			LocalPlayer.SetFinished(true);
+	[PunRPC]
+	void RpcSetPlayerFinished(bool isBlue) {
+		if (isBlue ^ PlayerIsBlue) opponentIsFinished = true;
+		else playerIsFinished = true;
+		OnPlayerFinished();
+	}
+
+	public void OnPlayerFinished() {
+		if (playerIsFinished) {
+			if (!opponentIsFinished) GoToPhase(TurnPhase.Waiting);
+			else if (CurrentTurnPhase != TurnPhase.Harvest) GoToPhase (TurnPhase.Harvest);
 		}
 	}
 
-	public void OnPlayerFinished(Leaning playerColor) {
-		if (LocalPlayer.Finished && (UsingAI || OpposingPlayer.Finished)) {
-			GoToState (TurnPhase.Harvest); // Ready!
-		} else if (LocalPlayer.Finished) {
-			GoToState(TurnPhase.Waiting);
+	public void PlayerPlaceWorker(State state) {
+		if (state.PlayerCanPlaceWorker()) {
+			state.AddWorker(true);
+			PlayerBudget.ConsumeAmount(GameSettings.InstanceOrCreate.GetGameActionCost(GameAction.PlaceWorker));
+		}
+	}
+	
+	public void PlayerRemoveWorker(State state) {
+		if (state.PlayerCanRemoveWorker()) {
+			state.RemoveWorker(true);
+			PlayerBudget.ConsumeAmount(GameSettings.InstanceOrCreate.GetGameActionCost(GameAction.RemoveWorker));
 		}
 	}
 }

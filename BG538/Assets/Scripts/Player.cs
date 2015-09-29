@@ -22,7 +22,7 @@ public class Player : Photon.PunBehaviour {
 
 	void OnDestroy() {
 		Debug.Log ("Destroy!", this);
-		if (GameManager.Instance) GameManager.Instance.CheckPlayerCount();
+		//if (GameManager.Instance) GameManager.Instance.CheckPlayerCount();
 	}
 
 	public void SetFinished(bool b) {	
@@ -89,6 +89,6 @@ public class Player : Photon.PunBehaviour {
 
 	void DoSetWorkers(string stateAbbreviation, int workerCount, bool isBluePlayer) {
 		State state = GameManager.Instance.StatesByAbbreviation[stateAbbreviation];
-		if (state) state.SetWorkerCount(workerCount, isBluePlayer);
+		//TODO if (state) state.SetWorkerCount(workerCount, isBluePlayer);
 	}
 }
