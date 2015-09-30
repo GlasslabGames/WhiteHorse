@@ -130,6 +130,13 @@ public class GameManager : SingletonBehavior<GameManager> {
 
 		UIManager.Instance.StateLabels.Refresh();
 		UpdateElectoralVotes(true);
+
+		// Make sure we get the initial votes. I don't know why it doesn't work correctly without this hack. // FIXME
+		Invoke("InitialVoteUpdate", 1f);
+	}
+
+	void InitialVoteUpdate() {
+		UpdateElectoralVotes(true);
 	}
 	
 	public void InitScenarioA(ScenarioModel1 scenario) {
@@ -244,7 +251,12 @@ public class GameManager : SingletonBehavior<GameManager> {
 		}
 		SignalManager.EnterTurnPhase (CurrentTurnPhase);
 	}
-	
+
+	public void Replay() {
+		GetComponent<PhotonView>().RPC("RestartGame", PhotonTargets.All);
+	}
+
+	[PunRPC]
 	public void RestartGame() {
 		Debug.Log("Reset game!");
 		
@@ -322,7 +334,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 	public void UpdateElectoralVotes(bool atBeginning = false) {
 		int totalRedVotes = 0;
 		int totalBlueVotes = 0;
-		
+	
 		foreach (State state in states) {
 			if (state.IsRed) {
 				totalRedVotes += state.Model.ElectoralCount;
@@ -330,6 +342,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 				totalBlueVotes += state.Model.ElectoralCount;
 			}
 		}
+
+		Debug.Log ("!! Update electoral votes. States: "+states.Count+" Red votes: "+totalRedVotes);
 		
 		playerVotes = (PlayerIsBlue)? totalBlueVotes : totalRedVotes;
 		opponentVotes = (PlayerIsBlue)? totalRedVotes : totalBlueVotes;

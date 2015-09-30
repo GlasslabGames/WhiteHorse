@@ -58,11 +58,10 @@ public class Header : MonoBehaviour {
 			int n = 0;
 			if (System.Int32.TryParse(label.text, out n)) {
 				DOTween.To (x => label.text = Mathf.Round(x).ToString(), n, votes, GameSettings.InstanceOrCreate.VoteUpdateTime);
+			} else {
+				Debug.LogError("Existing vote text "+label.text + " isn't a number!");
 			}
 		}
-	}
-
-	void TweenLabel(Text label, int votes, bool isUpdate) {
 	}
 
 	public void ShowGameOver(bool win, Action callback = null) {
