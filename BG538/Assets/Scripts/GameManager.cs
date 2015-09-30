@@ -66,7 +66,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 		if (PhotonNetwork.room != null) {
 			roomSettings = PhotonNetwork.room.customProperties; // save for later
 			Leaning color = (Leaning) roomSettings["c"];
-			PlayerIsBlue = (color == Leaning.Blue) ^ PhotonNetwork.isMasterClient;
+			PlayerIsBlue = (color == Leaning.Blue) ^ !PhotonNetwork.isMasterClient;
 			if (SignalManager.PlayerColorSet != null) SignalManager.PlayerColorSet();
 
 			if (PhotonNetwork.room.playerCount >= PhotonNetwork.room.maxPlayers) GoToPhase(TurnPhase.BeginGame);

@@ -43,7 +43,11 @@ public class UIManager : SingletonBehavior<UIManager> {
 		switch (phase) {
 		case TurnPhase.Connecting:
 			if (header) header.Reset();
-			if (connectingIndicator) connectingIndicator.SetActive(true);
+			if (connectingIndicator) {
+				connectingIndicator.SetActive(true);
+				MatchmakerEntry entry = connectingIndicator.GetComponentInChildren<MatchmakerEntry>();
+				if (entry) entry.Set(PhotonNetwork.room);
+			}
 			break;
 		case TurnPhase.Placement:
 			if (endTurnButton) endTurnButton.SetActive (true);

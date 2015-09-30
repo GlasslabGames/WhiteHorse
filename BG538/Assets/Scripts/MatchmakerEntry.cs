@@ -13,6 +13,7 @@ public class MatchmakerEntry : PrefabEntry {
 		RoomName = room.name;
 
 		Hashtable props = room.customProperties;
+		if (props == null || !props.ContainsKey("s")) return;
 		ScenarioModel scenario = ScenarioModel.GetModel((int) props["s"]);
 		Set((string) props["n"], scenario.Name, (Leaning) props["c"]);
 	}

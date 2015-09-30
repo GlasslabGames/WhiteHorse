@@ -7,7 +7,8 @@ public class PrefabEntry : MonoBehaviour {
 
 	[ContextMenu("CheckToggleGroup")]
 	public void CheckToggleGroup() {
-		if (!GetComponent<Toggle>().group) SetToggleGroup(Utility.FirstAncestorOfType<ToggleGroup>(transform));
+		Toggle toggle = GetComponent<Toggle>();
+		if (toggle && !toggle.group) SetToggleGroup(Utility.FirstAncestorOfType<ToggleGroup>(transform));
 	}
 
 	public void SetToggleGroup(ToggleGroup group) {

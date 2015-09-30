@@ -6,15 +6,33 @@ public class NetworkManager : Photon.PunBehaviour {
 	public bool ShowDebugInfo;
 	public Text DebugLabel;
 
+	static NetworkManager Instance;
+
 	public enum DisconnectionReason {
 		opponent,
 		other
 	}
 	public static DisconnectionReason DisconnectionInfo;
 
-	void Start () {
-		DontDestroyOnLoad(gameObject);
-		PhotonNetwork.ConnectUsingSettings(GameSettings.InstanceOrCreate.Version);
+	void Awake() {
+		if (Instance) {
+			Destroy(gameObject);
+		} else {
+			Instance = this;
+			DontDestroyOnLoad(gameObject);
+			
+			PhotonNetwork.playerName = GetRandomName();
+			PhotonNetwork.ConnectUsingSettings(GameSettings.InstanceOrCreate.Version);
+		}
+	}
+
+	public static string GetRandomName() {
+		string[] adjectives = {"Yellow", "Black", "White", "Purple", "Orange", "Green", "Awesome", "Silly",
+		"Patriotic", "Valiant", "Wise", "Strong", "Careful"};
+		string[] nouns = {"Cat", "Dog", "Turkey", "Eagle", "Lion", "Bear", "Pony", "Badger", "Shark", "Horse", "Elephant", "Donkey" };
+		string name = adjectives[Mathf.FloorToInt(Random.value * adjectives.Length)] +
+			nouns[Mathf.FloorToInt(Random.value * nouns.Length)];
+		return name;
 	}
 
 	public static void CreateRoom(string name, int scenarioId, int color) { 

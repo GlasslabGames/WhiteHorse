@@ -113,7 +113,7 @@ public class LobbyManager : MonoBehaviour {
 	}
 
 	public void Host() {
-		string playerName = "Jerry F."; // TODO: get player name
+		string playerName = PhotonNetwork.playerName; // TODO: get player name from SDK
 
 		NetworkManager.CreateRoom(playerName, CurrentScenarioModel.Id, (int) CurrentColor);
 		// Photon will automatically join the room once it's created, and then we'll start the game
