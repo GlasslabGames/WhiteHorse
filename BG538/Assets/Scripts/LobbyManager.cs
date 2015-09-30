@@ -19,6 +19,8 @@ public class LobbyManager : MonoBehaviour {
 	public ScenarioModel CurrentScenarioModel;
 	public GameObject ScenarioEntryPrefab;
 
+	public DebugSettings debugSettings;
+
 	/*
 	private NetworkManager _networkManager;
 	public NetworkManager NetworkManager {
@@ -115,7 +117,10 @@ public class LobbyManager : MonoBehaviour {
 	public void Host() {
 		string playerName = PhotonNetwork.playerName; // TODO: get player name from SDK
 
-		NetworkManager.CreateRoom(playerName, CurrentScenarioModel.Id, (int) CurrentColor);
+		int duration = (debugSettings != null)? Mathf.RoundToInt(debugSettings.weekSlider.value) : GameSettings.InstanceOrCreate.TotalWeeks;
+		float increment = (debugSettings != null)? debugSettings.workerSlider.value : GameSettings.InstanceOrCreate.WorkerIncrement;
+
+		NetworkManager.CreateRoom(playerName, CurrentScenarioModel.Id, (int) CurrentColor, increment, duration);
 		// Photon will automatically join the room once it's created, and then we'll start the game
 
 		Overlay.SetActive(true); // TODO: make sure we have a way to get out of this state if there's an error

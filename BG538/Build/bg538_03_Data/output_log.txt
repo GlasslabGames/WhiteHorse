@@ -2,12 +2,12 @@ Mono path[0] = 'C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_03_Data/Manage
 Mono path[1] = 'C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_03_Data/Mono'
 Mono config path = 'C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_03_Data/Mono/etc'
 PlayerConnection initialized from C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_03_Data (debug = 0)
-PlayerConnection initialized network socket : 0.0.0.0 55299
-Multi-casting "[IP] 10.14.13.65 [Port] 55299 [Flags] 3 [Guid] 895654152 [EditorId] 2149762904 [Version] 1048832 [Id] WindowsPlayer(Noname-PC) [Debug] 1" to [225.0.0.222:54997]...
-Waiting for connection from host on [10.14.13.65:55299]...
+PlayerConnection initialized network socket : 0.0.0.0 55020
+Multi-casting "[IP] 10.14.13.65 [Port] 55020 [Flags] 3 [Guid] 314822450 [EditorId] 2149762904 [Version] 1048832 [Id] WindowsPlayer(Noname-PC) [Debug] 1" to [225.0.0.222:54997]...
+Waiting for connection from host on [10.14.13.65:55020]...
 PlayerConnection accepted from [10.14.13.65] handle:0x204
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56152
-PlayerConnection already initialized - listening to [10.14.13.65:55299]
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56450
+PlayerConnection already initialized - listening to [10.14.13.65:55020]
 Initialize engine version: 5.2.0f3 (e7947df39b5c)
 GfxDevice: creating device client; threaded=1
 Direct3D:
@@ -37,7 +37,7 @@ Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\DOTwee
 Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\DOTween50.dll (this message is harmless)
 Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\DOTween50.dll into Unity Child Domain
 Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.242 seconds
+- Completed reload, in  0.236 seconds
 <RI> Initializing input.
 XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.
@@ -45,16 +45,16 @@ desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
 <RI> Initialized touch support.
 Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_03_Data\Managed\System.dll (this message is harmless)
 Setting up 3 worker threads for Enlighten.
-  Thread -> id: 4b17c -> priority: 1 
-  Thread -> id: 4b0a8 -> priority: 1 
-  Thread -> id: 41ebc -> priority: 1 
+  Thread -> id: 4b268 -> priority: 1 
+  Thread -> id: 3d598 -> priority: 1 
+  Thread -> id: 4a1e4 -> priority: 1 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 13.165525 ms
+UnloadTime: 25.963602 ms
 System memory in use before: 18.7 MB.
 System memory in use after: 18.7 MB.
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 658.
-Total: 0.753884 ms (FindLiveObjects: 0.036436 ms CreateObjectMapping: 0.047727 ms MarkObjects: 0.656890 ms  DeleteObjects: 0.011803 ms)
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 722.
+Total: 0.713855 ms (FindLiveObjects: 0.035923 ms CreateObjectMapping: 0.043108 ms MarkObjects: 0.623019 ms  DeleteObjects: 0.010777 ms)
 
 Loading ModelDataStore
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
@@ -63,16 +63,16 @@ ModelDataStore:Load() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\M
 ModelDataStore:.cctor() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Models\ModelDataStore.cs:19)
 Model`1:.cctor() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Models\Model.cs:26)
 Model`1:.cctor() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Models\Model.cs:26)
-LobbyManager:FillInScenarios() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\LobbyManager.cs:83)
-LobbyManager:FillInScenarios() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\LobbyManager.cs:67)
-LobbyManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\LobbyManager.cs:42)
+LobbyManager:FillInScenarios() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\LobbyManager.cs:85)
+LobbyManager:FillInScenarios() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\LobbyManager.cs:69)
+LobbyManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\LobbyManager.cs:44)
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/Models/ModelDataStore.cs Line: 26)
 
 New room list: 
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:104)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:99)
 UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
 NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
 NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1837)
@@ -81,7 +81,7 @@ ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
 ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
 PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
  
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 104)
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 99)
 
 System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
@@ -98,68 +98,10 @@ PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon U
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
 
-New room list: 
+Joined room! Room: 'd282218a-cd84-46f2-84d2-5bc8d334bb1f' visible,open 1/2 players.
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
-NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:104)
-UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
-NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 104)
-
-45bc6d9d-f958-4456-b140-abb03f36085f 1/2
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:107)
-UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
-NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 107)
-
-Room: '45bc6d9d-f958-4456-b140-abb03f36085f' visible,open 1/2 players.
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:36)
-RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
-UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
-NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 36)
-
-System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:58)
-RoomList:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:21)
-UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
-NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1859)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/RoomList.cs Line: 58)
-
-Joined room! Room: '45bc6d9d-f958-4456-b140-abb03f36085f' visible,open 2/2 players.
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-NetworkManager:OnJoinedRoom() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:63)
+NetworkManager:OnJoinedRoom() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:58)
 UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
 NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
 NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1900)
@@ -168,9 +110,9 @@ ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
 ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
 PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
  
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 63)
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 58)
 
-Room: '45bc6d9d-f958-4456-b140-abb03f36085f' visible,open 2/2 players.
+Room: 'd282218a-cd84-46f2-84d2-5bc8d334bb1f' visible,open 1/2 players.
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
 RoomList:RefreshWithRooms(RoomInfo[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\RoomList.cs:36)
@@ -208,18 +150,33 @@ SingletonBehavior`1:OnDestroy() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/SingletonBehavior.cs Line: 174)
 
-UnloadTime: 9.665016 ms
-System memory in use before: 34.9 MB.
-System memory in use after: 34.5 MB.
+UnloadTime: 30.727598 ms
+System memory in use before: 40.0 MB.
+System memory in use after: 39.2 MB.
 
-Unloading 49 unused Assets to reduce memory usage. Loaded Objects now: 1921.
-Total: 1.804909 ms (FindLiveObjects: 0.108284 ms CreateObjectMapping: 0.111876 ms MarkObjects: 1.529836 ms  DeleteObjects: 0.053372 ms)
+Unloading 54 unused Assets to reduce memory usage. Loaded Objects now: 1925.
+Total: 4.142003 ms (FindLiveObjects: 0.098020 ms CreateObjectMapping: 2.755861 ms MarkObjects: 1.234235 ms  DeleteObjects: 0.052859 ms)
+
+Enter state Connecting
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:235)
+GameManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:73)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 235)
 
 Enter state BeginGame
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
 GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:235)
-GameManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:72)
+NetworkManager:OnPhotonPlayerConnected(PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:78)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1905)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 235)
 
@@ -228,9 +185,60 @@ UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
 GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:261)
 GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:240)
-GameManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:72)
+NetworkManager:OnPhotonPlayerConnected(PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:78)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1905)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 261)
+
+Scenario: ScenarioModel1
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+GameManager:InitScenario() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:115)
+GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:271)
+GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:240)
+NetworkManager:OnPhotonPlayerConnected(PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:78)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1905)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 115)
+
+!! Update electoral votes. States: 51 Red votes: 203
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+GameManager:UpdateElectoralVotes(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:346)
+GameManager:SetUpScenario(Dictionary`2, Dictionary`2) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:132)
+System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
+System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
+System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
+NetworkingPeer:ExecuteRpc(Hashtable, PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2270)
+NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Boolean, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:3149)
+PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Boolean, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2668)
+PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:585)
+GameManager:InitScenarioA(ScenarioModel1) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:162)
+GameManager:InitScenario() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:116)
+GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:271)
+GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:240)
+NetworkManager:OnPhotonPlayerConnected(PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:78)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1905)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
 
 Enter state BeginWeek
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
@@ -238,11 +246,18 @@ UnityEngine.Debug:Log(Object)
 GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:235)
 GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:278)
 GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:240)
-GameManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:72)
+NetworkManager:OnPhotonPlayerConnected(PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:78)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1905)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 235)
 
-!! Update electoral votes. States: 51 Red votes: 0
+!! Update electoral votes. States: 51 Red votes: 203
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
 GameManager:UpdateElectoralVotes(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:346)
@@ -250,7 +265,14 @@ GameManager:BeginWeek() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts
 GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:243)
 GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:278)
 GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:240)
-GameManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:72)
+NetworkManager:OnPhotonPlayerConnected(PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:78)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1905)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 346)
 
@@ -262,7 +284,14 @@ GameManager:BeginWeek() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts
 GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:243)
 GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:278)
 GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:240)
-GameManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:72)
+NetworkManager:OnPhotonPlayerConnected(PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:78)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1905)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 235)
 
@@ -275,15 +304,29 @@ GameManager:BeginWeek() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts
 GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:243)
 GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:278)
 GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:240)
-GameManager:Start() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:72)
+NetworkManager:OnPhotonPlayerConnected(PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:78)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1905)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 304)
 
-!! Update electoral votes. States: 51 Red votes: 332
+!! Update electoral votes. States: 51 Red votes: 203
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
 GameManager:UpdateElectoralVotes(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:346)
-GameManager:SetUpScenario(Dictionary`2, Dictionary`2) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:132)
+GameManager:InitialVoteUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:139)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 346)
+
+Setting worker count on PA to 1 for blue? False
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+State:RpcSetWorkerCount(Int32, Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\State.cs:381)
 System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
 System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
 System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
@@ -293,6 +336,139 @@ ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
 ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
 ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
 PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
+
+Setting worker count on NC to 1 for blue? False
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+State:RpcSetWorkerCount(Int32, Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\State.cs:381)
+System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
+System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
+System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
+NetworkingPeer:ExecuteRpc(Hashtable, PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2270)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1932)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
+
+Click Ohio
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+State:HandleClick() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\State.cs:169)
+ClickableButton:OnPointerClick(PointerEventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\ClickableButton.cs:19)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IPointerClickHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:52)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:378)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:277)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:265)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:179)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/State.cs Line: 169)
+
+PlaceWorker
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+StatePopup:PlaceWorker() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\UI\StatePopup.cs:134)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:149)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:626)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:766)
+UnityEngine.Events.UnityEvent:Invoke() (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_0.cs:54)
+UnityEngine.UI.Button:Press() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:35)
+UnityEngine.UI.Button:OnPointerClick(PointerEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:44)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IPointerClickHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:52)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:378)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:277)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:265)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:179)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/UI/StatePopup.cs Line: 134)
+
+Setting worker count on OH to 1 for blue? True
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+State:RpcSetWorkerCount(Int32, Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\State.cs:381)
+System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
+System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
+System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
+NetworkingPeer:ExecuteRpc(Hashtable, PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2270)
+NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Boolean, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:3149)
+PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Boolean, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2668)
+PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:585)
+State:SetWorkerCount(Int32, Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\State.cs:376)
+State:AddWorker(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\State.cs:365)
+GameManager:PlayerPlaceWorker(State) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:375)
+StatePopup:PlaceWorker() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\UI\StatePopup.cs:136)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:149)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:626)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:766)
+UnityEngine.Events.UnityEvent:Invoke() (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_0.cs:54)
+UnityEngine.UI.Button:Press() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:35)
+UnityEngine.UI.Button:OnPointerClick(PointerEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:44)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IPointerClickHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:52)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:378)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:277)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:265)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:179)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
+
+PlaceWorker
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+StatePopup:PlaceWorker() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\UI\StatePopup.cs:134)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:149)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:626)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:766)
+UnityEngine.Events.UnityEvent:Invoke() (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_0.cs:54)
+UnityEngine.UI.Button:Press() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:35)
+UnityEngine.UI.Button:OnPointerClick(PointerEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:44)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IPointerClickHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:52)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:378)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:277)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:265)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:179)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/UI/StatePopup.cs Line: 134)
+
+Setting worker count on OH to 2 for blue? True
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+State:RpcSetWorkerCount(Int32, Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\State.cs:381)
+System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
+System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
+System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
+NetworkingPeer:ExecuteRpc(Hashtable, PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2270)
+NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Boolean, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:3149)
+PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Boolean, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2668)
+PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:585)
+State:SetWorkerCount(Int32, Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\State.cs:376)
+State:AddWorker(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\State.cs:365)
+GameManager:PlayerPlaceWorker(State) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:375)
+StatePopup:PlaceWorker() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\UI\StatePopup.cs:136)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:149)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:626)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:766)
+UnityEngine.Events.UnityEvent:Invoke() (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_0.cs:54)
+UnityEngine.UI.Button:Press() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:35)
+UnityEngine.UI.Button:OnPointerClick(PointerEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:44)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IPointerClickHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:52)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:378)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:277)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:265)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:179)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
  
 (Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
 
@@ -326,14 +502,6 @@ UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Exte
  
 (Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
 
-!! Update electoral votes. States: 51 Red votes: 332
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-GameManager:UpdateElectoralVotes(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:346)
-GameManager:InitialVoteUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:139)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 346)
-
 Enter state Harvest
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
@@ -371,7 +539,7 @@ Timer:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Timer.cs
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 235)
 
-!! Update electoral votes. States: 51 Red votes: 332
+!! Update electoral votes. States: 51 Red votes: 238
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
 GameManager:UpdateElectoralVotes(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:346)
@@ -408,201 +576,12 @@ Timer:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Timer.cs
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 304)
 
-Enter state Harvest
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:235)
-GameManager:OnPlayerFinished() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:369)
-GameManager:RpcSetPlayerFinished(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:363)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRpc(Hashtable, PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2270)
-NetworkingPeer:RPC(PhotonView, String, PhotonTargets, Boolean, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:3149)
-PhotonNetwork:RPC(PhotonView, String, PhotonTargets, Boolean, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs:2668)
-PhotonView:RPC(String, PhotonTargets, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs:585)
-GameManager:FinishWeek() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:356)
-UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:149)
-UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:626)
-UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:766)
-UnityEngine.Events.UnityEvent:Invoke() (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_0.cs:54)
-UnityEngine.UI.Button:Press() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:35)
-UnityEngine.UI.Button:OnPointerClick(PointerEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:44)
-UnityEngine.EventSystems.ExecuteEvents:Execute(IPointerClickHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:52)
-UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:378)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:277)
-UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:265)
-UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:179)
-UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
- 
-(Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
-
-completed harvest
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-GameManager:NextHarvestAction() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:330)
-Timer:Restart(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Timer.cs:45)
-Timer:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Timer.cs:56)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 330)
-
-Enter state BeginWeek
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:235)
-GameManager:NextHarvestAction() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:331)
-Timer:Restart(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Timer.cs:45)
-Timer:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Timer.cs:56)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 235)
-
-!! Update electoral votes. States: 51 Red votes: 332
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-GameManager:UpdateElectoralVotes(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:346)
-GameManager:BeginWeek() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:283)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:243)
-GameManager:NextHarvestAction() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:331)
-Timer:Restart(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Timer.cs:45)
-Timer:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Timer.cs:56)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 346)
-
-Enter state ElectionDay
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:235)
-GameManager:BeginWeek() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:291)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:243)
-GameManager:NextHarvestAction() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:331)
-Timer:Restart(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Timer.cs:45)
-Timer:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\Timer.cs:56)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 235)
-
-Reset game!
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:261)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRpc(Hashtable, PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2270)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1932)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
- 
-(Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
-
-Enter state BeginWeek
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:235)
-GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:278)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRpc(Hashtable, PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2270)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1932)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
- 
-(Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
-
-!! Update electoral votes. States: 51 Red votes: 332
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-GameManager:UpdateElectoralVotes(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:346)
-GameManager:BeginWeek() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:283)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:243)
-GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:278)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRpc(Hashtable, PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2270)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1932)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
- 
-(Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
-
-Enter state Placement
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:235)
-GameManager:BeginWeek() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:299)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:243)
-GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:278)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRpc(Hashtable, PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2270)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1932)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
- 
-(Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
-
-BeginPlacement. UsingAI: False
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-GameManager:BeginPlacement() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:304)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:246)
-GameManager:BeginWeek() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:299)
-GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:243)
-GameManager:RestartGame() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:278)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRpc(Hashtable, PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2270)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1932)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
- 
-(Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
-
-!! Update electoral votes. States: 51 Red votes: 272
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-GameManager:UpdateElectoralVotes(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:346)
-GameManager:SetUpScenario(Dictionary`2, Dictionary`2) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:132)
-System.Reflection.MonoMethod:InternalInvoke(Object, Object[], Exception&)
-System.Reflection.MonoMethod:Invoke(Object, BindingFlags, Binder, Object[], CultureInfo) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs:222)
-System.Reflection.MethodBase:Invoke(Object, Object[]) (at /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MethodBase.cs:115)
-NetworkingPeer:ExecuteRpc(Hashtable, PhotonPlayer) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2270)
-NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1932)
-ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
-ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
-ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
-PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
- 
-(Filename: /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.Reflection/MonoMethod.cs Line: 222)
-
-!! Update electoral votes. States: 51 Red votes: 272
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-GameManager:UpdateElectoralVotes(Boolean) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:346)
-GameManager:InitialVoteUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:139)
- 
-(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 346)
-
 Enter state Disconnected
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
 GameManager:GoToPhase(TurnPhase) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Scripts\GameManager.cs:235)
-NetworkManager:OnDisconnected() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:89)
-NetworkManager:OnLeftRoom() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:70)
+NetworkManager:OnDisconnected() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:84)
+NetworkManager:OnLeftRoom() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:65)
 UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
 NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
 NetworkingPeer:LeftRoomCleanup() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:545)
@@ -617,5 +596,19 @@ ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
 PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
  
 (Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/Scripts/GameManager.cs Line: 235)
+
+New room list: 
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NetworkManager:OnReceivedRoomListUpdate() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\NetworkManager.cs:99)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[]) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:2099)
+NetworkingPeer:OnEvent(EventData) (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs:1837)
+ExitGames.Client.Photon.PeerBase:DeserializeMessageAndCallback(Byte[])
+ExitGames.Client.Photon.EnetPeer:DispatchIncomingCommands()
+ExitGames.Client.Photon.PhotonPeer:DispatchIncomingCommands()
+PhotonHandler:Update() (at C:\Users\Noname\Rose\WhiteHorse\BG538\Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs:92)
+ 
+(Filename: C:/Users/Noname/Rose/WhiteHorse/BG538/Assets/NetworkManager.cs Line: 99)
 
 Waiting for finish

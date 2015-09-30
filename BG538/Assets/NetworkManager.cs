@@ -35,27 +35,22 @@ public class NetworkManager : Photon.PunBehaviour {
 		return name;
 	}
 
-	public static void CreateRoom(string name, int scenarioId, int color) { 
+	public static void CreateRoom(string name, int scenarioId, int color, float workerInfluence, int duration) { 
 		RoomOptions options = new RoomOptions();
 		options.maxPlayers = 2;
-		options.customRoomProperties = new Hashtable() { { "s", scenarioId }, { "n", name }, { "c", color } };
+		options.customRoomProperties = new Hashtable() {
+			{ "s", scenarioId },
+			{ "n", name },
+			{ "c", color },
+			{ "w", workerInfluence },
+			{ "d", duration }
+		};
 		options.customRoomPropertiesForLobby = new string[] { "s", "n", "c" };
 		PhotonNetwork.CreateRoom(null, options, null);
 	}
 
 	public static void JoinRoom(string name) {
 		PhotonNetwork.JoinRoom(name);
-	}
-
-
-	[ContextMenu("Test create room")]
-	public void TestCreateRoom() {
-		CreateRoom("Elena M.", 102, 2);
-	}
-
-	[ContextMenu("Test leave room")]
-	public void TestLeaveRoom() {
-		PhotonNetwork.LeaveRoom();
 	}
 
 	public override void OnJoinedRoom()

@@ -1,0 +1,132 @@
+Initialize engine version: 5.2.0f3 (e7947df39b5c)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 670 (ID=0x1189)
+    Vendor:   NVIDIA
+    VRAM:     1990 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\Photon3Unity3D.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\DOTween.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\DOTween.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\DOTween43.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\DOTween43.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\DOTween46.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\DOTween46.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\DOTween50.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\DOTween50.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.221 seconds
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+<RI> Input initialized.
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_04_Data\Managed\System.dll (this message is harmless)
+Setting up 3 worker threads for Enlighten.
+  Thread -> id: 4b82c -> priority: 1 
+  Thread -> id: 4b854 -> priority: 1 
+  Thread -> id: 4b83c -> priority: 1 
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 20.295868 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 721.
+Total: 0.636362 ms (FindLiveObjects: 0.036950 ms CreateObjectMapping: 0.032844 ms MarkObjects: 0.554251 ms  DeleteObjects: 0.011290 ms)
+
+Loading ModelDataStore
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+New room list: 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Joined room! Room: '85687c34-3157-481f-866f-cb74d7f84467' visible,open 1/2 players.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Room: '85687c34-3157-481f-866f-cb74d7f84467' visible,open 1/2 players.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+[SingletonBehavior] GameSettings destroyed.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+UnloadTime: 9.750720 ms
+
+Unloading 52 unused Assets to reduce memory usage. Loaded Objects now: 1926.
+Total: 1.624777 ms (FindLiveObjects: 0.093401 ms CreateObjectMapping: 0.088782 ms MarkObjects: 1.407182 ms  DeleteObjects: 0.034384 ms)
+
+Enter state Connecting
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Enter state BeginGame
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Reset game!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Scenario: ScenarioModel1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+!! Update electoral votes. States: 51 Red votes: 203
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Enter state BeginWeek
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+!! Update electoral votes. States: 51 Red votes: 203
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Enter state Placement
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+BeginPlacement. UsingAI: True
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Setting worker count on PA to 1 for blue? False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Setting worker count on OH to 1 for blue? False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+!! Update electoral votes. States: 51 Red votes: 203
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Enter state Disconnected
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
