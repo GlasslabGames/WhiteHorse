@@ -184,13 +184,13 @@ public class GameManager : SingletonBehavior<GameManager> {
 				ScenarioModel2.InPlayStatus status = (ScenarioModel2.InPlayStatus)scenario.StatesInPlay[state.Model.Id - 1];
 				if (status == ScenarioModel2.InPlayStatus.ALWAYS) {
 					inPlayStatus[id] = true;
-					if (state.IsBlue) {
+					if (votes[id] > 0) { // is blue
 						blueStatesAdded ++;
 					} else {
 						redStatesAdded ++;
 					}
 				} else if (status == ScenarioModel2.InPlayStatus.MAYBE) {
-					if (state.IsBlue) {
+					if (votes[id] > 0) { // is blue
 						maybeBlueStates.Add(state);
 					} else {
 						maybeRedStates.Add(state);
@@ -204,7 +204,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 		int r;
 		State s;
 		while ((blueStatesAdded + redStatesAdded) < numStatesToAdd || blueStatesAdded != redStatesAdded) {
-			Debug.Log("Blue states: " + blueStatesAdded + " Red states: " + redStatesAdded + " NumStatesToAdd: " + numStatesToAdd);
+			Debug.Log("Blue states: " + blueStatesAdded + " Red states: " + redStatesAdded + " NumStatesToAdd: " + numStatesToAdd
+			          + " Maybe blue states: "+maybeBlueStates.Count + " MaybeRedStates: " + maybeRedStates.Count);
 			if (blueStatesAdded < redStatesAdded) {
 				r = Random.Range(0, maybeBlueStates.Count);
 				s = maybeBlueStates[r];
