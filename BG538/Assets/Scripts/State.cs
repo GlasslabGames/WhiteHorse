@@ -171,6 +171,9 @@ public class State : MonoBehaviour {
 		// Check the current phase
 		TurnPhase phase = GameManager.Instance.CurrentTurnPhase;
 		if (phase == TurnPhase.Placement || phase == TurnPhase.Waiting || phase == TurnPhase.ElectionDay) {
+			//TODO SdkManager.Instance.GLSDK.AddTelemEventValue("state", this.Model.Abbreviation);
+			//SdkManager.Instance.GLSDK.SaveTelemEvent("inspect");
+
 			UIManager.Instance.statePopup.Show(this);
 		}
 	}

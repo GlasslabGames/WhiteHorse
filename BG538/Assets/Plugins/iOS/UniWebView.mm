@@ -2,16 +2,26 @@
 //  UniWebView.mm
 //  UniWebView
 //
-//  Created by 王 巍 on 13-9-22.
+//  Created by 王 巍 on 14-12-19.
 //  Copyright (c) 2013年 OneV's Den. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "iPhone_Common.h"
+
+#import "OrientationSupport.h"
+
+#ifndef NSFoundationVersionNumber_iOS_7_1
+#define NSFoundationVersionNumber_iOS_7_1 1047.25
+#endif
+
+#define BELOW_IOS_8 (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1)
 
 extern UIViewController *UnityGetGLViewController();
 extern ScreenOrientation UnityCurrentOrientation();
 extern NSString * const kUnityViewWillRotate;
+
+NSString * const UWVPlayerWillExitFullScreenNotification = @"UIMoviePlayerControllerWillExitFullscreenNotification";
+NSString * const UWVPlayerDidEnterFullScreenNotification = @"UIMoviePlayerControllerDidEnterFullscreenNotification";
 
 extern "C" void UnitySendMessage(const char *, const char *, const char *);
 
@@ -23,13 +33,7 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
 @end
 
 @implementation UniWebViewToolBar
--(void)dealloc {
-    [_btnNext release];
-    [_btnBack release];
-    [_btnReload release];
-    [_btnDone release];
-    [super dealloc];
-}
+
 @end
 
 @interface UniWebSpinner : UIView
@@ -46,27 +50,26 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
     if (self) {
         self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
         self.clipsToBounds = YES;
-        //self.layer.cornerRadius = 10.0; // COMMENTED OUT BY JERRY 4-22-2014
-        
+        self.layer.cornerRadius = 10.0;
+
         _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        
+
         _indicator.frame = (CGRect){ frame.size.width / 2 - _indicator.frame.size.width / 2,
-            frame.size.height / 2 - _indicator.frame.size.height / 2 - 10,
-            _indicator.bounds.size.width,
-            _indicator.bounds.size.height};
+                                    frame.size.height / 2 - _indicator.frame.size.height / 2 - 10,
+                                    _indicator.bounds.size.width,
+                                    _indicator.bounds.size.height};
         [self addSubview:_indicator];
-        
+
         _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.height - 22 * 2, frame.size.width, 22)];
         _textLabel.backgroundColor = [UIColor clearColor];
         _textLabel.textColor = [UIColor whiteColor];
         _textLabel.adjustsFontSizeToFitWidth = YES;
-        _textLabel.textAlignment = UITextAlignmentCenter;
+        _textLabel.textAlignment = NSTextAlignmentCenter;
         _textLabel.text = @"Loading...";
         [self addSubview:_textLabel];
-        
+
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hide)];
         [self addGestureRecognizer:tap];
-        [tap release];
     }
     return self;
 }
@@ -81,11 +84,6 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
     self.hidden = YES;
 }
 
--(void)dealloc {
-    [_textLabel release];
-    [_indicator release];
-    [super dealloc];
-}
 @end
 
 @class UniWebView;
@@ -104,13 +102,32 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
 
 @property (nonatomic, retain) NSMutableArray *schemes;
 
-@property (nonatomic, retain) NSMutableDictionary *customHeaders;
-
 -(id) initWithFrame:(CGRect)frame;
 -(void) btnDonePressed:(id)sender;
 -(void) updateToolBtn;
--(void) changeToInsets:(UIEdgeInsets)insets;
+-(void) changeToInsets:(UIEdgeInsets)insets targetOrientation:(ScreenOrientation)orientation;
 -(void) setBounces:(BOOL)bounces;
+
+@end
+
+@interface NSUserDefaults(UnRegisterDefaults)
+- (void)uwv_unregisterDefaultForKey:(NSString *)defaultName;
+@end
+
+@implementation NSUserDefaults (UnRegisterDefaults)
+
+- (void)uwv_unregisterDefaultForKey:(NSString *)defaultName {
+    NSDictionary *registeredDefaults = [[NSUserDefaults standardUserDefaults] volatileDomainForName:NSRegistrationDomain];
+    if ([registeredDefaults objectForKey:defaultName] != nil) {
+        NSMutableDictionary *mutableCopy = [NSMutableDictionary dictionaryWithDictionary:registeredDefaults];
+        [mutableCopy removeObjectForKey:defaultName];
+        [self uwv_replaceRegisteredDefaults:mutableCopy];
+    }
+}
+
+- (void)uwv_replaceRegisteredDefaults:(NSDictionary *)dictionary {
+    [[NSUserDefaults standardUserDefaults] setVolatileDomain:dictionary forName:NSRegistrationDomain];
+}
 
 @end
 
@@ -121,45 +138,38 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
         CGRect toolBarFrame = CGRectMake(0, frame.size.height - 44, frame.size.width, 44);
         _toolBar = ({
             UniWebViewToolBar *toolBar = [[UniWebViewToolBar alloc] initWithFrame:toolBarFrame];
-            
+
             UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(goBack)];
             UIBarButtonItem *forward = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(goForward)];
             UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(btnReloadPressed:)];
             UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
             UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(btnDonePressed:)];
-            
+
             toolBar.items = @[back,forward,reload,space,done];
-            
+
             toolBar.btnBack = back;
             toolBar.btnNext = forward;
             toolBar.btnReload = reload;
             toolBar.btnDone = done;
-            
+
             toolBar.hidden = YES;
-            
-            [back release];
-            [forward release];
-            [reload release];
-            [done release];
-            [space release];
-            
+
             toolBar;
         });
-        
+
         _schemes = [[NSMutableArray alloc] initWithObjects:@"uniwebview", nil];
-        _customHeaders = [[NSMutableDictionary alloc] init];
-        
+
         _showSpinnerWhenLoading = YES;
-        
+
         _spinner = ({
             UniWebSpinner *spinner = [[UniWebSpinner alloc] initWithFrame:CGRectMake(frame.size.width / 2 - 65, frame.size.height / 2 - 65, 130, 130)];
             [spinner hide];
             spinner;
         });
-        
+
         [self setBounces:NO];
         [self updateToolBtn];
-        
+
     }
     return self;
 }
@@ -191,20 +201,24 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
     self.toolBar.btnNext.enabled = [self canGoForward];
 }
 
--(void)changeToInsets:(UIEdgeInsets)insets {
+-(void)changeToInsets:(UIEdgeInsets)insets targetOrientation:(ScreenOrientation)orientation {
     UIView *unityView = UnityGetGLViewController().view;
     CGRect viewRect = unityView.frame;
-    
-    ScreenOrientation ori = UnityCurrentOrientation();
-    if (ori == landscapeLeft || ori == landscapeRight) {
-        viewRect = CGRectMake(viewRect.origin.x, viewRect.origin.y, viewRect.size.height, viewRect.size.width);
-        self.toolBar.frame = CGRectMake(0, unityView.frame.size.width - 44, unityView.frame.size.height, 44);
-        self.spinner.frame = CGRectMake(unityView.frame.size.height / 2 - 65, unityView.frame.size.width / 2 - 65, 130, 130);
+
+    if (orientation == landscapeLeft || orientation == landscapeRight) {
+        if (BELOW_IOS_8) {
+            viewRect = CGRectMake(viewRect.origin.x, viewRect.origin.y, viewRect.size.height, viewRect.size.width);
+            self.toolBar.frame = CGRectMake(0, unityView.frame.size.width - 44, unityView.frame.size.height, 44);
+            self.spinner.frame = CGRectMake(unityView.frame.size.height / 2 - 65, unityView.frame.size.width / 2 - 65, 130, 130);
+        } else {
+            self.toolBar.frame = CGRectMake(0, unityView.frame.size.height - 44, unityView.frame.size.width, 44);
+            self.spinner.frame = CGRectMake(unityView.frame.size.width / 2 - 65, unityView.frame.size.height / 2 - 65, 130, 130);
+        }
     } else {
         self.toolBar.frame = CGRectMake(0, unityView.frame.size.height - 44, unityView.frame.size.width, 44);
         self.spinner.frame = CGRectMake(unityView.frame.size.width / 2 - 65, unityView.frame.size.height / 2 - 65, 130, 130);
     }
-    
+
     CGRect f = CGRectMake(insets.left,
                           insets.top,
                           viewRect.size.width - insets.left - insets.right,
@@ -213,17 +227,12 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
     self.insets = insets;
 }
 
--(void)dealloc {
-    [_toolBar release];
-    [_schemes release];
-    [_customHeaders release];
-    [_spinner release];
-    [super dealloc];
-}
 @end
 
 @interface UniWebViewManager()<UIWebViewDelegate> {
     NSMutableDictionary *_webViewDic;
+    ScreenOrientation _orientationBeforeFullScreen;
+    BOOL _multipleOrientation;
 }
 @end
 
@@ -239,9 +248,31 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
     self = [super init];
     if (self) {
         _webViewDic = [[NSMutableDictionary alloc] init];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:kUnityViewWillRotate object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoExitFullScreen:) name:UWVPlayerWillExitFullScreenNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoEnterFullScreen:) name:UWVPlayerDidEnterFullScreenNotification object:nil];
+        
+        [self checkOrientationSupport];
     }
     return self;
+}
+
+-(void) checkOrientationSupport {
+    NSArray *arr = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"];
+    __block BOOL portraitOrientation = NO;
+    __block BOOL landspaceOrientation = NO;
+    
+    [arr enumerateObjectsUsingBlock:^(NSString *orientation, NSUInteger idx, BOOL *stop) {
+        if ([orientation rangeOfString:@"Portrait"].location != NSNotFound) {
+            portraitOrientation = YES;
+        } else if ([orientation rangeOfString:@"Landscape"].location != NSNotFound) {
+            landspaceOrientation = YES;
+        }
+        
+        if (portraitOrientation && landspaceOrientation) {
+            _multipleOrientation = YES;
+            *stop = YES;
+        }
+    }];
 }
 
 -(void) addManagedWebView:(UniWebView *)webView forName:(NSString *)name {
@@ -256,16 +287,15 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
     UIView *unityView = UnityGetGLViewController().view;
     UniWebView *webView = [[UniWebView alloc] initWithFrame:unityView.frame];
     webView.mediaPlaybackRequiresUserAction = NO;
-    
+
     [self changeWebView:webView insets:insets];
     webView.delegate = self;
     webView.hidden = YES;
-    
+
     [self addManagedWebView:webView forName:name];
     [unityView addSubview:webView];
     [unityView addSubview:webView.toolBar];
     [unityView addSubview:webView.spinner];
-    [webView release];
 }
 
 -(void) changeWebViewName:(NSString *)name insets:(UIEdgeInsets)insets {
@@ -274,26 +304,14 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
 }
 
 -(void) changeWebView:(UniWebView *)webView insets:(UIEdgeInsets)insets {
-    [webView changeToInsets:insets];
+    [webView changeToInsets:insets targetOrientation:UnityCurrentOrientation()];
 }
 
 -(void) webviewName:(NSString *)name beginLoadURL:(NSString *)urlString {
     UniWebView *webView = [_webViewDic objectForKey:name];
     NSURL *url = [NSURL URLWithString:urlString];
-    
-    //NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-    for( NSString *key in [webView.customHeaders allKeys] ){
-        NSLog( @"Setting %@ header to %@", key, [webView.customHeaders objectForKey:key] );
-        [request addValue:[webView.customHeaders objectForKey:key] forHTTPHeaderField:key];
-    }
-    
-    /*NSMutableURLRequest* req = (NSMutableURLRequest *)request;
-     if ([req respondsToSelector:@selector(setValue:forHTTPHeaderField:)]) {
-     [req setValue:[NSString stringWithFormat:@"%@ Safari/528.16", [req valueForHTTPHeaderField:@"User-Agent"]] forHTTPHeaderField:@"User_Agent"];
-     }
-     [request addValue:[self.customHeaders objectForKey:key] forHTTPHeaderField:key];*/
-    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+
     [webView loadRequest:request];
 }
 
@@ -312,44 +330,68 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
 -(void) webViewNameCleanCache:(NSString *)name {
     UniWebView *webView = [_webViewDic objectForKey:name];
     [[NSURLCache sharedURLCache] removeCachedResponseForRequest:webView.request];
+
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
 
--(void) webViewNameCleanCookie:(NSString *)name {
+-(void) webViewNameCleanCookie:(NSString *)name forKey:(NSString *)key {
+    
     NSHTTPCookie *cookie;
     NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (cookie in [cookieJar cookies]) {
-        [cookieJar deleteCookie:cookie];
+    
+    if (key.length) {
+        NSLog(@"Removing cookie for %@", key);
+        for (cookie in [cookieJar cookies]) {
+            if ([cookie.name isEqualToString:key]) {
+                [cookieJar deleteCookie:cookie];
+                NSLog(@"Found cookie for %@, removed.", key);
+            }
+        }
+    } else {
+        NSLog(@"Removing all cookies");
+        for (cookie in [cookieJar cookies]) {
+            [cookieJar deleteCookie:cookie];
+        }
     }
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(void) webViewName:(NSString *)name show:(BOOL)show {
     UniWebView *webView = [_webViewDic objectForKey:name];
     webView.hidden = !show;
+    if (!show) {
+        [webView.spinner hide];
+    }
 }
 
 -(void) removeWebViewName:(NSString *)name {
     UniWebView *webView = [_webViewDic objectForKey:name];
-    
-    // GlassLab edit
-    [webView.spinner hide];
-    
     webView.delegate = nil;
     [webView removeFromSuperview];
     [webView.toolBar removeFromSuperview];
+    [webView.spinner removeFromSuperview];
     [_webViewDic removeObjectForKey:name];
-    
 }
 
 -(void) updateBackgroundWebViewName:(NSString *)name transparent:(BOOL)transparent {
+    UIColor *color = transparent ? [UIColor clearColor] : [UIColor whiteColor];
+    [self setWebViewBackgroundColorName:name color:color];
+}
+
+-(void) setWebViewBackgroundColorName:(NSString *)name color:(UIColor *)color {
     UniWebView *webView = [_webViewDic objectForKey:name];
-    webView.opaque = !transparent;
-    webView.backgroundColor = transparent ? [UIColor clearColor] : [UIColor whiteColor];
+    CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha =0.0;
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
+    
+    webView.opaque = NO;
+    webView.backgroundColor = color;
+    
     for (UIView* subView in [webView subviews]) {
         if ([subView isKindOfClass:[UIScrollView class]]) {
             for (UIView* shadowView in [subView subviews]) {
                 if ([shadowView isKindOfClass:[UIImageView class]]) {
-                    [shadowView setHidden:transparent];
+                    [shadowView setHidden:true];
                 }
             }
         }
@@ -389,6 +431,16 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
     }
 }
 
+-(bool) canGoBackWebViewName:(NSString *)name {
+    UniWebView *webView = [_webViewDic objectForKey:name];
+    return [webView canGoBack] ? true : false;
+}
+
+-(bool) canGoForwardWebViewName:(NSString *)name {
+    UniWebView *webView = [_webViewDic objectForKey:name];
+    return [webView canGoForward] ? true : false;
+}
+
 -(void) goBackWebViewName:(NSString *)name {
     UniWebView *webView = [_webViewDic objectForKey:name];
     [webView goBack];
@@ -414,10 +466,22 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
     [webView loadHTMLString:htmlString baseURL:[NSURL URLWithString:baseURL]];
 }
 
--(void) webViewName:(NSString *)name evaluatingJavaScript:(NSString *)javaScript {
-    UniWebView *webView = [_webViewDic objectForKey:name];
-    NSString *result = [webView stringByEvaluatingJavaScriptFromString:javaScript];
-    UnitySendMessage([name UTF8String], "EvalJavaScriptFinished", [result UTF8String]);
+-(void) webViewName:(NSString *)name evaluatingJavaScript:(NSString *)javaScript shouldCallBack:(BOOL)callBack {
+    NSDictionary *info = @{@"js": javaScript, @"callback": @(callBack), @"name": name};
+    [self performSelectorOnMainThread:@selector(performJavaScript:) withObject:info waitUntilDone:NO];
+}
+
+-(void) performJavaScript:(NSDictionary *)info {
+    
+    NSString *name = info[@"name"];
+    NSString *js = info[@"js"];
+    BOOL callback = [info[@"callback"] boolValue];
+    
+    UniWebView *webView = [_webViewDic objectForKey:info[@"name"]];
+    NSString *result = [webView stringByEvaluatingJavaScriptFromString:js];
+    if (callback) {
+        UnitySendMessage([name UTF8String], "EvalJavaScriptFinished", [result UTF8String]);
+    }
 }
 
 -(void) webViewName:(NSString *)name setSpinnerShowWhenLoading:(BOOL)show {
@@ -454,11 +518,6 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
     }
 }
 
-- (void)webViewName:(NSString *)name addCustomHeader:(NSString *)key withValue:(NSString *)value {
-    UniWebView *webView = [_webViewDic objectForKey:name];
-    [webView.customHeaders setValue:value forKey:key];
-}
-
 - (void)webViewDidStartLoad:(UniWebView *)webView {
     if (webView.showSpinnerWhenLoading && !webView.hidden) {
         [webView.spinner show];
@@ -469,7 +528,7 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
     [webView.spinner hide];
     NSString *webViewName = [self webViewName:webView];
     [webView updateToolBtn];
-    
+
     webView.currentUrl = webView.request.mainDocumentURL.absoluteString;
     UnitySendMessage([webViewName UTF8String], "LoadComplete", "");
 }
@@ -478,7 +537,7 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
     [webView.spinner hide];
     NSString *webViewName = [self webViewName:webView];
     [webView updateToolBtn];
-    
+
     webView.currentUrl = webView.request.mainDocumentURL.absoluteString;
     UnitySendMessage([webViewName UTF8String], "LoadComplete", [error.localizedDescription UTF8String]);
 }
@@ -496,13 +555,7 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
 
 -(BOOL)webView:(UniWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSString *webViewName = [self webViewName:webView];
-    
-    /*NSMutableURLRequest* req = (NSMutableURLRequest *)request;
-     if ([req respondsToSelector:@selector(setValue:forHTTPHeaderField:)]) {
-     [req setValue:[NSString stringWithFormat:@"%@ Safari/528.16", [req valueForHTTPHeaderField:@"User-Agent"]] forHTTPHeaderField:@"User_Agent"];
-     }
-     [request addValue:[self.customHeaders objectForKey:key] forHTTPHeaderField:key];*/
-    
+
     __block BOOL canResponse = NO;
     [webView.schemes enumerateObjectsUsingBlock:^(NSString *scheme, NSUInteger idx, BOOL *stop) {
         if ([[request.URL absoluteString] rangeOfString:[scheme stringByAppendingString:@"://"]].location == 0) {
@@ -510,7 +563,7 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
             *stop = YES;
         }
     }];
-    
+
     if (canResponse) {
         NSString *rawMessage = [NSString stringWithFormat:@"%@",request.URL];
         UnitySendMessage([webViewName UTF8String], "ReceivedMessage", [rawMessage UTF8String]);
@@ -521,12 +574,60 @@ extern "C" void UnitySendMessage(const char *, const char *, const char *);
     return YES;
 }
 
--(void) orientationChanged:(NSNotification *)noti {
+-(void) videoEnterFullScreen:(NSNotification *)noti {
+    UIInterfaceOrientation toInterfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+    _orientationBeforeFullScreen = ConvertToUnityScreenOrientation(toInterfaceOrientation);
+}
+
+-(void) videoExitFullScreen:(NSNotification *)noti {
+    
+    ScreenOrientation orientation = portrait;
+    
+    if (_multipleOrientation) {
+        UIInterfaceOrientation toInterfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+        orientation = ConvertToUnityScreenOrientation(toInterfaceOrientation);
+    } else {
+        orientation = UnityCurrentOrientation();
+    }
+    
+    if (_orientationBeforeFullScreen == landscapeLeft || _orientationBeforeFullScreen == landscapeRight) {
+        if (orientation == portrait) {
+            orientation = _orientationBeforeFullScreen;
+        } else {
+            orientation = portrait;
+        }
+    }
+    
     [_webViewDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         UniWebView *webView = (UniWebView *)obj;
-        [webView changeToInsets:webView.insets];
+        [webView changeToInsets:webView.insets targetOrientation:orientation];
     }];
 }
+
+-(NSString *) webViewGetUserAgent:(NSString *)name {
+    UniWebView *webView = [_webViewDic objectForKey:name];
+    return [webView stringByEvaluatingJavaScriptFromString:@"window.navigator.userAgent"];
+}
+
+-(void) webViewSetUserAgent:(NSString *)userAgent {
+    [[NSUserDefaults standardUserDefaults] uwv_unregisterDefaultForKey:@"UserAgent"];
+    
+    if (userAgent.length != 0) {
+        NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:userAgent, @"UserAgent", nil];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+    }
+}
+
+-(float) webViewNameGetAlpha:(NSString *)name {
+    UniWebView *webView = [_webViewDic objectForKey:name];
+    return webView.alpha;
+}
+
+-(void) webViewName:(NSString *)name setAlpha:(float)alpha {
+    UniWebView *webView = [_webViewDic objectForKey:name];
+    webView.alpha = alpha;
+}
+
 @end
 
 
@@ -544,7 +645,7 @@ char* UniWebViewMakeCString(NSString *str) {
     if (string == NULL) {
         return NULL;
     }
-    
+
     char* res = (char*)malloc(strlen(string) + 1);
     strcpy(res, string);
     return res;
@@ -559,15 +660,18 @@ extern "C" {
     void _UniWebViewShow(const char *name);
     void _UniWebViewDismiss(const char *name);
     void _UniWebViewCleanCache(const char *name);
-    void _UniWebViewCleanCookie(const char *name);
+    void _UniWebViewCleanCookie(const char *name, const char *key);
     void _UniWebViewDestroy(const char *name);
     void _UniWebViewTransparentBackground(const char *name, BOOL transparent);
+    void _UniWebViewSetBackgroundColor(const char *name, float r, float g, float b, float a);
     void _UniWebViewShowToolBar(const char *name, bool animate);
     void _UniWebViewHideToolBar(const char *name, bool animate);
+    bool _UniWebViewCanGoBack(const char *name);
+    bool _UniWebViewCanGoForward(const char *name);
     void _UniWebViewGoBack(const char *name);
     void _UniWebViewGoForward(const char *name);
     void _UniWebViewLoadHTMLString(const char *name, const char *html, const char *baseUrl);
-    void _UniWebViewEvaluatingJavaScript(const char *name, const char *javascript);
+    void _UniWebViewEvaluatingJavaScript(const char *name, const char *javascript, BOOL callback);
     void _UniWebViewSetSpinnerShowWhenLoading(const char *name, bool show);
     void _UniWebViewSetSpinnerText(const char *name, const char *text);
     const char * _UniWebViewGetCurrentUrl(const char *name);
@@ -575,7 +679,12 @@ extern "C" {
     void _UniWebViewSetZoomEnable(const char *name, bool enable);
     void _UniWebViewAddUrlScheme(const char *name, const char *scheme);
     void _UniWebViewRemoveUrlScheme(const char *name, const char *scheme);
-    void _UniWebViewAddCustomHeader(const char *name, const char *key, const char *value);
+    int _UniWebViewScreenHeight();
+    int _UniWebViewScreenWidth();
+    const char * _UniWebViewGetUserAgent(const char *name);
+    void _UniWebViewSetUserAgent(const char *userAgent);
+    float _UniWebViewGetAlpha(const char *name);
+    void _UniWebViewSetAlpha(const char *name, float alpha);
 }
 
 void _UniWebViewInit(const char *name, int top, int left, int bottom, int right) {
@@ -613,8 +722,8 @@ void _UniWebViewCleanCache(const char *name) {
     [[UniWebViewManager sharedManager] webViewNameCleanCache:UniWebViewMakeNSString(name)];
 }
 
-void _UniWebViewCleanCookie(const char *name) {
-    [[UniWebViewManager sharedManager] webViewNameCleanCookie:UniWebViewMakeNSString(name)];
+void _UniWebViewCleanCookie(const char *name, const char *key) {
+    [[UniWebViewManager sharedManager] webViewNameCleanCookie:UniWebViewMakeNSString(name) forKey:UniWebViewMakeNSString(key)];
 }
 
 void _UniWebViewDestroy(const char *name) {
@@ -625,11 +734,24 @@ void _UniWebViewTransparentBackground(const char *name, BOOL transparent) {
     [[UniWebViewManager sharedManager] updateBackgroundWebViewName:UniWebViewMakeNSString(name) transparent:transparent];
 }
 
+void _UniWebViewSetBackgroundColor(const char *name, float r, float g, float b, float a) {
+    UIColor *color = [UIColor colorWithRed:r green:g blue:b alpha:a];
+    [[UniWebViewManager sharedManager] setWebViewBackgroundColorName:UniWebViewMakeNSString(name) color:color];
+}
+
 void _UniWebViewShowToolBar(const char *name, bool animate) {
     [[UniWebViewManager sharedManager] webViewName:UniWebViewMakeNSString(name) showToolBarAnimate:animate];
 }
 void _UniWebViewHideToolBar(const char *name, bool animate) {
     [[UniWebViewManager sharedManager] webViewName:UniWebViewMakeNSString(name) hideToolBarAnimate:animate];
+}
+
+bool _UniWebViewCanGoBack(const char *name) {
+    return [[UniWebViewManager sharedManager] canGoBackWebViewName:UniWebViewMakeNSString(name)];
+}
+
+bool _UniWebViewCanGoForward(const char *name) {
+    return [[UniWebViewManager sharedManager] canGoForwardWebViewName:UniWebViewMakeNSString(name)];
 }
 
 void _UniWebViewGoBack(const char *name) {
@@ -650,11 +772,11 @@ void _UniWebViewSetBounces(const char *name, bool bounces) {
     [[UniWebViewManager sharedManager] webViewName:UniWebViewMakeNSString(name) setBounces:bounces];
 }
 
-void _UniWebViewEvaluatingJavaScript(const char *name, const char *javascript) {
+void _UniWebViewEvaluatingJavaScript(const char *name, const char *javascript, BOOL callback) {
     NSString *webViewName = UniWebViewMakeNSString(name);
     NSString *jsString = UniWebViewMakeNSString(javascript);
     NSLog(@"webViewName:%@, eval js:%@",webViewName,jsString);
-    [[UniWebViewManager sharedManager] webViewName:webViewName evaluatingJavaScript:jsString];
+    [[UniWebViewManager sharedManager] webViewName:webViewName evaluatingJavaScript:jsString shouldCallBack:callback];
 }
 
 void _UniWebViewSetSpinnerShowWhenLoading(const char *name, bool show) {
@@ -685,7 +807,43 @@ void _UniWebViewRemoveUrlScheme(const char *name, const char *scheme) {
                                    removeUrlScheme:UniWebViewMakeNSString(scheme)];
 }
 
-void _UniWebViewAddCustomHeader(const char *name, const char *key, const char *value) {
+int _UniWebViewScreenHeight() {
+    if (BELOW_IOS_8) {
+        if (UnityCurrentOrientation() == landscapeLeft || UnityCurrentOrientation() == landscapeRight) {
+            return UnityGetGLViewController().view.frame.size.width;
+        } else {
+            return UnityGetGLViewController().view.frame.size.height;
+        }
+    } else {
+        return UnityGetGLViewController().view.frame.size.height;
+    }
+}
+
+int _UniWebViewScreenWidth() {
+    if (BELOW_IOS_8) {
+        if (UnityCurrentOrientation() == landscapeLeft || UnityCurrentOrientation() == landscapeRight) {
+            return UnityGetGLViewController().view.frame.size.height;
+        } else {
+            return UnityGetGLViewController().view.frame.size.width;
+        }
+    } else {
+        return UnityGetGLViewController().view.frame.size.width;
+    }
+}
+
+const char * _UniWebViewGetUserAgent(const char *name) {
+    return UniWebViewMakeCString([[UniWebViewManager sharedManager] webViewGetUserAgent:UniWebViewMakeNSString(name)]);
+}
+
+void _UniWebViewSetUserAgent(const char *userAgent) {
+    [[UniWebViewManager sharedManager] webViewSetUserAgent:UniWebViewMakeNSString(userAgent)];
+}
+
+float _UniWebViewGetAlpha(const char *name) {
+    return [[UniWebViewManager sharedManager] webViewNameGetAlpha:UniWebViewMakeNSString(name)];
+}
+
+void _UniWebViewSetAlpha(const char *name, float alpha) {
     [[UniWebViewManager sharedManager] webViewName:UniWebViewMakeNSString(name)
-                                   addCustomHeader:UniWebViewMakeNSString(key) withValue:UniWebViewMakeNSString(value)];
+                                          setAlpha:alpha];
 }
