@@ -59,7 +59,7 @@ public class UIManager : SingletonBehavior<UIManager> {
 		case TurnPhase.Harvest:
 			statePopup.Close();
 			break;
-		case TurnPhase.ElectionDay:
+		case TurnPhase.GameEnd:
 			if (weekLabel) weekLabel.text = "THE RESULTS ARE IN...";
 			if (header) header.ShowGameOver(GameManager.Instance.PlayerIsWinning, AfterResults);
 			break;
@@ -92,7 +92,7 @@ public class UIManager : SingletonBehavior<UIManager> {
 			if (statePopup) statePopup.Close();
 			if (State.HighlightedState) State.HighlightedState.UnHighlight();
 			break;
-		case TurnPhase.ElectionDay:
+		case TurnPhase.GameEnd:
 			HideElectionResults();
 			break;
 		case TurnPhase.Disconnected:

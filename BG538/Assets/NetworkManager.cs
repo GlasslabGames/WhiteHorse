@@ -82,7 +82,7 @@ public class NetworkManager : Photon.PunBehaviour {
 	void OnDisconnected() {
 		if (GameManager.Instance) {
 			GameManager.Instance.GoToPhase(TurnPhase.Disconnected);
-    	}
+  	}
 	}
     
 	public override void OnPhotonCreateRoomFailed(object[] codeAndMsg)
@@ -95,7 +95,7 @@ public class NetworkManager : Photon.PunBehaviour {
 		Debug.Log ("Failed to join room. "+codeAndMsg[1].ToString());
 	}
 
-	public void OnReceivedRoomListUpdate() {
+	public override void OnReceivedRoomListUpdate() {
 		Debug.Log ("New room list: ");
 		foreach (RoomInfo room in PhotonNetwork.GetRoomList())
 		{

@@ -225,7 +225,7 @@ public class GlasslabSDK {
 			mInst = GlasslabSDK_CreateInstance (clientId, deviceUUID, dataPath, uri);
 			mInstSet = true;
 
-#if UNITY_IPHONE
+#if UNITY_IOS
 			UnityEngine.iOS.Device.SetNoBackupFlag( dataPath + "/glasslabsdk.db" );
 #endif
 		}
@@ -243,7 +243,7 @@ public class GlasslabSDK {
 			// Get the message and response information
 			mMsgCode = GlasslabSDK_ReadTopMessageCode (mInst);
 			IntPtr responsePtr = GlasslabSDK_ReadTopMessageString (mInst);
-			#if UNITY_IPHONE
+			#if UNITY_IOS
 			mMsgString = System.Runtime.InteropServices.Marshal.PtrToStringAuto( responsePtr );
 			#endif
 			#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
@@ -696,7 +696,7 @@ public class GlasslabSDK {
 		// Get the URI
 		IntPtr uriPtr = GlasslabSDK_GetConnectUri( mInst );
 		string uri = "";
-		#if UNITY_IPHONE
+		#if UNITY_IOS
 		uri = System.Runtime.InteropServices.Marshal.PtrToStringAuto( uriPtr );
 		#endif
 		#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
@@ -722,7 +722,7 @@ public class GlasslabSDK {
 		// Get the entire cookie string
 		IntPtr cookiePtr = GlasslabSDK_GetCookie( mInst );
 		string cookie = "";
-		#if UNITY_IPHONE
+		#if UNITY_IOS
 		cookie = System.Runtime.InteropServices.Marshal.PtrToStringAuto( cookiePtr );
 		#endif
 		#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
@@ -786,7 +786,7 @@ public class GlasslabSDK {
 	 * Expose all SDK functions below with the DllImport flag.
 	 * GlassLab SDK instance management.
 	 */
-	#if UNITY_IPHONE
+	#if UNITY_IOS
 	[DllImport ("__Internal")]
 	private static extern System.IntPtr GlasslabSDK_CreateInstance(string dataPath, string clientId, string deviceId, string uri);
 
@@ -806,7 +806,7 @@ public class GlasslabSDK {
 	 * to the server. These responses are handled in the Update function on a separate
 	 * thread.
 	 */
-	#if UNITY_IPHONE
+	#if UNITY_IOS
 	[DllImport ("__Internal")]
 	private static extern int GlasslabSDK_GetLastStatus(System.IntPtr inst);
 	
@@ -837,7 +837,7 @@ public class GlasslabSDK {
 	 * All functions below make HTTP requests to the server and have callback functions
 	 * configured. Each callback returns a response indentifier and JSON message.
 	 */
-	#if UNITY_IPHONE
+	#if UNITY_IOS
 	[DllImport ("__Internal")]
 	private static extern void GlasslabSDK_Connect(System.IntPtr inst, string gameId, string uri);
 
@@ -941,7 +941,7 @@ public class GlasslabSDK {
 	 * are mid-stream but have not yet returned to fire a callback. It ensures that the callback
 	 * will not be fired.
 	 */
-	#if UNITY_IPHONE
+	#if UNITY_IOS
 	[DllImport ("__Internal")]
 	private static extern void GlasslabSDK_CancelRequest(System.IntPtr inst, string key);
 	#endif
@@ -954,7 +954,7 @@ public class GlasslabSDK {
 	 * The following helper functions allow for preparing a telemetry blob to be sent to the server.
 	 * Call GlasslabSDK_SaveTelemEvent after adding the event information you need.
 	 */
-	#if UNITY_IPHONE
+	#if UNITY_IOS
 	[DllImport ("__Internal")]
 	private static extern void GlasslabSDK_AddTelemEventValue_ccp   (System.IntPtr inst, string key, string value);
 
@@ -1032,7 +1032,7 @@ public class GlasslabSDK {
 	/**
 	 * Additional request functions for flushing the telemetry queue and saving an achievement.
 	 */
-	#if UNITY_IPHONE
+	#if UNITY_IOS
 	[DllImport ("__Internal")]
 	private static extern void GlasslabSDK_SendTelemEvents(System.IntPtr inst);
 
@@ -1061,7 +1061,7 @@ public class GlasslabSDK {
 	 * These functions allow for control over the game timer which is necessary for throttling
 	 * telemetry to the server.
 	 */
-	#if UNITY_IPHONE
+	#if UNITY_IOS
 	[DllImport ("__Internal")]
 	private static extern void GlasslabSDK_StartGameTimer(System.IntPtr inst);
 
@@ -1080,7 +1080,7 @@ public class GlasslabSDK {
 	/**
 	 * Variable and state getter functions.
 	 */
-	#if UNITY_IPHONE
+	#if UNITY_IOS
 	[DllImport ("__Internal")]
 	private static extern IntPtr GlasslabSDK_GetConnectUri(System.IntPtr inst);
 
@@ -1107,7 +1107,7 @@ public class GlasslabSDK {
 	/**
 	 * Variable and state setter functions.
 	 */
-	#if UNITY_IPHONE
+	#if UNITY_IOS
 	[DllImport ("__Internal")]
 	private static extern void GlasslabSDK_SetGameSecret(System.IntPtr inst, string gameSecret);
 

@@ -65,9 +65,7 @@ public class State : MonoBehaviour {
 
 	public Leaning CurrentLeaning {
 		get {
-			if (currentVote < 0) return Leaning.Red;
-			else if (currentVote > 0) return Leaning.Blue;
-			else return Leaning.Neutral;
+			return GetLeaningForVote(currentVote);
 		}
 	}
 	public bool IsBlue {
@@ -78,6 +76,12 @@ public class State : MonoBehaviour {
 	}
 	public bool IsNeutral {
 		get { return CurrentLeaning == Leaning.Neutral; }
+	}
+
+	public enum Controller {
+		Player,
+		Opponent,
+		Neutral
 	}
 
 	public int RedWorkerCount { get; private set; }
@@ -170,9 +174,9 @@ public class State : MonoBehaviour {
 
 		// Check the current phase
 		TurnPhase phase = GameManager.Instance.CurrentTurnPhase;
-		if (phase == TurnPhase.Placement || phase == TurnPhase.Waiting || phase == TurnPhase.ElectionDay) {
-			//TODO SdkManager.Instance.GLSDK.AddTelemEventValue("state", this.Model.Abbreviation);
-			//SdkManager.Instance.GLSDK.SaveTelemEvent("inspect");
+		if (phase == TurnPhase.Placement || phase == TurnPhase.Waiting || phase == TurnPhase.GameEnd) {
+			AddTelemetry();
+			SdkManager.Instance.SaveTelemEvent("inspect_state", SdkManager.EventCategory.Player_Action);
 
 			UIManager.Instance.statePopup.Show(this);
 		}
@@ -261,24 +265,37 @@ public class State : MonoBehaviour {
 			return true;
 		}
 
-		SetVote();
+		SetFinalVote();
 		return false;
+	}
+
+	float CalculateVote() {
+		int currentBlueWorkerCount = (GameManager.Instance.PlayerIsBlue) ? playerWorkers.Count : opponentWorkers.Count;
+		int currentRedWorkerCount = (GameManager.Instance.PlayerIsBlue) ? opponentWorkers.Count : playerWorkers.Count;
+		
+		float change = (currentBlueWorkerCount - currentRedWorkerCount) * GameSettings.InstanceOrCreate.WorkerIncrement * 2;
+		// we multiply by 2 so 1% change => 0.02 difference (since the vote goes from -1 to 1)
+		
+		return previousVote + change;
 	}
 
 	// Updates the vote based on the number of workers in the state, which changes throughout the harvest process.
 	public void UpdateVote() {
 		Leaning prevLeaning = CurrentLeaning;
-		int currentBlueWorkerCount = (GameManager.Instance.PlayerIsBlue) ? playerWorkers.Count : opponentWorkers.Count;
-		int currentRedWorkerCount = (GameManager.Instance.PlayerIsBlue) ? opponentWorkers.Count : playerWorkers.Count;
+		currentVote = CalculateVote();
 
-		float change = (currentBlueWorkerCount - currentRedWorkerCount) * GameSettings.InstanceOrCreate.WorkerIncrement * 2;
-		// we multiply by 2 so 1% change => 0.02 difference (since the vote goes from -1 to 1)
+		bool colorChanged = (CurrentLeaning != prevLeaning);
+		if (colorChanged) {
+			bool success = DidControllerGetBetter(GetController(prevLeaning), GetController());
 
-		currentVote = previousVote + change;
-		UpdateColor(CurrentLeaning != prevLeaning);
+			AddTelemetry(false);
+			SdkManager.Instance.AddTelemEventValue("prev_controller", GetController(prevLeaning));
+			SdkManager.Instance.SaveTelemEvent("state_control_changed", success, SdkManager.EventCategory.System_Event);
+		}
+		UpdateColor(colorChanged);
 	}
 
-	private void SetVote() {
+	private void SetFinalVote() {
 		currentVote = Mathf.Clamp(currentVote, -1, 1);
 		previousVote = currentVote;
 	}
@@ -365,13 +382,36 @@ public class State : MonoBehaviour {
 	}
 
 	public void AddWorker(bool isPlayer) {
+		// Store the previously predicted controller for telemetry purposes
+		Controller prevPredictedController = GetPredictedController();
+
 		SetWorkerCount( (isPlayer? PlayerWorkerCount : OpponentWorkerCount) + 1, isPlayer);
-		if (isPlayer) CreateWorker(true);
+
+		if (isPlayer) {
+			CreateWorker(true);
+
+			// We only send the telemetry when the player adds a worker (not if it's from the opponent/AI)
+			bool success = DidControllerGetBetter(prevPredictedController, GetPredictedController());
+			AddTelemetry();
+			SdkManager.Instance.AddTelemEventValue("prev_predicted_controller", System.Enum.GetName(typeof(Controller), prevPredictedController));
+			SdkManager.Instance.SaveTelemEvent("place_worker", success, SdkManager.EventCategory.Player_Action);
+		}
 	}
 
-	public void RemoveWorker(bool isPlayer) {
+	public void RemoveWorker(bool isPlayer) {		
+		// Store the previously predicted controller for telemetry purposes
+		Controller prevPredictedController = GetPredictedController();
+
 		SetWorkerCount( (isPlayer? PlayerWorkerCount : OpponentWorkerCount) - 1, isPlayer);
-		if (isPlayer) DestroyWorker(true);
+		if (isPlayer) {
+			DestroyWorker(true);
+
+			// We only send the telemetry when the player adds a worker (not if it's from the opponent/AI)
+			bool failure = DidControllerGetWorse(prevPredictedController, GetPredictedController());
+			AddTelemetry();
+			SdkManager.Instance.AddTelemEventValue("prev_predicted_controller", System.Enum.GetName(typeof(Controller), prevPredictedController));
+			SdkManager.Instance.SaveTelemEvent("remove_worker", !failure, SdkManager.EventCategory.Player_Action);
+		}
 	}
 	
 	private void SetWorkerCount(int workerCount, bool isPlayer) {
@@ -414,6 +454,54 @@ public class State : MonoBehaviour {
 
 		GameObject worker = workerList[workerList.Count - 1];
 		if (workerList.Remove(worker)) Destroy(worker);
+	}
+
+	public Leaning GetLeaningForVote(float vote) {
+		if (vote < 0) return Leaning.Red;
+		else if (vote > 0) return Leaning.Blue;
+		else return Leaning.Neutral;
+	}
+
+	public Leaning GetPredictedLeaning() {
+		var predictedVote = CalculateVote();
+		return GetLeaningForVote(predictedVote);
+	}
+
+	public Controller GetController() {
+		return GetController(CurrentLeaning);
+	}
+
+	// Prediction of what the state's color will be
+	public Controller GetPredictedController() {
+		return GetController(GetPredictedLeaning());
+	}
+
+	public static Controller GetController(Leaning leaning) {
+		if (leaning == Leaning.Blue) return (GameManager.Instance.PlayerIsBlue)? Controller.Player : Controller.Opponent;
+		else if (leaning == Leaning.Red) return (GameManager.Instance.PlayerIsBlue)? Controller.Opponent : Controller.Player;
+		else return Controller.Neutral;
+	}
+
+	public static bool DidControllerGetBetter(Controller prevController, Controller newController) {
+		return (prevController == Controller.Opponent && newController != Controller.Opponent)
+			|| (prevController != Controller.Player && newController == Controller.Player);
+		// Success = no longer under opponent control, or newly under player controller
+	}
+	
+	public static bool DidControllerGetWorse(Controller prevController, Controller newController) {
+		return (prevController == Controller.Player && newController != Controller.Player)
+			|| (prevController != Controller.Opponent && newController == Controller.Opponent);
+		// Failure = no longer under player control, or newly under opponent control
+	}
+
+	void AddTelemetry(bool includePredictedController = true) {
+		SdkManager.Instance.AddTelemEventValue("state", Model.Abbreviation);
+		SdkManager.Instance.AddTelemEventValue("player_popular_opinion", PlayerSupportPercent);
+		SdkManager.Instance.AddTelemEventValue("player_workers", playerWorkers.Count);
+		SdkManager.Instance.AddTelemEventValue("opponent_workers", opponentWorkers.Count);
+		SdkManager.Instance.AddTelemEventValue("controller", System.Enum.GetName(typeof(Controller), GetController()));
+
+		if (includePredictedController) SdkManager.Instance.AddTelemEventValue("predicted_controller", System.Enum.GetName(typeof(Controller), GetPredictedController()));
 	}
 
 }

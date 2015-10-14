@@ -1,3 +1,5 @@
+#define DEBUG_SDK
+
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -22,6 +24,14 @@ public class SdkManager
   public const string SDK_GAME_NAME   =   "Battleground538";
   public const string SDK_GAME_LEVEL  =   "unassigned";
 
+	// Based on Lizzo's work
+	public enum EventCategory {
+		None,
+		Unit_Start,
+		Unit_End,
+		Player_Action,
+		System_Event
+	}
 
   // Local instance variable for the Pegasus singleton
   private static SdkManager _instance = null;
@@ -132,4 +142,61 @@ public class SdkManager
   private void EndSessionDone( string response ) {
     Debug.Log( "End Session Done!" );
   }
+
+	/**
+	 * Shortcuts for telemetry events with debug logs
+	 * Note that not all types have shortcuts yet, just the most commonly used ones (for now)
+	 */
+	public void AddTelemEventValue(string key, string value) {
+		#if DEBUG_SDK
+		Debug.Log("_ "+key+": "+value);
+		#endif
+		#if (UNITY_IOS && !UNITY_EDITOR) || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+		GLSDK.AddTelemEventValue(key, value);
+		#endif
+	}
+	public void AddTelemEventValue(string key, int value) {
+		#if DEBUG_SDK
+		Debug.Log("__ "+key+": "+value);
+		#endif
+		#if (UNITY_IOS && !UNITY_EDITOR) || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+		GLSDK.AddTelemEventValue(key, value);
+		#endif
+	}
+	public void AddTelemEventValue(string key, float value) {
+		#if DEBUG_SDK
+		Debug.Log("__ "+key+": "+value);
+		#endif
+		#if (UNITY_IOS && !UNITY_EDITOR) || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+		GLSDK.AddTelemEventValue(key, value);
+		#endif
+	}
+	public void AddTelemEventValue(string key, bool value) {
+		#if DEBUG_SDK
+		Debug.Log("__ "+key+": "+value);
+		#endif
+		#if (UNITY_IOS && !UNITY_EDITOR) || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+		GLSDK.AddTelemEventValue(key, value);
+		#endif
+	}
+	// Shortcuts for enums:
+	public void AddTelemEventValue(string key, State.Controller value) {
+		AddTelemEventValue(key, Enum.GetName(typeof(State.Controller), value));
+	}
+
+	public void SaveTelemEvent(string name, bool result, EventCategory category = EventCategory.None) {
+		AddTelemEventValue("result", result);
+		SaveTelemEvent(name, category);
+	}
+
+	public void SaveTelemEvent(string name, EventCategory category = EventCategory.None) {
+		AddTelemEventValue("category", System.Enum.GetName(typeof(EventCategory), category));
+
+		#if DEBUG_SDK
+		Debug.Log("> TELEM EVENT: "+name);
+		#endif
+		#if (UNITY_IOS && !UNITY_EDITOR) || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+		GLSDK.SaveTelemEvent(name);
+		#endif
+	}
 }
