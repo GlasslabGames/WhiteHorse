@@ -17,12 +17,15 @@ public class SdkManager
   #if GAME_RELEASE
   // TODO
   #else
-  public const string SDK_SERVER_URI  =   "http://stage.playfully.org";  // staging server
+  public const string SDK_SERVER_URI  =   "http://developer.playfully.org";
   #endif
 
   public const string SDK_CLIENT_ID   =   "B538";
   public const string SDK_GAME_NAME   =   "Battleground538";
   public const string SDK_GAME_LEVEL  =   "unassigned";
+  public const string VERSION  =   "0.7";
+
+	public static string username;
 
 	// Based on Lizzo's work
 	public enum EventCategory {
@@ -90,7 +93,7 @@ public class SdkManager
 #if !UNITY_EDITOR
     Debug.Log( "[SdkManager] Attempting to set client properties..." );
     glsdk.SetName( SDK_GAME_NAME );
-    glsdk.SetVersion( GLResourceManager.InstanceOrCreate.GetVersionString() );
+    glsdk.SetVersion( VERSION );
     glsdk.SetGameLevel( SDK_GAME_LEVEL );
 #endif
   }

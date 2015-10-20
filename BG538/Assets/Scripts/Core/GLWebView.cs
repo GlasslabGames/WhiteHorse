@@ -30,6 +30,7 @@ public class GLWebView : MonoBehaviour {
 
   public UniWebView LoadView( string addr, Func<UniWebView, UniWebViewMessage, bool> callback, Action<bool> failureCallback = null, bool useCookie = true )
   {
+		Debug.Log ("*** LoadView " + addr);
     CancelRequest(); // Cancel request if there already was one
 
     // Get the web view object
@@ -42,7 +43,7 @@ public class GLWebView : MonoBehaviour {
     #if !UNITY_EDITOR
     int sides = 137;
     int top = 35;
-    int bottom = 417;
+	int bottom = 200; //417;
 
     CurrentWebView.insets = new UniWebViewEdgeInsets( top, sides, bottom, sides );
     #else
@@ -71,8 +72,8 @@ public class GLWebView : MonoBehaviour {
     bool checkingConnection = true;
     bool isConnected = false;
     bool noInternet = true;
-#if UNITY_EDITOR
-    SdkManager.Instance.GLSDK.Connect(Application.persistentDataPath, SdkManager.SDK_CLIENT_ID, SdkManager.SDK_SERVER_URI, 
+
+	SdkManager.Instance.GLSDK.Connect(Application.persistentDataPath, SdkManager.SDK_CLIENT_ID, SdkManager.SDK_SERVER_URI, 
       delegate( string response ) {
         Debug.Log("SERVER: in ConnectCallback(): " + response);// , this);
 
@@ -98,9 +99,6 @@ public class GLWebView : MonoBehaviour {
     {
       yield return null;
     }
-#else
-    isConnected = true;
-#endif
 
     if (isConnected)
     {
