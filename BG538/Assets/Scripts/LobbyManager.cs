@@ -142,4 +142,10 @@ public class LobbyManager : MonoBehaviour {
 		//TODO MatchMaker.DestroyMatch((UnityEngine.Networking.Types.NetworkID) hostedMatchId, OnMatchDestroyed);
 		WaitingModal.SetActive(false);
 	}
+
+	public void Logout() {
+		Overlay.SetActive(true);
+		SdkManager.Instance.Logout();
+		Application.LoadLevel("title");
+	}
 }

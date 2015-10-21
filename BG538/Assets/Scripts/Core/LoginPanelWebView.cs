@@ -58,6 +58,7 @@ public class LoginPanelWebView : MonoBehaviour {
 
 		Debug.Log("Setting AccountManager information...", this);
 		rUsername = Convert.ToString (parsedData ["username"]);
+		SdkManager.username = rUsername;
     // Get the account information
 		/*
     AccountManager.CURRENT_USER_NAME = Convert.ToString(parsedData["username"]);
@@ -81,8 +82,6 @@ public class LoginPanelWebView : MonoBehaviour {
     SdkManager.Instance.GLSDK.SetCookie( myCookie );
     SdkManager.Instance.GLSDK.DeviceUpdate();
 	
-		Debug.Log ("Username: "+rUsername + "PlayerHandle: "+rUserhandle);
-
 		/*
     Debug.Log("Current account role: " + AccountManager.CURRENT_USER_ROLE, this);
     // If we're an instructor, disable telemetry
@@ -116,6 +115,13 @@ public class LoginPanelWebView : MonoBehaviour {
     //Debug.Log("Requesting user save data...", this);
     //MainMenuController.Instance.ShowLoadingScreen();
     //SdkManager.Instance.GLSDK.GetSaveGame(onGetUserSaveReturn); // no save data in this game
+
+		// Instead of getting save data, immediately start the game
+		
+		Debug.Log("*** Starting game", this);
+		// Start game
+		//MainMenuController.Instance.PlayGame();
+		if (onLoginComplete != null) onLoginComplete ();
   }
 
   private void onGetUserSaveReturn(string data)
@@ -166,12 +172,11 @@ public class LoginPanelWebView : MonoBehaviour {
 			rSaveData = data;
     }
 
-    Debug.Log("Starting game", this);
+    Debug.Log("*** Starting game", this);
     // Start game
     //MainMenuController.Instance.PlayGame();
 		if (onLoginComplete != null)
 			onLoginComplete ();
-		Application.LoadLevel("lobby"); // proceed to the lobby
   }
   
   private bool LoginCallback( UniWebView webView, UniWebViewMessage message ) {

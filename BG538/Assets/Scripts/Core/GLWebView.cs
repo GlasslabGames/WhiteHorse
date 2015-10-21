@@ -43,7 +43,7 @@ public class GLWebView : MonoBehaviour {
     #if !UNITY_EDITOR
     int sides = 137;
     int top = 35;
-	int bottom = 200; //417;
+	int bottom = 417;
 
     CurrentWebView.insets = new UniWebViewEdgeInsets( top, sides, bottom, sides );
     #else

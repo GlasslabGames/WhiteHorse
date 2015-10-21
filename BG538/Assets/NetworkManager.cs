@@ -20,12 +20,14 @@ public class NetworkManager : Photon.PunBehaviour {
 		} else {
 			Instance = this;
 			DontDestroyOnLoad(gameObject);
-			
-			PhotonNetwork.playerName = GetRandomName();
+
+			if (SdkManager.username != null && SdkManager.username.Length > 0) PhotonNetwork.playerName = SdkManager.username;
+			else PhotonNetwork.playerName = GetRandomName();
 			PhotonNetwork.ConnectUsingSettings(GameSettings.InstanceOrCreate.Version);
 		}
 	}
 
+	// For testing purposes. In the real game we would use the GLGS login
 	public static string GetRandomName() {
 		string[] adjectives = {"Yellow", "Black", "White", "Purple", "Orange", "Green", "Awesome", "Silly",
 		"Patriotic", "Valiant", "Wise", "Strong", "Careful"};
@@ -51,6 +53,10 @@ public class NetworkManager : Photon.PunBehaviour {
 
 	public static void JoinRoom(string name) {
 		PhotonNetwork.JoinRoom(name);
+	}
+
+	public override void OnJoinedLobby() {
+
 	}
 
 	public override void OnJoinedRoom()
