@@ -11,11 +11,13 @@ public enum TurnPhase {
 	Placement,
 	Waiting,
 	Harvest,
-	ElectionDay,
+	GameEnd,
 	Disconnected
 }
 
 public class GameManager : SingletonBehavior<GameManager> {
+	private bool gameIsActive;
+
 	private List<State> states = new List< State >();
 
 	private Dictionary<string, State> _statesByAbbreviation = new Dictionary<string, State>();
@@ -39,6 +41,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 	public bool PlayerIsWinning {
 		get { return playerVotes >= opponentVotes; }
 	}
+
+	private int prevVoteDifference;
 
 	public AI OpponentAI;
 	public bool UsingAI {
@@ -88,6 +92,10 @@ public class GameManager : SingletonBehavior<GameManager> {
 	}
 
 	public void QuitGame() {
+		SdkManager.Instance.SaveTelemEvent("quit_game", SdkManager.EventCategory.Player_Action);
+
+		this.OnEndGame(false); // Send telemetry indicating that the game ended (unless we already ended the game)
+
 		Application.LoadLevel("lobby");
 		PhotonNetwork.LeaveRoom();
 	}
@@ -249,8 +257,34 @@ public class GameManager : SingletonBehavior<GameManager> {
 		case TurnPhase.Harvest:
 			BeginHarvest();
 			break;
+		case TurnPhase.GameEnd:
+			OnEndGame(true);
+			break;
+		case TurnPhase.Disconnected:
+			SdkManager.Instance.SaveTelemEvent("disconnected", SdkManager.EventCategory.System_Event);
+			OnEndGame(false);
+			break;
 		}
 		SignalManager.EnterTurnPhase (CurrentTurnPhase);
+	}
+
+	void OnBeginGame() {
+		// Send telemetry about the game
+		AddGameTelemetry();
+		SdkManager.Instance.SaveTelemEvent("game_started", SdkManager.EventCategory.Unit_Start);
+		gameIsActive = true;
+	}
+
+	void OnEndGame(bool gameComplete) {
+		if (!gameIsActive) return; // ensure there are not duplicate game_ended events
+
+		AddGameTelemetry();
+		AddWeekTelemetry(false);
+		SdkManager.Instance.AddTelemEventValue("game_complete", gameComplete);
+
+		SdkManager.Instance.SaveTelemEvent("game_ended", PlayerIsWinning, SdkManager.EventCategory.Unit_End);
+
+		gameIsActive = false;
 	}
 
 	public void Replay() {
@@ -275,13 +309,14 @@ public class GameManager : SingletonBehavior<GameManager> {
 		foreach (State state in states) {
 			state.ResetWorkers();
 		}
-		
+
+		OnBeginGame();
+
 		GoToPhase(TurnPhase.BeginWeek);
 	}
 	
 	private void BeginWeek() {
 		CurrentWeek ++;
-		UpdateElectoralVotes();
 
 		opponentIsFinished = false;
 		playerIsFinished = false;
@@ -289,13 +324,18 @@ public class GameManager : SingletonBehavior<GameManager> {
 		SignalManager.BeginWeek(CurrentWeek);
 		
 		if (CurrentWeek >= GameSettings.InstanceOrCreate.TotalWeeks) {
-			GoToPhase(TurnPhase.ElectionDay);
+			GoToPhase(TurnPhase.GameEnd);
 		} else {
 			int index = Mathf.Min(CurrentWeek, GameSettings.InstanceOrCreate.Income.Length - 1);
 			float income = GameSettings.InstanceOrCreate.Income[index];
 
 			PlayerBudget.GainAmount(income);
 			if (UsingAI) OpponentAI.Budget.GainAmount(income);
+
+			// Telemetry
+			AddWeekTelemetry(false);
+			SdkManager.Instance.SaveTelemEvent("turn_started", SdkManager.EventCategory.Unit_Start);
+			prevVoteDifference = playerVotes - opponentVotes; // used to check for improvement during the turn
 
 			GoToPhase(TurnPhase.Placement);
 		}
@@ -319,6 +359,13 @@ public class GameManager : SingletonBehavior<GameManager> {
 	
 	private void FinishHarvest() {
 		ObjectAccessor.Instance.HarvestTimer.StopTimer();
+
+		UpdateElectoralVotes();
+
+		int voteDifference = playerVotes - opponentVotes;
+		bool success = (voteDifference > prevVoteDifference);
+		AddWeekTelemetry();
+		SdkManager.Instance.SaveTelemEvent("turn_ended", success, SdkManager.EventCategory.Unit_End);
 	}
 	
 	public void NextHarvestAction() {
@@ -352,6 +399,17 @@ public class GameManager : SingletonBehavior<GameManager> {
 		if (SignalManager.PlayerVotesChanged != null) SignalManager.PlayerVotesChanged(playerVotes, !atBeginning);
 		if (SignalManager.OpponentVotesChanged != null) SignalManager.OpponentVotesChanged(opponentVotes, !atBeginning);
 	}
+
+	public float GetPopularOpinion() {
+		float playerVotes = 0;
+		float totalVotes = 0;
+		foreach (State state in states) {
+			totalVotes += state.Model.Population;
+			playerVotes += state.PlayerSupportPercent * state.Model.Population;
+		}
+
+		return playerVotes / totalVotes;
+	}
 	
 	public void FinishWeek() {
 		GetComponent<PhotonView>().RPC("RpcSetPlayerFinished", PhotonTargets.All, PlayerIsBlue);
@@ -382,6 +440,34 @@ public class GameManager : SingletonBehavior<GameManager> {
 		if (state.PlayerCanRemoveWorker()) {
 			state.RemoveWorker(true);
 			PlayerBudget.ConsumeAmount(GameSettings.InstanceOrCreate.GetGameActionCost(GameAction.RemoveWorker));
+		}
+	}
+
+	void AddGameTelemetry() {
+		SdkManager.Instance.AddTelemEventValue("game_id", PhotonNetwork.room.name);
+		
+		// TODO: opponent_user_id
+		
+		string scenarioName = "";
+		if (roomSettings != null) { // should have been stored when we entered the room
+			int scenarioId = (int)roomSettings["s"];
+			ScenarioModel scenario = ScenarioModel.GetModel(scenarioId);
+			if (scenario != null) scenarioName = scenario.Name;
+		}
+		SdkManager.Instance.AddTelemEventValue("scenario", scenarioName);
+		
+		SdkManager.Instance.AddTelemEventValue("player_color", (PlayerIsBlue) ? "blue" : "red");
+		SdkManager.Instance.AddTelemEventValue("using_ai", UsingAI);
+	}
+	
+	void AddWeekTelemetry(bool includeMoney = true) {
+		SdkManager.Instance.AddTelemEventValue("player_votes", playerVotes);
+		SdkManager.Instance.AddTelemEventValue("opponent_votes", opponentVotes);
+		SdkManager.Instance.AddTelemEventValue("player_popular_percent", GetPopularOpinion());
+		SdkManager.Instance.AddTelemEventValue("turn", CurrentWeek);
+		
+		if (includeMoney) {
+			SdkManager.Instance.AddTelemEventValue("money", PlayerBudget.Amount);
 		}
 	}
 }

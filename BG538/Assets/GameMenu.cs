@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameMenu : MonoBehaviour {
 
-	void Start() {
+	void Awake() {
 		gameObject.SetActive(false);
 	}
 
@@ -14,6 +14,9 @@ public class GameMenu : MonoBehaviour {
 
 	public void Open() {
 		gameObject.SetActive(true);
+		//TODO: Debug.Log("Open menu? " + gameObject.activeSelf + ", " + gameObject.activeInHierarchy, gameObject);
+
+		SdkManager.Instance.SaveTelemEvent("open_game_menu", SdkManager.EventCategory.Player_Action);
 	}
 
 	public void Close() {
