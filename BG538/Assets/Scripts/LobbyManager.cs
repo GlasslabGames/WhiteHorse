@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using DG.Tweening;
 
 public class LobbyManager : MonoBehaviour {
+	public GameObject ModePanel;
+	private CanvasGroup modeCanvasGroup;
 	public GameObject GamePanel;
 	private CanvasGroup gameCanvasGroup;
 	public GameObject ScenarioPanel;
@@ -33,29 +35,34 @@ public class LobbyManager : MonoBehaviour {
 	private uint hostedMatchId; // UnityEngine.Networking.Types.NetworkID
 
 	// Transition
-	private float panelStartY;
+	private Vector3 panelCenterPos;
 	private float panelOffsetY;
+	private float panelOffsetX;
 	private float transitionDuration = 0.5f;
 	private Ease transitionEase = Ease.InOutCubic;
-
-	public static char MatchInfoDivider = '|';
 
 	public void Start() {
 		FillInScenarios();
 
-		panelStartY = GamePanel.transform.position.y;
+		// Clear whatever options we had set before
+		GameSettings.InstanceOrCreate.CurrentOptions.Clear();
+
+		panelCenterPos = GamePanel.transform.position;
 		panelOffsetY = Screen.height * 1.25f;
-		
+		panelOffsetX = Screen.width * 1.25f;
+
+		ModePanel.SetActive(true);
+		modeCanvasGroup = ModePanel.GetComponent<CanvasGroup>();
+
 		GamePanel.SetActive(true);
 		gameCanvasGroup = GamePanel.GetComponent<CanvasGroup>();
+		gameCanvasGroup.alpha = 0;
+		gameCanvasGroup.interactable = false;
 
 		ScenarioPanel.SetActive(true);
 		scenarioCanvasGroup = ScenarioPanel.GetComponent<CanvasGroup>();
 		scenarioCanvasGroup.alpha = 0;
-
-		Vector3 pos = ScenarioPanel.transform.position;
-		pos.y = panelStartY - panelOffsetY;
-		ScenarioPanel.transform.position = pos;
+		scenarioCanvasGroup.interactable = false;
 
 		WaitingModal.SetActive(false);
 		Overlay.SetActive(false);
@@ -90,20 +97,62 @@ public class LobbyManager : MonoBehaviour {
 		ScenarioImage.sprite = Resources.Load<Sprite>(scenario.Image);
 	}
 
-	public void ScrollToGamePanel() {
-		gameCanvasGroup.alpha = 1;
-		GamePanel.transform.DOMoveY(panelStartY, transitionDuration).SetEase(transitionEase);
-		ScenarioPanel.transform.DOMoveY(panelStartY - panelOffsetY, transitionDuration)
-			.SetEase(transitionEase)
-				.OnComplete(() => scenarioCanvasGroup.alpha = 0);
+	public void StartMultiplayer() {
+		NetworkManager.StartMultiplayer();
+		ScrollPanel(modeCanvasGroup, "right", false);
+		ScrollPanel(gameCanvasGroup, "right", true);
 	}
 
-	public void ScrollToScenarioPanel() {
-		scenarioCanvasGroup.alpha = 1;
-		ScenarioPanel.transform.DOMoveY(panelStartY, transitionDuration).SetEase(transitionEase);
-		GamePanel.transform.DOMoveY(panelStartY + panelOffsetY, transitionDuration)
-			.SetEase(transitionEase)
-				.OnComplete(() => gameCanvasGroup.alpha = 0);
+	public void StartSinglePlayer() {
+		ScrollPanel(modeCanvasGroup, "left", false);
+		ScrollPanel(scenarioCanvasGroup, "left", true);
+	}
+
+	public void LeaveScenarioPanel() {
+		if (NetworkManager.MultiplayerMode) { // return to the game panel
+			ScrollPanel(scenarioCanvasGroup, "up", false);
+			ScrollPanel(gameCanvasGroup, "up", true);
+		} else { // return to the mode panel
+			ScrollPanel(modeCanvasGroup, "right", true);
+			ScrollPanel(scenarioCanvasGroup, "right", false);
+		}
+	}
+	
+	public void GameToScenarioPanel() {
+		ScrollPanel(scenarioCanvasGroup, "down", true);
+		ScrollPanel(gameCanvasGroup, "down", false);
+	}
+
+	public void ScrollPanel(CanvasGroup canvasGroup, string direction, bool entering) {
+		Vector3 startPos = panelCenterPos;
+		Vector3 endPos = panelCenterPos;
+		switch (direction) {
+		case "left":
+			if (entering) startPos.x += panelOffsetX;
+			else endPos.x -= panelOffsetX;
+			break;
+		case "right":
+			if (entering) startPos.x -= panelOffsetX;
+			else endPos.x += panelOffsetX;
+			break;
+		case "up":
+			if (entering) startPos.y += panelOffsetY;
+			else endPos.y -= panelOffsetY;
+			break;
+		case "down":
+			if (entering) startPos.y -= panelOffsetY;
+			else endPos.y += panelOffsetX;
+			break;
+		}
+
+		canvasGroup.transform.position = startPos;
+		canvasGroup.alpha = 1;
+		Tweener t = canvasGroup.transform.DOMove(endPos, transitionDuration).SetEase(transitionEase);
+		if (entering) {
+			t.OnComplete(() => canvasGroup.interactable = true );
+		} else {
+			t.OnComplete(() => { canvasGroup.alpha = 0; canvasGroup.interactable = false; });
+		}
 	}
 
 	public void ToggleColor() {
@@ -115,15 +164,34 @@ public class LobbyManager : MonoBehaviour {
 	}
 
 	public void Host() {
-		string playerName = PhotonNetwork.playerName; // TODO: get player name from SDK
-
-		int duration = (debugSettings != null)? Mathf.RoundToInt(debugSettings.weekSlider.value) : GameSettings.InstanceOrCreate.TotalWeeks;
-		float increment = (debugSettings != null)? debugSettings.workerSlider.value : GameSettings.InstanceOrCreate.WorkerIncrement;
-
-		NetworkManager.CreateRoom(playerName, CurrentScenarioModel.Id, (int) CurrentColor, increment, duration);
-		// Photon will automatically join the room once it's created, and then we'll start the game
-
 		Overlay.SetActive(true); // TODO: make sure we have a way to get out of this state if there's an error
+
+		// check for custom settings
+		int duration = GameSettings.InstanceOrCreate.TotalWeeks;
+		float increment = GameSettings.InstanceOrCreate.WorkerIncrement;
+		if (debugSettings != null) {
+			duration = Mathf.RoundToInt(debugSettings.weekSlider.value);
+			increment = debugSettings.workerSlider.value;
+		}
+
+		// Store info in gameSettings
+		Dictionary<string, object> options = GameSettings.InstanceOrCreate.CurrentOptions;
+		options["scenarioId"] = CurrentScenarioModel.Id;
+		options["color"] = (int) CurrentColor;
+		options["duration"] = duration;
+		options["increment"] = increment;
+		options["name"] = PhotonNetwork.playerName;
+
+		Debug.Log (">> "+GameSettings.InstanceOrCreate.CurrentOptions["scenarioId"]);
+
+		if (NetworkManager.MultiplayerMode) {
+			NetworkManager.CreateRoom(options);
+			// Photon will automatically join the room once it's created, and then we'll start the game
+		} else {
+			// Join an offline room
+			PhotonNetwork.offlineMode = true;
+			PhotonNetwork.JoinRoom("offline");
+		}
 	}
 
 	public void Join() {

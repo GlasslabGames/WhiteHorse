@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public enum GameAction {
@@ -18,22 +17,18 @@ public class GameSettings : SingletonBehavior<GameSettings> {
 	public int _totalWeeks;
 	public int TotalWeeks {
 		get {
-			if (PhotonNetwork.room != null) {
-				ExitGames.Client.Photon.Hashtable settings = PhotonNetwork.room.customProperties;
-				if (settings != null && settings.ContainsKey("d")) return (int) settings["d"];
-			}
-			return _totalWeeks;
+			if (CurrentOptions != null && CurrentOptions.ContainsKey("duration") && CurrentOptions["duration"] != null) {
+				return (int) CurrentOptions["duration"];
+			} else return _totalWeeks;
 		}
 	}
 	public float[] Income;
 	public float _workerIncrement;
 	public float WorkerIncrement {
 		get {
-			if (PhotonNetwork.room != null) {
-				ExitGames.Client.Photon.Hashtable settings = PhotonNetwork.room.customProperties;
-				if (settings != null && settings.ContainsKey("w")) return (float) settings["w"];
-			}
-			return _workerIncrement;
+			if (CurrentOptions != null && CurrentOptions.ContainsKey("increment") && CurrentOptions["increment"] != null) {
+				return (float) CurrentOptions["increment"];
+			} else return _workerIncrement;
 		}
 	}
 	public float HarvestInterval;
@@ -46,6 +41,10 @@ public class GameSettings : SingletonBehavior<GameSettings> {
 
 	public GameColorSettings Colors;
 
+	public void Awake() {
+		DontDestroyOnLoad(gameObject);
+	}
+
 	public float GetGameActionCost(GameAction m) {
 		if (gameActionCostDict == null) {
 			gameActionCostDict = new Dictionary<GameAction, float>();
@@ -55,4 +54,7 @@ public class GameSettings : SingletonBehavior<GameSettings> {
 		}
 		return gameActionCostDict[m];
 	}
+
+	// This is how we store specific game options between the lobby and the game (for single-player)
+	public Dictionary<string, object> CurrentOptions = new Dictionary<string, object>();
 }

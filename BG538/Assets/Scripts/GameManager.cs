@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using ExitGames.Client.Photon;
@@ -58,7 +57,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 
 	public BudgetController PlayerBudget = new BudgetController();
 
-	private ExitGames.Client.Photon.Hashtable roomSettings;
+	private Dictionary<string, object> gameSettings;
 
 	protected override void Start() {
 		base.Start ();
@@ -67,19 +66,20 @@ public class GameManager : SingletonBehavior<GameManager> {
 			states.Add(state);
 		}
 
-		if (PhotonNetwork.room != null) {
-			roomSettings = PhotonNetwork.room.customProperties; // save for later
-			Leaning color = (Leaning) roomSettings["c"];
-			PlayerIsBlue = (color == Leaning.Blue) ^ !PhotonNetwork.isMasterClient;
-			if (SignalManager.PlayerColorSet != null) SignalManager.PlayerColorSet();
+		gameSettings = GameSettings.InstanceOrCreate.CurrentOptions;
 
+		Debug.Log (">> "+GameSettings.InstanceOrCreate.CurrentOptions["scenarioId"]); // TODO
+
+		if (gameSettings.ContainsKey("color")) {
+			PlayerIsBlue = ((Leaning) gameSettings["color"] == Leaning.Blue) ^ !PhotonNetwork.isMasterClient;
+		}
+		if (SignalManager.PlayerColorSet != null) SignalManager.PlayerColorSet();
+
+		if (PhotonNetwork.connected) {
 			if (PhotonNetwork.room.playerCount >= PhotonNetwork.room.maxPlayers) GoToPhase(TurnPhase.BeginGame);
 			else GoToPhase(TurnPhase.Connecting);
 		} else {
-			// For testing from the game scene directly
-			PhotonNetwork.offlineMode = true;
-			PhotonNetwork.JoinRoom("offline");
-			GoToPhase (TurnPhase.Connecting);
+			StartGameWithAI();
 		}
 
 		//SignalManager.PlayerFinished += OnPlayerFinished;
@@ -116,7 +116,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 	// Only called by the master client
 	public void InitScenario() {
 		int scenarioId = -1;
-		if (roomSettings != null) scenarioId = (int) roomSettings["s"];
+		if (gameSettings != null && gameSettings.ContainsKey("scenarioId")) scenarioId = (int) gameSettings["scenarioId"];
 		else scenarioId = GameSettings.InstanceOrCreate.DefaultScenarioId;
 
 		ScenarioModel scenario = ScenarioModel.GetModel(scenarioId);
@@ -449,8 +449,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 		// TODO: opponent_user_id
 		
 		string scenarioName = "";
-		if (roomSettings != null) { // should have been stored when we entered the room
-			int scenarioId = (int)roomSettings["s"];
+		if (gameSettings != null && gameSettings.ContainsKey("scenarioId")) { // should have been stored when we entered the room
+			int scenarioId = (int)gameSettings["scenarioId"];
 			ScenarioModel scenario = ScenarioModel.GetModel(scenarioId);
 			if (scenario != null) scenarioName = scenario.Name;
 		}

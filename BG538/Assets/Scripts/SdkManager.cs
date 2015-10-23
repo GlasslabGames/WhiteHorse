@@ -1,4 +1,4 @@
-#define DEBUG_SDK
+//#define DEBUG_SDK
 
 using UnityEngine;
 #if UNITY_EDITOR
@@ -154,7 +154,7 @@ public class SdkManager
 		#if DEBUG_SDK
 		Debug.Log("_ "+key+": "+value);
 		#endif
-		#if (UNITY_IOS && !UNITY_EDITOR) || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+		#if !UNITY_EDITOR
 		GLSDK.AddTelemEventValue(key, value);
 		#endif
 	}
@@ -162,7 +162,7 @@ public class SdkManager
 		#if DEBUG_SDK
 		Debug.Log("__ "+key+": "+value);
 		#endif
-		#if (UNITY_IOS && !UNITY_EDITOR) || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+		#if !UNITY_EDITOR
 		GLSDK.AddTelemEventValue(key, value);
 		#endif
 	}
@@ -170,7 +170,7 @@ public class SdkManager
 		#if DEBUG_SDK
 		Debug.Log("__ "+key+": "+value);
 		#endif
-		#if (UNITY_IOS && !UNITY_EDITOR) || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+		#if !UNITY_EDITOR
 		GLSDK.AddTelemEventValue(key, value);
 		#endif
 	}
@@ -178,7 +178,7 @@ public class SdkManager
 		#if DEBUG_SDK
 		Debug.Log("__ "+key+": "+value);
 		#endif
-		#if (UNITY_IOS && !UNITY_EDITOR) || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+		#if !UNITY_EDITOR
 		GLSDK.AddTelemEventValue(key, value);
 		#endif
 	}
@@ -198,7 +198,7 @@ public class SdkManager
 		#if DEBUG_SDK
 		Debug.Log("> TELEM EVENT: "+name);
 		#endif
-		#if (UNITY_IOS && !UNITY_EDITOR) || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+		#if !UNITY_EDITOR
 		GLSDK.SaveTelemEvent(name);
 		#endif
 	}

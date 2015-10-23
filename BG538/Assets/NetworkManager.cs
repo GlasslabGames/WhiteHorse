@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 using ExitGames.Client.Photon;
 
 public class NetworkManager : Photon.PunBehaviour {
 	public bool ShowDebugInfo;
 	public Text DebugLabel;
 
-	static NetworkManager Instance;
+	public static bool MultiplayerMode { get; private set; }
+
+	public static NetworkManager Instance;
 
 	public enum DisconnectionReason {
 		opponent,
@@ -20,11 +23,23 @@ public class NetworkManager : Photon.PunBehaviour {
 		} else {
 			Instance = this;
 			DontDestroyOnLoad(gameObject);
-
-			if (SdkManager.username != null && SdkManager.username.Length > 0) PhotonNetwork.playerName = SdkManager.username;
-			else PhotonNetwork.playerName = GetRandomName();
-			PhotonNetwork.ConnectUsingSettings(GameSettings.InstanceOrCreate.Version);
 		}
+	}
+
+	public static void StartMultiplayer() {
+		Connect ();
+		MultiplayerMode = true;
+	}
+
+	public static void EndMultiplayer() {
+		PhotonNetwork.Disconnect();
+		MultiplayerMode = false;
+	}
+
+	public static void Connect() {
+		if (SdkManager.username != null && SdkManager.username.Length > 0) PhotonNetwork.playerName = SdkManager.username;
+		else PhotonNetwork.playerName = GetRandomName();
+		PhotonNetwork.ConnectUsingSettings(GameSettings.InstanceOrCreate.Version);
 	}
 
 	// For testing purposes. In the real game we would use the GLGS login
@@ -37,18 +52,38 @@ public class NetworkManager : Photon.PunBehaviour {
 		return name;
 	}
 
-	public static void CreateRoom(string name, int scenarioId, int color, float workerInfluence, int duration) { 
+	public static void CreateRoom(Dictionary<string, object> dict) { 
 		RoomOptions options = new RoomOptions();
 		options.maxPlayers = 2;
-		options.customRoomProperties = new Hashtable() {
-			{ "s", scenarioId },
-			{ "n", name },
-			{ "c", color },
-			{ "w", workerInfluence },
-			{ "d", duration }
-		};
+		options.customRoomProperties = DictionaryToHashtable(dict);
 		options.customRoomPropertiesForLobby = new string[] { "s", "n", "c" };
 		PhotonNetwork.CreateRoom(null, options, null);
+	}
+
+	// shortens the key names and converts to a hashtable suitable for roomOptions
+	public static Hashtable DictionaryToHashtable(Dictionary<string, object> dict) {
+		Hashtable table = new Hashtable() {
+			{ "s", dict["scenarioId"] },
+			{ "n", dict["name"] },
+			{ "c", dict["color"] },
+			{ "w", dict["influence"] },
+			{ "d", dict["duration"] }
+		};
+
+		return table;
+	}
+
+	// back to the readable dictionary form
+	public static Dictionary<string, object> HashtableToDictionary(Hashtable table) {
+		Dictionary<string, object> dict = new Dictionary<string, object> {
+			{ "scenarioId", table["s"] },
+			{ "name", table["n"] },
+			{ "color", table["c"] },
+			{ "influence", table["i"] },
+			{ "duration", table["d"] }
+		};
+
+		return dict;
 	}
 
 	public static void JoinRoom(string name) {
@@ -62,6 +97,11 @@ public class NetworkManager : Photon.PunBehaviour {
 	public override void OnJoinedRoom()
 	{
 		Debug.Log ("Joined room! "+PhotonNetwork.room);
+
+		// Overwrite our game options with the options that come with the room
+		Hashtable props = PhotonNetwork.room.customProperties;
+		GameSettings.InstanceOrCreate.CurrentOptions = NetworkManager.HashtableToDictionary(props);
+
 		Application.LoadLevel("game");
 	}
 	

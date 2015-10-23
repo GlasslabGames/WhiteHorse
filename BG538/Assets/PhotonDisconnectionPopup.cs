@@ -7,7 +7,7 @@ public class PhotonDisconnectionPopup : UnityEngine.MonoBehaviour {
 	public Text infoLabel;
 
 	void Show(object[] error) {
-		short errorCode = error[0];
+		short errorCode = (short) error[0];
 		if (errorCode == ErrorCode.MaxCcuReached) {
 			infoLabel.text = "Unfortunately, the game can't accept any more players right now. Please try again later.";
 		} else {
