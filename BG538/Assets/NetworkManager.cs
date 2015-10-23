@@ -32,14 +32,19 @@ public class NetworkManager : Photon.PunBehaviour {
 	}
 
 	public static void EndMultiplayer() {
-		PhotonNetwork.Disconnect();
+		if (PhotonNetwork.connected) PhotonNetwork.Disconnect();
 		MultiplayerMode = false;
 	}
 
 	public static void Connect() {
-		if (SdkManager.username != null && SdkManager.username.Length > 0) PhotonNetwork.playerName = SdkManager.username;
-		else PhotonNetwork.playerName = GetRandomName();
-		PhotonNetwork.ConnectUsingSettings(GameSettings.InstanceOrCreate.Version);
+		if (!PhotonNetwork.connected) {
+			if (SdkManager.username != null && SdkManager.username.Length > 0) PhotonNetwork.playerName = SdkManager.username;
+			else PhotonNetwork.playerName = GetRandomName();
+
+			if (SignalManager.TryingPhotonConnect != null) SignalManager.TryingPhotonConnect();
+
+			PhotonNetwork.ConnectUsingSettings(GameSettings.InstanceOrCreate.Version);
+		}
 	}
 
 	// For testing purposes. In the real game we would use the GLGS login
@@ -52,46 +57,30 @@ public class NetworkManager : Photon.PunBehaviour {
 		return name;
 	}
 
-	public static void CreateRoom(Dictionary<string, object> dict) { 
+	public static void CreateRoom(string name, GameSettings settings) { 
 		RoomOptions options = new RoomOptions();
 		options.maxPlayers = 2;
-		options.customRoomProperties = DictionaryToHashtable(dict);
+
+		Hashtable table = new Hashtable() {
+			{ "s", settings.currentScenarioId },
+			{ "n", name },
+			{ "c", settings.currentColor },
+			{ "w", settings.currentIncrement },
+			{ "d", settings.currentDuration }
+		};
+
+		options.customRoomProperties = table;
 		options.customRoomPropertiesForLobby = new string[] { "s", "n", "c" };
 		PhotonNetwork.CreateRoom(null, options, null);
-	}
-
-	// shortens the key names and converts to a hashtable suitable for roomOptions
-	public static Hashtable DictionaryToHashtable(Dictionary<string, object> dict) {
-		Hashtable table = new Hashtable() {
-			{ "s", dict["scenarioId"] },
-			{ "n", dict["name"] },
-			{ "c", dict["color"] },
-			{ "w", dict["influence"] },
-			{ "d", dict["duration"] }
-		};
-
-		return table;
-	}
-
-	// back to the readable dictionary form
-	public static Dictionary<string, object> HashtableToDictionary(Hashtable table) {
-		Dictionary<string, object> dict = new Dictionary<string, object> {
-			{ "scenarioId", table["s"] },
-			{ "name", table["n"] },
-			{ "color", table["c"] },
-			{ "influence", table["i"] },
-			{ "duration", table["d"] }
-		};
-
-		return dict;
 	}
 
 	public static void JoinRoom(string name) {
 		PhotonNetwork.JoinRoom(name);
 	}
 
-	public override void OnJoinedLobby() {
-
+	public static void StartOfflineGame() {
+		PhotonNetwork.offlineMode = true;
+		PhotonNetwork.JoinRoom("offline");
 	}
 
 	public override void OnJoinedRoom()
@@ -100,7 +89,11 @@ public class NetworkManager : Photon.PunBehaviour {
 
 		// Overwrite our game options with the options that come with the room
 		Hashtable props = PhotonNetwork.room.customProperties;
-		GameSettings.InstanceOrCreate.CurrentOptions = NetworkManager.HashtableToDictionary(props);
+		GameSettings settings = GameSettings.InstanceOrCreate;
+		if (props.ContainsKey("s")) settings.currentScenarioId = (int) props["s"];
+		if (props.ContainsKey("c")) settings.currentColor = (Leaning) props["c"];
+		if (props.ContainsKey("d")) settings.currentDuration = (int) props["d"];
+		if (props.ContainsKey("w")) settings.currentIncrement = (float) props["w"];
 
 		Application.LoadLevel("game");
 	}
@@ -134,19 +127,22 @@ public class NetworkManager : Photon.PunBehaviour {
 	public override void OnPhotonCreateRoomFailed(object[] codeAndMsg)
 	{
 		Debug.Log ("Failed to create room. "+codeAndMsg[1].ToString());
+		if (PhotonErrorPopup.Instance) {
+			PhotonErrorPopup.Instance.ShowError("Failed to create multiplayer game! Error: ", codeAndMsg);
+		}
 	}
 	
 	public override void OnPhotonJoinRoomFailed(object[] codeAndMsg)
 	{
 		Debug.Log ("Failed to join room. "+codeAndMsg[1].ToString());
+		if (PhotonErrorPopup.Instance) {
+			PhotonErrorPopup.Instance.ShowError("Failed to join multiplayer game! Error: ", codeAndMsg);
+		}
 	}
 
-	public override void OnReceivedRoomListUpdate() {
-		Debug.Log ("New room list: ");
-		foreach (RoomInfo room in PhotonNetwork.GetRoomList())
-		{
-			Debug.Log(room.name + " " + room.playerCount + "/" + room.maxPlayers);
-		}
+	public override void OnFailedToConnectToPhoton(DisconnectCause cause) {
+		Debug.LogError("Failed to connect. "+cause);
+		if (PhotonErrorPopup.Instance) PhotonErrorPopup.Instance.ShowConnectionError(cause);
 	}
 	
 	void Update () {

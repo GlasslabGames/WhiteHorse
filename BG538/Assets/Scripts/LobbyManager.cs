@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 using DG.Tweening;
+using ExitGames.Client.Photon;
 
 public class LobbyManager : MonoBehaviour {
 	public GameObject ModePanel;
@@ -13,6 +14,7 @@ public class LobbyManager : MonoBehaviour {
 
 	public GameObject WaitingModal;
 	public GameObject Overlay;
+	public PhotonErrorPopup photonConnectionModal;
 	
 	public Text ScenarioDescription;
 	public Image ScenarioImage;
@@ -23,17 +25,6 @@ public class LobbyManager : MonoBehaviour {
 
 	public DebugSettings debugSettings;
 
-	/*
-	private NetworkManager _networkManager;
-	public NetworkManager NetworkManager {
-		get {
-			if (!_networkManager) _networkManager = FindObjectOfType<NetworkManager>();
-			return _networkManager;
-		}
-	}*/
-
-	private uint hostedMatchId; // UnityEngine.Networking.Types.NetworkID
-
 	// Transition
 	private Vector3 panelCenterPos;
 	private float panelOffsetY;
@@ -42,30 +33,26 @@ public class LobbyManager : MonoBehaviour {
 	private Ease transitionEase = Ease.InOutCubic;
 
 	public void Start() {
-		FillInScenarios();
-
-		// Clear whatever options we had set before
-		GameSettings.InstanceOrCreate.CurrentOptions.Clear();
-
 		panelCenterPos = GamePanel.transform.position;
 		panelOffsetY = Screen.height * 1.25f;
 		panelOffsetX = Screen.width * 1.25f;
 
 		ModePanel.SetActive(true);
 		modeCanvasGroup = ModePanel.GetComponent<CanvasGroup>();
+		NetworkManager.EndMultiplayer(); // because we start with the mode panel showing
 
 		GamePanel.SetActive(true);
 		gameCanvasGroup = GamePanel.GetComponent<CanvasGroup>();
-		gameCanvasGroup.alpha = 0;
-		gameCanvasGroup.interactable = false;
+		TogglePanel(gameCanvasGroup, false);
 
 		ScenarioPanel.SetActive(true);
 		scenarioCanvasGroup = ScenarioPanel.GetComponent<CanvasGroup>();
-		scenarioCanvasGroup.alpha = 0;
-		scenarioCanvasGroup.interactable = false;
+		TogglePanel(scenarioCanvasGroup, false);
 
 		WaitingModal.SetActive(false);
 		Overlay.SetActive(false);
+
+		FillInScenarios();
 	}
 
 	void FillInScenarios() {
@@ -109,13 +96,23 @@ public class LobbyManager : MonoBehaviour {
 	}
 
 	public void LeaveScenarioPanel() {
+		Debug.Log("Leave scenario panel. Multiplayer? "+NetworkManager.MultiplayerMode);
 		if (NetworkManager.MultiplayerMode) { // return to the game panel
 			ScrollPanel(scenarioCanvasGroup, "up", false);
 			ScrollPanel(gameCanvasGroup, "up", true);
 		} else { // return to the mode panel
-			ScrollPanel(modeCanvasGroup, "right", true);
-			ScrollPanel(scenarioCanvasGroup, "right", false);
+			ScrollToModePanel();
 		}
+	}
+
+	public void ScrollToModePanel() {
+		string dir = (NetworkManager.MultiplayerMode)? "left" : "right";
+		ScrollPanel(modeCanvasGroup, dir, true);
+
+		if (scenarioCanvasGroup.interactable) ScrollPanel(scenarioCanvasGroup, dir, false);
+		if (gameCanvasGroup.interactable) ScrollPanel(gameCanvasGroup, dir, false);
+
+		NetworkManager.EndMultiplayer();
 	}
 	
 	public void GameToScenarioPanel() {
@@ -146,13 +143,17 @@ public class LobbyManager : MonoBehaviour {
 		}
 
 		canvasGroup.transform.position = startPos;
-		canvasGroup.alpha = 1;
+		TogglePanel(canvasGroup, true);
 		Tweener t = canvasGroup.transform.DOMove(endPos, transitionDuration).SetEase(transitionEase);
-		if (entering) {
-			t.OnComplete(() => canvasGroup.interactable = true );
-		} else {
-			t.OnComplete(() => { canvasGroup.alpha = 0; canvasGroup.interactable = false; });
+		if (!entering) {
+			t.OnComplete(() => TogglePanel(canvasGroup, false));
 		}
+	}
+
+	public void TogglePanel(CanvasGroup canvasGroup, bool on) {
+		canvasGroup.alpha = (on)? 1 : 0;
+		canvasGroup.interactable = on;
+		canvasGroup.blocksRaycasts = on;
 	}
 
 	public void ToggleColor() {
@@ -164,34 +165,22 @@ public class LobbyManager : MonoBehaviour {
 	}
 
 	public void Host() {
-		Overlay.SetActive(true); // TODO: make sure we have a way to get out of this state if there's an error
+		GameSettings settings = GameSettings.InstanceOrCreate;
+		settings.currentScenarioId = CurrentScenarioModel.Id;
+		settings.currentColor = CurrentColor;
+		settings.currentDuration = (debugSettings != null)? Mathf.RoundToInt(debugSettings.weekSlider.value) : 0;
+		settings.currentIncrement = (debugSettings != null)? debugSettings.workerSlider.value : 0;
 
-		// check for custom settings
-		int duration = GameSettings.InstanceOrCreate.TotalWeeks;
-		float increment = GameSettings.InstanceOrCreate.WorkerIncrement;
-		if (debugSettings != null) {
-			duration = Mathf.RoundToInt(debugSettings.weekSlider.value);
-			increment = debugSettings.workerSlider.value;
-		}
-
-		// Store info in gameSettings
-		Dictionary<string, object> options = GameSettings.InstanceOrCreate.CurrentOptions;
-		options["scenarioId"] = CurrentScenarioModel.Id;
-		options["color"] = (int) CurrentColor;
-		options["duration"] = duration;
-		options["increment"] = increment;
-		options["name"] = PhotonNetwork.playerName;
-
-		Debug.Log (">> "+GameSettings.InstanceOrCreate.CurrentOptions["scenarioId"]);
+		Overlay.SetActive(true);
 
 		if (NetworkManager.MultiplayerMode) {
-			NetworkManager.CreateRoom(options);
+			NetworkManager.CreateRoom(PhotonNetwork.playerName, settings);
 			// Photon will automatically join the room once it's created, and then we'll start the game
 		} else {
-			// Join an offline room
-			PhotonNetwork.offlineMode = true;
-			PhotonNetwork.JoinRoom("offline");
+			// Start the game without Photon
+			NetworkManager.StartOfflineGame();
 		}
+
 	}
 
 	public void Join() {
@@ -206,7 +195,6 @@ public class LobbyManager : MonoBehaviour {
 	}
 
 	public void CancelMatch() {
-		Debug.Log (hostedMatchId);
 		//TODO MatchMaker.DestroyMatch((UnityEngine.Networking.Types.NetworkID) hostedMatchId, OnMatchDestroyed);
 		WaitingModal.SetActive(false);
 	}

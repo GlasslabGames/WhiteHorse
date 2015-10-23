@@ -14,7 +14,7 @@ public class TitleManager : MonoBehaviour {
 	}
 
 	public void ShowLogin() {
-		#if (UNITY_IOS && !UNITY_EDITOR) || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+		#if !UNITY_EDITOR && (UNITY_IOS || UNITY_ANDROID || UNITY_WP8)
 		overlay.SetActive(true);
 		webview.SetActive(true);
 		#else

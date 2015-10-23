@@ -5,24 +5,30 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class RoomList : Photon.PunBehaviour {
-	public LobbyManager lobbyManager;
 	public Transform ListParent;
 	public GameObject EntryPrefab;
-	public GameObject ProgressIndicator;
 	public GameObject EmptyIndicator;
+	public GameObject ConnectingIndicator;
 
 	private Dictionary<string, MatchmakerEntry> entriesByRoom = new Dictionary<string, MatchmakerEntry>();
 
-	void Start() {
-		EmptyIndicator.SetActive(true);
+	void Awake() {
+		SignalManager.TryingPhotonConnect += OnConnecting;
+	}
+
+	void OnDestroy() {
+		SignalManager.TryingPhotonConnect -= OnConnecting;
+	}
+
+	public void OnConnecting() {
+		EmptyIndicator.SetActive(false);
+		ConnectingIndicator.SetActive(true);
 	}
 
 	public void OnReceivedRoomListUpdate() {
-		RefreshWithRooms(PhotonNetwork.GetRoomList());
-	}
+		ConnectingIndicator.SetActive(false);
 
-	public void OnJoinedRoom() {
-		RefreshWithRooms(new RoomInfo[] { PhotonNetwork.room });
+		RefreshWithRooms(PhotonNetwork.GetRoomList());
 	}
 
 	public void RefreshWithRooms(RoomInfo[] rooms) {

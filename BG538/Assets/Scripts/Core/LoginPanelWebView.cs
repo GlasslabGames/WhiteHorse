@@ -21,21 +21,21 @@ public class LoginPanelWebView : MonoBehaviour {
   }
   
   void OnEnable() {
-    // Set the player handle to default
-    //SdkManager.Instance.GLSDK.SetPlayerHandle( "" );
+	#if UNITY_IOS || UNITY_ANDROID || UNITY_WP8
     Debug.Log("*** Loading login webview..", this);
     m_webView.LoadView("/sdk/v2/game/"+SdkManager.SDK_CLIENT_ID+"/login", LoginCallback, NoConnectionCallback);
+	#endif
   }
 
   void OnDisable()
   {
+	#if UNITY_IOS || UNITY_ANDROID || UNITY_WP8
     Debug.Log("LoginPanelWebview disabled, hiding webview", this);
     if (m_webView != null)
     {
       m_webView.CancelRequest();
     }
-
-    //MainMenuController.Instance.ConnectToServer();
+	#endif
   }
 
   private void onGetUserInfoReturn(string data)
@@ -179,6 +179,7 @@ public class LoginPanelWebView : MonoBehaviour {
 			onLoginComplete ();
   }
   
+#if UNITY_IOS || UNITY_ANDROID || UNITY_WP8
   private bool LoginCallback( UniWebView webView, UniWebViewMessage message ) {
     if( message.rawMessage.IndexOf( "/auth/edmodo/login" ) != -1 )
     {
@@ -232,14 +233,17 @@ public class LoginPanelWebView : MonoBehaviour {
       return false;
     }
   }
+#endif
 
   private void NoConnectionCallback( bool noInternet )
   {
     Debug.Log("No connection callback received. noInternet = " + noInternet, this);
+	#if UNITY_IOS || UNITY_ANDROID || UNITY_WP8
     if (m_webView != null)
     {
       m_webView.CancelRequest();
     }
+	#endif
 
     //MainMenuController.Instance.DisplayNoInternetModal( noInternet );
 

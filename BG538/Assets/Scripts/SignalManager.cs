@@ -20,5 +20,6 @@ public static class SignalManager {
 	public static VoteEvent OpponentVotesChanged;
 	public static Action PlayerColorSet;
 	public static LeaningEvent PlayerFinished;
+	public static Action TryingPhotonConnect;
 	// public static Action foo;
 }

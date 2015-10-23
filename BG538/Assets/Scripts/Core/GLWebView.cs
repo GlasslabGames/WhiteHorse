@@ -6,6 +6,8 @@ using MiniJSON;
 
 
 public class GLWebView : MonoBehaviour {
+	#if UNITY_IOS || UNITY_ANDROID || UNITY_WP8
+
 	public delegate void WebViewReceivedMessageCallback( UniWebView webView, UniWebViewMessage message );
 
 	/**
@@ -222,4 +224,5 @@ public class GLWebView : MonoBehaviour {
     }
     return false;
   }
+#endif
 }

@@ -1,0 +1,260 @@
+Initialize engine version: 5.2.0f3 (e7947df39b5c)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 670 (ID=0x1189)
+    Vendor:   NVIDIA
+    VRAM:     1990 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\Photon3Unity3D.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\DOTween.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\DOTween.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\DOTween43.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\DOTween43.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\DOTween46.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\DOTween46.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\DOTween50.dll (this message is harmless)
+Loading C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\DOTween50.dll into Unity Child Domain
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.095 seconds
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+<RI> Input initialized.
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Noname\Rose\WhiteHorse\BG538\Build\bg538_07w_Data\Managed\System.dll (this message is harmless)
+Setting up 3 worker threads for Enlighten.
+  Thread -> id: 212c -> priority: 1 
+  Thread -> id: 25b8 -> priority: 1 
+  Thread -> id: 1bdc -> priority: 1 
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 6.874257 ms
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 860.
+Total: 1.433355 ms (FindLiveObjects: 0.161143 ms CreateObjectMapping: 0.059017 ms MarkObjects: 1.162901 ms  DeleteObjects: 0.049266 ms)
+
+Loading ModelDataStore
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+System.Collections.Generic.Dictionary`2+ValueCollection[System.String,MatchmakerEntry]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Joined room! Room: '4db377ca-1d6d-4ed0-8d07-7327844022ab' visible,open 1/2 players.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 7.323304 ms
+
+Unloading 61 unused Assets to reduce memory usage. Loaded Objects now: 1956.
+Total: 1.617593 ms (FindLiveObjects: 0.090322 ms CreateObjectMapping: 0.092888 ms MarkObjects: 1.384089 ms  DeleteObjects: 0.049779 ms)
+
+Enter state Connecting
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+StartGameWithAI
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Enter state BeginGame
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Start game!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Scenario: ScenarioModel2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Blue states: 4 Red states: 5 NumStatesToAdd: 16 Maybe blue states: 17 MaybeRedStates: 13
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Blue states: 5 Red states: 5 NumStatesToAdd: 16 Maybe blue states: 16 MaybeRedStates: 13
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Blue states: 5 Red states: 6 NumStatesToAdd: 16 Maybe blue states: 16 MaybeRedStates: 12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Blue states: 6 Red states: 6 NumStatesToAdd: 16 Maybe blue states: 15 MaybeRedStates: 12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Blue states: 6 Red states: 7 NumStatesToAdd: 16 Maybe blue states: 15 MaybeRedStates: 11
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Blue states: 7 Red states: 7 NumStatesToAdd: 16 Maybe blue states: 14 MaybeRedStates: 11
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Blue states: 7 Red states: 8 NumStatesToAdd: 16 Maybe blue states: 14 MaybeRedStates: 10
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+!! Update electoral votes. States: 51 Red votes: 223
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+DllNotFoundException: GlassLabSDK
+  at (wrapper managed-to-native) GlasslabSDK:GlasslabSDK_AddTelemEventValue_ccp (intptr,string,string)
+  at GlasslabSDK.AddTelemEventValue (System.String key, System.String value) [0x00000] in <filename unknown>:0 
+  at SdkManager.AddTelemEventValue (System.String key, System.String value) [0x00000] in <filename unknown>:0 
+  at GameManager.AddGameTelemetry () [0x00000] in <filename unknown>:0 
+  at GameManager.OnBeginGame () [0x00000] in <filename unknown>:0 
+  at GameManager.StartGame (Boolean replay) [0x00000] in <filename unknown>:0 
+  at GameManager.GoToPhase (TurnPhase nextState) [0x00000] in <filename unknown>:0 
+  at GameManager.StartGameWithAI () [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCall.Invoke (System.Object[] args) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.InvokableCallList.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEventBase.Invoke (System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Events.UnityEvent.Invoke () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Button.Press () [0x00000] in <filename unknown>:0 
+  at UnityEngine.UI.Button.OnPointerClick (UnityEngine.EventSystems.PointerEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (IPointerClickHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00000] in <filename unknown>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[IPointerClickHandler] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.EventFunction`1 functor) [0x00000] in <filename unknown>:0 
+UnityEngine.Debug:Internal_LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent()
+UnityEngine.EventSystems.StandaloneInputModule:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename:  Line: -1)
+
+!! Update electoral votes. States: 51 Red votes: 223
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Click West Virginia
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Click Florida
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Click South Dakota
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Click North Dakota
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Click South Dakota
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Click Minnesota
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Click Iowa
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Enter state Disconnected
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+DllNotFoundException: GlassLabSDK
+  at (wrapper managed-to-native) GlasslabSDK:GlasslabSDK_AddTelemEventValue_ccp (intptr,string,string)
+  at GlasslabSDK.AddTelemEventValue (System.String key, System.String value) [0x00000] in <filename unknown>:0 
+  at SdkManager.AddTelemEventValue (System.String key, System.String value) [0x00000] in <filename unknown>:0 
+  at SdkManager.SaveTelemEvent (System.String name, EventCategory category) [0x00000] in <filename unknown>:0 
+  at GameManager.GoToPhase (TurnPhase nextState) [0x00000] in <filename unknown>:0 
+  at NetworkManager.OnDisconnected () [0x00000] in <filename unknown>:0 
+  at NetworkManager.OnLeftRoom () [0x00000] in <filename unknown>:0 
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+NetworkingPeer:SendMonoMessage(PhotonNetworkingMessage, Object[])
+NetworkingPeer:LeftRoomCleanup()
+NetworkingPeer:OnStatusChanged(StatusCode)
+ExitGames.Client.Photon.EnetPeer:Disconnect()
+ExitGames.Client.Photon.PhotonPeer:Disconnect()
+NetworkingPeer:Disconnect()
+PhotonNetwork:Disconnect()
+PhotonHandler:OnApplicationQuit()
+ 
+(Filename:  Line: -1)
+
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/GlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/.\libGlassLabSDK
+Fallback handler could not load library C:/Users/Noname/Rose/WhiteHorse/BG538/Build/bg538_07w_Data/Mono/libGlassLabSDK

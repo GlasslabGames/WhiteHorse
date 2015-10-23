@@ -57,7 +57,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 
 	public BudgetController PlayerBudget = new BudgetController();
 
-	private Dictionary<string, object> gameSettings;
+	// Store the last scenario we generated so we can replay it
+	Dictionary<int, bool> inPlayStatus = new Dictionary<int, bool>();	Dictionary<int, float> votes = new Dictionary<int, float>();
 
 	protected override void Start() {
 		base.Start ();
@@ -66,16 +67,14 @@ public class GameManager : SingletonBehavior<GameManager> {
 			states.Add(state);
 		}
 
-		gameSettings = GameSettings.InstanceOrCreate.CurrentOptions;
+		// Handle the case where we're playing this scene from the editor - just start in offline mode
+		// Note, this will reload the game scene, so it's only used for testing purposes
+		if (!PhotonNetwork.inRoom) NetworkManager.StartOfflineGame();
 
-		Debug.Log (">> "+GameSettings.InstanceOrCreate.CurrentOptions["scenarioId"]); // TODO
-
-		if (gameSettings.ContainsKey("color")) {
-			PlayerIsBlue = ((Leaning) gameSettings["color"] == Leaning.Blue) ^ !PhotonNetwork.isMasterClient;
-		}
+		PlayerIsBlue = (GameSettings.InstanceOrCreate.currentColor == Leaning.Blue) ^ !PhotonNetwork.isMasterClient;
 		if (SignalManager.PlayerColorSet != null) SignalManager.PlayerColorSet();
 
-		if (PhotonNetwork.connected) {
+		if (PhotonNetwork.inRoom && !PhotonNetwork.offlineMode) {
 			if (PhotonNetwork.room.playerCount >= PhotonNetwork.room.maxPlayers) GoToPhase(TurnPhase.BeginGame);
 			else GoToPhase(TurnPhase.Connecting);
 		} else {
@@ -101,11 +100,11 @@ public class GameManager : SingletonBehavior<GameManager> {
 	}
 
 	public void StartGameWithAI() {
-		if (PhotonNetwork.room != null && !PhotonNetwork.offlineMode) {
+		Debug.Log ("StartGameWithAI");
+		if (PhotonNetwork.inRoom && !PhotonNetwork.offlineMode) {
 			if (PhotonNetwork.room.playerCount >= PhotonNetwork.room.maxPlayers) {
 				Debug.LogError("Can't start AI when there's another player in the room!");
 				return;
-				// TODO
 			}
 			PhotonNetwork.room.open = false;
 		}
@@ -115,9 +114,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 
 	// Only called by the master client
 	public void InitScenario() {
-		int scenarioId = -1;
-		if (gameSettings != null && gameSettings.ContainsKey("scenarioId")) scenarioId = (int) gameSettings["scenarioId"];
-		else scenarioId = GameSettings.InstanceOrCreate.DefaultScenarioId;
+		int scenarioId = GameSettings.InstanceOrCreate.ScenarioId;
 
 		ScenarioModel scenario = ScenarioModel.GetModel(scenarioId);
 		Debug.Log ("Scenario: " + scenario);
@@ -147,90 +144,6 @@ public class GameManager : SingletonBehavior<GameManager> {
 		UpdateElectoralVotes(true);
 	}
 	
-	public void InitScenarioA(ScenarioModel1 scenario) {
-		Dictionary<int, bool> inPlayStatus = new Dictionary<int, bool>();
-		Dictionary<int, float> votes = new Dictionary<int, float>();
-		foreach (State state in states) {
-			int id = state.Model.Id;
-			inPlayStatus[id] = (scenario == null || !scenario.PresetStates.Contains(id));
-
-			float vote = 0;
-			if (scenario != null) {
-				int stateIndex = StateModel.Models.IndexOf(state.Model);
-				if (scenario.StateLeanings.Count > stateIndex) {
-					int leaning = scenario.StateLeanings[stateIndex];
-					vote = InitialLeaningModel.GetModel(leaning).Value;
-				}
-				vote += scenario.Randomness * (Random.value * 2 - 1);
-			} else {
-				vote = (Random.value * 2 - 1);
-			}
-			votes[id] = vote;
-		}
-		GetComponent<PhotonView>().RPC("SetUpScenario", PhotonTargets.All, inPlayStatus, votes);
-	}
-	
-	public void InitScenarioB(ScenarioModel2 scenario) {
-		Dictionary<int, bool> inPlayStatus = new Dictionary<int, bool>();
-		Dictionary<int, float> votes = new Dictionary<int, float>();
-
-		int numStatesToAdd = 0;
-		int blueStatesAdded = 0;
-		int redStatesAdded = 0;
-		if (scenario != null) {
-			numStatesToAdd = Random.Range(scenario.MinStatesInPlay, scenario.MaxStatesInPlay + 1); // since max would be excluded
-		}
-		List<State> maybeBlueStates = new List<State>();
-		List<State> maybeRedStates = new List<State>();
-		
-		foreach (State state in states) {
-			int id = state.Model.Id;
-			if (scenario != null) {
-				int percentBlue = scenario.PercentBlue[state.Model.Id - 1];
-				votes[id] = (percentBlue / 50f - 1);
-				
-				ScenarioModel2.InPlayStatus status = (ScenarioModel2.InPlayStatus)scenario.StatesInPlay[state.Model.Id - 1];
-				if (status == ScenarioModel2.InPlayStatus.ALWAYS) {
-					inPlayStatus[id] = true;
-					if (votes[id] > 0) { // is blue
-						blueStatesAdded ++;
-					} else {
-						redStatesAdded ++;
-					}
-				} else if (status == ScenarioModel2.InPlayStatus.MAYBE) {
-					if (votes[id] > 0) { // is blue
-						maybeBlueStates.Add(state);
-					} else {
-						maybeRedStates.Add(state);
-					}
-				}
-			} else {
-				inPlayStatus[id] = true;
-			}
-		}
-		
-		int r;
-		State s;
-		while ((blueStatesAdded + redStatesAdded) < numStatesToAdd || blueStatesAdded != redStatesAdded) {
-			Debug.Log("Blue states: " + blueStatesAdded + " Red states: " + redStatesAdded + " NumStatesToAdd: " + numStatesToAdd
-			          + " Maybe blue states: "+maybeBlueStates.Count + " MaybeRedStates: " + maybeRedStates.Count);
-			if (blueStatesAdded < redStatesAdded) {
-				r = Random.Range(0, maybeBlueStates.Count);
-				s = maybeBlueStates[r];
-				maybeBlueStates.Remove(s);
-				inPlayStatus[s.Model.Id] = true;
-				blueStatesAdded ++;
-			} else {
-				r = Random.Range(0, maybeRedStates.Count);
-				s = maybeRedStates[r];
-				maybeRedStates.Remove(s);
-				inPlayStatus[s.Model.Id] = true;
-				redStatesAdded ++;
-			}
-		}
-		GetComponent<PhotonView>().RPC("SetUpScenario", PhotonTargets.All, inPlayStatus, votes);
-	}
-	
 	public void GoToPhase(TurnPhase nextState) {
 		// Finish the current state
 		switch (CurrentTurnPhase) {
@@ -246,7 +159,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 		// Begin the new state
 		switch (CurrentTurnPhase) {
 		case TurnPhase.BeginGame:
-			RestartGame();
+			StartGame(false);
 			break;
 		case TurnPhase.BeginWeek:
 			BeginWeek();
@@ -293,7 +206,11 @@ public class GameManager : SingletonBehavior<GameManager> {
 
 	[PunRPC]
 	public void RestartGame() {
-		Debug.Log("Reset game!");
+		StartGame(true);
+	}
+
+	public void StartGame(bool replay) {
+		Debug.Log("Start game!");
 		
 		CurrentWeek = -1;
 		
@@ -303,7 +220,10 @@ public class GameManager : SingletonBehavior<GameManager> {
 		if (UsingAI) OpponentAI.Reset();
 
 		// Reset scenario - only one client does this to ensure the results of random choices match
-		if (PhotonNetwork.isMasterClient) InitScenario();
+		if (!PhotonNetwork.inRoom || PhotonNetwork.isMasterClient) {
+			if (!replay) InitScenario();
+			GetComponent<PhotonView>().RPC("SetUpScenario", PhotonTargets.All, inPlayStatus, votes);
+		}
 
 		// Reset states
 		foreach (State state in states) {
@@ -443,17 +363,98 @@ public class GameManager : SingletonBehavior<GameManager> {
 		}
 	}
 
+	public void InitScenarioA(ScenarioModel1 scenario) {
+		inPlayStatus.Clear();
+		votes.Clear();
+		
+		foreach (State state in states) {
+			int id = state.Model.Id;
+			inPlayStatus[id] = (scenario == null || !scenario.PresetStates.Contains(id));
+			
+			float vote = 0;
+			if (scenario != null) {
+				int stateIndex = StateModel.Models.IndexOf(state.Model);
+				if (scenario.StateLeanings.Count > stateIndex) {
+					int leaning = scenario.StateLeanings[stateIndex];
+					vote = InitialLeaningModel.GetModel(leaning).Value;
+				}
+				vote += scenario.Randomness * (Random.value * 2 - 1);
+			} else {
+				vote = (Random.value * 2 - 1);
+			}
+			votes[id] = vote;
+		}
+	}
+	
+	public void InitScenarioB(ScenarioModel2 scenario) {
+		inPlayStatus.Clear();
+		votes.Clear();
+		
+		int numStatesToAdd = 0;
+		int blueStatesAdded = 0;
+		int redStatesAdded = 0;
+		if (scenario != null) {
+			numStatesToAdd = Random.Range(scenario.MinStatesInPlay, scenario.MaxStatesInPlay + 1); // since max would be excluded
+		}
+		List<State> maybeBlueStates = new List<State>();
+		List<State> maybeRedStates = new List<State>();
+		
+		foreach (State state in states) {
+			int id = state.Model.Id;
+			if (scenario != null) {
+				int percentBlue = scenario.PercentBlue[state.Model.Id - 1];
+				votes[id] = (percentBlue / 50f - 1);
+				
+				ScenarioModel2.InPlayStatus status = (ScenarioModel2.InPlayStatus)scenario.StatesInPlay[state.Model.Id - 1];
+				if (status == ScenarioModel2.InPlayStatus.ALWAYS) {
+					inPlayStatus[id] = true;
+					if (votes[id] > 0) { // is blue
+						blueStatesAdded ++;
+					} else {
+						redStatesAdded ++;
+					}
+				} else if (status == ScenarioModel2.InPlayStatus.MAYBE) {
+					if (votes[id] > 0) { // is blue
+						maybeBlueStates.Add(state);
+					} else {
+						maybeRedStates.Add(state);
+					}
+				}
+			} else {
+				inPlayStatus[id] = true;
+			}
+		}
+		
+		int r;
+		State s;
+		while ((blueStatesAdded + redStatesAdded) < numStatesToAdd || blueStatesAdded != redStatesAdded) {
+			Debug.Log("Blue states: " + blueStatesAdded + " Red states: " + redStatesAdded + " NumStatesToAdd: " + numStatesToAdd
+			          + " Maybe blue states: "+maybeBlueStates.Count + " MaybeRedStates: " + maybeRedStates.Count);
+			if (blueStatesAdded < redStatesAdded) {
+				r = Random.Range(0, maybeBlueStates.Count);
+				s = maybeBlueStates[r];
+				maybeBlueStates.Remove(s);
+				inPlayStatus[s.Model.Id] = true;
+				blueStatesAdded ++;
+			} else {
+				r = Random.Range(0, maybeRedStates.Count);
+				s = maybeRedStates[r];
+				maybeRedStates.Remove(s);
+				inPlayStatus[s.Model.Id] = true;
+				redStatesAdded ++;
+			}
+		}
+	}
+
 	void AddGameTelemetry() {
-		SdkManager.Instance.AddTelemEventValue("game_id", PhotonNetwork.room.name);
+		string roomName = (PhotonNetwork.inRoom)? PhotonNetwork.room.name : "offline";
+		SdkManager.Instance.AddTelemEventValue("game_id", roomName);
 		
 		// TODO: opponent_user_id
 		
-		string scenarioName = "";
-		if (gameSettings != null && gameSettings.ContainsKey("scenarioId")) { // should have been stored when we entered the room
-			int scenarioId = (int)gameSettings["scenarioId"];
-			ScenarioModel scenario = ScenarioModel.GetModel(scenarioId);
-			if (scenario != null) scenarioName = scenario.Name;
-		}
+		int scenarioId = GameSettings.InstanceOrCreate.ScenarioId;
+		ScenarioModel scenario = ScenarioModel.GetModel(scenarioId);
+		string scenarioName = (scenario != null)? scenario.Name : "none";
 		SdkManager.Instance.AddTelemEventValue("scenario", scenarioName);
 		
 		SdkManager.Instance.AddTelemEventValue("player_color", (PlayerIsBlue) ? "blue" : "red");

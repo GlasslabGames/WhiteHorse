@@ -17,24 +17,28 @@ public class GameSettings : SingletonBehavior<GameSettings> {
 	public int _totalWeeks;
 	public int TotalWeeks {
 		get {
-			if (CurrentOptions != null && CurrentOptions.ContainsKey("duration") && CurrentOptions["duration"] != null) {
-				return (int) CurrentOptions["duration"];
-			} else return _totalWeeks;
+			if (currentDuration > 0) return currentDuration;
+			else return _totalWeeks;
 		}
 	}
 	public float[] Income;
 	public float _workerIncrement;
 	public float WorkerIncrement {
 		get {
-			if (CurrentOptions != null && CurrentOptions.ContainsKey("increment") && CurrentOptions["increment"] != null) {
-				return (float) CurrentOptions["increment"];
-			} else return _workerIncrement;
+			if (currentIncrement > 0) return currentIncrement;
+			else return _workerIncrement;
 		}
 	}
 	public float HarvestInterval;
 	public float VoteUpdateTime;
 
 	public int DefaultScenarioId;
+	public int ScenarioId {
+		get {
+			if (currentScenarioId > 0) return currentScenarioId;
+			else return DefaultScenarioId;
+		}
+	}
 
 	public GameActionCost[] GameActionCosts;
 	private Dictionary<GameAction, float> gameActionCostDict;
@@ -56,5 +60,13 @@ public class GameSettings : SingletonBehavior<GameSettings> {
 	}
 
 	// This is how we store specific game options between the lobby and the game (for single-player)
-	public Dictionary<string, object> CurrentOptions = new Dictionary<string, object>();
+	[HideInInspector]
+	public int currentScenarioId;
+	[HideInInspector]
+	public Leaning currentColor;
+	// tweakable values
+	[HideInInspector]
+	public float currentIncrement;
+	[HideInInspector]
+	public int currentDuration;
 }
