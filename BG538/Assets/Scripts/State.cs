@@ -113,20 +113,28 @@ public class State : MonoBehaviour {
 		get { return Mathf.CeilToInt(Model.Population); }
 	}
 
-	private SpriteRenderer stateColor;
-	private SpriteRenderer stateOutline;
+	private List<SpriteRenderer> stateColor = new List<SpriteRenderer>();
+	private List<SpriteRenderer> stateOutline = new List<SpriteRenderer>();
 	private SpriteRenderer stateStripes;
-	private Transform center;
+	private List<SpriteRenderer> stateLabel = new List<SpriteRenderer>();
 
+	private Transform center;
 	public Vector3 Center {
 		get {
-			if (center == null) {
-				center = transform.Find("uiAnchor");
-				if (center == null) {
-					center = transform;
-				}
-			}
+			return transform.Find("uiAnchor").position; // TODO
+			if (center == null) center = transform.Find("uiAnchor");
+			if (center == null) center = transform;
 			return center.position;
+		}
+	}
+
+	private Transform uiCenter;
+	public Vector3 UICenter {
+		get {
+			if (uiCenter == null) uiCenter = transform.Find(abbreviation + " label");
+			if (uiCenter == null) uiCenter = transform.Find("uiAnchor");
+			if (uiCenter == null) uiCenter = transform;
+			return uiCenter.position;
 		}
 	}
 
@@ -136,12 +144,16 @@ public class State : MonoBehaviour {
 	void Awake() {
 		// automatically figure out which of the child textures are which
 		foreach (SpriteRenderer t in GetComponentsInChildren<SpriteRenderer>(true)) {
+			if (t.name.Contains("label") || t.name.Contains("connector")) {
+				stateLabel.Add(t);
+			}
+
 			if (t.name.Contains("dashed")) {
 				stateStripes = t;
 			} else if (t.name.Contains("oline")) {
-				stateOutline = t;
-			} else {
-				stateColor = t;
+				stateOutline.Add(t);
+			} else if (!t.name.Contains("connector")) {
+				stateColor.Add(t);
 			}
 		}
     
@@ -156,11 +168,9 @@ public class State : MonoBehaviour {
 		}
 
 		// automatically add a button to the child with the collider so that we can get events from it
-		Collider2D c = GetComponentInChildren<Collider2D>();
-		if (c == null) {
-			Debug.LogError("Couldn't find collider under " + this, this);
-		} else {
-			ClickableButton button = c.gameObject.AddComponent<ClickableButton>();
+		Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+		for (var i = 0; i < colliders.Length; i++) {
+			ClickableButton button = colliders[i].gameObject.AddComponent<ClickableButton>();
 			button.OnClick += HandleClick;
 		}
 	}
@@ -310,45 +320,60 @@ public class State : MonoBehaviour {
 
 	public void UpdateColor(bool playParticles = false) {
 		if (Hidden) {
-			stateColor.color = GameSettings.InstanceOrCreate.Colors.undiscoveredState;
-			stateOutline.color = GameSettings.InstanceOrCreate.Colors.outline;
+			for (var i = 0; i < stateColor.Count; i++) {
+				stateColor[i].color = GameSettings.InstanceOrCreate.Colors.undiscoveredState;
+			}
+			for (var j = 0; j < stateOutline.Count; j++) {
+				stateOutline[j].color = GameSettings.InstanceOrCreate.Colors.outline;
+			}
+			for (var k = 0; k < stateLabel.Count; k++) {
+				stateLabel[k].enabled = false;
+			}
 			stateStripes.enabled = true;
 			return;
 		}
 
 		// State color
+		Color c;
 		if (!IsNeutral) {
 			float t = 1;
 			if (InPlay) {
 				t = Mathf.InverseLerp(0.5f, 1f, (IsBlue) ? BlueSupportPercent : RedSupportPercent); // 0.5 -> 0, 1 -> 1
 				t = Mathf.Lerp(0.2f, 1f, t); // 0 -> 0.2, 1 -> 1 (Start at 0.2 so we don't go all the way to the neutral color.)
 			}
-			Color c = (IsBlue)? GameSettings.InstanceOrCreate.Colors.medBlue : GameSettings.InstanceOrCreate.Colors.medRed;
-			stateColor.color = Color.Lerp(GameSettings.InstanceOrCreate.Colors.neutralState, c, t);
+			c = (IsBlue)? GameSettings.InstanceOrCreate.Colors.medBlue : GameSettings.InstanceOrCreate.Colors.medRed;
+			c = Color.Lerp(GameSettings.InstanceOrCreate.Colors.neutralState, c, t);
 		} else {
-			stateColor.color = (InPlay)? GameSettings.InstanceOrCreate.Colors.neutralState : GameSettings.InstanceOrCreate.Colors.neutralLockedState;
+			c = (InPlay)? GameSettings.InstanceOrCreate.Colors.neutralState : GameSettings.InstanceOrCreate.Colors.neutralLockedState;
+		}
+		for (var i = 0; i < stateColor.Count; i++) {
+			stateColor[i].color = c;
 		}
 
 		// Outline color
-		if (InPlay && !IsNeutral) {
-			stateOutline.color = GameSettings.InstanceOrCreate.Colors.outline;
-			stateOutline.sortingOrder = -6;
-		} else {
-			stateOutline.color = GameSettings.InstanceOrCreate.Colors.neutralOutline;
-			stateOutline.sortingOrder = -7;
+		for (var j = 0; j < stateOutline.Count; j++) {
+			if (highlighted) {
+				stateOutline[j].color = GameSettings.InstanceOrCreate.Colors.highlightOutline;
+				stateOutline[j].sortingOrder = -5;
+			} else if (InPlay && !IsNeutral) {
+				stateOutline[j].color = GameSettings.InstanceOrCreate.Colors.outline;
+				stateOutline[j].sortingOrder = -6;
+			} else {
+				stateOutline[j].color = GameSettings.InstanceOrCreate.Colors.neutralOutline;
+				stateOutline[j].sortingOrder = -7;
+			}
 		}
-
+	
 		// Stripes
 		stateStripes.enabled = !InPlay;
 
-		if (playParticles) {
-			//TODO GameObject.Instantiate(GameObjectAccessor.Instance.FlipStateParticleSystemBlue, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -0.5f), Quaternion.identity);
+		// Label
+		for (var k = 0; k < stateLabel.Count; k++) {
+			stateLabel[k].enabled = InPlay;
 		}
 
-		// show a different outline if we're highlighted
-		if (highlighted) {
-			stateOutline.color = GameSettings.InstanceOrCreate.Colors.highlightOutline;
-			stateOutline.sortingOrder = -5;
+		if (playParticles) {
+			//TODO GameObject.Instantiate(GameObjectAccessor.Instance.FlipStateParticleSystemBlue, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -0.5f), Quaternion.identity);
 		}
 	}
     
@@ -427,7 +452,7 @@ public class State : MonoBehaviour {
 	}
     
 	private GameObject CreateWorker(bool isPlayer) {
-		Vector3 supporterPosition = Center + workerOffsetX + (isPlayer? workerOffsetY + (playerWorkers.Count * workerAdjacencyOffset) : -workerOffsetY + ((opponentWorkers.Count) * workerAdjacencyOffset));
+		Vector3 supporterPosition = UICenter + workerOffsetX + (isPlayer? workerOffsetY + (playerWorkers.Count * workerAdjacencyOffset) : -workerOffsetY + ((opponentWorkers.Count) * workerAdjacencyOffset));
 		if (!isPlayer) supporterPosition.x += workerAdjacencyOffset.x / 2f;
 
 		GameObject newWorker = GameObject.Instantiate(ObjectAccessor.Instance.WorkerPrefab, supporterPosition, Quaternion.identity) as GameObject;

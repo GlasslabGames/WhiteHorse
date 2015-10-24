@@ -35,8 +35,24 @@ public class GLMenu : MonoBehaviour {
 		foreach (Object o in Selection.objects) {
 			if (o is GameObject) {
 				GameObject go = o as GameObject;
-				State s = go.GetComponent<State>();
-				if (s != null) s.abbreviation = go.name;
+				go.transform.Find("uiAnchor").transform.localPosition = Vector3.zero;
+				go.transform.Find("uiAnchor").transform.localScale = Vector3.zero;
+			}
+		}
+	}
+
+	[MenuItem("GLMenu/ColorStates")]
+	static void ColorStates(MenuCommand command)
+	{
+		foreach (Object o in Selection.objects) {
+			if (o is GameObject) {
+				GameObject go = o as GameObject;
+				SpriteRenderer[] sprites = go.GetComponentsInChildren<SpriteRenderer>();
+				Color c = new Color(Random.Range(0.25f, 1), Random.Range(0.25f, 1), Random.Range(0.25f, 1));
+				for (var i = 0; i < sprites.Length; i++) {
+					if (sprites[i].name.Contains("dashed") || sprites[i].name.Contains("connector")) sprites[i].color = Color.white;
+					else sprites[i].color = c;
+				}
 			}
 		}
 	}

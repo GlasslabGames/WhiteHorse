@@ -20,7 +20,8 @@ public class StateLabelManager : MonoBehaviour {
 	void Start() {
 		Refresh();
 	}
-	
+
+	[ContextMenu("Refresh")]
 	public void Refresh () {
 		Transform newTransform;
 		Text label;
@@ -31,7 +32,7 @@ public class StateLabelManager : MonoBehaviour {
 				stateLabels[state].gameObject.SetActive(show);
 			} else if (show) {
 				newTransform = Utility.InstantiateAsChild(stateLabelPrefab, transform);
-				newTransform.position = state.Center;
+				newTransform.position = state.UICenter;
 
 				label = newTransform.GetComponent<Text>();
 				if (content == LabelOptions.VOTES) label.text = state.Model.ElectoralCount.ToString();
