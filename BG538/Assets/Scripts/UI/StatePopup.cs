@@ -76,11 +76,11 @@ public class StatePopup : MonoBehaviour {
 
 		// Show popups on the left side facing to the right, and vice-versa
 		if (statePos.x < 0) {
-			pos.x = statePos.x + 4.2f;
+			pos.x = statePos.x + 4.35f;
 			leftArrow.gameObject.SetActive(true);
 			rightArrow.gameObject.SetActive(false);
 		} else {
-			pos.x = statePos.x - 4.2f;
+			pos.x = statePos.x - 4.35f;
 			leftArrow.gameObject.SetActive(false);
 			rightArrow.gameObject.SetActive(true);
 		}
