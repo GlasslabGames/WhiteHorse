@@ -113,13 +113,9 @@ public class GameManager : SingletonBehavior<GameManager> {
 	}
 
 	// Only called by the master client
-	public void InitScenario() {
-		int scenarioId = GameSettings.InstanceOrCreate.ScenarioId;
-
-		ScenarioModel scenario = ScenarioModel.GetModel(scenarioId);
-		Debug.Log ("Scenario: " + scenario);
-		if (scenario is ScenarioModel1) InitScenarioA(scenario as ScenarioModel1);
-		else if (scenario is ScenarioModel2) InitScenarioB(scenario as ScenarioModel2);
+	public void InitScenario(ScenarioModel scenario) {
+		if (scenario is HistoricalScenarioModel) InitHistoricalScenario(scenario as HistoricalScenarioModel);
+		else if (scenario is RandomScenarioModel) InitRandomScenario(scenario as RandomScenarioModel);
 		else Debug.LogError("Bad scenario!");
 	}
 
@@ -133,7 +129,6 @@ public class GameManager : SingletonBehavior<GameManager> {
 			state.SetUp(inPlay, vote);
 		}
 
-		UIManager.Instance.StateLabels.Refresh();
 		UpdateElectoralVotes(true);
 
 		// Make sure we get the initial votes. I don't know why it doesn't work correctly without this hack. // FIXME
@@ -218,17 +213,26 @@ public class GameManager : SingletonBehavior<GameManager> {
 		PlayerBudget.Reset();
 
 		if (UsingAI) OpponentAI.Reset();
+			
+		// Set the correct year
+		int scenarioId = GameSettings.InstanceOrCreate.ScenarioId;
+		ScenarioModel scenario = ScenarioModel.GetModel(scenarioId);
+		YearModel currentYear = YearModel.GetModel(scenario.Year);
+		
+		// Reset states
+		foreach (State state in states) {
+			state.SetYear(currentYear);
+			state.ResetWorkers();
+		}
 
 		// Reset scenario - only one client does this to ensure the results of random choices match
+		// Note that it's important to set the year before initializing the scenario
 		if (!PhotonNetwork.inRoom || PhotonNetwork.isMasterClient) {
-			if (!replay) InitScenario();
+			if (!replay) InitScenario(scenario);
 			GetComponent<PhotonView>().RPC("SetUpScenario", PhotonTargets.All, inPlayStatus, votes);
 		}
 
-		// Reset states
-		foreach (State state in states) {
-			state.ResetWorkers();
-		}
+		UIManager.Instance.StateLabels.Refresh(); // refresh state labels with new year info
 
 		OnBeginGame();
 
@@ -305,9 +309,9 @@ public class GameManager : SingletonBehavior<GameManager> {
 	
 		foreach (State state in states) {
 			if (state.IsRed) {
-				totalRedVotes += state.Model.ElectoralCount;
+				totalRedVotes += state.electoralVotes;
 			} else if (state.IsBlue) {
-				totalBlueVotes += state.Model.ElectoralCount;
+				totalBlueVotes += state.electoralVotes;
 			}
 		}
 
@@ -324,8 +328,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 		float playerVotes = 0;
 		float totalVotes = 0;
 		foreach (State state in states) {
-			totalVotes += state.Model.Population;
-			playerVotes += state.PlayerSupportPercent * state.Model.Population;
+			totalVotes += state.population;
+			playerVotes += state.PlayerSupportPercent * state.population;
 		}
 
 		return playerVotes / totalVotes;
@@ -363,88 +367,82 @@ public class GameManager : SingletonBehavior<GameManager> {
 		}
 	}
 
-	public void InitScenarioA(ScenarioModel1 scenario) {
+	public void InitHistoricalScenario(HistoricalScenarioModel scenario) {
 		inPlayStatus.Clear();
 		votes.Clear();
 		
 		foreach (State state in states) {
 			int id = state.Model.Id;
-			inPlayStatus[id] = (scenario == null || !scenario.PresetStates.Contains(id));
+			inPlayStatus[id] = (scenario == null || scenario.UnlockedStates.Contains(id));
 			
 			float vote = 0;
-			if (scenario != null) {
+			if (scenario != null && (!scenario.UnlockedStatesAreNeutral || !inPlayStatus[id])) {
 				int stateIndex = StateModel.Models.IndexOf(state.Model);
-				if (scenario.StateLeanings.Count > stateIndex) {
-					int leaning = scenario.StateLeanings[stateIndex];
-					vote = InitialLeaningModel.GetModel(leaning).Value;
+				if (scenario.PercentBlue.Count > stateIndex) {
+					int percentBlue = scenario.PercentBlue[stateIndex];
+					vote = (percentBlue / 50f - 1); // convert to number btw 1 and -1
 				}
-				vote += scenario.Randomness * (Random.value * 2 - 1);
-			} else {
-				vote = (Random.value * 2 - 1);
 			}
 			votes[id] = vote;
 		}
 	}
-	
-	public void InitScenarioB(ScenarioModel2 scenario) {
+
+	public void InitRandomScenario(RandomScenarioModel scenario) {
 		inPlayStatus.Clear();
 		votes.Clear();
-		
-		int numStatesToAdd = 0;
-		int blueStatesAdded = 0;
-		int redStatesAdded = 0;
-		if (scenario != null) {
-			numStatesToAdd = Random.Range(scenario.MinStatesInPlay, scenario.MaxStatesInPlay + 1); // since max would be excluded
+
+		State state;
+		List<State> unlockedStates = new List<State>();
+		List<State> lockedStates = new List<State>(states); // start with all states locked
+		int statesToUnlock = (scenario != null)? scenario.NumberOfStatesToUnlock : 50;
+		while (unlockedStates.Count < statesToUnlock) {
+			if (lockedStates.Count <= 0) break; // oops
+
+			int r = Random.Range(0, lockedStates.Count);
+			state = lockedStates[r];
+			unlockedStates.Add(state);
+			lockedStates.RemoveAt(r);
+
+			inPlayStatus[state.Model.Id] = true;
 		}
-		List<State> maybeBlueStates = new List<State>();
-		List<State> maybeRedStates = new List<State>();
+	
+		// Now randomly assign votes for each state in groups, so that we won't be stuck with a huge disparity
+		List<State> unassignedBigStates = new List<State>();
+		List<State> unassignedSmallStates = new List<State>();
+		List<State> unassignedTinyStates = new List<State>();
+
+		// We assign votes for locked states only if UnlockedStates is true; else all states.
+		bool lockedStatesOnly = (scenario != null && scenario.UnlockedStatesAreNeutral);
+    	List<State> statesToAssign = (lockedStatesOnly)? lockedStates : states;
+
+		for (var i = 0; i < statesToAssign.Count; i++) {
+			state = statesToAssign[i];
+			if (state.electoralVotes >= 20) unassignedBigStates.Add(state);
+			else if (state.electoralVotes <= 3) unassignedTinyStates.Add(state);
+			else unassignedSmallStates.Add(state);
+		}
 		
-		foreach (State state in states) {
+		// Assign big states first so that we don't end up adding one at the end and throwing the balance off
+		float voteTotal = 0; // track if we're leaning more red or blue
+    	voteTotal = AssignRandomStateVotes(unassignedBigStates, voteTotal);
+    	voteTotal = AssignRandomStateVotes(unassignedSmallStates, voteTotal);
+		voteTotal = AssignRandomStateVotes(unassignedTinyStates, voteTotal);
+  	}
+
+	float AssignRandomStateVotes(List<State> states, float currentVoteTotal) {
+		while (states.Count > 0) {
+			int r = Random.Range(0, states.Count);
+			State state = states[r];
 			int id = state.Model.Id;
-			if (scenario != null) {
-				int percentBlue = scenario.PercentBlue[state.Model.Id - 1];
-				votes[id] = (percentBlue / 50f - 1);
-				
-				ScenarioModel2.InPlayStatus status = (ScenarioModel2.InPlayStatus)scenario.StatesInPlay[state.Model.Id - 1];
-				if (status == ScenarioModel2.InPlayStatus.ALWAYS) {
-					inPlayStatus[id] = true;
-					if (votes[id] > 0) { // is blue
-						blueStatesAdded ++;
-					} else {
-						redStatesAdded ++;
-					}
-				} else if (status == ScenarioModel2.InPlayStatus.MAYBE) {
-					if (votes[id] > 0) { // is blue
-						maybeBlueStates.Add(state);
-					} else {
-						maybeRedStates.Add(state);
-					}
-				}
-			} else {
-				inPlayStatus[id] = true;
-			}
-		}
-		
-		int r;
-		State s;
-		while ((blueStatesAdded + redStatesAdded) < numStatesToAdd || blueStatesAdded != redStatesAdded) {
-			Debug.Log("Blue states: " + blueStatesAdded + " Red states: " + redStatesAdded + " NumStatesToAdd: " + numStatesToAdd
-			          + " Maybe blue states: "+maybeBlueStates.Count + " MaybeRedStates: " + maybeRedStates.Count);
-			if (blueStatesAdded < redStatesAdded) {
-				r = Random.Range(0, maybeBlueStates.Count);
-				s = maybeBlueStates[r];
-				maybeBlueStates.Remove(s);
-				inPlayStatus[s.Model.Id] = true;
-				blueStatesAdded ++;
-			} else {
-				r = Random.Range(0, maybeRedStates.Count);
-				s = maybeRedStates[r];
-				maybeRedStates.Remove(s);
-				inPlayStatus[s.Model.Id] = true;
-				redStatesAdded ++;
-			}
-		}
-	}
+			states.RemoveAt(r);
+			
+			float vote = Random.value; // btw 0 and 1
+			if (currentVoteTotal > 0) vote *= -1; // we're leaning blue, so make this vote red (negative)
+			currentVoteTotal += state.electoralVotes * Mathf.Sign(vote);
+			votes[id] = vote;
+    	}
+		return currentVoteTotal; // so we can use it for the next section
+  	}
 
 	void AddGameTelemetry() {
 		string roomName = (PhotonNetwork.inRoom)? PhotonNetwork.room.name : "offline";

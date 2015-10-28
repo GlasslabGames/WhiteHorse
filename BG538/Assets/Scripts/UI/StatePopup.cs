@@ -38,11 +38,11 @@ public class StatePopup : MonoBehaviour {
 		// We show different content depending on whether the state is in play or not
 		if (inPlayGroup) inPlayGroup.SetActive(state.InPlay);
 		if (notInPlayGroup) notInPlayGroup.SetActive(!state.InPlay);
-		
+
 		// Basic state info
 		if (nameLabel) nameLabel.text = state.Model.Name;
 		if (abbreviationLabel) abbreviationLabel.text = state.Model.Abbreviation;
-		if (populationLabel) populationLabel.text = "Population " + state.Model.Population.ToString() + "M";
+		if (populationLabel) populationLabel.text = "Population " + state.population.ToString() + "M";
 		
 		// Show the current support percentages
 		string redPercent = Mathf.Round(state.RedSupportPercent * 100).ToString() + "%";

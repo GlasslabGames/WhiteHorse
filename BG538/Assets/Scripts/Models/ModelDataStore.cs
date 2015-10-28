@@ -24,26 +24,31 @@ public static class ModelDataStore {
 
 	static void Load() {
 		Debug.Log("Loading ModelDataStore");
-		Dictionary<string, object> data = ReadJsonFile("data");
+		Dictionary<string, object> data = ReadJsonFile("data2");
     
 		// Create a dictionary of models for each type
 		List<StateModel> states = ParseCategory<StateModel>(data["States"] as Dictionary<string, object>);
 		states.TrimExcess();
 		StateModel.ms_models = new SortedDictionary<int, StateModel>(states.ToDictionary(x => x.Id, x => x));
+		
+		List<YearModel> years = ParseCategory<YearModel>(data["ElectionYear"] as Dictionary<string, object>);
+		years.TrimExcess();
+		YearModel.ms_models = new SortedDictionary<int, YearModel>(years.ToDictionary(x => x.Id, x => x));
 
 		// Scenarios are a special case where we're adding models from two subclasses
-		List<ScenarioModel1> scenarios = ParseCategory<ScenarioModel1>(data["Scenarios"] as Dictionary<string, object>);
+		List<HistoricalScenarioModel> scenarios = ParseCategory<HistoricalScenarioModel>(data["Scenarios"] as Dictionary<string, object>);
 		scenarios.TrimExcess();
 		ScenarioModel.ms_models = new SortedDictionary<int, ScenarioModel>(scenarios.ToDictionary(x => x.Id, x => (x as ScenarioModel)));
-
-		List<ScenarioModel2> scenarios2 = ParseCategory<ScenarioModel2>(data["Scenarios2"] as Dictionary<string, object>);
+		
+		List<RandomScenarioModel> scenarios2 = ParseCategory<RandomScenarioModel>(data["RandomScenarios"] as Dictionary<string, object>);
 		scenarios2.TrimExcess();
 		scenarios2.ForEach(x => ScenarioModel.ms_models.Add(x.Id, x));
-//		ScenarioModel2.ms_models = new SortedDictionary<int, ScenarioModel2>(scenarios2.ToDictionary(x => x.Id, x => x));
 
+		/*
 		List<InitialLeaningModel> leanings = ParseCategory<InitialLeaningModel>(data["Leanings"] as Dictionary<string, object>);
 		leanings.TrimExcess();
 		InitialLeaningModel.ms_models = new SortedDictionary<int, InitialLeaningModel>(leanings.ToDictionary(x => x.Id, x => x));
+		*/
 	}
 
 	static Dictionary<string, object> ReadJsonFile(string fileName) {

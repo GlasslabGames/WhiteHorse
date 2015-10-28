@@ -25,6 +25,8 @@ public class State : MonoBehaviour {
 			return _model;
 		}
 	}
+	public float population;
+	public int electoralVotes;
 
 	private PhotonView _networkView;
 	public PhotonView NetworkView {
@@ -34,8 +36,20 @@ public class State : MonoBehaviour {
 		}
 	}
 
-	public bool InPlay { get; set; }
-	public bool Hidden { get; set; }
+	private bool _inPlay;
+	public bool InPlay {
+		get {
+			return _inPlay && !Hidden;
+		}
+		set {
+			_inPlay = value;
+		}
+	}
+	public bool Hidden {
+		get {
+			return population <= 0 || electoralVotes <= 0;
+		}
+	}
 
 	// VOTE
 	
@@ -109,10 +123,6 @@ public class State : MonoBehaviour {
 	private List< GameObject > playerWorkers = new List<GameObject>();
 	private List< GameObject > opponentWorkers = new List<GameObject>();
 
-	public int RoundedPopulation {
-		get { return Mathf.CeilToInt(Model.Population); }
-	}
-
 	private List<SpriteRenderer> stateColor = new List<SpriteRenderer>();
 	private List<SpriteRenderer> stateOutline = new List<SpriteRenderer>();
 	private SpriteRenderer stateStripes;
@@ -178,9 +188,33 @@ public class State : MonoBehaviour {
 	public void Start() {
 		UpdateColor();
 	}
+
+	public void SetYear(YearModel yearModel) {
+		population = 0;
+		electoralVotes = 0;
+
+    	if (yearModel != null) {
+			int stateIndex = StateModel.Models.IndexOf(Model);
+      		if (yearModel.Populations.Count > stateIndex) {
+				population = yearModel.Populations[stateIndex];
+			}
+			if (yearModel.ElectoralCounts.Count > stateIndex) {
+				electoralVotes = yearModel.ElectoralCounts[stateIndex];
+			}
+    	}
+
+		UpdateColor();
+  	}
     
 	public void HandleClick () {
-		Debug.Log ("Click "+Model.Name);
+		//Debug.Log ("Click "+Model.Name);
+
+		if (Hidden) { // don't allow clicking on hidden states, but do close the state popup if it's open
+			if (UIManager.Instance != null && UIManager.Instance.statePopup != null) {
+				UIManager.Instance.statePopup.Close();
+			}
+			return;
+		}
 
 		// Check the current phase
 		TurnPhase phase = GameManager.Instance.CurrentTurnPhase;

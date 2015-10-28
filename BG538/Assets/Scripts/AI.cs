@@ -62,9 +62,9 @@ public class AI {
 			if (leaning == Leaning.Neutral) {
 				// no change in value
 			} else if (leaning == Leaning.Red ^ !GameManager.Instance.PlayerIsBlue) {
-				value += s.StateView.Model.ElectoralCount; // if the state is red xor we're blue
+				value += s.StateView.electoralVotes; // if the state is red xor we're blue
 			} else {
-				value -= s.StateView.Model.ElectoralCount;
+				value -= s.StateView.electoralVotes;
 			}
 		}
 //		Debug.Log ("Value of "+gs.ToString()+": "+value);

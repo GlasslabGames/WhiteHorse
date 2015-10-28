@@ -24,21 +24,24 @@ public class StateLabelManager : MonoBehaviour {
 	[ContextMenu("Refresh")]
 	public void Refresh () {
 		Transform newTransform;
-		Text label;
+		Text label = null;
 		bool show;
 		foreach (State state in ObjectAccessor.Instance.StatesContainer.transform.GetComponentsInChildren<State>()) {
 			show = !showOnlyOnActiveStates || state.InPlay;
 			if (stateLabels.ContainsKey(state)) {
-				stateLabels[state].gameObject.SetActive(show);
+				label = stateLabels[state];
+				label.gameObject.SetActive(show);
 			} else if (show) {
 				newTransform = Utility.InstantiateAsChild(stateLabelPrefab, transform);
 				newTransform.position = state.UICenter;
 
 				label = newTransform.GetComponent<Text>();
-				if (content == LabelOptions.VOTES) label.text = state.Model.ElectoralCount.ToString();
-				else if (content == LabelOptions.ABBREVIATION) label.text = state.Model.Abbreviation;
-				
 				stateLabels[state] = label;
+			}
+
+			if (show) {
+				if (content == LabelOptions.VOTES) label.text = state.electoralVotes.ToString();
+				else if (content == LabelOptions.ABBREVIATION) label.text = state.Model.Abbreviation;
 			}
 		}
 	}
