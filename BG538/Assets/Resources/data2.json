@@ -725,7 +725,7 @@
       {
         "Id": 101,
         "Name": "2012: Obama vs Romney",
-        "Description": "Play through this recent election by focusing on the “swing states” whose votes determine the election. This straightforward scenario is good for beginners.",
+        "Description": "Play through this recent election by focusing on the \"swing states\" whose votes determine the election. This straightforward scenario is good for beginners.",
         "Image": "2012",
         "Year": 4,
         "UnlockedStatesAreNeutral": true,
@@ -872,7 +872,7 @@
       {
         "Id": 103,
         "Name": "1960: Kennedy vs Nixon",
-        "Description": "The loser of this election controlled more individual states than the winner! In the presidential race, only the number of electoral votes matters.",
+        "Description": "In this election, the loser controlled more individual states than the winner! In the presidential race, only the number of electoral votes matters.",
         "Image": "1960",
         "Year": 2,
         "UnlockedStatesAreNeutral": false,
