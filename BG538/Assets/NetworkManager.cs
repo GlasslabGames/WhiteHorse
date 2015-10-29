@@ -47,13 +47,19 @@ public class NetworkManager : Photon.PunBehaviour {
 		}
 	}
 
-	// For testing purposes. In the real game we would use the GLGS login
+	// For demo purposes
 	public static string GetRandomName() {
+		string[] names = {"Rose", "Jerry", "Paula", "Erin", "Ben"};
+		return names[Random.Range(0, names.Length)]; 
+	}
+
+	// For testing purposes. In the real game we would use the GLGS login
+	public static string GetRandomName2() {
 		string[] adjectives = {"Yellow", "Black", "White", "Purple", "Orange", "Green", "Awesome", "Silly",
 		"Patriotic", "Valiant", "Wise", "Strong", "Careful"};
 		string[] nouns = {"Cat", "Dog", "Turkey", "Eagle", "Lion", "Bear", "Pony", "Badger", "Shark", "Horse", "Elephant", "Donkey" };
-		string name = adjectives[Mathf.FloorToInt(Random.value * adjectives.Length)] +
-			nouns[Mathf.FloorToInt(Random.value * nouns.Length)];
+		string name = adjectives[Random.Range(0, adjectives.Length)] +
+			nouns[Random.Range(0, nouns.Length)];
 		return name;
 	}
 

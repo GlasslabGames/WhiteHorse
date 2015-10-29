@@ -17,6 +17,9 @@ public class UIManager : SingletonBehavior<UIManager> {
 	public Text disconnectedLabel;
 	public Text weekLabel;
 
+	public Text vsLabel;
+	public Text scenarioLabel;
+
 	protected override void Start () {
 		base.Start();
 

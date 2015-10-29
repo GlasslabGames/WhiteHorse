@@ -725,8 +725,8 @@
       {
         "Id": 101,
         "Name": "2012: Obama vs Romney",
-        "Description": "Play through the most recent election by focusing on the “swing states” whose votes determine the election. This straightforward scenario is good for beginners.",
-        "Image": "",
+        "Description": "Play through this recent election by focusing on the “swing states” whose votes determine the election. This straightforward scenario is good for beginners.",
+        "Image": "2012",
         "Year": 4,
         "UnlockedStatesAreNeutral": true,
         "UnlockedStates": [
@@ -797,8 +797,8 @@
       {
         "Id": 102,
         "Name": "2000: Bush vs Gore",
-        "Description": "The outcome of this controversial election depended on the electoral votes from Florida, whose popular vote was so close that the votes were recounted. How will your campaign play out?",
-        "Image": "",
+        "Description": "The outcome of this controversial election hinged on an extremely close popular vote in Florida. How will your campaign play out?",
+        "Image": "2000",
         "Year": 3,
         "UnlockedStatesAreNeutral": false,
         "UnlockedStates": [
@@ -872,8 +872,8 @@
       {
         "Id": 103,
         "Name": "1960: Kennedy vs Nixon",
-        "Description": "This election was the first in history where the loser controlled more individual states than the winner! In the presidential race, only the number of electoral votes matters.",
-        "Image": "",
+        "Description": "The loser of this election controlled more individual states than the winner! In the presidential race, only the number of electoral votes matters.",
+        "Image": "1960",
         "Year": 2,
         "UnlockedStatesAreNeutral": false,
         "UnlockedStates": [
@@ -953,8 +953,8 @@
       {
         "Id": 104,
         "Name": "1844: Polk vs Clay",
-        "Description": "Travel back in time to the 15th presidential election, when the US only contained 26 states. Which states will be the more important for the election?",
-        "Image": "",
+        "Description": "Travel back in time to the 15th presidential election, when the US only contained 26 states. Which will be the more important for the election?",
+        "Image": "1844",
         "Year": 1,
         "UnlockedStatesAreNeutral": false,
         "UnlockedStates": [
@@ -1078,8 +1078,8 @@
       {
         "Id": 201,
         "Name": "Random Swing States",
-        "Description": "In this scenario, all states start with random political opinions, and swing states are randomly chosen. You’ll have to evaluate the political landscape carefully to find a winning strategy!",
-        "Image": "",
+        "Description": "In this scenario, swing states are chosen randomly. You’ll have to evaluate the political landscape carefully to find a winning strategy!",
+        "Image": "random1",
         "Year": 4,
         "UnlockedStatesAreNeutral": true,
         "NumberOfStatesToUnlock": 12
@@ -1087,8 +1087,8 @@
       {
         "Id": 202,
         "Name": "Totally Random",
-        "Description": "All 50 states are up for grabs in this completely randomized scenario. Only advanced players should try to tackle this one.",
-        "Image": "",
+        "Description": "All 50 states are available in this completely randomized scenario. Only advanced players should try to tackle this one.",
+        "Image": "random2",
         "Year": 4,
         "UnlockedStatesAreNeutral": false,
         "NumberOfStatesToUnlock": 51
@@ -1096,8 +1096,8 @@
       {
         "Id": 203,
         "Name": "Blank Slate",
-        "Description": "Nobody has any idea who to vote for... yet.",
-        "Image": "",
+        "Description": "In this advanced scenario, nobody has any idea who to vote for... yet. What's your strategy when the whole map is up for grabs?",
+        "Image": "blank",
         "Year": 4,
         "UnlockedStatesAreNeutral": true,
         "NumberOfStatesToUnlock": 51

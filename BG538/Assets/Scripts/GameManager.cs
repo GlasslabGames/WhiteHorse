@@ -214,10 +214,22 @@ public class GameManager : SingletonBehavior<GameManager> {
 
 		if (UsingAI) OpponentAI.Reset();
 			
-		// Set the correct year
+		// Find the correct year
 		int scenarioId = GameSettings.InstanceOrCreate.ScenarioId;
 		ScenarioModel scenario = ScenarioModel.GetModel(scenarioId);
 		YearModel currentYear = YearModel.GetModel(scenario.Year);
+
+		// Set the footer information
+		string playerName = (PhotonNetwork.playerName.Length > 0)? PhotonNetwork.playerName : "Player";
+		string opponentName = "Opponent";
+		if (UsingAI) {
+			opponentName = "Computer";
+		} else {
+			PhotonPlayer [] otherPlayers = PhotonNetwork.otherPlayers;
+			if (otherPlayers.Length > 0) opponentName = otherPlayers[0].name;
+		}
+		UIManager.Instance.vsLabel.text = playerName + " vs " + opponentName;
+		UIManager.Instance.scenarioLabel.text = scenario.Name;
 		
 		// Reset states
 		foreach (State state in states) {
