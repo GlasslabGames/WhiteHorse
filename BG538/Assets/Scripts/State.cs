@@ -360,9 +360,7 @@ public class State : MonoBehaviour {
 			for (var j = 0; j < stateOutline.Count; j++) {
 				stateOutline[j].color = GameSettings.InstanceOrCreate.Colors.outline;
 			}
-			for (var k = 0; k < stateLabel.Count; k++) {
-				stateLabel[k].enabled = false;
-			}
+			if (stateLabel.Count > 0) stateLabel[0].transform.parent.gameObject.SetActive(false);
 			stateStripes.enabled = true;
 			return;
 		}
@@ -402,9 +400,7 @@ public class State : MonoBehaviour {
 		stateStripes.enabled = !InPlay;
 
 		// Label
-		for (var k = 0; k < stateLabel.Count; k++) {
-			stateLabel[k].enabled = InPlay;
-		}
+		if (stateLabel.Count > 0) stateLabel[0].transform.parent.gameObject.SetActive(InPlay);
 
 		if (playParticles) {
 			//TODO GameObject.Instantiate(GameObjectAccessor.Instance.FlipStateParticleSystemBlue, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -0.5f), Quaternion.identity);
