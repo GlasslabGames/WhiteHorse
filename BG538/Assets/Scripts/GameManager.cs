@@ -108,7 +108,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 			}
 			PhotonNetwork.room.open = false;
 		}
-		OpponentAI = new AI();
+		OpponentAI = GetComponent<AI>();
 		GoToPhase (TurnPhase.BeginGame);
 	}
 
@@ -280,8 +280,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 	private void BeginPlacement() {
 		Debug.Log ("BeginPlacement. UsingAI: " + UsingAI);
 		if (UsingAI) {
-			OpponentAI.DoTurn();
-			opponentIsFinished = true;
+			OpponentAI.StartTurn(states);
 		}
 	}
 	
@@ -355,6 +354,11 @@ public class GameManager : SingletonBehavior<GameManager> {
 	void RpcSetPlayerFinished(bool isBlue) {
 		if (isBlue ^ PlayerIsBlue) opponentIsFinished = true;
 		else playerIsFinished = true;
+		OnPlayerFinished();
+	}
+
+	public void SetAIFinished() {
+		opponentIsFinished = true;
 		OnPlayerFinished();
 	}
 

@@ -313,7 +313,7 @@ public class State : MonoBehaviour {
 		return false;
 	}
 
-	float CalculateVote() {
+	public float CalculateVote() {
 		int currentBlueWorkerCount = (GameManager.Instance.PlayerIsBlue) ? playerWorkers.Count : opponentWorkers.Count;
 		int currentRedWorkerCount = (GameManager.Instance.PlayerIsBlue) ? opponentWorkers.Count : playerWorkers.Count;
 		
@@ -515,7 +515,7 @@ public class State : MonoBehaviour {
 		if (workerList.Remove(worker)) Destroy(worker);
 	}
 
-	public Leaning GetLeaningForVote(float vote) {
+	public static Leaning GetLeaningForVote(float vote) {
 		if (vote < 0) return Leaning.Red;
 		else if (vote > 0) return Leaning.Blue;
 		else return Leaning.Neutral;
@@ -533,6 +533,10 @@ public class State : MonoBehaviour {
 	// Prediction of what the state's color will be
 	public Controller GetPredictedController() {
 		return GetController(GetPredictedLeaning());
+	}
+
+	public static Controller GetController(float vote) {
+		return GetController(GetLeaningForVote(vote));
 	}
 
 	public static Controller GetController(Leaning leaning) {
