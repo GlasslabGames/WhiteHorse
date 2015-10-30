@@ -112,6 +112,18 @@ public class State : MonoBehaviour {
 		}
 	}
 
+	public int VisiblePlayerWorkerCount {
+		get {
+			return playerWorkers.Count;
+		}
+	}
+
+	public int VisibleOpponentWorkerCount {
+		get {
+			return opponentWorkers.Count;
+		}
+	}
+
 	// HARVEST
 	private bool countedExistingWorkers;
 	

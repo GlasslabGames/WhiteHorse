@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using DG.Tweening;
 
 public class StatePopup : MonoBehaviour {
 	public GameObject inPlayGroup;
@@ -20,11 +21,14 @@ public class StatePopup : MonoBehaviour {
 	public Image leftArrow;
 	public Image rightArrow;
 	public PercentMeter voteMeter;
+	public Transform body;
 
 	private State currentState;
+	private Vector3 initialScale;
 	
 	void Start() {
 		Close();
+		initialScale = transform.localScale;
 	}
 
 	public void Show(State state = null) {
@@ -72,19 +76,19 @@ public class StatePopup : MonoBehaviour {
 		// place near state
 		Vector3 pos = transform.position; // keeps the same Z
 		Vector3 statePos = state.Center;
-		pos.y = Mathf.Max(statePos.y, -5f); // sorry I hardcoded this stuff
-
-		// Show popups on the left side facing to the right, and vice-versa
-		if (statePos.x < 0) {
-			pos.x = statePos.x + 4.35f;
-			leftArrow.gameObject.SetActive(true);
-			rightArrow.gameObject.SetActive(false);
-		} else {
-			pos.x = statePos.x - 4.35f;
-			leftArrow.gameObject.SetActive(false);
-			rightArrow.gameObject.SetActive(true);
-		}
+		pos.y = Mathf.Max(statePos.y, -5f); // magic number *~*~*
+		pos.x = statePos.x;
 		transform.position = pos;
+
+		bool onLeft = statePos.x < 0; // Show popups on the left side facing to the right, and vice-versa
+		leftArrow.gameObject.SetActive(onLeft);
+		rightArrow.gameObject.SetActive(!onLeft);
+		float bodyX = Mathf.Abs(body.localPosition.x) * (onLeft? 1 : -1);
+		body.localPosition = new Vector3(bodyX, body.localPosition.y, 0);
+
+		// Tween
+		transform.localScale = Vector3.zero;
+		transform.DOScale(initialScale, 0.1f);
 	}
 	
 	public void Close() {
@@ -101,32 +105,36 @@ public class StatePopup : MonoBehaviour {
 		
 		// Show the current number of units
 		if (currentState.InPlay) {
-			if (playerUnitsCountLabel) playerUnitsCountLabel.text = currentState.PlayerWorkerCount.ToString() + " x";
-			if (opponentUnitsCountLabel) opponentUnitsCountLabel.text = currentState.OpponentWorkerCount.ToString() + " x";
-		}
+			int playerWorkers = currentState.VisiblePlayerWorkerCount;
+			int opponentWorkers = currentState.VisibleOpponentWorkerCount;
+
+			if (playerUnitsCountLabel) playerUnitsCountLabel.text = playerWorkers.ToString() + " x";
+			if (opponentUnitsCountLabel) opponentUnitsCountLabel.text = opponentWorkers.ToString() + " x";
 		
-		// Percent increment
-		float percentChange = 0;
-		if (playerIncrementLabel) {
-			percentChange = currentState.GetPlayerPercentChange();
-			if (percentChange > 0) playerIncrementLabel.text = "+"+ Mathf.Round( percentChange * 100 ) + "%";
-			else playerIncrementLabel.text = "";
-		}
-		if (opponentIncrementLabel) {
-			percentChange = currentState.GetOpponentPercentChange();
-			if (percentChange > 0) opponentIncrementLabel.text = "+"+ Mathf.Round( percentChange * 100 ) + "%";
-			else opponentIncrementLabel.text = "";
-		}
-		
-		if (addUnitButton != null) {
-			bool enable = currentState.PlayerCanPlaceWorker();
-			addUnitButton.SetEnabled(enable, !enable); // if they can't place supporters, it's probably because of money
-			addUnitButton.SetPrice(GameSettings.InstanceOrCreate.GetGameActionCost(GameAction.PlaceWorker));
-		}
-		
-		if (removeUnitButton != null) {
-			removeUnitButton.SetEnabled(currentState.PlayerCanRemoveWorker());
-			removeUnitButton.SetPrice(GameSettings.InstanceOrCreate.GetGameActionCost(GameAction.RemoveWorker));
+			// Percent increment
+			float increment = GameSettings.InstanceOrCreate.WorkerIncrement;
+			float percentChange = 0;
+			if (playerIncrementLabel) {
+				percentChange = playerWorkers * increment;
+				if (percentChange > 0) playerIncrementLabel.text = "+"+ Mathf.Round( percentChange * 100 ) + "%";
+				else playerIncrementLabel.text = "";
+			}
+			if (opponentIncrementLabel) {
+				percentChange = opponentWorkers * increment;
+				if (percentChange > 0) opponentIncrementLabel.text = "+"+ Mathf.Round( percentChange * 100 ) + "%";
+				else opponentIncrementLabel.text = "";
+			}
+			
+			if (addUnitButton != null) {
+				bool enable = currentState.PlayerCanPlaceWorker();
+				addUnitButton.SetEnabled(enable, !enable); // if they can't place supporters, it's probably because of money
+				addUnitButton.SetPrice(GameSettings.InstanceOrCreate.GetGameActionCost(GameAction.PlaceWorker));
+			}
+			
+			if (removeUnitButton != null) {
+				removeUnitButton.SetEnabled(currentState.PlayerCanRemoveWorker());
+				removeUnitButton.SetPrice(GameSettings.InstanceOrCreate.GetGameActionCost(GameAction.RemoveWorker));
+			}
 		}
 	}
 	
