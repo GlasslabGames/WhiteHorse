@@ -139,21 +139,19 @@ public class State : MonoBehaviour {
 	private List<SpriteRenderer> stateOutline = new List<SpriteRenderer>();
 	private SpriteRenderer stateStripes;
 	private List<SpriteRenderer> stateLabel = new List<SpriteRenderer>();
+	private ParticleSystem flipParticles;
+	private bool justChangedColor;
 
-	private Transform center;
 	public Vector3 Center {
 		get {
-			return transform.Find("uiAnchor").position; // TODO
-			if (center == null) center = transform.Find("uiAnchor");
+			Transform center = transform.Find("uiAnchor");
 			if (center == null) center = transform;
 			return center.position;
 		}
 	}
-
-	private Transform uiCenter;
 	public Vector3 UICenter {
 		get {
-			if (uiCenter == null) uiCenter = transform.Find(abbreviation + " label");
+			Transform uiCenter = transform.Find(abbreviation + " label");
 			if (uiCenter == null) uiCenter = transform.Find("uiAnchor");
 			if (uiCenter == null) uiCenter = transform;
 			return uiCenter.position;
@@ -280,6 +278,11 @@ public class State : MonoBehaviour {
 
 	// Does the next step in the harvest sequence; returns true if we had a step to do or false if we're done
 	public bool NextHarvestAction(bool usingAi) {
+
+		if (justChangedColor) {
+			justChangedColor = false;
+			return true;
+		}
 
 		if (RedWorkerCount == 0 && BlueWorkerCount == 0 && playerWorkers.Count == 0 && opponentWorkers.Count == 0) {
 			// Empty state, nothing to do here
@@ -415,7 +418,21 @@ public class State : MonoBehaviour {
 		if (stateLabel.Count > 0) stateLabel[0].transform.parent.gameObject.SetActive(InPlay);
 
 		if (playParticles) {
-			//TODO GameObject.Instantiate(GameObjectAccessor.Instance.FlipStateParticleSystemBlue, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -0.5f), Quaternion.identity);
+			if (flipParticles != null) flipParticles.Play();
+			else {
+				GameObject obj = GameObject.Instantiate(ObjectAccessor.Instance.ParticlePrefab);
+				Transform center = transform.Find("uiAnchor");
+				if (center == null) center = transform;
+				obj.transform.SetParent(center);
+				flipParticles = obj.GetComponent<ParticleSystem>();
+			}
+
+			Color particleColor = Color.white;
+			if (IsBlue) particleColor = GameSettings.InstanceOrCreate.Colors.medBlue;
+			else if (IsRed) particleColor = GameSettings.InstanceOrCreate.Colors.medRed;
+			flipParticles.startColor = particleColor;
+
+			justChangedColor = true;
 		}
 	}
     
