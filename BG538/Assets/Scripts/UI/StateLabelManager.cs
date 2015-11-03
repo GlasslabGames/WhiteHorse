@@ -10,11 +10,10 @@ public class StateLabelManager : MonoBehaviour {
 	public LabelOptions content = LabelOptions.VOTES;
 	public bool showOnlyOnActiveStates = true;
 	
-	private Object stateLabelPrefab;
+	public GameObject stateLabelPrefab;
 	private Dictionary<State, Text> stateLabels = new Dictionary<State, Text>();
 	
 	void Awake() {
-		stateLabelPrefab = Resources.Load("StateLabel");
 	}
 	
 	void Start() {
