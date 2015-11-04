@@ -350,6 +350,10 @@ public class State : MonoBehaviour {
 			AddTelemetry(false);
 			SdkManager.Instance.AddTelemEventValue("prev_controller", GetController(prevLeaning));
 			SdkManager.Instance.SaveTelemEvent("state_control_changed", success, SdkManager.EventCategory.System_Event);
+		
+			SoundController.Play( success? "GoodStateChange" : "BadStateChange" );
+		} else {
+			SoundController.Play( "AddWorker" );
 		}
 		UpdateColor(colorChanged);
 	}
@@ -473,6 +477,7 @@ public class State : MonoBehaviour {
 
 		if (isPlayer) {
 			CreateWorker(true);
+			SoundController.Play("AddWorker");
 
 			// We only send the telemetry when the player adds a worker (not if it's from the opponent/AI)
 			bool success = DidControllerGetBetter(prevPredictedController, GetPredictedController());
@@ -489,6 +494,7 @@ public class State : MonoBehaviour {
 		SetWorkerCount( (isPlayer? PlayerWorkerCount : OpponentWorkerCount) - 1, isPlayer);
 		if (isPlayer) {
 			DestroyWorker(true);
+			SoundController.Play("RemoveWorker");
 
 			// We only send the telemetry when the player adds a worker (not if it's from the opponent/AI)
 			bool failure = DidControllerGetWorse(prevPredictedController, GetPredictedController());
@@ -524,7 +530,7 @@ public class State : MonoBehaviour {
 
 		if (isPlayer) playerWorkers.Add(newWorker);
 		else opponentWorkers.Add(newWorker);
-
+		
 		return newWorker;
 	}
 

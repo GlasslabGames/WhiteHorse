@@ -26,8 +26,4 @@ public class MatchmakerEntry : PrefabEntry {
 		ScenarioLabel.text = scenarioName;
 		ColorIndicator.color = ColorSwapper.GetColor(color == Leaning.Blue, ColorSwapper.ColorChoice.med);
 	}
-
-	public void OnToggle(bool value) {
-		if (value) SoundController.Play("ListSelect");
-	}
 }

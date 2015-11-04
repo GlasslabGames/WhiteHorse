@@ -43,6 +43,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 
 	private int prevVoteDifference;
 
+	[HideInInspector]
 	public AI OpponentAI;
 	public bool UsingAI {
 		get { return OpponentAI != null; }
@@ -51,6 +52,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 	/*public Player LocalPlayer { get; private set; }
 	public Player OpposingPlayer { get; private set; }*/
 
+	[HideInInspector]
 	public bool PlayerIsBlue;
 	private bool playerIsFinished;
 	private bool opponentIsFinished;
@@ -96,7 +98,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 		this.OnEndGame(false); // Send telemetry indicating that the game ended (unless we already ended the game)
 
 		Application.LoadLevel("lobby");
-		PhotonNetwork.LeaveRoom();
+		if (!PhotonNetwork.offlineMode) PhotonNetwork.LeaveRoom();
 	}
 
 	public void StartGameWithAI() {
@@ -166,6 +168,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 			BeginHarvest();
 			break;
 		case TurnPhase.GameEnd:
+			SoundController.Play( PlayerIsWinning? "WinEffect" : "LoseEffect" );
 			OnEndGame(true);
 			break;
 		case TurnPhase.Disconnected:
@@ -247,6 +250,9 @@ public class GameManager : SingletonBehavior<GameManager> {
 		UIManager.Instance.StateLabels.Refresh(); // refresh state labels with new year info
 
 		OnBeginGame();
+
+		//SoundController.Play("DramaticEffect");
+		if (SoundController.musicSource) SoundController.musicSource.UnPause(); // it may have been paused by the end of the game
 
 		GoToPhase(TurnPhase.BeginWeek);
 	}

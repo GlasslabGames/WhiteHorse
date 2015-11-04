@@ -71,6 +71,7 @@ public class LobbyManager : MonoBehaviour {
 			if (!defaultSet) {
 				entry.GetComponent<Toggle>().isOn = true; // if it was already on (thanks to PrefabEntry), this doesn't call OnSelected..
 				OnScenarioEntrySelected(model); // so call it directly
+
 				defaultSet = true;
 			}
 		}

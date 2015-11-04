@@ -16,10 +16,8 @@ public class ScenarioEntry : PrefabEntry {
 		nameLabel.text = scenario.Name;
 	}
 
-	public void OnToggle(bool value) {
-		if (value) {
-			if (OnSelected != null) OnSelected(model);
-			SoundController.Play("ListSelect");
-		}
+	public override void OnToggle(bool value) {
+		base.OnToggle(value);
+		if (value && OnSelected != null) OnSelected(model);
 	}
 }

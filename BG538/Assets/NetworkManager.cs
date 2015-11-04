@@ -127,7 +127,7 @@ public class NetworkManager : Photon.PunBehaviour {
 	void OnDisconnected() {
 		if (GameManager.Instance) {
 			GameManager.Instance.GoToPhase(TurnPhase.Disconnected);
-  	}
+  		}
 	}
     
 	public override void OnPhotonCreateRoomFailed(object[] codeAndMsg)

@@ -89,6 +89,9 @@ public class StatePopup : MonoBehaviour {
 		// Tween
 		transform.localScale = Vector3.zero;
 		transform.DOScale(initialScale, 0.1f);
+
+		// Sound effect
+		SoundController.Play("PopupOpen");
 	}
 	
 	public void Close() {
