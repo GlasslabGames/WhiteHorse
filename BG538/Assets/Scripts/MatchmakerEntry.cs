@@ -7,6 +7,7 @@ public class MatchmakerEntry : PrefabEntry {
 	public Text ScenarioLabel;
 	public Image ColorIndicator;
 
+	[HideInInspector]
 	public string RoomName;
 
 	public void Set(RoomInfo room) {
@@ -24,5 +25,9 @@ public class MatchmakerEntry : PrefabEntry {
 		PlayerLabel.text = playerName;
 		ScenarioLabel.text = scenarioName;
 		ColorIndicator.color = ColorSwapper.GetColor(color == Leaning.Blue, ColorSwapper.ColorChoice.med);
+	}
+
+	public void OnToggle(bool value) {
+		if (value) SoundController.Play("ListSelect");
 	}
 }

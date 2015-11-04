@@ -147,6 +147,8 @@ public class LobbyManager : MonoBehaviour {
 		Tweener t = canvasGroup.transform.DOMove(endPos, transitionDuration).SetEase(transitionEase);
 		if (!entering) {
 			t.OnComplete(() => TogglePanel(canvasGroup, false));
+
+			SoundController.Play("PanelSwipe");
 		}
 	}
 

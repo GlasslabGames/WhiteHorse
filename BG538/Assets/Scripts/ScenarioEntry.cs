@@ -17,6 +17,9 @@ public class ScenarioEntry : PrefabEntry {
 	}
 
 	public void OnToggle(bool value) {
-		if (value && OnSelected != null) OnSelected(model);
+		if (value) {
+			if (OnSelected != null) OnSelected(model);
+			SoundController.Play("ListSelect");
+		}
 	}
 }
