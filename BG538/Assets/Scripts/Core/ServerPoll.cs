@@ -13,15 +13,23 @@ public class ServerPoll : MonoBehaviour
   public NoInternetModal NoInternetConnectionModal;
 
   private Action m_successCallback;
-
+	private static ServerPoll _instance;
 
   /**
    * Activate the timer on awake.
    */
   public void Awake() {
+		if (_instance != null) {
+			Destroy(gameObject);
+		} else {
+			_instance = this;
+			DontDestroyOnLoad(gameObject);
+
 		#if !UNITY_EDITOR
-    Reset( true );
+    		Reset( true );
 		#endif
+		}
+
   }
 
   /**
@@ -103,7 +111,6 @@ public class ServerPoll : MonoBehaviour
    */
   public void DisplayNoInternetModal( bool noInternet ) {
 		if (NoInternetConnectionModal) {
-			NoInternetConnectionModal.gameObject.SetActive(true);
 			NoInternetConnectionModal.Display(noInternet);
 		} else {
 			Debug.Log ("NO CONNECTION!");

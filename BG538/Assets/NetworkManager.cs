@@ -43,6 +43,7 @@ public class NetworkManager : Photon.PunBehaviour {
 
 			if (SignalManager.TryingPhotonConnect != null) SignalManager.TryingPhotonConnect();
 
+			Debug.Log ("Trying to connect to Photon...");
 			PhotonNetwork.ConnectUsingSettings(GameSettings.InstanceOrCreate.Version);
 		}
 	}
@@ -149,6 +150,16 @@ public class NetworkManager : Photon.PunBehaviour {
 	public override void OnFailedToConnectToPhoton(DisconnectCause cause) {
 		Debug.LogError("Failed to connect. "+cause);
 		if (PhotonErrorPopup.Instance) PhotonErrorPopup.Instance.ShowConnectionError(cause);
+	}
+
+	public override void OnConnectionFail(DisconnectCause cause) {
+		Debug.LogError("Connection failed. "+cause);
+		if (PhotonErrorPopup.Instance) PhotonErrorPopup.Instance.ShowConnectionError(cause);
+	}
+
+	public override void OnPhotonMaxCccuReached() {
+		Debug.LogError("Max CCU reached.");
+		if (PhotonErrorPopup.Instance) PhotonErrorPopup.Instance.ShowCcuError();
 	}
 	
 	void Update () {

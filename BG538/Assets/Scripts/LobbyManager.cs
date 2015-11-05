@@ -174,7 +174,7 @@ public class LobbyManager : MonoBehaviour {
 		settings.currentDuration = (debugSettings != null)? Mathf.RoundToInt(debugSettings.weekSlider.value) : 0;
 		settings.currentIncrement = (debugSettings != null)? debugSettings.workerSlider.value : 0;
 
-		Overlay.SetActive(true);
+		//Overlay.SetActive(true);
 
 		if (NetworkManager.MultiplayerMode) {
 			NetworkManager.CreateRoom(PhotonNetwork.playerName, settings);

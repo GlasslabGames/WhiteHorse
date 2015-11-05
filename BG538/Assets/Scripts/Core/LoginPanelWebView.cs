@@ -15,6 +15,8 @@ public class LoginPanelWebView : MonoBehaviour {
   private GLWebView m_webView;
 
 	public event Action onLoginComplete;
+
+	public NoInternetModal noInternetModal;
   
   void Awake() {
     m_webView = GetComponent<GLWebView>();
@@ -245,7 +247,7 @@ public class LoginPanelWebView : MonoBehaviour {
     }
 	#endif
 
-    //MainMenuController.Instance.DisplayNoInternetModal( noInternet );
+    noInternetModal.Display( noInternet );
 
     gameObject.SetActive( false );
   }
