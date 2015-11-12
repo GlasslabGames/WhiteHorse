@@ -48,8 +48,7 @@ public class UIManager : SingletonBehavior<UIManager> {
 			if (header) header.Reset();
 			if (connectingIndicator) {
 				connectingIndicator.SetActive(true);
-				MatchmakerEntry entry = connectingIndicator.GetComponentInChildren<MatchmakerEntry>();
-				if (entry) entry.Set(PhotonNetwork.room);
+				SetFooter("???");
 			}
 			break;
 		case TurnPhase.Placement:
@@ -128,5 +127,20 @@ public class UIManager : SingletonBehavior<UIManager> {
 		if (header) header.Reset();
 		if (restartButton) restartButton.gameObject.SetActive(false);
 		if (ObjectAccessor.Instance.Background) ObjectAccessor.Instance.Background.color = Color.white;
+	}
+
+	public void SetFooter(string opponentName = "") {
+		string playerName = (PhotonNetwork.playerName.Length > 0)? PhotonNetwork.playerName : "Player";
+		if (opponentName == "") {
+			opponentName = "Opponent"; // default
+		
+			PhotonPlayer [] otherPlayers = PhotonNetwork.otherPlayers;
+			if (otherPlayers.Length > 0) opponentName = otherPlayers[0].name;
+		}
+		UIManager.Instance.vsLabel.text = playerName + " vs " + opponentName;
+
+		int scenarioId = GameSettings.InstanceOrCreate.ScenarioId;
+		ScenarioModel scenario = ScenarioModel.GetModel(scenarioId);
+		UIManager.Instance.scenarioLabel.text = scenario.Name;
 	}
 }

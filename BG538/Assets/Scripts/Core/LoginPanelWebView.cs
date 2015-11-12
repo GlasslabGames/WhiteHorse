@@ -44,7 +44,7 @@ public class LoginPanelWebView : MonoBehaviour {
   {
     //MainMenuController.Instance.HideLoadingScreen();
     
-    Debug.Log("Loaded user info: " + data);
+    Debug.Log("*** Loaded user info: " + data);
 
     Dictionary<string, object> parsedData = MiniJSON.Json.Deserialize(data) as Dictionary<string, object>;
     if (parsedData == null || (parsedData.ContainsKey("status") && (string) parsedData["status"] == "error"))

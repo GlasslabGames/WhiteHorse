@@ -60,7 +60,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 	public BudgetController PlayerBudget = new BudgetController();
 
 	// Store the last scenario we generated so we can replay it
-	Dictionary<int, bool> inPlayStatus = new Dictionary<int, bool>();	Dictionary<int, float> votes = new Dictionary<int, float>();
+	Dictionary<int, bool> inPlayStatus = new Dictionary<int, bool>();
+	Dictionary<int, float> votes = new Dictionary<int, float>();
 
 	protected override void Start() {
 		base.Start ();
@@ -132,7 +133,8 @@ public class GameManager : SingletonBehavior<GameManager> {
 		}
 
 		UpdateElectoralVotes(true);
-
+		UIManager.Instance.StateLabels.Refresh(); // refresh state labels with the new list of active states
+		
 		// Make sure we get the initial votes. I don't know why it doesn't work correctly without this hack. // FIXME
 		Invoke("InitialVoteUpdate", 1f);
 	}
@@ -223,16 +225,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 		YearModel currentYear = YearModel.GetModel(scenario.Year);
 
 		// Set the footer information
-		string playerName = (PhotonNetwork.playerName.Length > 0)? PhotonNetwork.playerName : "Player";
-		string opponentName = "Opponent";
-		if (UsingAI) {
-			opponentName = "Computer";
-		} else {
-			PhotonPlayer [] otherPlayers = PhotonNetwork.otherPlayers;
-			if (otherPlayers.Length > 0) opponentName = otherPlayers[0].name;
-		}
-		UIManager.Instance.vsLabel.text = playerName + " vs " + opponentName;
-		UIManager.Instance.scenarioLabel.text = scenario.Name;
+		UIManager.Instance.SetFooter( UsingAI? "Computer" : "" );
 		
 		// Reset states
 		foreach (State state in states) {

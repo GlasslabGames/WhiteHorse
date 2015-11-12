@@ -10,6 +10,9 @@ public class PhotonErrorPopup : SingletonBehavior<PhotonErrorPopup> {
 	public GameObject retryButton;
 	public GameObject quitButton;
 
+	[HideInInspector]
+	public GameObject lobbyOverlay;
+
 	public void ShowError(string info, object[] error) {
 		short errorCode = (short) error[0];
 		if (errorCode == ErrorCode.MaxCcuReached) ShowCcuError();
@@ -29,6 +32,8 @@ public class PhotonErrorPopup : SingletonBehavior<PhotonErrorPopup> {
 	}
 
 	public void Show(string info, bool canRetry) {
+		if (lobbyOverlay != null) lobbyOverlay.SetActive (false);
+
 		gameObject.SetActive(true);
 		infoLabel.text = info;
 

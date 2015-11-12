@@ -10,7 +10,7 @@ public class NetworkManager : Photon.PunBehaviour {
 	public static bool MultiplayerMode { get; private set; }
 
 	public static NetworkManager Instance;
-
+	
 	public enum DisconnectionReason {
 		opponent,
 		other
@@ -39,7 +39,7 @@ public class NetworkManager : Photon.PunBehaviour {
 	public static void Connect() {
 		if (!PhotonNetwork.connected) {
 			if (SdkManager.username != null && SdkManager.username.Length > 0) PhotonNetwork.playerName = SdkManager.username;
-			else PhotonNetwork.playerName = GetRandomName();
+			else PhotonNetwork.playerName = GetRandomName2();
 
 			if (SignalManager.TryingPhotonConnect != null) SignalManager.TryingPhotonConnect();
 

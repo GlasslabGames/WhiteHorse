@@ -46,7 +46,9 @@ public class StatePopup : MonoBehaviour {
 		// Basic state info
 		if (nameLabel) nameLabel.text = state.Model.Name;
 		if (abbreviationLabel) abbreviationLabel.text = state.Model.Abbreviation;
-		if (populationLabel) populationLabel.text = "Population " + state.population.ToString() + "M";
+		if (populationLabel) populationLabel.text = state.population.ToString() + "M people : " + state.electoralVotes.ToString() + " votes";
+		//if (populationLabel) populationLabel.text = "Population " + state.population.ToString() + "M";
+		//if (electoralVotesLabel) electoralVotesLabel.text = "Electoral votes " + state.electoralVotes.ToString();
 		
 		// Show the current support percentages
 		string redPercent = Mathf.Round(state.RedSupportPercent * 100).ToString() + "%";
@@ -62,7 +64,7 @@ public class StatePopup : MonoBehaviour {
 		RefreshWorkerInfo();
 		
 		// Set the color
-		Color color = GameSettings.InstanceOrCreate.Colors.undiscoveredState; // gray
+		Color color = Color.gray;
 		if (state.IsBlue) {
 			color = GameSettings.InstanceOrCreate.Colors.darkerBlue;
 		} else if (state.IsRed) {

@@ -52,6 +52,8 @@ public class LobbyManager : MonoBehaviour {
 		WaitingModal.SetActive(false);
 		Overlay.SetActive(false);
 
+		photonConnectionModal.lobbyOverlay = Overlay;
+
 		FillInScenarios();
 	}
 
@@ -174,7 +176,7 @@ public class LobbyManager : MonoBehaviour {
 		settings.currentDuration = (debugSettings != null)? Mathf.RoundToInt(debugSettings.weekSlider.value) : 0;
 		settings.currentIncrement = (debugSettings != null)? debugSettings.workerSlider.value : 0;
 
-		//Overlay.SetActive(true);
+		Overlay.SetActive(true);
 
 		if (NetworkManager.MultiplayerMode) {
 			NetworkManager.CreateRoom(PhotonNetwork.playerName, settings);
@@ -191,6 +193,8 @@ public class LobbyManager : MonoBehaviour {
 		foreach (Toggle toggle in group.ActiveToggles()) { // I couldn't find a better way to access the single toggled
 			MatchmakerEntry entry = toggle.GetComponent<MatchmakerEntry>();
 			if (entry) {
+				Overlay.SetActive(true);
+
 				NetworkManager.JoinRoom(entry.RoomName);
 				return;
 			}
