@@ -33,14 +33,19 @@ public class RoomList : Photon.PunBehaviour {
 
 	public void RefreshWithRooms(RoomInfo[] rooms) {
 		EmptyIndicator.SetActive(rooms.Length == 0);
+		string keyword = NetworkManager.Instance.GroupKeyword;
 
 		// We want to add new entries and then delete unused ones, without erasing and starting from scratch
 		// Since that would mess up which entry is selected
 		List<MatchmakerEntry> entries = new List<MatchmakerEntry>();
 		MatchmakerEntry entry;
 		foreach (RoomInfo room in rooms) {
-			Debug.Log (room.ToString());
 			if (!room.visible || !room.open || room.playerCount >= room.maxPlayers) continue;
+
+			// check the group keyword
+			ExitGames.Client.Photon.Hashtable props = room.customProperties;
+			if (props != null && props.ContainsKey("k") && props["k"] != keyword) continue;
+
 			if (entriesByRoom.ContainsKey(room.name)) {
 				entry = entriesByRoom[room.name];
 				entriesByRoom.Remove(room.name);

@@ -66,6 +66,9 @@ public class GameManager : SingletonBehavior<GameManager> {
 	protected override void Start() {
 		base.Start ();
 
+		SdkManager.Instance.EndSession(); // if there was an old session, make sure it's closed
+		SdkManager.Instance.StartSession(); // start this session
+
 		foreach (State state in ObjectAccessor.Instance.StatesContainer.GetComponentsInChildren<State>()) {
 			states.Add(state);
 		}
@@ -90,7 +93,7 @@ public class GameManager : SingletonBehavior<GameManager> {
 	protected override void OnDestroy() {
 		base.OnDestroy ();
 
-		//SignalManager.PlayerFinished -= OnPlayerFinished;
+		SdkManager.Instance.EndSession(); // when we change scenes (game ends), the game manager will be destroyed
 	}
 
 	public void QuitGame() {
@@ -206,6 +209,10 @@ public class GameManager : SingletonBehavior<GameManager> {
 
 	[PunRPC]
 	public void RestartGame() {
+		// Since we're ending this game and starting a new one, start a new session
+		SdkManager.Instance.EndSession ();
+		SdkManager.Instance.StartSession ();
+
 		StartGame(true);
 	}
 

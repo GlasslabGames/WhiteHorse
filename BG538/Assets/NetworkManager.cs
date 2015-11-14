@@ -7,6 +7,9 @@ public class NetworkManager : Photon.PunBehaviour {
 	public bool ShowDebugInfo;
 	public Text DebugLabel;
 
+	[HideInInspector]
+	public string GroupKeyword = "";
+
 	public static bool MultiplayerMode { get; private set; }
 
 	public static NetworkManager Instance;
@@ -67,17 +70,19 @@ public class NetworkManager : Photon.PunBehaviour {
 	public static void CreateRoom(string name, GameSettings settings) { 
 		RoomOptions options = new RoomOptions();
 		options.maxPlayers = 2;
+		string keyword = (NetworkManager.Instance != null) ? NetworkManager.Instance.GroupKeyword : "";
 
 		Hashtable table = new Hashtable() {
 			{ "s", settings.currentScenarioId },
 			{ "n", name },
 			{ "c", settings.currentColor },
-			{ "w", settings.currentIncrement },
-			{ "d", settings.currentDuration }
+			//{ "w", settings.currentIncrement },
+			//{ "d", settings.currentDuration },
+			{ "k", keyword }
 		};
 
 		options.customRoomProperties = table;
-		options.customRoomPropertiesForLobby = new string[] { "s", "n", "c" };
+		options.customRoomPropertiesForLobby = new string[] { "s", "n", "c", "k" };
 		PhotonNetwork.CreateRoom(null, options, null);
 	}
 
@@ -99,8 +104,8 @@ public class NetworkManager : Photon.PunBehaviour {
 		GameSettings settings = GameSettings.InstanceOrCreate;
 		if (props.ContainsKey("s")) settings.currentScenarioId = (int) props["s"];
 		if (props.ContainsKey("c")) settings.currentColor = (Leaning) props["c"];
-		if (props.ContainsKey("d")) settings.currentDuration = (int) props["d"];
-		if (props.ContainsKey("w")) settings.currentIncrement = (float) props["w"];
+		//if (props.ContainsKey("d")) settings.currentDuration = (int) props["d"];
+		//if (props.ContainsKey("w")) settings.currentIncrement = (float) props["w"];
 
 		Application.LoadLevel("game");
 	}

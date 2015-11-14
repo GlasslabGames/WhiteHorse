@@ -55,6 +55,7 @@ public class UIManager : SingletonBehavior<UIManager> {
 			if (endTurnButton) endTurnButton.SetActive (true);
 			break;
 		case TurnPhase.Waiting:
+			statePopup.Close();
 			if (waitingLabel) waitingLabel.SetActive(true);
 			if (waitingIndicator) waitingIndicator.SetActive(true);
 			break;
@@ -130,7 +131,10 @@ public class UIManager : SingletonBehavior<UIManager> {
 	}
 
 	public void SetFooter(string opponentName = "") {
-		string playerName = (PhotonNetwork.playerName.Length > 0)? PhotonNetwork.playerName : "Player";
+		string playerName = "Player";
+		if (PhotonNetwork.playerName.Length > 0) playerName = PhotonNetwork.playerName;
+		else if (SdkManager.username != null && SdkManager.username.Length > 0) playerName = SdkManager.username;
+
 		if (opponentName == "") {
 			opponentName = "Opponent"; // default
 		

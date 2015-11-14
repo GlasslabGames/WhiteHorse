@@ -107,7 +107,7 @@ public class LoginPanelWebView : MonoBehaviour {
 
     // Start the first session and set auto management on sessions
     SdkManager.Instance.GLSDK.SetAutoSessionManagement( true );
-    SdkManager.Instance.StartSession();
+    //SdkManager.Instance.StartSession();
 
     // Set the connected state to online
     //MainMenuController.Instance.SetConnectedState( ConnectedState.LOGGED_IN );

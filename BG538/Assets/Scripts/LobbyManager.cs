@@ -19,8 +19,15 @@ public class LobbyManager : MonoBehaviour {
 	public Text ScenarioDescription;
 	public Image ScenarioImage;
 
+	public Toggle GroupToggle;
+	public GameObject GroupModal;
+	public Text GroupLabel;
+	public InputField GroupKeywordEntry;
+	private bool preventGroupToggleCallback;
+
 	public Leaning CurrentColor;
 	public ScenarioModel CurrentScenarioModel;
+
 	public GameObject ScenarioEntryPrefab;
 
 	public DebugSettings debugSettings;
@@ -54,7 +61,9 @@ public class LobbyManager : MonoBehaviour {
 
 		photonConnectionModal.lobbyOverlay = Overlay;
 
+		RefreshGroupToggle();
 		FillInScenarios();
+		if (Random.value >= 0.5) ToggleColor(); // randomly choose whether to start blue (default) or red
 	}
 
 	void FillInScenarios() {
@@ -167,6 +176,42 @@ public class LobbyManager : MonoBehaviour {
 		foreach (ColorSwapperBase colorSwapper in colorSwappers) {
 			colorSwapper.SetColor(CurrentColor);
 		}
+	}
+
+	public void ToggleGroup(bool on) {
+		if (preventGroupToggleCallback) return;
+
+		if (on) {
+			GroupKeywordEntry.text = "";
+			GroupModal.SetActive (true);
+		} else {
+			NetworkManager.Instance.GroupKeyword = "";
+			RefreshGroupToggle();
+		}
+	}
+
+	public void CancelGroup() {
+		NetworkManager.Instance.GroupKeyword = "";
+		RefreshGroupToggle();
+		GroupModal.SetActive (false);
+	}
+
+	public void SubmitGroupKeyword() {
+		NetworkManager.Instance.GroupKeyword = GroupKeywordEntry.text;
+		RefreshGroupToggle ();
+		GroupModal.SetActive (false);
+	}
+
+	private void RefreshGroupToggle() {
+		preventGroupToggleCallback = true; // hacks because setting isOn calls the callback
+		if (NetworkManager.Instance.GroupKeyword.Length > 0) {
+			GroupToggle.isOn = true;
+			GroupLabel.text = "Class keyword: " + NetworkManager.Instance.GroupKeyword;
+		} else {
+			GroupToggle.isOn = false;
+			GroupLabel.text = "Show classmates only";
+		}
+		preventGroupToggleCallback = false;
 	}
 
 	public void Host() {

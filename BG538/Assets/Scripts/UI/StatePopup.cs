@@ -46,9 +46,9 @@ public class StatePopup : MonoBehaviour {
 		// Basic state info
 		if (nameLabel) nameLabel.text = state.Model.Name;
 		if (abbreviationLabel) abbreviationLabel.text = state.Model.Abbreviation;
-		if (populationLabel) populationLabel.text = state.population.ToString() + "M people : " + state.electoralVotes.ToString() + " votes";
+		//if (populationLabel) populationLabel.text = state.population.ToString() + "M people\n" + state.electoralVotes.ToString() + " electoral votes";
 		//if (populationLabel) populationLabel.text = "Population " + state.population.ToString() + "M";
-		//if (electoralVotesLabel) electoralVotesLabel.text = "Electoral votes " + state.electoralVotes.ToString();
+		if (populationLabel) populationLabel.text = state.electoralVotes.ToString() + " electoral votes";
 		
 		// Show the current support percentages
 		string redPercent = Mathf.Round(state.RedSupportPercent * 100).ToString() + "%";
