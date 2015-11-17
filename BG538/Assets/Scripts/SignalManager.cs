@@ -21,5 +21,6 @@ public static class SignalManager {
 	public static Action PlayerColorSet;
 	public static LeaningEvent PlayerFinished;
 	public static Action TryingPhotonConnect;
+	public static Action RoomGroupChanged;
 	// public static Action foo;
 }

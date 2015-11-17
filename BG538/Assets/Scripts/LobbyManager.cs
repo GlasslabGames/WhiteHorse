@@ -12,6 +12,8 @@ public class LobbyManager : MonoBehaviour {
 	public GameObject ScenarioPanel;
 	private CanvasGroup scenarioCanvasGroup;
 
+	public RoomList roomList;
+
 	public GameObject WaitingModal;
 	public GameObject Overlay;
 	public PhotonErrorPopup photonConnectionModal;
@@ -32,6 +34,13 @@ public class LobbyManager : MonoBehaviour {
 
 	public DebugSettings debugSettings;
 
+	public static LobbyManager Instance;
+	public bool ShowingModePanel {
+		get {
+			return modeCanvasGroup.interactable;
+		}
+	}
+
 	// Transition
 	private Vector3 panelCenterPos;
 	private float panelOffsetY;
@@ -40,6 +49,8 @@ public class LobbyManager : MonoBehaviour {
 	private Ease transitionEase = Ease.InOutCubic;
 
 	public void Start() {
+		Instance = this;
+
 		panelCenterPos = GamePanel.transform.position;
 		panelOffsetY = Screen.height * 1.25f;
 		panelOffsetX = Screen.width * 1.25f;
@@ -108,7 +119,6 @@ public class LobbyManager : MonoBehaviour {
 	}
 
 	public void LeaveScenarioPanel() {
-		Debug.Log("Leave scenario panel. Multiplayer? "+NetworkManager.MultiplayerMode);
 		if (NetworkManager.MultiplayerMode) { // return to the game panel
 			ScrollPanel(scenarioCanvasGroup, "up", false);
 			ScrollPanel(gameCanvasGroup, "up", true);
@@ -185,21 +195,24 @@ public class LobbyManager : MonoBehaviour {
 			GroupKeywordEntry.text = "";
 			GroupModal.SetActive (true);
 		} else {
-			NetworkManager.Instance.GroupKeyword = "";
-			RefreshGroupToggle();
+			SetGroupKeyword("");
 		}
 	}
 
 	public void CancelGroup() {
-		NetworkManager.Instance.GroupKeyword = "";
-		RefreshGroupToggle();
+		SetGroupKeyword("");
 		GroupModal.SetActive (false);
 	}
 
 	public void SubmitGroupKeyword() {
-		NetworkManager.Instance.GroupKeyword = GroupKeywordEntry.text;
-		RefreshGroupToggle ();
+		SetGroupKeyword(GroupKeywordEntry.text);
 		GroupModal.SetActive (false);
+	}
+
+	private void SetGroupKeyword(string keyword) {
+		NetworkManager.Instance.GroupKeyword = keyword.ToUpper();
+		if (SignalManager.RoomGroupChanged != null) SignalManager.RoomGroupChanged ();
+		RefreshGroupToggle ();
 	}
 
 	private void RefreshGroupToggle() {

@@ -14,10 +14,12 @@ public class RoomList : Photon.PunBehaviour {
 
 	void Awake() {
 		SignalManager.TryingPhotonConnect += OnConnecting;
+		SignalManager.RoomGroupChanged += RefreshRooms;
 	}
 
 	void OnDestroy() {
 		SignalManager.TryingPhotonConnect -= OnConnecting;
+		SignalManager.RoomGroupChanged -= RefreshRooms;
 	}
 
 	public void OnConnecting() {
@@ -28,12 +30,14 @@ public class RoomList : Photon.PunBehaviour {
 	public void OnReceivedRoomListUpdate() {
 		ConnectingIndicator.SetActive(false);
 
-		RefreshWithRooms(PhotonNetwork.GetRoomList());
+		RefreshRooms();
 	}
 
-	public void RefreshWithRooms(RoomInfo[] rooms) {
-		EmptyIndicator.SetActive(rooms.Length == 0);
-		string keyword = NetworkManager.Instance.GroupKeyword;
+	public void RefreshRooms() {
+		RoomInfo[] rooms = PhotonNetwork.GetRoomList();
+
+		EmptyIndicator.SetActive(true);
+		string keyword = NetworkManager.Instance.GroupKeyword.ToUpper();
 
 		// We want to add new entries and then delete unused ones, without erasing and starting from scratch
 		// Since that would mess up which entry is selected
@@ -44,7 +48,12 @@ public class RoomList : Photon.PunBehaviour {
 
 			// check the group keyword
 			ExitGames.Client.Photon.Hashtable props = room.customProperties;
-			if (props != null && props.ContainsKey("k") && props["k"] != keyword) continue;
+			if (props != null && props.ContainsKey("k")) {
+				string roomKey = (string) props["k"];
+				roomKey = roomKey.ToUpper();
+				Debug.Log (roomKey + " =? " + keyword + ": " + (props["k"] == keyword));
+				if (roomKey != keyword) continue;
+			}
 
 			if (entriesByRoom.ContainsKey(room.name)) {
 				entry = entriesByRoom[room.name];
@@ -56,6 +65,8 @@ public class RoomList : Photon.PunBehaviour {
 				entry.Set(room);
 			}
 			entries.Add(entry);
+
+			EmptyIndicator.SetActive(false);
 		}
 
 		// now everything left in entriesByMatch is old
@@ -66,6 +77,5 @@ public class RoomList : Photon.PunBehaviour {
 
 		// and save the good entries for next time
 		entriesByRoom = entries.ToDictionary(x => x.RoomName, x => x);
-		Debug.Log (entriesByRoom.Values);
 	}
 }
