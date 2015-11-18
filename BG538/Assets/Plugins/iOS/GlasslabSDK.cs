@@ -91,6 +91,7 @@ public class GlasslabSDK {
 	// fix by Rose
 	private ArrayList m_CreateMatch_CBList;
 	private ArrayList m_UpdateMatch_CBList;
+	private ArrayList mError_CBList;
 
 	private char[]    mMsgChars;
 	private string    mMsgString;
@@ -175,6 +176,7 @@ public class GlasslabSDK {
 		m_GetUserInfo_CBList = new ArrayList();
 		m_CreateMatch_CBList = new ArrayList();
 		m_UpdateMatch_CBList = new ArrayList();
+		mError_CBList = new ArrayList();
 		mInstSet = false;
 		
 		mMsgCode   = 0;
@@ -213,6 +215,7 @@ public class GlasslabSDK {
 		
 		if (cb != null) {
 			mConnect_CBList.Add (cb);
+			if (mError_CBList != null) mError_CBList.Add(cb);
 		} else {
 			ResponseCallback tempCB = ResponseCallback_Stub;
 			mConnect_CBList.Add (tempCB);
@@ -252,6 +255,17 @@ public class GlasslabSDK {
 
 			// Intercept the responses and fire the desired callback functions.
 			switch(mMsgCode){
+			
+			// Rose hacks since I wasn't getting an error callback from Connect 
+			case (int)GlasslabSDK.Message.Error:
+			case (int)GlasslabSDK.Message.ConnectFail: {
+				if(mError_CBList != null && mError_CBList.Count > 0){
+					ResponseCallback cb = (ResponseCallback)mError_CBList[0];
+					mError_CBList.RemoveAt (0);
+					if (cb != null && mMsgString != null) cb( mMsgString );
+				}
+			} break;
+			
 			case (int)GlasslabSDK.Message.Connect: {
 				if(mConnect_CBList.Count > 0){
 					ResponseCallback cb = (ResponseCallback)mConnect_CBList[0];

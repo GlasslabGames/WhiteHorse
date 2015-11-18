@@ -15,9 +15,8 @@ public class LoginPanelWebView : MonoBehaviour {
   private GLWebView m_webView;
 
 	public event Action onLoginComplete;
-
-	public NoInternetModal noInternetModal;
-  
+	public event BoolEvent onLoginFail;
+	  
   void Awake() {
     m_webView = GetComponent<GLWebView>();
   }
@@ -239,7 +238,7 @@ public class LoginPanelWebView : MonoBehaviour {
 
   private void NoConnectionCallback( bool noInternet )
   {
-    Debug.Log("No connection callback received. noInternet = " + noInternet, this);
+    Debug.Log("No connection callback received. noInternet = " + noInternet + " loginFail callback: "+onLoginFail, this);
 	#if UNITY_IOS || UNITY_ANDROID || UNITY_WP8
     if (m_webView != null)
     {
@@ -247,7 +246,7 @@ public class LoginPanelWebView : MonoBehaviour {
     }
 	#endif
 
-    noInternetModal.Display( noInternet );
+		if (onLoginFail != null) onLoginFail( noInternet );
 
     gameObject.SetActive( false );
   }

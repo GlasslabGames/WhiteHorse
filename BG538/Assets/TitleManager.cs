@@ -6,11 +6,13 @@ public class TitleManager : MonoBehaviour {
 	public GameObject overlay;
 	public GameObject credits;
 	public GameObject webview;
+	public NoInternetModal noInternetModal;
 	
 	void Start() {
 		overlay.SetActive(false);
 		LoginPanelWebView webviewPanel = webview.GetComponent<LoginPanelWebView> ();
 		webviewPanel.onLoginComplete += OnLoginComplete;
+		webviewPanel.onLoginFail += OnLoginFail;
 	}
 
 	public void ShowLogin() {
@@ -37,5 +39,11 @@ public class TitleManager : MonoBehaviour {
 	void OnLoginComplete() {
 		// webview is closed, now just do the scene transition
 		Application.LoadLevel("lobby"); // proceed to the lobby
+	}
+
+	void OnLoginFail(bool noInternet) {
+		Debug.Log("** LoginFail in TitleManager");
+		overlay.SetActive(false);
+		noInternetModal.Display(noInternet);
 	}
 }

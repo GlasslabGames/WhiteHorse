@@ -12,16 +12,21 @@ public class NoInternetModal : MonoBehaviour
   public ServerPoll m_serverPollScript;
 
   public void Display( bool noInternet ) {
+	Debug.Log ("Displaying noInternetModal " + this + ": " + this.gameObject);
 	gameObject.SetActive(true);
 		
     NoInternetConnectionMessage.SetActive( noInternet );
     CantReachServerMessage.SetActive( !noInternet );
   }
 
+  public void OkButtonPress() {
+	gameObject.SetActive( false );
+  }
+
   public void QuitButtonPress() {
 	gameObject.SetActive( false );
 	SdkManager.Instance.Logout();
-	if (Application.loadedLevelName != "title") Application.LoadLevel("title");
+	Application.LoadLevel ("title");
   }
 
   public void RetryButtonPress() {

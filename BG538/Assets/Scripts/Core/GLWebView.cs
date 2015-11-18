@@ -92,7 +92,10 @@ public class GLWebView : MonoBehaviour {
             // Set the connected state
             isConnected = true;
             noInternet = true;
-          }
+          } else {
+					  isConnected = false;
+					  noInternet = true;
+					}
         }
         checkingConnection = false;
     });

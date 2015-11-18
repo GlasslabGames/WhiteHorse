@@ -3,69 +3,45 @@ using System;
 using MiniJSON;
 using System.Collections.Generic;
 
-
+// Edited from the original to use a separate timer (for clarity)
 public class ServerPoll : MonoBehaviour
 {
-  public int SERVER_POLL_IN_SECONDS = 60;
-  private float m_pollTimer;
-  private bool m_active;
-
-  public NoInternetModal NoInternetConnectionModal;
-
-  private Action m_successCallback;
+	public NoInternetModal NoInternetConnectionModal;
+	private Timer timer;
 	private static ServerPoll _instance;
-
-  /**
-   * Activate the timer on awake.
-   */
+	
   public void Awake() {
 		if (_instance != null) {
-			Destroy(gameObject);
+			Destroy(gameObject); // we already have one, we don't need too
 		} else {
 			_instance = this;
-			DontDestroyOnLoad(gameObject);
+			DontDestroyOnLoad(gameObject); // save this one
 
-		#if !UNITY_EDITOR
-    		Reset( true );
-		#endif
+			#if !UNITY_EDITOR
+			timer = GetComponent<Timer>();
+			timer.StartTimer(onTimer);
+			#endif
 		}
-
   }
 
-  /**
-   * Function resets the timer and re-activates if required.
-   */
-  public void Reset( bool activate ) {
-    m_pollTimer = 0.0f;
-    m_active = activate;
-  }
-
-  /**
-   * Function updates the poll timer if it is active. If the timer reaches its duration, ping the server.
-   */
-  public void Update() {
-    if( m_active ) {
-      m_pollTimer += Time.deltaTime;
-
-      // Check the timer against the duration and attempt a connection if need be, then reset the timer
-      if( m_pollTimer >= SERVER_POLL_IN_SECONDS ) {
-        AttemptConnection();
-      }
-    }
-  }
+	public void onTimer() {
+		Debug.Log("*** Server poll timer! ***");
+		if (NoInternetConnectionModal.gameObject.activeSelf) { 	// no need to recheck while the popup is up
+			return;
+		} else if (Application.loadedLevelName == "title") { // no need to recheck on the title screen
+			return;
+		} else {
+			AttemptConnection();
+		}
+	}
 
   /**
    * Attempt a connection to the server.
    */
-  public void AttemptConnection( Action successCallback = null ) {
-    // Set the callback to fire if it isn't null
-    if( successCallback != null ) {
-      m_successCallback = successCallback;
-    }
+  public void AttemptConnection( ) {
 
     // Connect to the server
-    Debug.Log( "about to call SDK Connect as poll" );
-    Reset( false );
+    Debug.Log( "SERVER POLL: about to call SDK Connect" );
     SdkManager.Instance.GLSDK.Connect( Application.persistentDataPath, SdkManager.SDK_CLIENT_ID, SdkManager.SDK_SERVER_URI, ConnectCallback );
   }
   
@@ -73,7 +49,7 @@ public class ServerPoll : MonoBehaviour
    * Want to display messaging for failed connection.
    */
   public void ConnectCallback( string response ) {
-    Debug.Log( "SERVER: in POLL ConnectCallback(): " + response );
+    Debug.Log( "SERVER POLL: ConnectCallback(): " + response );
 
     // Likely server is down
     if( response == "" ) {
@@ -89,19 +65,10 @@ public class ServerPoll : MonoBehaviour
         Debug.Log( "We are offline!" );
         DisplayNoInternetModal( true );
       }
-      else {
-        // We are still online, poll again on the next interval
-        Reset( true );
-
-        // Fire the callback to fire if it isn't null
-        if( m_successCallback != null ) {
-          m_successCallback();
-          m_successCallback = null;
-        }
-      }
+      // else we are still online
     }
     
-    Debug.Log( "SERVER: done with POLL ConnectCallback" );
+    Debug.Log( "SERVER POLL: done with ConnectCallback" );
   }
 
   /**
@@ -110,10 +77,6 @@ public class ServerPoll : MonoBehaviour
    * False = can't reach server
    */
   public void DisplayNoInternetModal( bool noInternet ) {
-		if (NoInternetConnectionModal) {
-			NoInternetConnectionModal.Display(noInternet);
-		} else {
-			Debug.Log ("NO CONNECTION!");
-		}
+		NoInternetConnectionModal.Display(noInternet);
   }
 }

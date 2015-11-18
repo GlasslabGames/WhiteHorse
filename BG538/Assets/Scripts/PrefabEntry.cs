@@ -26,7 +26,6 @@ public class PrefabEntry : MonoBehaviour {
 
 	public virtual void OnToggle(bool value) {
 		if (value && gameObject.activeInHierarchy && enableSound) {
-			Debug.Log (name);
 			SoundController.Play("Toggle");
 		}
 	}
