@@ -8,13 +8,13 @@ public class ServerPoll : MonoBehaviour
 {
 	public NoInternetModal NoInternetConnectionModal;
 	private Timer timer;
-	private static ServerPoll _instance;
+	public static ServerPoll Instance { get; private set; }
 	
   public void Awake() {
-		if (_instance != null) {
+		if (Instance != null) {
 			Destroy(gameObject); // we already have one, we don't need too
 		} else {
-			_instance = this;
+			Instance = this;
 			DontDestroyOnLoad(gameObject); // save this one
 
 			#if !UNITY_EDITOR

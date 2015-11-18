@@ -12,8 +12,7 @@ public class NoInternetModal : MonoBehaviour
   public ServerPoll m_serverPollScript;
 
   public void Display( bool noInternet ) {
-	Debug.Log ("Displaying noInternetModal " + this + ": " + this.gameObject);
-	gameObject.SetActive(true);
+		gameObject.SetActive(true);
 		
     NoInternetConnectionMessage.SetActive( noInternet );
     CantReachServerMessage.SetActive( !noInternet );

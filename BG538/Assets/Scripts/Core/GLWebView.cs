@@ -30,6 +30,11 @@ public class GLWebView : MonoBehaviour {
 	private WebView m_currentView;
   private Action<bool> m_failureCallback;
 
+	// to avoid multithread issues, try tracking this values here (for use in doRequest)
+	private static bool tryingToConnect;
+	private static bool connected;
+	private static bool noInternet;
+
   public UniWebView LoadView( string addr, Func<UniWebView, UniWebViewMessage, bool> callback, Action<bool> failureCallback = null, bool useCookie = true )
   {
 		Debug.Log ("*** LoadView " + addr);
@@ -71,17 +76,15 @@ public class GLWebView : MonoBehaviour {
 
   private IEnumerator doRequest()
   {
-    bool checkingConnection = true;
-    bool isConnected = false;
-    bool noInternet = true;
+		tryingToConnect = true;
 
-	SdkManager.Instance.GLSDK.Connect(Application.persistentDataPath, SdkManager.SDK_CLIENT_ID, SdkManager.SDK_SERVER_URI, 
+		SdkManager.Instance.GLSDK.Connect(Application.persistentDataPath, SdkManager.SDK_CLIENT_ID, SdkManager.SDK_SERVER_URI, 
       delegate( string response ) {
         Debug.Log("SERVER: in ConnectCallback(): " + response);// , this);
 
         // Likely server is down
         if( response == "" ) {
-          isConnected = false;
+          connected = false;
           noInternet = false;
         }
         else {
@@ -90,23 +93,26 @@ public class GLWebView : MonoBehaviour {
           if (!responseAsJSON.ContainsKey("error"))
           {
             // Set the connected state
-            isConnected = true;
+            connected = true;
             noInternet = true;
+						Debug.Log("connected!");
           } else {
-					  isConnected = false;
+					  connected = false;
 					  noInternet = true;
+						Debug.Log("not connected...");
 					}
         }
-        checkingConnection = false;
+        tryingToConnect = false;
     });
 
-    while (checkingConnection)
+    while (tryingToConnect)
     {
       yield return null;
     }
 
-    if (isConnected)
+    if (connected)
     {
+			Debug.Log("*** is connected!");
       if( m_currentView.UseCookie )
       {
         CurrentWebView.Load(SdkManager.Instance.GLSDK.GetConnectUri() + "/sdk?cookie=" + SdkManager.Instance.GLSDK.GetCookie() + "&redirect=" + m_currentView.Path);
@@ -131,6 +137,7 @@ public class GLWebView : MonoBehaviour {
   public void CancelRequest()
   {
     Debug.Log("Request canceled.", this);
+		tryingToConnect = false;
     if (CurrentWebView != null)
     {
       CurrentWebView.Stop();

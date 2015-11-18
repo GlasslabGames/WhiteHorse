@@ -6,8 +6,7 @@ public class TitleManager : MonoBehaviour {
 	public GameObject overlay;
 	public GameObject credits;
 	public GameObject webview;
-	public NoInternetModal noInternetModal;
-	
+
 	void Start() {
 		overlay.SetActive(false);
 		LoginPanelWebView webviewPanel = webview.GetComponent<LoginPanelWebView> ();
@@ -42,8 +41,12 @@ public class TitleManager : MonoBehaviour {
 	}
 
 	void OnLoginFail(bool noInternet) {
-		Debug.Log("** LoginFail in TitleManager");
+		Debug.Log("** LoginFail in TitleManager.");
 		overlay.SetActive(false);
-		noInternetModal.Display(noInternet);
+
+		if (ServerPoll.Instance != null) {
+			NoInternetModal modal = ServerPoll.Instance.NoInternetConnectionModal;
+			if (modal != null) modal.Display(noInternet);
+		}
 	}
 }
